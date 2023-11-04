@@ -1,0 +1,37 @@
+<section class="sign-container search-container">
+
+    <section class="sign-wrapper">
+    <section class="sign-right-wrapper">
+    <section class="center">  <img src="./../../../../assets/images/search-user.png" /></section>
+      <h2 class="sign-title">LUC Check</h2>
+      <form>
+     <section class="inputsec">
+      <label>Select Village</label>
+      <mat-form-field appearance="outline">
+        <mat-select>
+            <mat-option>
+                Select
+              </mat-option>
+            <mat-option  [value]="'Village 1'">
+                Village 1
+              </mat-option>
+        </mat-select>
+      </mat-form-field>
+     </section>
+     <section class="inputsec">
+      <label>Center</label>
+      <mat-form-field appearance="outline">
+        <input  formControlName="details" required matInput placeholder="Center" value="c1">
+      </mat-form-field> 
+        </section>
+  
+      <button class="search wid100p"  mat-raised-button color="primary" (click)="search()" >Search</button>
+
+      <button class="search wid100p" style="margin-top: 20px;" mat-raised-button color="primary" (click)="searchNew()" >New </button>
+   
+      
+   
+    </form> 
+    </section>
+      </section>
+  </section>

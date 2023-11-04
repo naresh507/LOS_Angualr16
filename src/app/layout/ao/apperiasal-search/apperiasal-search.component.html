@@ -1,0 +1,37 @@
+<section class="sign-container search-container">
+
+    <section class="sign-wrapper">
+    <section class="sign-right-wrapper">
+    <section class="center">  <img src="./../../../../assets/images/search-user.png" /></section>
+      <h2 class="sign-title">Search Client</h2>
+      <form>
+     <section class="inputsec">
+      <label>Search Client By</label>
+      <mat-form-field appearance="outline">
+        <mat-select>
+            <mat-option>
+                Select
+              </mat-option>
+            <mat-option  [value]="'Village 1'">
+                Village 1
+              </mat-option>
+        </mat-select>
+      </mat-form-field>
+     </section>
+     <section class="inputsec">
+      <label>Enter Details</label>
+      <mat-form-field appearance="outline">
+        <input  formControlName="details" required matInput placeholder="Enter" value="1235">
+      </mat-form-field> 
+        </section>
+  
+      <button class="search wid100p"  mat-raised-button color="primary" (click)="search()" >Search</button>
+
+      
+   
+      
+   
+    </form> 
+    </section>
+      </section>
+  </section>

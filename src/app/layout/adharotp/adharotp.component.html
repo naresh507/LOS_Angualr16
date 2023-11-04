@@ -1,0 +1,194 @@
+<style>
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+</style>
+
+
+<div class="onboarding">
+  <div class="container" style="flex-direction: row;gap: 10px;padding: 10px 100px;">
+
+    <div class="right-section">
+      <div class="right-inner">
+        <form style="display: flex;flex-direction: column;gap: 5px;">
+
+          <div class="form-group">
+            <label class="form-label" >Aadhar Number </label>
+            <div class="form-group_div">
+              <input type="text" [(ngModel)]="adhardetails.aadhaarNo" [ngModelOptions]="{ standalone: true }"
+                class="form-control form-control-sm" placeholder="Enter Number" required />
+              <div class="" style="display: flex;gap: 10px;justify-content: space-between;margin-top: 5px;">
+                <div class="me-1">
+                  <div class="sent-otp align-items-start">
+                    <a href="javascript:void(0)" data-toggle="modal" (click)="sendotp()"
+                      data-target="#otpSentDialog">Send
+                      OTP</a>
+                    <small>
+                      <!-- {{ isLoading ? "Sending..." : "Send OTP" }} -->
+                      <ng-container *ngIf="resendCooldown > 0">
+                        <p class="note">(Resend OTP in {{ resendCooldown }} seconds)</p>
+                      </ng-container>
+                    </small>
+                  </div>
+
+
+                </div>
+                <div class="sent-otp ms-1">
+                  <a href="javascript:void(0)" data-toggle="modal" (click)="resendotp()"
+                    data-target="#maximumAttemptReachedDialog">Resend OTP in 120 seconds</a>
+                  <p *ngIf="remainingAttempts > 0" class="note">
+                    ({{ remainingAttempts }} attempts left)
+                  </p>
+                  <p *ngIf="remainingAttempts <= 0" class="note">
+                    Maximum attempts reached. Try again later.
+                  </p>
+                  <!-- <small class="note">(3 attempts left)</small> -->
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="col-auto flex-grow-1">
+              <input
+                type="text"
+                id="aadharNumber"
+                [(ngModel)]="adhardetails.aadhaarNo"
+
+                maxlength="12"
+                class="form-control"
+                placeholder="XXXX-XXXX-XXXX"
+                aria-describedby="passwordHelpInline"
+              />
+            </div> -->
+          </div>
+
+          <!-- <div class="otp-input row">
+            <input
+              *ngFor="let digit of otp; let i = index"
+              type="text"
+              [(ngModel)]="otp[i]"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control col otp-digit form-control-sm"
+              maxlength="1"
+              (input)="checkValidOTP()"
+            />
+          </div> -->
+          <!--<div class="otp-input row">
+             <input  id ="otp__{{i}}"*ngFor="let digit of otp; let i = index" type="text" [(ngModel)]="otp[i]"
+              class="form-control col otp-digit form-control-sm" [ngModelOptions]="{ standalone: true }"
+              (input)="checkValidOTP()" maxlength="1"/> 
+          </div>-->
+
+          <div style="display: flex;justify-content: center;align-items: start;">
+            <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+              <ng-otp-input (onInputChange)="checkValidOTP($event)" [config]="{length:6}"></ng-otp-input>
+              {{otp[0]}}
+              <div class="info mt-1">
+                <p>(Please enter verification code sent on your number.)</p>
+              </div>
+            </div>
+          </div>
+          <div style="text-align: end;">
+            <button type="button" style="background-color: #4205b9;color: #fff;padding: 5px 10px;border-radius: 3px;
+            border: 1px solid #4205b9;" (click)="Verifyandnext()">
+              Verify & Next
+            </button>
+          </div>
+
+          <p *ngIf="error" class="error-message">{{ error }}</p>
+
+          <div class="d-flex form-group gap-2 mb-3" style="margin-top: 15px;">
+            <label class="col-sm-3 form-label">AAdhar Photo</label>
+
+            <!-- <h6 style="margin: 0;">AAdhar Photo</h6> -->
+            <div class="border p-2 bg-light img_src_wdth">
+              <img [src]="image" class="m-auto" alt="Aadhar Photo" width="304" height="236" />
+            </div>
+          </div>
+
+          <div class="align-items-center d-flex form-group gap-2">
+            <label for="inputnumber" class="col-sm-3 form-label">Name</label>
+            <div class="col-auto flex-grow-1" style="width: 100%;">
+              <input type="text" id="inputnumber" [(ngModel)]="name" class="form-control"
+                [ngModelOptions]="{ standalone: true }" aria-describedby="passwordHelpInline" />
+            </div>
+          </div>
+
+          <div class="align-items-center d-flex form-group gap-2">
+            <label for="inputnumber" class="col-sm-3 form-label">Aadhar ID</label>
+            <div class="col-auto flex-grow-1" style="width: 100%;">
+              <input type="text" id="inputnumber" [(ngModel)]="maskedAadhaarNumber" class="form-control"
+                [ngModelOptions]="{ standalone: true }" aria-describedby="passwordHelpInline" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="left-section">
+      <div class="white-card">
+        <div class="row detail-wrapper">
+          <div class="lbl_val">
+            <label>Address</label>
+            <p>
+              {{resData3.address}}
+            </p>
+          </div>
+          <!-- <div class="lbl_val">
+            <label>Age</label>
+            <p>{{resData3.age}}</p>
+          </div> -->
+          <div class="lbl_val">
+            <label>Date of Birth</label>
+            <p>{{resData3.dob}}</p>
+          </div>
+          <div class="lbl_val">
+            <label>Father’s Name</label>
+            <!-- <p>{{resData3.fatherName}}</p> -->
+            <p>{{resData3.fatherName}}</p>
+          </div>
+          <div class="lbl_val">
+            <label>Gender</label>
+            <p>{{resData3.gender}}</p>
+          </div>
+          <div class="lbl_val">
+            <label>Aadhar Card No.</label>
+            <p>{{resData3.maskedAadhaarNumber}}</p>
+          </div>
+          <div class="lbl_val">
+            <label>Name</label>
+            <p>{{resData3.name}}</p>
+          </div>
+          <div class="lbl_val">
+            <label>State</label>
+            <p>{{resData3.state}}</p>
+          </div>
+          <!-- <div class="lbl_val">
+            <label>Year of Birth</label>
+            <p>{{resData3.yob}}</p>
+          </div> -->
+          <div class="lbl_val">
+            <label>District</label>
+            <p>{{resData3.district}}</p>
+          </div>
+          <div class="lbl_val">
+            <label>House No.</label>
+            <p>{{resData3.houseNumber}}</p>
+          </div>
+          <div class="lbl_val">
+            <label>Pin Code</label>
+            <p>{{resData3.pincode}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

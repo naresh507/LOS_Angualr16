@@ -1,0 +1,318 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { CrudService } from 'src/app/shared/services/crud.service';
+import Swal from 'sweetalert2';
+
+
+@Component({
+  selector: 'app-basicdetails',
+  templateUrl: './basicdetails.component.html',
+  styleUrls: ['./basicdetails.component.scss']
+})
+export class BasicdetailsComponent implements OnInit{
+  @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
+  @ViewChild('enlargedialog') enlargedialog!: TemplateRef<any>;
+  dialogRef: any;
+  enlargeDialogRef:any;
+  basicDetails:boolean=true;
+  mainbasicDetails:boolean=true
+  memberDetails:boolean=false;
+  householdDetails:boolean=false;
+  userObj: any;
+  form!: FormGroup;
+  form1!: FormGroup;
+  form2!: FormGroup;
+  MasterPinCodeDetails: any;
+  mastervillageDetails: any;
+  constructor(private dialog:MatDialog, private _crudService:CrudService,
+    private fb: FormBuilder)
+  {
+    this.form = this.fb.group({
+      pan: ['' ],
+      loanpurpose: [''],
+      amount:[''],  
+    
+    });
+
+
+    this.form1 = this.fb.group({
+      village: ['' , Validators.required],
+      pincode: ['', Validators.required],
+     center:['']
+    });
+
+    this.form2 = this.fb.group({
+      day: ['' , Validators.required],
+      week: ['', Validators.required],
+    
+    });
+
+  }
+  ngOnInit(): void {
+    this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+  }
+  enlarge()
+  {
+this.enlargeDialogRef= this.dialog.open(this.enlargedialog,{
+  width:'600px'
+
+})
+  }
+
+  addnewcenter()
+{
+  this.dialogRef = this.dialog.open(this.reasondialog, {
+    width:'400px'
+   
+  });
+
+  this.dialogRef.afterClosed().subscribe((result: any) => {
+    console.log('The dialog was closed');
+    
+  });
+}
+
+
+showmemberpopup()
+{
+  
+    Swal.fire({
+      width:'350px',
+    imageUrl: '../../assets/images/earn-member.png',
+    imageHeight: 80,
+    text: 'Proceed with Single Earning Member?',  
+   showCancelButton:true,
+   cancelButtonText:'No',
+    confirmButtonText:'Yes',
+    customClass: {
+      confirmButton: "filledBtn",
+      cancelButton:'strokedBtn'
+    }
+
+  }).then((result) => {
+    if(result.isConfirmed)
+    {
+      this.basicDetails=false
+   
+    }
+    else
+    {
+      console.log('close')
+    }
+  })
+  
+}
+cancelNewCenter()
+{
+  
+  this.dialogRef.close();
+}
+close()
+{
+  this.enlargeDialogRef.close();
+}
+
+
+
+
+sucesscenter()
+{
+  
+    Swal.fire({
+      width:'350px',
+    imageUrl: '../../assets/images/tick.png',
+    imageHeight: 80,
+    text: 'Center created successfully!',  
+   showCancelButton:false,
+   
+    confirmButtonText:'Okay',
+    customClass: {
+      confirmButton: "strokedBtn",
+     
+    }
+
+  }).then((result) => {
+    if(result.isConfirmed)
+    {
+    this.cancelNewCenter()
+    
+    }
+    else
+    {
+      console.log('close')
+    }
+  })
+  
+}
+
+clickDetails(element:any)
+{
+  if(element == 'a')
+  {
+    this.mainbasicDetails=true;
+    this.memberDetails=false;
+    this.householdDetails=false;
+  }
+  if(element == 'b')
+  {
+    this.mainbasicDetails=false;
+    this.memberDetails=true;
+    this.householdDetails=false;
+  }
+  if(element == 'c')
+  {
+    this.mainbasicDetails=false;
+    this.memberDetails=false;
+    this.householdDetails=true;
+  }
+}
+
+
+
+
+basicDetailsbrrower()
+{
+
+
+  let obj={
+    "BasicDetailsBrrowerDetails": [
+      {
+        "PanId": this.form.get('pan')?.value,
+        "LoanPurpose": this.form.get('loanpurpose')?.value,
+        "AppliedAmount": this.form.get('amount')?.value,
+        "UserId": this.userObj.UserID,
+      }
+    ]
+  
+
+   // "UserId": this.userObj.UserID,
+    
+   }
+  this._crudService.basicDetailsBrrower(obj).subscribe({
+   next: (value: any) => {
+  console.log(value)
+  if(value.status==true || value.status =='True')
+  {
+   
+    this.showmemberpopup();
+
+    
+  } else
+  {
+    
+  }
+   },
+   
+       error: (err: HttpErrorResponse) => {
+         console.log(err)
+       }
+  })
+
+
+}
+
+
+
+
+
+ 
+searchcode(){
+console.log(this.form1.get('pincode')?.value)
+  if(this.form1.get('pincode')?.value =='')
+  {
+    
+  } 
+  else
+  {
+  let obj={
+   //  "UserID": this.userObj.UserID,
+    // "pincode":  this.form1.get('pincode')?.value
+    "UserID": "12",
+    "pincode": "761110"
+
+  }
+ this._crudService.masterPinCode(obj).subscribe({
+   next: (value: any) => {
+ console.log(value)
+ this.MasterPinCodeDetails=value.MasterPinCodeDetails;
+   },
+   
+       error: (err: HttpErrorResponse) => {
+         console.log(err)
+       }
+ })
+
+}
+  }
+ 
+
+  
+  centerdatasubmit(){
+  
+    let obj={
+      // "UserID": this.userObj.UserID,
+      // "pincode":  this.form.get('pincode')?.value
+      "CenterCreateSubmitDetails": [
+        {
+          "PinCode": this.form1.get('pincode')?.value,
+          "Village": this.form1.get('village')?.value,
+          "CenterName": "CenterNamr",
+          "UserID": "16985"
+        }
+      ]
+    
+    }
+
+
+
+   this._crudService.centerdatasubmit(obj).subscribe({
+     next: (value: any) => {
+   console.log(value)
+   
+   
+     },
+     
+         error: (err: HttpErrorResponse) => {
+           console.log(err)
+         }
+   })
+    }
+
+    addnewcenterfn()
+    {
+      
+    let obj={
+      // "UserID": this.userObj.UserID,
+      // "pincode":  this.form.get('pincode')?.value
+      "CenterCreateData": [
+        {
+            "MettingDay": this.form2.get('day')?.value,
+            "MettingWeek": this.form2.get('week')?.value,
+            "UserID": "11229"
+        }
+    ]
+
+    
+    }
+
+
+
+   this._crudService.newcenter(obj).subscribe({
+     next: (value: any) => {
+   console.log(value)
+   if(value.status==true || value.status =='True')
+   {
+   this.sucesscenter();
+   }
+     },
+     
+         error: (err: HttpErrorResponse) => {
+           console.log(err)
+         }
+   })
+
+    }
+
+}

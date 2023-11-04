@@ -1,0 +1,69 @@
+<section class="dashboardcontainer">
+
+  <section class="dashboardtitle" *ngIf="branchDetails">
+    <div class="leftTitle"> 
+        
+        
+  <section class="inputsec">
+    <h2>Select Branch</h2>
+    <mat-form-field appearance="outline">
+        <mat-select [(value)]="selectedBranch">
+            <mat-option *ngFor="let branch of branchList" [value]="branch.BranchID">
+                {{branch.BranchName}}
+              </mat-option> 
+           
+        
+        </mat-select>
+    </mat-form-field>
+</section>
+        
+        
+        <!-- <h2>Branch Name: {{branchDetails.BranchName}}</h2>
+       <span class="risk " [ngClass]="{'medium': branchDetails.BranchStatus === 'MediumRisk' }" >{{branchDetails.BranchStatus}}</span>
+       -->
+   
+   </div>
+    <div class="rightdashboard">
+       <ul><li><label>Transaction Date: </label><span>{{branchDetails.TransactionDate}}</span></li>
+           <li><label>Login Date and Time :</label><span>{{branchDetails.LoginDateandTime}}10:09:2022, 3:40PM</span></li>
+       </ul>
+    </div>
+   </section>
+  
+  
+<section class="flex-list">
+
+    <section class="cardwrap">
+     <section class="card applicationcard" (click)="pageLink('/applicationsearch')">
+         <img src="../../../assets/images/application.png" />
+         <h2>Review</h2>
+     </section>
+    </section>
+ 
+    <section class="cardwrap">
+     <section class="card lafstatus" (click)="pageLink('/lafcheck-ao')">
+         <img src="../../../assets/images/lafstatus.png" />
+         <h2>LAF Status</h2>
+     </section>
+    </section>
+ 
+    <section class="cardwrap">
+     <section class="card checkcard" (click)="pageLink('/apperiasal')">
+         <img src="../../../assets/images/appraisal.png" />
+         <h2>Apperiasal</h2>
+     </section>
+    </section>
+ 
+   
+ 
+ 
+ </section>
+ 
+  <section class="white-box">
+  <app-insights></app-insights>
+</section>
+  
+  <section class="white-box">
+     <app-statistics-graph></app-statistics-graph>
+    </section>
+  </section>

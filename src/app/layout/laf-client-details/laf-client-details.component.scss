@@ -1,0 +1,67 @@
+.detailsUL3 {
+
+    & li{ flex-direction: column; align-items: start; flex: 0 0 33%;
+    & label{ width: 100%;}
+    }
+}
+.detailsbox{     box-shadow: 0px 0px 10px 1px #ccc;
+    border-radius: 10px; margin-bottom: 20px;}
+
+    .searchwrapper{ display: flex; margin-bottom: 20px;
+    & > div{ flex: 0 0 40%; &:first-child{ padding-right: 20px;flex: 0 0 60%;}
+& > section{ border-radius: 10px; width: 100%;
+    background: #F6F6F7; padding: 10px 15px; 
+& a{
+    
+    & em{ margin: 0 13px 0 0;
+        position: relative;
+        top: 5px;}
+    color: #442477;
+  cursor: pointer;
+    padding: 0;
+  
+    font-size: 18px;
+font-style: normal;
+font-weight: 700;
+    flex-shrink: 0;}
+}
+}
+    }
+
+    .centername{
+display: flex; vertical-align: top;
+        & h2{
+            color: #808080;
+            font-family: Noto Sans;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal; margin: 0 10px 0 0;
+        }
+        & .uName{    border-radius: 10px;
+            background: rgba(80, 93, 124, 0.16);
+            height: 30px;
+            /* display: inline-block; */
+            padding: 0 20px;
+            align-items: center;
+            display: flex;
+            font-size: 18px;
+            font-weight: 600;
+            font-style: normal;
+            }
+    }
+    .fullflex{ flex: 0 0 100% !important;}
+    .btnswarpper{ margin: 0 0 20px ; display: flex; justify-content: space-between; & section{ padding: 0 10px; flex: 0 0 50%;} & button{ width:100%}}
+
+    
+.modelimg{ width: 100%; text-align: center; & img{ height: 90px;}}
+.label-center {
+    text-align: center;
+font-family: Noto Sans;
+font-size: 18px;
+font-style: normal;
+color: #000;
+font-weight: 700;
+line-height: normal;
+text-transform: capitalize;
+}

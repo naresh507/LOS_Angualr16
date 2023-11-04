@@ -1,0 +1,136 @@
+<section class="detailsbox whiteclr marT20">
+    <ul class="list_type">
+               
+        <li>
+    <section class="inputsec">
+        <label>Select</label>
+        <mat-form-field appearance="outline">
+            <mat-select>
+                <mat-option>
+                    Select
+                </mat-option>
+                <mat-option [value]="'option1'">
+                    option1
+                </mat-option>
+                <mat-option [value]="'option2'">
+                    option2
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
+    </li>
+    <li>
+        <section class="inputsec">
+            <label>Relationship with client</label>
+            <mat-form-field appearance="outline">
+                <input required matInput placeholder="" value="">
+            </mat-form-field>
+        </section>
+    </li>
+    <li>
+        <section class="inputsec">
+            <label>Date of Birth</label>
+            <mat-form-field appearance="outline">
+                <input required matInput placeholder="" value="">
+            </mat-form-field>
+        </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Nominee Age</label>
+                
+                <mat-form-field appearance="outline">
+                    <input required matInput  value="10000">
+                </mat-form-field>
+            </section>
+            </li>
+    
+      </ul>
+    <h2> Insurance Details</h2>
+      <ul class="list_type">
+    
+            <li>
+                <section class="inputsec">
+                    <label>Sum Assured</label>
+                    
+                    <mat-form-field appearance="outline">
+                        <input required matInput  value="10000">
+                    </mat-form-field>
+                </section>
+                </li>
+
+        <li>
+            <section class="inputsec">
+                <label>Nominee Insurance</label>
+                <mat-form-field appearance="outline">
+                    <mat-select>
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option [value]="'option1'">
+                            option1
+                        </mat-option>
+                        <mat-option [value]="'option2'">
+                            option2
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+            </li>
+    
+            <li>
+                <section class="inputsec">
+                    <label>Total Insurance Amount</label>
+                    
+                    <mat-form-field appearance="outline">
+                        <input required matInput  value="10000">
+                    </mat-form-field>
+                </section>
+                </li>
+
+
+    
+    </ul>  
+    </section>
+    
+                 
+    <section class="btnscontainer marT30">
+       <section> <button class="strokebtn"  mat-raised-button  >Back</button></section>
+        <section><button class="filledbtn"  mat-raised-button  >Next</button></section>
+    </section>
+    
+    
+    
+    
+    
+    
+    <ng-template #otpdialog>
+        <div mat-dialog-content>
+    
+           <section class="modelimg"> <img src="../../../../assets/images/mobile_ic.png" /></section>
+    
+            <section class="label-title"> Verify Mobile Number</section>
+         
+    
+            <section class="inputsec">
+                <label class="otplabel">OTP</label>
+    
+    <section class="otpBlock">
+        <section><input /></section> <section><input /></section> <section><input /></section> <section><input /></section> <section><input /></section> <section><input /></section>
+    </section>
+    
+                <!-- <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter " value="">
+                </mat-form-field> -->
+            </section>
+          
+          
+          
+        </div>
+        <div mat-dialog-actions  class="center fullbtns">
+            <button mat-raised-button class="filledBtn" (click)="submitclose()">Submit</button>
+            <button mat-stroked-button class="strokedBtn" (click)="close()">Close</button>
+        </div>
+    </ng-template>
+    
+    

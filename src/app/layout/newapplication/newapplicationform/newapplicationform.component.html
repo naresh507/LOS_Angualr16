@@ -1,0 +1,95 @@
+<section class="pagebreadcrumb">
+    <section class="contentwrap ">
+<h3>Home > New Application > Search Client > Client Details</h3>
+</section>
+
+</section>
+<section class="contentwrap contentwrapsmall">
+<section class="data-content">
+    
+    <form [formGroup]="form">
+
+<section class="whiteclr">
+    
+<section class="formsection detailsbox">
+    
+<ul class="formblock">
+    <li>
+    <section class="inputsecIn">
+        <label>Pin Code</label>
+        <mat-form-field  appearance="outline"  class="searchfield">
+          <!-- <mat-label>User Name</mat-label> -->
+          <input formControlName="pincode"  required matInput placeholder="Enter Pin Code">
+          <i class="searchicon" (click)="searchcode()"></i>
+     </mat-form-field> 
+       </section>
+</li>
+<li>
+       <section class="inputsecIn">
+        <label>Village</label>
+        <mat-form-field class="searchfield"  appearance="outline">
+         
+          
+          <mat-select formControlName="village" (selectionChange)="vilageData($event)">
+            
+            <mat-option *ngFor="let v of MasterPinCodeDetails" [value]="v.VillageName">
+                {{ v.VillageName }}
+              </mat-option>
+            
+          
+        </mat-select>
+
+
+          
+        </mat-form-field> 
+
+      
+       </section>
+
+</li>
+
+</ul>
+<section class="text-right">  <span class="riskBtn high" (click)="noDataPopup()">High</span> <span class="riskBtn medium" (click)="noClientPopup()">Medium</span> <span class="riskBtn low">Low</span></section>
+</section>
+
+ 
+  <section class="detailsbox" *ngFor="let m of mastervillageDetails">
+    <ul class="detailsUL detailsULNew" >
+        <li><label>Gram Panchayat</label>
+    <span>{{m.GramPanchayat}}</span>
+    </li>
+    <li><label>Block/Tehsil</label>
+        <span>{{m.Block}}</span>
+        </li>
+        <li><label>District</label>
+            <span>{{m.District}}</span>
+            </li>
+            <li><label>Census ID</label>
+                <span>{{m.CensusId}}</span>
+                </li>
+    
+                <li><label>Lat</label>
+                    <span>{{m.Lat}}</span>
+                    </li>
+                    <li><label>Long</label>
+                        <span>{{m.Long}}</span>
+                        </li>
+                       
+    
+    </ul>
+
+
+</section>
+
+
+</section>
+
+
+<section class="btnswrapper"><button mat-stroked-button class="btns" colo="primary"  (click)="warningPopup()"><i class="map"></i>View on Map</button>
+    <button mat-raised-button type="submit" [disabled]="!form.valid" class="btns" color="primary" (click)="newformUrl()">Proceed</button>
+    </section>
+</form>
+
+</section>
+
+</section>

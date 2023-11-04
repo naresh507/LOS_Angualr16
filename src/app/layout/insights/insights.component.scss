@@ -1,0 +1,74 @@
+.box-header-dashboard{ display: flex; justify-content: space-between;
+    & h2{}
+    & ul{ display: flex; & li { padding: 0 10px; line-height: 1; position: relative;
+         &:after{ content:''; position: absolute; width: 1px; top:0; bottom: 0; background: #222; right:0; }
+&:last-child:after{ display: none;}
+}}
+    }
+
+    .cardwrap2{
+        width:16.6%; padding: 10px 5px;
+    .card2{ border-radius: 10px;
+        border: 2px solid rgba(68, 36, 119, 0.20);
+        background: #F9F7FC;
+        text-align: left;
+        padding: 20px 10px;
+        height: 100%;
+        & h3{color: #000;
+            font-family: Noto Sans;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 600;padding: 0; margin: 0;
+            line-height: 29px; /* 207.143% */}
+        & .count{color: #442477;
+            font-family: Noto Sans;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal; padding: 5px 0; margin: 0;}
+        & .amount{ color: rgba(0, 0, 0, 0.65);
+            font-family: Noto Sans;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            padding: 0; margin: 0;
+        & em{
+            color: #442477;
+    font-family: Noto Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+        }
+        }
+    }
+    }
+
+    .flex-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    @media only screen and (max-width: 1024px) and (min-width:768px) {
+
+        .flex-list 
+        {
+             & .cardwrap2{ width:33.33%;
+                padding: 5px 5px!important;
+            }
+        }
+
+    }
+
+    
+    @media only screen and (max-width: 768px){
+
+        .flex-list 
+        {
+             & .cardwrap2{ width:50%;
+                padding: 5px 5px!important;
+            }
+        }
+        
+    }

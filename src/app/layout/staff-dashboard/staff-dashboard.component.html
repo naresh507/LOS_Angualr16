@@ -1,0 +1,97 @@
+<section class="dashboardcontainer">
+
+        <section class="dashboardtitle" *ngIf="branchDetails">
+        <div class="leftTitle">   <h2>Branch Name: {{branchDetails.BranchName}}</h2>
+            <span class="risk " [ngClass]="{'medium': branchDetails.BranchStatus === 'MediumRisk' }" >{{branchDetails.BranchStatus}}</span>
+            <!-- <span class="risk high" (click)="warningPopup()">High Risk</span> -->
+        
+        </div>
+        <div class="rightdashboard">
+            <ul><li><label>Transaction Date: </label><span>{{branchDetails.TransactionDate}}</span></li>
+                <li><label>Login Date and Time :</label><span>{{branchDetails.LoginDateandTime}}10:09:2022, 3:40PM</span></li>
+            </ul>
+        </div>
+        </section>
+    
+    
+    <section class="flex-list">
+    
+       <section class="cardwrap">
+        <section class="card applicationcard" (click)="pageLink('/applicationsearch')">
+            <img src="../../../assets/images/application.png" />
+            <h2>New Application</h2>
+        </section>
+       </section>
+    
+       <section class="cardwrap">
+        <section class="card lafstatus" (click)="pageLink('/lafcheck')">
+            <img src="../../../assets/images/lafstatus.png" />
+            <h2>LAF Statustion</h2>
+        </section>
+       </section>
+    
+       <section class="cardwrap">
+        <section class="card checkcard" (click)="pageLink('/luccheck')">
+            <img src="../../../assets/images/check-list.png" />
+            <h2>LUC Check</h2>
+        </section>
+       </section>
+    
+       <section class="cardwrap">
+        <section class="card villagecard" (click)="pageLink('/village')">
+            <img src="../../../assets/images/village.png" />
+            <h2>Village Addition</h2>
+        </section>
+       </section>
+       <section class="cardwrap">
+        <section class="card rejectiondatacard"  (click)="pageLink('/cbrejection')">  
+            <img src="../../../assets/images/rejected.png" />
+            <h2>CB Rejection Data</h2>
+        </section>
+       </section>
+       <section class="cardwrap">
+        <section class="card feecard"  (click)="pageLink('/feelist')">
+            <img src="../../../assets/images/fee.png" />
+            <h2>Fees and Charges</h2>
+        </section>
+       </section>
+    
+    
+    
+    </section>
+    
+    
+
+    <section class="white-box">
+      <app-insights></app-insights>
+    </section>
+
+    
+    <section class="white-box">
+        <section class="box-header-dashboard">
+            <div> <h2>Statistics</h2></div>
+    
+            <div>
+            <section class="icon-container" [ngClass]="show ? 'active':''">
+                <span class="dateicon"(click)='dateIconclick()'></span>
+                <div id="datepicker">
+                <mat-form-field  appearance="outline">
+                <mat-date-range-input [rangePicker]="picker">
+                  <input matStartDate placeholder="Start date">
+                  <input matEndDate placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+            </div>
+            </section>
+            </div>
+            </section>
+    
+            <section class="white-box">
+              <app-statistics-graph></app-statistics-graph>
+             </section>
+           
+    </section>
+    
+    </section>

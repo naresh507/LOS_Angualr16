@@ -1,0 +1,25 @@
+.videoTitle{ display: flex; justify-content: space-between;}
+
+.video_list { display: flex;     flex-direction: column; &> div.videoswrap{  display: flex;  padding-bottom: 20px; 
+& .img_content{ padding-left: 20px;}
+& .img_wrapper{ padding-right: 10px;}
+}}
+
+
+.video_grid { display: flex;     flex-wrap: wrap; &> div.videoswrap{  display: flex; flex-direction: column; flex: 0 0 50%; padding-right: 10px;  padding-bottom: 20px;
+    & .img_content{ padding-bottom: 20px;}
+    
+    }}
+    
+    .lists{ display: flex; & li { height: 23px; cursor: pointer;}}
+    .active{ color: #fff; border-radius: 6px; background: #442477;}
+
+    .img_wrapper img{ max-width: 100%;}
+
+    @media only screen and (max-width: 600px) {
+        button.playBtn{ font-size: 10px;}
+        .img_content h2{ font-size: 13px;
+            line-height: 1.5;
+            font-weight: 600;}
+            .contentwrap.contentwrapsmall{ padding: 0 !important;}
+    }

@@ -1,0 +1,59 @@
+
+<section class="sign-container">
+
+    <section class="sign-wrapper">
+    
+      <section class="sign-left-wrapper">
+      <section class="sign-left-img">
+        <img src="./../../../assets/images/loginbanner.png" />
+      </section>
+      
+      </section>
+      
+      <section class="sign-right-wrapper">
+      <img src="./../../../assets/images/logo.svg" />
+      <h2 class="sign-title">Change Password</h2>
+      <p>Please enter a minimum 8-character password with at least 1 upper case, 1 lower case, 1 numeric and 1 special character.</p>
+      <form >
+      <section class="inputsec">
+      <label>Old Password</label>
+      <mat-form-field appearance="outline">
+        <!-- <mat-label>User Name</mat-label> -->
+        <input  required matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        
+      </mat-form-field> 
+     </section>
+     <section class="inputsec">
+      <label>New Password</label>
+      <mat-form-field appearance="outline">
+        <!-- <mat-label>Password</mat-label> -->
+        <input  required matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        
+      </mat-form-field> 
+        </section>
+  
+        <section class="inputsec">
+            <label>Confirm Password</label>
+            <mat-form-field appearance="outline">
+              <!-- <mat-label>Password</mat-label> -->
+              <input  required matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              
+            </mat-form-field> 
+              </section>
+  
+    <button class="loginBtn"  mat-stroked-button color="primary" >Save Password</button>
+</form>    
+</section>
+      
+      
+      </section>
+  </section>
