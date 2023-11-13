@@ -7,8 +7,6 @@
 		  <figure class="dummy-upload">
 			<input type="file" #fileInput style="display: none" (click)="fileInput.click()" (change)="selectFile($event)" accept="image/*" />
 			<div class="image-container">
-			 
-			
 				<img src="../../../assets/capture.png" class="my-dp dp rounded-circle" *ngIf="!url" />
 				<img [src]="url" *ngIf="url">
 			</div>
