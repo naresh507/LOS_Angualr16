@@ -27,7 +27,7 @@
 		  </button>
 		</div>
 	  </div>
-<!-- // web cam image will be shown here -->
+
  <div  *ngIf="stream ">
 	<webcam [trigger]="$trigger" (imageCapture)="snap($event)" [imageQuality]="1"></webcam> 
 <button mat-button class="mat-button-primary btn-sm w-100" (click)="captueimage()">{{btnLabel}} </button>
