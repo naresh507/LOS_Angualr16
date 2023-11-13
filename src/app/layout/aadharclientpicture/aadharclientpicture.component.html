@@ -36,10 +36,7 @@
 	<img [src]="previewimage" height="100%" width="100%">
 	<button mat-button class="mat-button-primary btn-sm w-100" (click)="submit()">save</button>
 </div>
-<!-- <div>
-	<button (click)=" checkpermissions()">check webcam</button>
-	<P *ngIf="status">status : {{status}}</P>
-</div> -->
+
 <ng-template #statusPopup>
     <div mat-dialog-content>
         <p>{{status}} </p>
