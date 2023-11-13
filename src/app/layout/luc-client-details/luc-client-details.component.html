@@ -1,0 +1,285 @@
+<section class="pagebreadcrumb">
+    <section class="contentwrap">
+        <h3>Home > New Application > LUC Check > Client List</h3>
+    </section>
+
+</section>
+<section class="contentwrap contentwrapsmall">
+    <section class="data-content whiteclr">
+     
+     
+        
+        <section id="basicDetails" class="incontent">
+
+            <section class="detailsbox whiteclr marT20 shadowbox">
+
+              
+                <ul class="detailsUL detailsULNew">
+                    <li><label>Date</label>
+                        <span>01 Jan 1990</span>
+                    </li>
+                    <li><label>Branch</label>
+                        <span>Udayagiri</span>
+                    </li>
+                    <li><label>Village</label>
+                        <span>Dakarang G</span>
+                    </li>
+                    <li><label>Center</label>
+                        <span>Greesingia</span>
+                    </li>
+
+                    <li><label>Group Name</label>
+                        <span>Group One</span>
+                    </li>
+                    <li><label>Member Name</label>
+                        <span>Jai Prakash</span>
+                    </li>
+                    <li><label>Member Id</label>
+                        <span>M2</span>
+                    </li>
+
+
+                    <li><label>Loan No</label>
+                        <span>12345</span>
+                    </li>
+                    <li><label>Loan Amount</label>
+                        <span>20,0000</span>
+                    </li>
+                    <li><label>Date of Disbursement</label>
+                        <span>O2 Feb 2022</span>
+                    </li>
+                    <li><label>LUC Statusd</label>
+                        <span>Pending</span>
+                    </li>
+                    <li><label>Purpose</label>
+                        <span>Purpose Education</span>
+                    </li>
+
+                  
+                    
+                </ul>
+
+
+            </section>
+
+
+           
+
+
+
+
+            <section class="kform">
+
+
+                <ul class="list_type">
+                    <li>
+                        <section class="inputsec">
+                            <label>Loan Amount Utilized</label>
+                            <mat-form-field appearance="outline">
+                                <input required matInput placeholder="Enter Amount">
+                            </mat-form-field>
+                        </section>
+                    </li>
+                    <li class="">
+                        <section class="inputsec">
+                            <label>Select Purpose</label>
+                            <mat-form-field appearance="outline">
+                                <mat-select>
+                                    <mat-option>
+                                        Select
+                                    </mat-option>
+                                    <mat-option [value]="'option1'">
+                                        option1
+                                    </mat-option>
+                                    <mat-option [value]="'option2'">
+                                        option2
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </section>
+
+                    </li>
+
+                </ul>
+
+                <ul class="list_type">
+                    <li>
+                        <section class="inputsec">
+                            <label>Remark</label>
+                            <mat-form-field appearance="outline">
+                                <input required matInput placeholder="Remark">
+                            </mat-form-field>
+                        </section>
+                    </li>
+                    <li class="">
+                        <section class="inputsec">
+                            <label>Work Completion Status</label>
+                            <mat-form-field appearance="outline">
+                                <mat-select>
+                                    <mat-option>
+                                        Select
+                                    </mat-option>
+                                    <mat-option [value]="'option1'">
+                                        option1
+                                    </mat-option>
+                                    <mat-option [value]="'option2'">
+                                        option2
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </section>
+
+                    </li>
+
+                </ul>
+
+             
+
+                <ul class="list_type">
+                    <li>
+                        <section class="inputsec">
+                            <label>Tranche_1 Amount</label>
+                            <mat-form-field appearance="outline">
+                                <input required matInput placeholder="Remark">
+                            </mat-form-field>
+                        </section>
+                    </li>
+                    <li class="">
+                        <section class="inputsec">
+                            <label>Tranche_1 Visit</label>
+                           
+
+                            <mat-form-field appearance="outline">
+                                
+                                <input placeholder="DD MM YYYY" matInput [matDatepicker]="picker">
+                              
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field>
+                        </section>
+
+                    </li>
+
+                </ul>
+
+
+                <ul class="list_type">
+                    <li>
+                        <section class="inputsec">
+                            <label>Tranche_2 Amount</label>
+                            <mat-form-field appearance="outline">
+                                <input required matInput placeholder="Remark">
+                            </mat-form-field>
+                        </section>
+                    </li>
+                    <li class="">
+                        <section class="inputsec">
+                            <label>Tranche_2 Visit</label>
+                           
+
+                            <mat-form-field appearance="outline">
+                                
+                                <input placeholder="DD MM YYYY" matInput [matDatepicker]="picker">
+                              
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field>
+                        </section>
+
+                    </li>
+
+                </ul>
+
+                <ul class="list_type">
+                    <li><label>Proof of Tranche</label>
+                        <section class="imageupdate">
+ <em class="icon_upload"></em>
+ 
+                        </section>
+                     </li>
+                </ul>
+               
+
+            </section>
+
+            <section class="btnswrapper">
+                <button  mat-stroked-button class="stroked_btn"
+                   >Refresh</button>
+
+                
+                <button mat-raised-button class="fill_btn" color="primary" (click)="submit()"
+                    >Submit</button>
+
+            </section>
+
+
+        </section>
+    
+
+  
+
+    </section>
+
+</section>
+
+
+<ng-template #reasondialog>
+    <div mat-dialog-content>
+
+       <section class="modelimg"> <img src="../../../../assets/images/newcenter.png" /></section>
+
+        <section class="label-center"> Add New Center</section>
+        <section class="inputsec">
+            <label>Center Meeting Day</label>
+            <mat-form-field appearance="outline">
+                <mat-select>
+                    <mat-option>
+                        Select
+                    </mat-option>
+                    <mat-option [value]="'option1'">
+                        option1
+                    </mat-option>
+                    <mat-option [value]="'option2'">
+                        option2
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </section>
+      
+      
+        <section class="inputsec">
+            <label>Center Meeting Week</label>
+            <mat-form-field appearance="outline">
+                <mat-select>
+                    <mat-option>
+                        Select
+                    </mat-option>
+                    <mat-option [value]="'option1'">
+                        option1
+                    </mat-option>
+                    <mat-option [value]="'option2'">
+                        option2
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </section>
+    </div>
+    <div mat-dialog-actions class="center">
+        <button mat-raised-button class="filledBtn" (click)="onNoClick()">Add</button>
+        <button mat-stroked-button class="strokedBtn" (click)="onNoClick()">Cancel</button>
+    </div>
+</ng-template>
+
+
+
+<ng-template #enlargedialog>
+
+
+    <div mat-dialog-content>
+        <img src="../../../../assets/images/img1.jpg" style="width:500px" />
+    </div>
+    <div mat-dialog-actions class="center">
+
+        <button mat-stroked-button class="strokedBtn" (click)="close()">Close</button>
+    </div>
+</ng-template>

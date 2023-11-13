@@ -1,0 +1,72 @@
+<section class="dashboardcontainer">
+
+  <section class="dashboardtitle" *ngIf="branchDetails">
+    <div class="leftTitle">   <h2>Branch Name: {{branchDetails.BranchName}}</h2>
+       <span class="risk " [ngClass]="{'medium': branchDetails.BranchStatus === 'MediumRisk' }" >{{branchDetails.BranchStatus}}</span>
+       <!-- <span class="risk high" (click)="warningPopup()">High Risk</span> -->
+   
+   </div>
+    <div class="rightdashboard">
+       <ul><li><label>Transaction Date: </label><span>{{branchDetails.TransactionDate}}</span></li>
+           <li><label>Login Date and Time :</label><span>{{branchDetails.LoginDateandTime}}10:09:2022, 3:40PM</span></li>
+       </ul>
+    </div>
+   </section>
+  
+  
+  <section class="flex-list">
+  
+     <section class="cardwrap">
+      <section class="card applicationcard" (click)="pageLink('/applicationsearch')">
+          <img src="../../../assets/images/application.png" />
+          <h2>Review</h2>
+      </section>
+     </section>
+  
+     <section class="cardwrap">
+      <section class="card lafstatus" (click)="pageLink('/lafcheck-ao')">
+          <img src="../../../assets/images/grt.png" />
+          <h2>GRT</h2>
+      </section>
+     </section>
+  
+     <section class="cardwrap">
+      <section class="card checkcard" (click)="pageLink('/apperiasal')">
+          <img src="../../../assets/images/pd.png" />
+          <h2>PD</h2>
+      </section>
+     </section>
+  
+     <section class="cardwrap">
+      <section class="card checkcard" (click)="pageLink('/apperiasal')">
+          <img src="../../../assets/images/lafstatus.png" />
+          <h2>LAF Status</h2>
+      </section>
+     </section>
+     <section class="cardwrap">
+      <section class="card checkcard" (click)="pageLink('/apperiasal')">
+          <img src="../../../assets/images/luc_approval.png" />
+          <h2>LUC Approval</h2>
+      </section>
+     </section>
+     <section class="cardwrap">
+      <section class="card checkcard" (click)="pageLink('/apperiasal')">
+          <img src="../../../assets/images/cb.png" />
+          <h2>CB Deviation Approval</h2>
+      </section>
+     </section>
+  
+    
+  
+  
+  </section>
+  
+  
+  <section class="white-box">
+  <app-insights></app-insights>
+</section>
+  
+  <section class="white-box">
+     <app-statistics-graph></app-statistics-graph>
+    </section>
+  </section>

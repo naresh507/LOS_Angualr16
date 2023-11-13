@@ -1,0 +1,170 @@
+<ul class="list_type">
+    <li>
+   <section class="inputsec">
+            <label>Family Type</label>
+            <mat-form-field appearance="outline">
+                <mat-select>
+                    <mat-option>
+                        Select
+                    </mat-option>
+                    <mat-option  [value]="f.ID" *ngFor="let f of FamilyTypeDetails">
+                       
+                    
+                        {{f.Name}}
+                    </mat-option>
+                  
+                </mat-select>
+            </mat-form-field>
+        </section>
+      
+    </li>
+    <li class="">
+        <section class="inputsec">
+            <label>Non-Earning members</label>
+            <mat-form-field appearance="outline">
+                <input required matInput placeholder="Enter">
+            </mat-form-field>
+        </section>
+    </li>
+</ul>
+
+
+<ul class="list_type">
+    <li class="">
+        <section class="inputsec">
+            <label>Total Household Family members</label>
+            <mat-form-field appearance="outline">
+                <input required matInput placeholder="Enter">
+            </mat-form-field>
+        </section>
+    </li>
+    <li class="">
+        <section class="inputsec">
+            <label>No of Unmarried Children</label>
+            <mat-form-field appearance="outline">
+                <input required matInput placeholder="Enter">
+            </mat-form-field>
+        </section>
+    </li>
+</ul>
+
+
+
+<ul class="list_type">
+   
+    <li class="">
+        <section class="inputsec">
+            <label>No of Dependents</label>
+            <mat-form-field appearance="outline">
+                <input required matInput placeholder="Enter">
+            </mat-form-field>
+        </section>
+    </li>
+    <li>
+        <section class="inputsec">
+                 <label>Type of Roof</label>
+                 <mat-form-field appearance="outline">
+                     <mat-select>
+                         <mat-option>
+                             Select
+                         </mat-option>
+                         <mat-option  [value]="r.ID" *ngFor="let r of TypeofRoofDetails">
+                       
+                    
+                            {{r.Name}}
+                        </mat-option>
+                     </mat-select>
+                 </mat-form-field>
+             </section>
+           
+         </li>
+</ul>
+
+
+
+<ul class="list_type">
+   
+    <li>
+        <section class="inputsec">
+                 <label>Type Of Ownership</label>
+                 <mat-form-field appearance="outline">
+                     <mat-select>
+                         <mat-option>
+                             Select
+                         </mat-option>
+                         <mat-option  [value]="r.ID" *ngFor="let r of OwnershipDetails">
+                       
+                    
+                            {{r.Name}}
+                        </mat-option>
+                     </mat-select>
+                 </mat-form-field>
+             </section>
+           
+         </li>
+    <li>
+        <section class="inputsec">
+                 <label>Locality</label>
+                 <mat-form-field appearance="outline">
+                     <mat-select>
+                         <mat-option>
+                             Select
+                         </mat-option>
+                         <mat-option  [value]="r.ID" *ngFor="let r of LOCALITYDetails">
+                       
+                    
+                            {{r.Name}}
+                        </mat-option>
+                     </mat-select>
+                 </mat-form-field>
+             </section>
+           
+         </li>
+</ul>
+
+
+<ul class="list_type">
+   
+    <li>
+        <section class="inputsec">
+                 <label>Religion /Community</label>
+                 <mat-form-field appearance="outline">
+                     <mat-select>
+                         <mat-option>
+                             Select
+                         </mat-option>
+                         <mat-option  [value]="r.ID" *ngFor="let r of ReligionCommunityDetails">
+                       
+                    
+                            {{r.Name}}
+                        </mat-option>
+                     </mat-select>
+                 </mat-form-field>
+             </section>
+           
+         </li>
+    <li>
+        <section class="inputsec">
+                 <label>Caste/Category</label>
+                 <mat-form-field appearance="outline">
+                     <mat-select>
+                         <mat-option>
+                             Select
+                         </mat-option>
+                         <mat-option  [value]="r.ID" *ngFor="let r of CasteCategoryDetails">
+                            {{r.Name}}
+                        </mat-option>
+                     </mat-select>
+                 </mat-form-field>
+             </section>
+           
+         </li>
+</ul>
+
+<!-- <section class="btnswrapper text-center">
+  
+    
+    <button mat-raised-button class="fill_btn" colo="primary"
+   >Save & Next</button>
+
+</section> -->

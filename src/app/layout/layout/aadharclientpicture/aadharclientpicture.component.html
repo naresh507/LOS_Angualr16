@@ -1,0 +1,16 @@
+<ul class="captureview"><li><section class="imagesecwrapper">
+	<img src="../../../assets/capture.png" class="camera" *ngIf="!url" />
+	<img [src]="url" *ngIf="url"></section></li>
+  <li>
+	
+	<!-- <webcam
+      [height]="videoHeight"
+      [width]="videoWidth"
+      (imageCapture)="handleImageCapture($event)"
+    ></webcam>
+    <button (click)="captureImage()">Capture</button> -->
+    <img [src]="photo" *ngIf="photo">
+	
+	<label><span>Upload</span> <input type="file"  capture="filesystem"  style="visibility: hidden;" name="myImage" (change)="selectFile($event)" accept="image/*" />
+</label>
+</li></ul>

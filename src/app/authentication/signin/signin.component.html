@@ -1,0 +1,51 @@
+<section class="sign-container">
+
+  <section class="sign-wrapper">
+  
+    <section class="sign-left-wrapper">
+    <section class="sign-left-img">
+      <img src="./../../../assets/images/loginbanner.png" />
+    </section>
+    
+    </section>
+    
+    <section class="sign-right-wrapper">
+    <img src="./../../../assets/images/logo.svg" />
+    <h2 class="sign-title">Login</h2>
+    <form [formGroup]="loginForm">
+   <section class="inputsec">
+    <label>User Name</label>
+    <mat-form-field appearance="outline">
+      <!-- <mat-label>User Name</mat-label> -->
+      <input  formControlName="userId" required matInput placeholder="Enter User Name">
+      
+      
+    </mat-form-field> 
+   </section>
+   <section class="inputsec">
+    <label>Password</label>
+    <mat-form-field appearance="outline">
+      <!-- <mat-label>Password</mat-label> -->
+      <input  formControlName="Password" required matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'">
+      <span tabindex="2" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </span>
+      
+    </mat-form-field> 
+      </section>
+
+
+    <ul class="flex-list-login"><li><mat-checkbox class="loginchk" color="primary">Remeber Password</mat-checkbox></li>
+    <li><a class="forgotpwd" (click)="forgotpwd()">Forgot Password</a></li>
+    </ul>
+
+
+    <button class="loginBtn"  tabindex="1"  [disabled]="!loginForm.valid"  mat-raised-button color="primary" (click)="logIn()">Login</button>
+  </form> 
+  
+  
+  </section>
+    
+    
+    </section>
+</section>

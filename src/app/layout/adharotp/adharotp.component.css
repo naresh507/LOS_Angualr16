@@ -1,0 +1,144 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.img_src_wdth {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 5px solid #59aa24 !important;
+}
+
+.image-container,
+.img_container_verification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 5px solid #59aa24;
+}
+
+.img_container_verification {
+  width: 150px;
+  height: 150px;
+}
+
+
+
+/* Style the rounded image */
+.image-container img {
+  border-radius: 50%;
+  object-fit: cover;
+
+}
+
+#verifyId {
+  overflow: hidden;
+}
+
+#verifyId .flex-fill {
+  overflow: auto;
+}
+
+
+#verifyId .flex-fill {
+  max-height: 100%;
+}
+
+.hide {
+  display: none;
+}
+
+#verifyId .flex-fill {
+  max-height: 100%;
+}
+
+.right-section, .left-section {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 5px;
+  overflow: auto;
+  flex: 1;
+  padding: 10px;
+}
+
+.form-group {
+  display: flex;
+  gap: 10px;
+}
+
+.form-group_div, .form-group input{
+  width: 100%;
+}
+.form-group input{
+  border: 1px solid #4205b9;
+    border-radius: 3px;
+    padding: 4px;
+}
+.form-group_div p{
+  margin: 0;
+}
+.sent-otp{
+  font-size: 12px;
+}
+
+:host ::ng-deep .otp-input {
+  width: 30px !important;
+  height: 30px !important;
+  font-size: 18px !important;
+}
+
+.info{
+  margin: 0;
+  font-size: 12px;
+  margin-top: 5px;
+  color: #4205b9;
+  text-align: center;
+}
+.info p{
+  margin: 0;
+}
+
+.form-group .form-label{
+  width: 110px;
+  white-space: nowrap;
+}
+
+.detail-wrapper label{
+  width: 125px;
+  display: block;
+  position: relative;
+}
+
+.detail-wrapper label::after{
+  content: ":";
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.lbl_val{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sent-otp small p{
+  color: #ff0000;
+}
+

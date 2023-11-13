@@ -1,0 +1,8 @@
+.imagesecwrapper { width:80px; height: 80px; & img{ object-fit: contain; max-width: 500%; height: 500%;} }
+
+.captureview{ display: flex; margin: 0; padding:0; width:100%;  list-style: none; align-items: center;
+    & li { list-style: none; & label{ margin-left:30px; border-radius: 8px; border:1px solid #ccc; background:#fff; padding:5px 20px; max-width: 150px; position: relative;
+    & input{ position: absolute;
+        left: 0; width: 100%;}
+    }} }
+    .camera{ height: 80px !important;}
