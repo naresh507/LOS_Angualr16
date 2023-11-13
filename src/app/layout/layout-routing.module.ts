@@ -9,7 +9,7 @@ import { NewapplicationformComponent } from './newapplication/newapplicationform
 import { KycComponent } from './layout/kyc/kyc.component';
 import { AddnewApplicationComponent } from './addnew-application/addnew-application.component';
 import { BasicdetailsComponent } from './basicdetails/basicdetails.component';
-import { MemberdetailsComponent } from './memberdetails/memberdetails.component';
+//import { MemberdetailsComponent } from './memberdetails/memberdetails.component';
 import { HouseholddetailsComponent } from './householddetails/householddetails.component';
 import { CashflowDetailsComponent } from './cashflow-details/cashflow-details.component';
 import { LucCheckComponent } from './luc-check/luc-check.component';

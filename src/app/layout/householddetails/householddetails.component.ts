@@ -1,145 +1,157 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CrudService } from 'src/app/shared/services/crud.service';
 
 @Component({
   selector: 'app-householddetails',
   templateUrl: './householddetails.component.html',
   styleUrls: ['./householddetails.component.scss']
-})  
+})
 export class HouseholddetailsComponent implements OnInit {
   userObj: any;
+  dialogRef: any;
   LivestockInfo: any;
-  VehicleInfo:any;
-  CasteCategoryDetails:any;
-  LOCALITYDetails:any;
+  VehicleInfo: any;
+  CasteCategoryDetails: any;
+  FamilyTypeDetails: any;
+  LOCALITYDetails: any;
+  OwnershipDetails: any;
+  ProdctDetails: any;
+  PurposeDetails: any;
+  ReligionCommunityDetails: any;
+  TypeofRoofDetails: any;
   form!: FormGroup;
-  lpg:boolean=false;
-  land:boolean=false;
-  ele:boolean=false;
-    lsv:boolean=false;
-    vev:boolean=false;
-    vehicleList:boolean=false;
-constructor(private router:Router, private _crudService:CrudService,private fb: FormBuilder  )
-{ this.form = this.fb.group({
-  Electricty:[''],
-  CoustomerID: ['' ],
- Water:[''],
- Toilet:[''],  
- Land:[''],
- LandUnit: [''],
- sewage:[''],
-LPG:[''],
-LPGConsumerNo:[''],  
-Livestock:[''],
-  TypeOfLivestock:[''],
-  Count:[''],
-  vehicle:[''],
-  TypeoOfVehicle:[''],
-  SmartPhone:[''],
-  ElectronicItems:[''],
+  lpg: boolean = false;
+  land: boolean = false;
+  ele: boolean = false;
+  lsv: boolean = false;
+  vev: boolean = false;
+  vehicleList: boolean = false;
+  constructor(private router: Router, private _crudService: CrudService, private fb: FormBuilder, private toastr: ToastrService,) {
+    this.form = this.fb.group({
 
-  furnitureVal:[''],
-  vehiclecount:[''],
+      MemberName: ['', Validators.required],
+      InstitutionType: [''],
+      InstitutionName: [''],
+      LoanAccountNO: [''],
+      OutstandingBalance: [''],
+      EMI: [''],
+      Preclosure: [''],
+      AccountStatus: [''],
+      Electricty: [''],
+      CoustomerID: [''],
+      Water: [''],
+      Toilet: [''],
+      Land: [''],
+      LandUnit: [''],
+      sewage: [''],
+      LPG: [''],
+      LPGConsumerNo: [''],
+      Livestock: [''],
+      TypeOfLivestock: [''],
+      Count: [''],
+      vehicle: [''],
+      TypeoOfVehicle: [''],
+      SmartPhone: [''],
+      ElectronicItems: [''],
+      furnitureVal: [''],
+      vehiclecount: [''],
 
- 
-});
 
-}
+    });
 
-ngOnInit(): void {
-  this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
-  this.getMasterData();
-}
+  }
 
-getMasterData()
-{
-  let obj={
-  
-   "UserId": this.userObj.UserID,
-   
- }
-  this._crudService.getMasterDetails(obj).subscribe({
-    next: (value: any) => {
-   console.log(value)
-   if(value.status==true)
-   {
-   
+  ngOnInit(): void {
+    this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.getMasterData();
+  }
 
-    this.LivestockInfo=value.LivestockInfo;
-    this.VehicleInfo=value.VehicleInfo;
+  getMasterData() {
+    let obj = {
 
-     
-   }
-    },
-    
-        error: (err: HttpErrorResponse) => {
-          console.log(err)
+      "UserId": this.userObj.UserID,
+
+    }
+    this._crudService.getMasterDetails(obj).subscribe({
+      next: (value: any) => {
+        console.log(value)
+        if (value.status == true) {
+
+
+          this.LivestockInfo = value.LivestockInfo;
+          this.VehicleInfo = value.VehicleInfo;
+
+
+          this.FamilyTypeDetails = value.FamilyTypeDetails;
+          this.TypeofRoofDetails = value.TypeofRoofDetails;
+          this.OwnershipDetails = value.OwnershipDetails;
+          this.LOCALITYDetails = value.LOCALITYDetails;
+          this.CasteCategoryDetails = value.CasteCategoryDetails;
+          this.ReligionCommunityDetails = value.ReligionCommunityDetails
+
+
         }
-   })
-}
+      },
 
-proceed()
-{
-  this.router.navigateByUrl('/cashflow')
-}
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+  }
 
-eleData(e:any)
-{
+  proceed() {
+    this.router.navigateByUrl('/cashflow')
+  }
 
-  this.ele=e.value=='yes' ? true : false
-  
-}
-landData(e:any)
-{
+  eleData(e: any) {
 
-  this.land=e.value=='yes' ? true : false
-}
-lpgData(e:any)
-{
+    this.ele = e.value == 'yes' ? true : false
 
-  this.lpg=e.value=='yes' ? true : false
-}
-livestockData(e:any)
-{
-  this.lsv=e.value=='yes' ? true : false
-}
-vehicleListData(e:any)
-{
-  this.vehicleList=e.value=='yes' ? true : false
-}
+  }
+  landData(e: any) {
 
-submit(formData: any) {
-  console.log(formData.value)
-formData.value['UserId']=this.userObj.UserID;
-console.log(formData.value) 
-  let obj={
-    "HouseHoldDataSubmit":[{}]
-   }
+    this.land = e.value == 'yes' ? true : false
+  }
+  lpgData(e: any) {
 
-obj.HouseHoldDataSubmit=[formData.value]
+    this.lpg = e.value == 'yes' ? true : false
+  }
+  livestockData(e: any) {
+    this.lsv = e.value == 'yes' ? true : false
+  }
+  vehicleListData(e: any) {
+    this.vehicleList = e.value == 'yes' ? true : false
+  }
 
-  this._crudService.saveHouseHoldDetail(obj).subscribe({
-    next: (value: any) => {
-   console.log(value)
-   if(value.status==true || value.status=='True')
-   {
-    
-  this.router.navigateByUrl('cashflow')
+  submit(formData: any) {
+    console.log(formData.value)
+    formData.value['UserId'] = this.userObj.UserID;
+    console.log(formData.value)
+    let obj = {
+      "HouseHoldDataSubmit": [{}]
+    }
 
-     
-   }
-    },
-    
-        error: (err: HttpErrorResponse) => {
-          console.log(err)
+    obj.HouseHoldDataSubmit = [formData.value]
+
+    this._crudService.saveHouseHoldDetail(obj).subscribe({
+      next: (value: any) => {
+        console.log(value)
+        if (value.status == true || value.status == 'True') {
+
+          this.router.navigateByUrl('cashflow')
         }
-   })
+      },
 
-  
-}
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
 
+
+  }
 
 }
