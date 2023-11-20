@@ -16,21 +16,23 @@
      <section class="inputsec">
       <label>Enter 4 Dights Login MPIN</label>
       <div class="mpin">
-      <ng-container *ngFor="let value of inputValues; let i = index">
-        <input
+      <ng-container>
+        <!-- <input
           [(ngModel)]="inputValues[i]"
           (keyup)="onInputKeyUp($event, i)"
           #inputElement
-        >
+        > -->
+        <ng-otp-input (onInputChange)="checkValidOTP($event, 'pin')" [config]="{ length: 4, allowNumbersOnly: true , isPasswordInput:true}" ></ng-otp-input>
       </ng-container>
+    
     </div>
      </section>
   
   
   
       <ul class="flex-list-login">
-      <li><a class="forgotpwd">Forgot MPIN</a></li>
-      <li><a class="link" (click)="password()">Login Using Password</a></li>
+        <li><a class="link"(click)="forgotmpin()">Forgot MPIN</a></li>
+      <li><a class="link" (click)="loginwithpassword()">Login Using Password</a></li>
       </ul>
   
   

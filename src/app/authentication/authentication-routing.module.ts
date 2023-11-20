@@ -4,15 +4,20 @@ import { SigninComponent } from './signin/signin.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MpinComponent } from './mpin/mpin.component';
 import { ChangepwdComponent } from './changepwd/changepwd.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CreatempinComponent } from './creatempin/creatempin.component';
+import { MpinForgotComponent } from './mpin-forgot/mpin-forgot.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
- // {path:'',component:MpinComponent} ,
+  {path:'mpin',component:MpinComponent} ,
   { path: 'login', component: SigninComponent },
   { path: 'forgotpassword', component: ForgotPasswordComponent },
-  { path: 'changepassword', component: ChangepwdComponent }
-
+  { path: 'changepassword', component: ChangepwdComponent },
+  { path: 'resetpasword', component: ResetPasswordComponent },
+  { path: 'createMpin', component: CreatempinComponent },
+  { path: 'mpinforgot', component: MpinForgotComponent }
 
 //  { path: '', redirectTo: 'signin', pathMatch: 'full' },
   // { path: '', component: SigninComponent, data: { title: 'SignIn'} },

@@ -1,7 +1,11 @@
 
 
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CrudService } from 'src/app/shared/services/crud.service';
+import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 
 
@@ -10,7 +14,9 @@ import Swal from 'sweetalert2';
   templateUrl: './loandetails.component.html',
   styleUrls: ['./loandetails.component.scss']
 })
-export class LoandetailsComponent{
+  export class LoandetailsComponent implements OnInit{
+  userObj:any;
+  form!:FormGroup;
   @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
   @ViewChild('enlargedialog') enlargedialog!: TemplateRef<any>;
   addmember:boolean=false;
@@ -29,9 +35,30 @@ export class LoandetailsComponent{
 
 
 
-  constructor(private dialog:MatDialog)
+  constructor(private dialog:MatDialog, private _crudService:CrudService, private fb:FormBuilder, private toastr: ToastrService)
   {
+    this.form=this.fb.group({
+      MemberName:['', Validators.required],
+      LoanType:[''],
+      LoanPurpose:[''],
+      LoanProdct:[''],
+      LoanProdctCode:[''],
+      AppliedAmt:[''],
+      Tenure:[''],
+      RecommendedAmt:[''],
+      ChoiceOfRepayment_1:[''],
+      ClientpoliticallyExposedPerson:[''],
+      ClientRelatedPoliticallyExposedPerson:[''],
+      JITLoanOptIn:[''],
+      JITAppliedAmount:[''],
+      JITTenure:[''],
+      
+    })
+  }
 
+  ngOnInit(): void {
+    this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+   // this.getMasterData();
   }
   enlarge()
   {
@@ -161,11 +188,42 @@ warningpopup()
       console.log('close')
     }
   })
+}
+
   
+  Submit(formData: any) {
+    console.log(formData.value)
+  formData.value['UserId']=this.userObj.UserID;
+  console.log(formData.value) 
+    let obj={
+      "LoanDetailsData":[{}]
+     }
   
+  obj.LoanDetailsData=[formData.value]
+  
+    this._crudService.LoanDetailsSubmit(obj).subscribe({
+      next: (value: any) => {
+     console.log(value)
+     if(value.status==true || value.status=='True')
+     {
+      
+    
+      this.toastr.success('Member Data Added Successfully');
+      this.dialogRef.close();
+       
+     }
+      },
+      
+          error: (err: HttpErrorResponse) => {
+            console.log(err)
+          }
+     })
+  
+    
+  }
   
 }
 
 
 
-}
+// }

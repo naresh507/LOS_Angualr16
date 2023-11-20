@@ -40,14 +40,14 @@
             </ul>
         </section>
 
-
+        <form [formGroup]="form" (ngSubmit)="Submit(form)">
         <ul class="list_type">
-           
+        
             <li>
         <section class="inputsec">
             <label>Loan Type</label>
             <mat-form-field appearance="outline">
-                <mat-select>
+                <mat-select formControlName="LoanType">
                     <mat-option>
                         Select
                     </mat-option>
@@ -65,7 +65,7 @@
             <section class="inputsec">
                 <label>Loan Purpose</label>
                 <mat-form-field appearance="outline">
-                    <input required matInput placeholder="" value="Education">
+                    <input required matInput placeholder="" value="Education" formControlName="LoanPurpose">
                 </mat-form-field>
             </section>
         </li>
@@ -73,7 +73,7 @@
             <section class="inputsec">
                 <label>Loan product</label>
                 <mat-form-field appearance="outline">
-                    <mat-select>
+                    <mat-select formControlName="LoanProdct">
                         <mat-option>
                             Select
                         </mat-option>
@@ -91,7 +91,7 @@
                 <section class="inputsec">
                     <label>Loan product Code</label>
                     <mat-form-field appearance="outline">
-                        <mat-select>
+                        <mat-select  formControlName="LoanProdctCode">
                             <mat-option>
                                 Select
                             </mat-option>
@@ -110,7 +110,7 @@
                 <section class="inputsec">
                     <label>Applied Amount</label>
                     <mat-form-field appearance="outline">
-                        <input required matInput  value="10000">
+                        <input required matInput  value="10000" formControlName="AppliedAmt">
                     </mat-form-field>
                 </section>
             </li>
@@ -118,7 +118,7 @@
                 <section class="inputsec">
                     <label>Tenure(in Months)</label>
                     <mat-form-field appearance="outline">
-                        <mat-select>
+                        <mat-select formControlName="Tenure">
                             <mat-option>
                                 Select
                             </mat-option>
@@ -136,7 +136,7 @@
                 <section class="inputsec">
                     <label>Recommended Amount</label>
                     <mat-form-field appearance="outline">
-                        <input required matInput placeholder="" value="10000">
+                        <input required matInput placeholder="" value="10000" formControlName="RecommendedAmt">
                     </mat-form-field>
                 </section>
             </li>
@@ -144,7 +144,7 @@
                 <section class="inputsec">
                     <label>Choice of Repayment</label>
                     <mat-form-field appearance="outline">
-                        <mat-select>
+                        <mat-select formControlName="ChoiceOfRepayment_1">
                             <mat-option>
                                 Select
                             </mat-option>
@@ -162,7 +162,7 @@
                     <section class="inputsec">
                         <label>Is the Client Politically exposed Person</label>
                         <mat-form-field appearance="outline">
-                            <mat-select>
+                            <mat-select formControlName="ClientpoliticallyExposedPerson">
                                 <mat-option>
                                     Select
                                 </mat-option>
@@ -180,7 +180,7 @@
                         <section class="inputsec">
                             <label>Is the Client related to any Politically Exposed Person</label>
                             <mat-form-field appearance="outline">
-                                <mat-select>
+                                <mat-select formControlName="ClientRelatedPoliticallyExposedPerson">
                                     <mat-option>
                                         Select
                                     </mat-option>
@@ -195,15 +195,42 @@
                         </section>
                         </li>
 
-        
+                        <li>
+                            <section class="inputsec">
+                                <label>JIT Loan OptIn</label>
+                                <mat-form-field appearance="outline">
+                                    <input required matInput placeholder="" value="10000" formControlName="JITLoanOptIn">
+                                </mat-form-field>
+                            </section>
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>JIT Applied Amount</label>
+                                <mat-form-field appearance="outline">
+                                    <input required matInput placeholder="" value="10000" formControlName="JITAppliedAmount">
+                                </mat-form-field>
+                            </section>
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>JIT Tenure</label>
+                                <mat-form-field appearance="outline">
+                                    <input required matInput placeholder="" value="10000" formControlName="JITTenure">
+                                </mat-form-field>
+                            </section>
+                        </li>
         </ul>  
 
 
    
         <section class="btnscontainer marT30">
           
-             <section><button class="filledbtn"  mat-raised-button  (click)="warningpopup()" >Next</button></section>
+             <!-- <section><button class="filledbtn"  mat-raised-button  (click)="warningpopup()" type="submit" >Next</button></section> -->
+
+               <section><button class="filledbtn"  mat-raised-button type="submit" >Next</button></section>
+             <!-- <button class="filledbtn" mat-raised-button type="submit">Next</button> -->
          </section>
+        </form>
           
     </ng-container>
 

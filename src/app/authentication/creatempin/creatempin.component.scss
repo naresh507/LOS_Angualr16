@@ -36,5 +36,6 @@ label{ color: #000;
 
         .mpin { display: flex; justify-content: center; & input{ width:40px; border: 0; border-bottom: 1px solid #000; margin-right: 10px; margin-left: 10px;}}
 
-
-        
+        .red-text {
+          color: red;
+        }

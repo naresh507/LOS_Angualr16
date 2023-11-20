@@ -80,6 +80,14 @@ setUserId()
       return this.http.post(`${environment.apiLoginUrl}Login`, loginPayload);
       //return this.http.post(`https://dc.afpluat.com/Traning_DemandCollection_API/API/StaffDashboardData`, loginPayload)
     }
+    resetpassword(resetPayload: any): Observable<any> {
+      return this.http.post(`${environment.apiLoginUrl}RestPassword`, resetPayload);
+    }
+
+    mpinandforgotandcreate(mpinPayload: any): Observable<any> {
+      return this.http.post(`${environment.apiLoginUrl}LoginMPIN`, mpinPayload);
+    }
+
 
 
     dashboardInsights(userObjPayload: any): Observable<any> {
@@ -96,6 +104,19 @@ setUserId()
     userRoleDetails(userObjPayload: any): Observable<any> {
       return this.http.post(`${environment.apiLoginUrl}UserRoleDetails`, userObjPayload);
      
+    }
+
+    sendOtp(sendotpOBJPayload: any): Observable<any> {
+      return this.http.post(`${environment.apiLoginUrl}OTPVerification`, sendotpOBJPayload);
+     
+    }
+
+    ChangePassword(changepasswordOBJPayload: any): Observable<any> {
+      return this.http.post(`${environment.apiLoginUrl}ChangePassword`, changepasswordOBJPayload);
+    }
+
+    resetPassword( resetpawdOBJPayload: any): Observable<any> {
+      return this.http.post(`${environment.apiLoginUrl}RestPassword`, resetpawdOBJPayload);
     }
 
 

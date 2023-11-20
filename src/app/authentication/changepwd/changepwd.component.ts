@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 // import Swal from 'sweetalert2/dist/sweetalert2.js';
 import Swal from 'sweetalert2';
 @Component({
@@ -7,24 +8,73 @@ import Swal from 'sweetalert2';
   templateUrl: './changepwd.component.html',
   styleUrls: ['./changepwd.component.scss']
 })
-export class ChangepwdComponent  {
-  hide = true;
-  otp:boolean=false;
-  constructor(
-    private router: Router,
-    
-  ) { }
+export class ChangepwdComponent implements OnInit {
+
+  UserID: any;
+  isOldPassword = true;
+  isNewPassword = true;
+  isConfirmPassword = true;
+  OldPassword: string = '';
+  NewPassword: string = '';
+  ConfirmPassword: string = '';
+  validationMessage = '';
+  passwordMismatchError = false;
+
+
+  
+  changeDetails: any = {
+    OldPassword:'',
+    NewPassword:'',
+    ConfirmPassword:'',
+    UserID: ''
+  };
+
+  validatePassword(){
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    this.validationMessage = regex.test(this.changeDetails.NewPassword)
+      ? ''
+      : 'Please enter a minimum 8-character password with at least 1 upper case, 1 lower case, 1 numeric and 1 special character.';
+
+  }
+
+
+  PasswordMatch(){
+    this.passwordMismatchError =
+    this.changeDetails.NewPassword !==
+    this.changeDetails.ConfirmPassword;
+
+  }
+
+  constructor(private auth:AuthenticationService,
+    private router: Router) { }
+
 
   ngOnInit(): void {
-    
-
-   
-     
+    const userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.UserID = parseInt(userObj.UserID);
+    this.changeDetails.UserID=this.UserID;
   }
-login()
-{
-  this.router.navigateByUrl('/signin')
-}
+
+
+  save(){
+    this.auth.ChangePassword(this.changeDetails).subscribe(
+      (response) => {
+        console.log(response);
+        if (response && response.status && response.status === true && response.message === 'OTP Successfully Verified') {
+          this.router.navigateByUrl('/login')
+        } else {
+          
+          Swal.fire({
+                imageUrl: '../../assets/images/warining.svg',
+                imageHeight: 80,
+                text: response.message,
+              });
+        }
+      }
+     
+      //this.router.navigateByUrl('/login')
+    )
+  }
 
   simpleAlert(){
     Swal.fire({
@@ -34,41 +84,4 @@ login()
   });
   }
 
-  resendotp(){
-    Swal.fire({
-    imageUrl: '../../assets/images/warining.svg',
-    imageHeight: 80,
-    text: 'Maxmum Attepts Reached',  
-  });
-  }
-  sucessOTP()
-  {
-    
-      Swal.fire({
-        width:'350px',
-      imageUrl: '../../assets/images/tick.png',
-      imageHeight: 80,
-      text: 'OTP Sent Successfully',  
-     showCancelButton:false,
-     
-      confirmButtonText:'Okay',
-      customClass: {
-        confirmButton: "strokedBtn",
-       
-      }
-  
-    }).then((result) => {
-      if(result.isConfirmed)
-      {
-       this.otp=true;
-      
-      }
-      else
-      {
-        console.log('close')
-      }
-    })
-    
-  }
-  
 }

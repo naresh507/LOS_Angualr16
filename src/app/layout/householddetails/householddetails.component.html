@@ -1,5 +1,6 @@
 
 <form [formGroup]="form"  (ngSubmit)="submit(form)">
+
     <ul class="list_type">
         <li>
        <section class="inputsec">
@@ -44,7 +45,7 @@
             <section class="inputsec">
                 <label>No of Unmarried Children</label>
                 <mat-form-field appearance="outline">
-                    <input required matInput placeholder="Enter" formControlName="NoOfunmarriedchildren" >
+                    <input required matInput placeholder="Enter"  formControlName="NoOfunmarriedchildren" >
                 </mat-form-field>
             </section>
         </li>
@@ -66,7 +67,7 @@
             <section class="inputsec">
                      <label>Type of Roof</label>
                      <mat-form-field appearance="outline">
-                         <mat-select formControlName="TypeOfRoof" > 
+                         <mat-select  formControlName="TypeOfRoof" > 
                              <mat-option>
                                  Select
                              </mat-option>
@@ -108,7 +109,7 @@
             <section class="inputsec">
                      <label>Locality</label>
                      <mat-form-field appearance="outline">
-                         <mat-select formControlName="Locality" >
+                         <mat-select   formControlName="Locality"  >
                              <mat-option>
                                  Select
                              </mat-option>
@@ -131,7 +132,7 @@
             <section class="inputsec">
                      <label>Religion /Community</label>
                      <mat-form-field appearance="outline">
-                         <mat-select formControlName="Community" >
+                         <mat-select  formControlName="Community" >
                              <mat-option>
                                  Select
                              </mat-option>
@@ -316,7 +317,7 @@
             <section class="inputsec">
                 <label>Livestock</label>
                 <mat-form-field appearance="outline">
-                    <mat-select>
+                    <mat-select formControlName="Livestock">
                         <mat-option>
                             Select
                         </mat-option>
@@ -368,7 +369,7 @@
             <section class="inputsec">
                 <label>Vehicle</label>
                 <mat-form-field appearance="outline">
-                    <mat-select>
+                    <mat-select formControlName="vehicle">
                         <mat-option>
                             Select
                         </mat-option>
@@ -423,7 +424,8 @@
             <section class="inputsec">
                 <label>Furniture</label>
                 <mat-form-field appearance="outline">
-                    <mat-select  formControlName="furnitureVal">
+                    <!-- <mat-select  formControlName="furnitureVal"> -->
+                        <mat-select  formControlName="Furniture">
                         <mat-option>
                             Select
                         </mat-option>
@@ -479,10 +481,7 @@
        
     </ul>
     <section class="btnswrapper text-center">
-      
-        
         <button type="submit" mat-raised-button class="fill_btn" colo="primary"
        >Save & Next</button>
-    
     </section>
     </form>

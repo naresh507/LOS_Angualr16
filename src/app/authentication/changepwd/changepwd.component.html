@@ -19,9 +19,9 @@
       <label>Old Password</label>
       <mat-form-field appearance="outline">
         <!-- <mat-label>User Name</mat-label> -->
-        <input  required matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <input  required matInput placeholder="Enter Password" [type]="isOldPassword ? 'password' : 'text'" [(ngModel)]="changeDetails.OldPassword" name="Old">
+        <button mat-icon-button matSuffix (click)="isOldPassword = !isOldPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isOldPassword">
+            <mat-icon>{{isOldPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         
       </mat-form-field> 
@@ -30,9 +30,9 @@
       <label>New Password</label>
       <mat-form-field appearance="outline">
         <!-- <mat-label>Password</mat-label> -->
-        <input  required matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <input  required matInput placeholder="Enter Password" [type]="isNewPassword ? 'password' : 'text'" [(ngModel)]="changeDetails.NewPassword" name="New" (input)="validatePassword()">
+        <button mat-icon-button matSuffix (click)="isNewPassword = !isNewPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isNewPassword">
+          <mat-icon>{{isNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
         
       </mat-form-field> 
@@ -42,15 +42,19 @@
             <label>Confirm Password</label>
             <mat-form-field appearance="outline">
               <!-- <mat-label>Password</mat-label> -->
-              <input  required matInput placeholder="Enter Password" [type]="hide ? 'password' : 'text'">
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <input  required matInput placeholder="Enter Password" [type]="isConfirmPassword ? 'password' : 'text'"  [(ngModel)]="changeDetails.ConfirmPassword"  name="Confirm"   (input)="PasswordMatch()">
+              <button mat-icon-button matSuffix (click)="isConfirmPassword = !isConfirmPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isConfirmPassword">
+                <mat-icon>{{isConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
               
             </mat-form-field> 
               </section>
+
+              <p class="note" *ngIf="changeDetails.OldPassword.length || changeDetails.NewPassword.length>= 8 && validationMessage" class="validation-message red-text">{{ validationMessage }}</p>
+              <p class="note" *ngIf="changeDetails.ConfirmPassword.length >= 8 &&passwordMismatchError" class="validation-message red-text">Passwords do not match.</p>
+            <p class="note" *ngIf="changeDetails.NewPassword.length >= 8 && validationMessage" class="validation-message red-text">{{ validationMessage }}</p>
   
-    <button class="loginBtn"  mat-stroked-button color="primary" >Save Password</button>
+    <button class="loginBtn"  mat-stroked-button color="primary" (click)="save()">Save Password</button>
 </form>    
 </section>
       

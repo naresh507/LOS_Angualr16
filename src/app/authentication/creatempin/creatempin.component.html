@@ -1,0 +1,66 @@
+<section class="sign-container">
+
+    <section class="sign-wrapper">
+    
+      <section class="sign-left-wrapper">
+      <section class="sign-left-img">
+        <img src="./../../../assets/images/loginbanner.png" />
+      </section>
+      
+      </section>
+      
+      <section class="sign-right-wrapper">
+      <img src="./../../../assets/images/logo.svg" />
+      <h2 class="sign-title">Create New MPIN</h2>
+      
+     <section class="inputsec">
+      <label>Enter New MPIN</label>
+      <div class="mpin">
+      <!-- <ng-container *ngFor="let value of newMPINValues; let i = index"> -->
+        <ng-container>
+        <!-- <input
+          [(ngModel)]="newMPINValues[i]"
+          (keyup)="onInputKeyUp($event, i)"
+          #inputElement
+        > -->
+        <ng-otp-input (onInputChange)="checkValidOTP($event, 'newMPINValues')" [config]="{ length: 4, allowNumbersOnly: true, isPasswordInput:true }" ></ng-otp-input>
+      </ng-container>
+    </div>
+     </section>
+
+     <section class="inputsec">
+        <label>Confirm MPIN</label>
+        <div class="mpin">
+        <!-- <ng-container *ngFor="let value of confirmMPINValues; let i = index"> -->
+          <ng-container>
+          <!-- <input
+            [(ngModel)]="confirmMPINValues[i]"
+            (keyup)="onInputKeyUp($event, i)"
+            #inputElement
+          > -->
+          <ng-otp-input (onInputChange)="checkValidOTP($event, 'confirmMPINValues')"  [config]="{ length: 4, allowNumbersOnly: true, isPasswordInput:true }" (input)="PasswordMatch()" ></ng-otp-input>
+        </ng-container>
+      </div>
+       </section>
+  
+  
+       <p *ngIf="confirmMPINValues.length >= 4 &&passwordMismatchError" class="validation-message red-text">Passwords do not match.</p>
+
+
+      <ul class="flex-list-login">
+      <li><a class="forgotpwd">
+        <!-- Forgot MPIN -->
+      </a></li>
+      <li><a class="link" (click)="password()">Login Using Password</a></li>
+      </ul>
+  
+  
+      <button class="loginBtn"  mat-raised-button color="primary" (click)="save()">Save</button>
+    
+    
+    
+    </section>
+      
+      
+      </section>
+  </section>

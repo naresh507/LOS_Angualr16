@@ -34,33 +34,30 @@ export class HouseholddetailsComponent implements OnInit {
     this.form = this.fb.group({
 
       MemberName: ['', Validators.required],
-      InstitutionType: [''],
-      InstitutionName: [''],
-      LoanAccountNO: [''],
-      OutstandingBalance: [''],
-      EMI: [''],
-      Preclosure: [''],
-      AccountStatus: [''],
+      FamilyType:[''],
+     
+   
+      TypeOfRoof:[''],
+      TypeofOwnership:[''],
+      Locality:[''],
+      Community:[''],
+      Category:[''],
       Electricty: [''],
-      CoustomerID: [''],
+     // CoustomerID: [''],
       Water: [''],
       Toilet: [''],
       Land: [''],
       LandUnit: [''],
       sewage: [''],
       LPG: [''],
+      Furniture: [''],
       LPGConsumerNo: [''],
       Livestock: [''],
       TypeOfLivestock: [''],
-      Count: [''],
+     // Count: [''],
       vehicle: [''],
-      TypeoOfVehicle: [''],
       SmartPhone: [''],
-      ElectronicItems: [''],
-      furnitureVal: [''],
-      vehiclecount: [''],
-
-
+      ElectronicItems: ['']
     });
 
   }
@@ -128,16 +125,21 @@ export class HouseholddetailsComponent implements OnInit {
   }
 
   submit(formData: any) {
-    console.log(formData.value)
-    formData.value['UserId'] = this.userObj.UserID;
-    console.log(formData.value)
-    let obj = {
-      "HouseHoldDataSubmit": [{}]
-    }
 
-    obj.HouseHoldDataSubmit = [formData.value]
+    formData.value['UserId']=this.userObj.UserID;
 
-    this._crudService.saveHouseHoldDetail(obj).subscribe({
+  let obj={
+    "HouseHoldDetailsSubmitDataInfo":[{}]
+   }
+
+  obj.HouseHoldDetailsSubmitDataInfo=[formData.value]
+ 
+    console.log(obj.HouseHoldDetailsSubmitDataInfo);
+
+    // obj.HouseHoldDataSubmit = [formData.value]
+
+    // this._crudService.saveHouseHoldDetail(obj).subscribe({
+      this._crudService.saveHouseHoldDetailsubmit(obj).subscribe({
       next: (value: any) => {
         console.log(value)
         if (value.status == true || value.status == 'True') {
