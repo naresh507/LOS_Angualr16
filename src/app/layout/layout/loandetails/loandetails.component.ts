@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./loandetails.component.scss']
 })
   export class LoandetailsComponent implements OnInit{
+  LoanDetails:any;
   userObj:any;
   form!:FormGroup;
   @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
@@ -58,8 +59,30 @@ import Swal from 'sweetalert2';
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
-   // this.getMasterData();
+    this.getMasterLoanDetailsData();
   }
+
+  getMasterLoanDetailsData() {
+    let obj = {
+      "UserId": this.userObj.UserID,
+      "LoanID" :this.userObj.LoanID,
+    }
+    this._crudService.LoanDetailsget(obj).subscribe({
+      next: (value: any) => {
+        console.log(value)
+        this.LoanDetails= value.LoanDetailFetchFCODataInfo[0];
+
+        console.log(this.LoanDetails)
+        if (value.status == true) {
+        }
+      },
+
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+  }
+
   enlarge()
   {
 this.enlargeDialogRef= this.dialog.open(this.enlargedialog,{
@@ -192,14 +215,11 @@ warningpopup()
 
   
   Submit(formData: any) {
-    console.log(formData.value)
-  formData.value['UserId']=this.userObj.UserID;
-  console.log(formData.value) 
     let obj={
-      "LoanDetailsData":[{}]
-     }
-  
-  obj.LoanDetailsData=[formData.value]
+      "UserID": "",
+      "type": "",
+      "Id": ""
+    }
   
     this._crudService.LoanDetailsSubmit(obj).subscribe({
       next: (value: any) => {

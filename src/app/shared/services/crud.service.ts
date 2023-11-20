@@ -127,10 +127,10 @@ LoanDetailsSubmit(obj:any):Observable<any>
   return this.http.post(`${environment.apiUrl}LoanDetailsSubmit`,obj);
 }
 
-// LoanDetailsget(obj:any):Observable<any>
-// {
-//   return this.http.post(`${environment.apiUrl}LoanDetailsget`,obj);        Pending
-// }
+LoanDetailsget(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}LoanDetailFetchFCO`,obj);        
+}
 
 // Guarantors  Details Submit component Service  SubMit
 GuarantorsSubmit(obj:any):Observable<any>
@@ -139,9 +139,9 @@ GuarantorsSubmit(obj:any):Observable<any>
 }
 
 // Insurance  Details Submit component Service  SubMit
-InsuranceDetailsSubmit(obj:any):Observable<any>
+InsuranceSubmit(obj:any):Observable<any>
 {
-  return this.http.post(`${environment.apiUrl}InsuranceDetails`,obj);
+  return this.http.post(`${environment.apiUrl}InsuranceDetailsSubmit`,obj);
 }
 
 
@@ -149,6 +149,12 @@ InsuranceDetailsSubmit(obj:any):Observable<any>
 BankIFSCCodeSubmit(obj:any):Observable<any>
 {
   return this.http.post(`${environment.apiUrl}BankIFSCCode`,obj);
+}
+
+// CGTDetailsSubmit Details  component Service  SubMit
+CGTDetailsSubmit(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}CGTDetailsSubmit`,obj);
 }
 
 
