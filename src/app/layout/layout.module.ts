@@ -13,7 +13,6 @@ import { NewapplicationformComponent } from './newapplication/newapplicationform
 import { KycComponent } from './layout/kyc/kyc.component';
 import { AddnewApplicationComponent } from './addnew-application/addnew-application.component';
 import { BasicdetailsComponent } from './basicdetails/basicdetails.component';
-import { MemberdetailsComponent } from './memberdetails/memberdetails.component';
 import { HouseholddetailsComponent } from './householddetails/householddetails.component';
 import { CashflowDetailsComponent } from './cashflow-details/cashflow-details.component';
 import { CashflowformsComponent } from './cashflowforms/cashflowforms.component';
@@ -71,7 +70,6 @@ import { WebcamModule } from 'ngx-webcam';
     KycComponent,
     AddnewApplicationComponent,
     BasicdetailsComponent,
-    MemberdetailsComponent,
     HouseholddetailsComponent,
     CashflowDetailsComponent,
     CashflowformsComponent,
@@ -119,6 +117,7 @@ import { WebcamModule } from 'ngx-webcam';
     LayoutRoutingModule,
     SharedModule,
     NgApexchartsModule,
+    WebcamModule,
     ImageCropperModule,
     NgOtpInputModule,
     CommonModule,

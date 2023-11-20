@@ -95,6 +95,11 @@ export class LayoutComponent {
   {
     this.router.navigateByUrl('/changepassword')
   }
+  resetpwd()
+  {
+    this.router.navigateByUrl('/resetpasword')
+  }
+
 
 
 
@@ -111,8 +116,8 @@ export class LayoutComponent {
              error: (err: HttpErrorResponse) => {
              }
            })
-         
-     }
+         
+     }
 
 
 }

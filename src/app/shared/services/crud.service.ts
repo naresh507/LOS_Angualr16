@@ -85,6 +85,10 @@ saveHouseHoldDetail(obj:any):Observable<any>
 {
   return this.http.post(`${environment.apiUrl}HouseHoldDetail`,obj);
 }
+saveHouseHoldDetailsubmit(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}HouseHoldDetailsSubmit`,obj);
+}
 
 submitRegularExpensesMothlySubmit(obj:any):Observable<any>
 {
@@ -101,6 +105,52 @@ addHouseHoldLiabilitySubmit(obj:any):Observable<any>
 {
   return this.http.post(`${environment.apiUrl}HouseHoldLiabilitySubmit`,obj);
 }
+
+HHLiabilityFetchSub(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}HHLiabilityFetch`,obj);
+}
+
+LoanEligbiltySubmit(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}LoanEligbiltySubmit`,obj);
+}
+
+LoanEligbiltyget(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}LoanEligibilityFechData`,obj);
+}
+
+// Loan Details component Service  SubMit
+LoanDetailsSubmit(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}LoanDetailsSubmit`,obj);
+}
+
+// LoanDetailsget(obj:any):Observable<any>
+// {
+//   return this.http.post(`${environment.apiUrl}LoanDetailsget`,obj);        Pending
+// }
+
+// Guarantors  Details Submit component Service  SubMit
+GuarantorsSubmit(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}GuarantorsDetailsSubmit`,obj);
+}
+
+// Insurance  Details Submit component Service  SubMit
+InsuranceDetailsSubmit(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}InsuranceDetails`,obj);
+}
+
+
+// BankIFSCCode  Details Submit component Service  SubMit
+BankIFSCCodeSubmit(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}BankIFSCCode`,obj);
+}
+
 
 
 EaringMemberDetailsSubmit(obj:any):Observable<any>

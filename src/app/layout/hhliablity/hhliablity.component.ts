@@ -12,14 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 export class HhliablityComponent implements OnInit{
   form!:FormGroup;
   userObj:any;
-  ngOnInit(): void {
-    this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
-  }
-
-
-
   dialogRef: any;
-
+  HHLiability:any;
 
   @ViewChild('addmember', { static: true })
   addmember!: TemplateRef<any>;
@@ -42,6 +36,32 @@ export class HhliablityComponent implements OnInit{
       })
     }
 
+    ngOnInit(): void {
+      this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+      this.getMasterData();
+    }
+
+    getMasterData() {
+      let obj = {
+        "UserId": this.userObj.UserID,
+        "LoanID" :this.userObj.LoanID,
+      }
+      this._crudService.HHLiabilityFetchSub(obj).subscribe({
+        next: (value: any) => {
+          console.log(value)
+          this.HHLiability= value.HHLiabilityFetchataDetails[0];
+
+          console.log(this.HHLiability)
+          if (value.status == true) {
+          }
+        },
+  
+        error: (err: HttpErrorResponse) => {
+          console.log(err)
+        }
+      })
+    }
+
     
     openAddMember(): void {
     
@@ -61,6 +81,7 @@ export class HhliablityComponent implements OnInit{
   }
 
 
+  
 
   addliablityDetails(formData: any) {
     console.log(formData.value)

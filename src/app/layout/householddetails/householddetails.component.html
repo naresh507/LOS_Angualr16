@@ -1,327 +1,487 @@
 
 <form [formGroup]="form"  (ngSubmit)="submit(form)">
 
-<ul class="list_type">
-    <li class="">
-        <section class="inputsec">
-            <label>Electricity</label>
-            <mat-form-field  appearance="outline">
-                <mat-select formControlName="Electricty" (selectionChange)="eleData($event)">
-                    <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option [value]="'yes'">
-                        Yes
-                    </mat-option>
-                    <mat-option [value]="'no'">
-                        No
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </section>
-    </li>
-    <li class="" *ngIf="ele">
-        <section class="inputsec">
-            <label>Customer Id</label>
-            <mat-form-field  appearance="outline">
-                <input   formControlName="CoustomerID" required matInput placeholder="Customer Id">
-               
-                </mat-form-field> 
-        </section>
-    </li>
-
-
-    <li class="">
-        <section class="inputsec">
-            <label>Water</label>
-            <mat-form-field appearance="outline">
-                <mat-select  formControlName="Water">
-                    <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option [value]="'yes'">
-                        Yes
-                    </mat-option>
-                    <mat-option [value]="'no'">
-                        No
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </section>
-    </li>
-
-    <li class="">
-        <section class="inputsec">
-            <label>Toilet</label>
-            <mat-form-field appearance="outline">
-                <mat-select  formControlName="Toilet">
-                    <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option [value]="'yes'">
-                        Yes
-                    </mat-option>
-                    <mat-option [value]="'no'">
-                        No
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </section>
-    </li>
-    <li class="">
-        <section class="inputsec">
-            <label>Land</label>
-            <mat-form-field appearance="outline" >
-                <mat-select formControlName="Land" (selectionChange)="landData($event)">
-                    <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option [value]="'yes'">
-                        Yes
-                    </mat-option>
-                    <mat-option [value]="'no'">
-                        No
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </section>
-    </li>
-
-    <li class="" *ngIf="land">
-        <section class="inputsec">
-            <label>Land Unit(In Acre)</label>
-            <mat-form-field  appearance="outline">
-                <input formControlName="LandUnit" required matInput placeholder="Land Unit">
-                
-                </mat-form-field> 
-        </section>
-    </li>
-
-    <li class="">
-        <section class="inputsec">
-            <label>Sewage</label>
-            <mat-form-field appearance="outline">
-                <mat-select formControlName="sewage">
-                    <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option [value]="'yes'">
-                        Yes
-                    </mat-option>
-                    <mat-option [value]="'no'">
-                        No
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </section>
-    </li>
-    <li></li>
-   
-</ul>
-
-<ul class="list_type">
-    <li class="">
-        <section class="inputsec">
-            <label>LPG</label>
-            <mat-form-field appearance="outline">
-                <mat-select formControlName="LPG"  (selectionChange)="lpgData($event)"> 
-                    <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option [value]="'yes'">
-                        Yes
-                    </mat-option>
-                    <mat-option [value]="'no'">
-                        No
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </section>
-    </li>
-    <li class="">
-        <section class="inputsec"  *ngIf="lpg">
-            <label>LPG Consumer No</label>
-            <mat-form-field  appearance="outline">
-                <input   formControlName="LPGConsumerNo" required matInput placeholder="consumer no">
-                
-                </mat-form-field> 
-        </section>
-    </li>
-   
-</ul>
-
-<ul class="list_type">
-    <li class="">
-        <section class="inputsec">
-            <label>Livestock</label>
-            <mat-form-field appearance="outline">
-                <mat-select>
-                    <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option  [value]="r.ID" *ngFor="let r of LivestockInfo">
-                  
-               
-                       {{r.Name}}
-                   </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </section>
-    </li>
-    <li></li>
+    <ul class="list_type">
+        <li>
+       <section class="inputsec">
+                <label>Family Type</label>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="FamilyType" >
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option  [value]="f.ID" *ngFor="let f of FamilyTypeDetails">
+                           
+                        
+                            {{f.Name}}
+                        </mat-option>
+                      
+                    </mat-select>
+                </mat-form-field>
+            </section>
+          
+        </li>
+        <li class="">
+            <section class="inputsec">
+                <label>Non-Earning members</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+        </li>
     </ul>
-
-
-<ul class="list_type" *ngIf="lsv">
-    <li class="">
-        <section class="inputsec">
-            <label>Type of Livestock</label>
-            <mat-form-field appearance="outline">
-                <mat-select>
-                    <!-- <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option  [value]="r.ID" *ngFor="let r of VehicleInfo">
-                  
-               
-                       {{r.Name}}
-                   </mat-option> -->
-                </mat-select>
-            </mat-form-field>
-        </section>
-    </li>
-
-    <li class="">
-        <section class="inputsec" >
-            <label>Count</label>
-            <mat-form-field  appearance="outline">
-                <input formControlName="Count" required matInput placeholder="Count">
-                
-                </mat-form-field> 
-        </section>
-    </li>
-</ul>
-
-<ul class="list_type">
-    <li class="">
-        <section class="inputsec">
-            <label>Vehicle</label>
-            <mat-form-field appearance="outline">
-                <mat-select>
-                    <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option  [value]="r.ID" *ngFor="let r of VehicleInfo">
-                  
-               
-                       {{r.Name}}
-                   </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </section>
-    </li>
-    <li></li>
-</ul>
-
-
-
-<ul class="list_type" *ngIf="vehicleList">
-    <li class="">
-        <section class="inputsec">
-            <label>Type of Vehicle</label>
-            <mat-form-field appearance="outline">
-                <mat-select formControlName="TypeoOfVehicle">
-                    <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option [value]="'Two Wheeler'">
-                        Two Wheeler
-                    </mat-option>
-                    <mat-option [value]="'Three Wheeler'">
-                        Three Wheeler
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </section>
-    </li>
-
-    <li class="">
-        <section class="inputsec" >
-            <label>Count</label>
-            <mat-form-field  appearance="outline">
-                <input formControlName="vehiclecount" required matInput placeholder="Count">
-                
-                </mat-form-field> 
-        </section>
-    </li>
-</ul>
-
-
-<ul class="list_type">
-    <li class="">
-        <section class="inputsec">
-            <label>Furniture</label>
-            <mat-form-field appearance="outline">
-                <mat-select  formControlName="furnitureVal">
-                    <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option [value]="'yes'">
-                        Yes
-                    </mat-option>
-                    <mat-option [value]="'no'">
-                        No
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </section>
-    </li>
-    <li class="">
-        <section class="inputsec">
-            <label>SmartPhone</label>
-            <mat-form-field appearance="outline">
-                <mat-select   formControlName="SmartPhone">
-                    <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option [value]="'yes'">
-                        Yes
-                    </mat-option>
-                    <mat-option [value]="'no'">
-                        No
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </section>
-    </li>
-</ul>
-
-<ul class="list_type">
-    <li class="">
-        <section class="inputsec">
-            <label>Electronic items</label>
-            <mat-form-field appearance="outline">
-                <mat-select   formControlName="ElectronicItems">
-                    <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option [value]="'yes'">
-                        Yes
-                    </mat-option>
-                    <mat-option [value]="'no'">
-                        No
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </section>
-    </li>
-   
-</ul>
-<section class="btnswrapper text-center">
-  
     
-    <button type="submit" mat-raised-button class="fill_btn" colo="primary"
-   >Save & Next</button>
-
-</section>
-</form>
+    
+    <ul class="list_type">
+        <li class="">
+            <section class="inputsec">
+                <label>Total Household Family members</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="TotalHouseholdFamilyMembers" >
+                </mat-form-field>
+            </section>
+        </li>
+        <li class="">
+            <section class="inputsec">
+                <label>No of Unmarried Children</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter"  formControlName="NoOfunmarriedchildren" >
+                </mat-form-field>
+            </section>
+        </li>
+    </ul>
+    
+    
+    
+    <ul class="list_type">
+       
+        <li class="">
+            <section class="inputsec">
+                <label>No of Dependents</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NoOfDependents" >
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                     <label>Type of Roof</label>
+                     <mat-form-field appearance="outline">
+                         <mat-select  formControlName="TypeOfRoof" > 
+                             <mat-option>
+                                 Select
+                             </mat-option>
+                             <mat-option  [value]="r.ID" *ngFor="let r of TypeofRoofDetails">
+                           
+                        
+                                {{r.Name}}
+                            </mat-option>
+                         </mat-select>
+                     </mat-form-field>
+                 </section>
+               
+             </li>
+    </ul>
+    
+    
+    
+    <ul class="list_type">
+       
+        <li>
+            <section class="inputsec">
+                     <label>Type Of Ownership</label>
+                     <mat-form-field appearance="outline">
+                         <mat-select formControlName="TypeofOwnership" >
+                             <mat-option>
+                                 Select
+                             </mat-option>
+                             <mat-option  [value]="r.ID" *ngFor="let r of OwnershipDetails">
+                           
+                        
+                                {{r.Name}}
+                            </mat-option>
+                         </mat-select>
+                     </mat-form-field>
+                 </section>
+               
+             </li>
+        <li>
+            <section class="inputsec">
+                     <label>Locality</label>
+                     <mat-form-field appearance="outline">
+                         <mat-select   formControlName="Locality"  >
+                             <mat-option>
+                                 Select
+                             </mat-option>
+                             <mat-option  [value]="r.ID" *ngFor="let r of LOCALITYDetails">
+                           
+                        
+                                {{r.Name}}
+                            </mat-option>
+                         </mat-select>
+                     </mat-form-field>
+                 </section>
+               
+             </li>
+    </ul>
+    
+    
+    <ul class="list_type">
+       
+        <li>
+            <section class="inputsec">
+                     <label>Religion /Community</label>
+                     <mat-form-field appearance="outline">
+                         <mat-select  formControlName="Community" >
+                             <mat-option>
+                                 Select
+                             </mat-option>
+                             <mat-option  [value]="r.ID" *ngFor="let r of ReligionCommunityDetails">
+                           
+                        
+                                {{r.Name}}
+                            </mat-option>
+                         </mat-select>
+                     </mat-form-field>
+                 </section>
+               
+             </li>
+        <li>
+            <section class="inputsec">
+                     <label>Caste/Category</label>
+                     <mat-form-field appearance="outline">
+                         <mat-select formControlName="Category" >
+                             <mat-option>
+                                 Select
+                             </mat-option>
+                             <mat-option  [value]="r.ID" *ngFor="let r of CasteCategoryDetails">
+                                {{r.Name}}
+                            </mat-option>
+                         </mat-select>
+                     </mat-form-field>
+                 </section>
+               
+             </li>
+    </ul>
+    <ul class="list_type">
+        <li class="">
+            <section class="inputsec">
+                <label>Electricity</label>
+                <mat-form-field  appearance="outline">
+                    <mat-select formControlName="Electricty" (selectionChange)="eleData($event)">
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option [value]="'yes'">
+                            Yes
+                        </mat-option>
+                        <mat-option [value]="'no'">
+                            No
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+        </li>
+        <li class="" *ngIf="ele">
+            <section class="inputsec">
+                <label>Customer Id</label>
+                <mat-form-field  appearance="outline">
+                    <input   formControlName="CoustomerID" required matInput placeholder="Customer Id">
+                   
+                    </mat-form-field> 
+            </section>
+        </li>
+    
+    
+        <li class="">
+            <section class="inputsec">
+                <label>Water</label>
+                <mat-form-field appearance="outline">
+                    <mat-select  formControlName="Water">
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option [value]="'yes'">
+                            Yes
+                        </mat-option>
+                        <mat-option [value]="'no'">
+                            No
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+        </li>
+    
+        <li class="">
+            <section class="inputsec">
+                <label>Toilet</label>
+                <mat-form-field appearance="outline">
+                    <mat-select  formControlName="Toilet">
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option [value]="'yes'">
+                            Yes
+                        </mat-option>
+                        <mat-option [value]="'no'">
+                            No
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+        </li>
+        <li class="">
+            <section class="inputsec">
+                <label>Land</label>
+                <mat-form-field appearance="outline" >
+                    <mat-select formControlName="Land" (selectionChange)="landData($event)">
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option [value]="'yes'">
+                            Yes
+                        </mat-option>
+                        <mat-option [value]="'no'">
+                            No
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+        </li>
+    
+        <li class="" *ngIf="land">
+            <section class="inputsec">
+                <label>Land Unit(In Acre)</label>
+                <mat-form-field  appearance="outline">
+                    <input formControlName="LandUnit" required matInput placeholder="Land Unit">
+                    
+                    </mat-form-field> 
+            </section>
+        </li>
+    
+        <li class="">
+            <section class="inputsec">
+                <label>Sewage</label>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="sewage">
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option [value]="'yes'">
+                            Yes
+                        </mat-option>
+                        <mat-option [value]="'no'">
+                            No
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+        </li>
+        <li></li>
+       
+    </ul>
+    
+    <ul class="list_type">
+        <li class="">
+            <section class="inputsec">
+                <label>LPG</label>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="LPG"  (selectionChange)="lpgData($event)"> 
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option [value]="'yes'">
+                            Yes
+                        </mat-option>
+                        <mat-option [value]="'no'">
+                            No
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+        </li>
+        <li class="">
+            <section class="inputsec"  *ngIf="lpg">
+                <label>LPG Consumer No</label>
+                <mat-form-field  appearance="outline">
+                    <input   formControlName="LPGConsumerNo" required matInput placeholder="consumer no">
+                    
+                    </mat-form-field> 
+            </section>
+        </li>
+       
+    </ul>
+    
+    <ul class="list_type">
+        <li class="">
+            <section class="inputsec">
+                <label>Livestock</label>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="Livestock">
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option  [value]="r.ID" *ngFor="let r of LivestockInfo">
+                      
+                   
+                           {{r.Name}}
+                       </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+        </li>
+        <li></li>
+        </ul>
+    
+    
+    <ul class="list_type" *ngIf="lsv">
+        <li class="">
+            <section class="inputsec">
+                <label>Type of Livestock</label>
+                <mat-form-field appearance="outline">
+                    <mat-select>
+                        <!-- <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option  [value]="r.ID" *ngFor="let r of VehicleInfo">
+                      
+                   
+                           {{r.Name}}
+                       </mat-option> -->
+                    </mat-select>
+                </mat-form-field>
+            </section>
+        </li>
+    
+        <li class="">
+            <section class="inputsec" >
+                <label>Count</label>
+                <mat-form-field  appearance="outline">
+                    <input formControlName="Count" required matInput placeholder="Count">
+                    
+                    </mat-form-field> 
+            </section>
+        </li>
+    </ul>
+    
+    <ul class="list_type">
+        <li class="">
+            <section class="inputsec">
+                <label>Vehicle</label>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="vehicle">
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option  [value]="r.ID" *ngFor="let r of VehicleInfo">
+                      
+                   
+                           {{r.Name}}
+                       </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+        </li>
+        <li></li>
+    </ul>
+    
+    
+    
+    <ul class="list_type" *ngIf="vehicleList">
+        <li class="">
+            <section class="inputsec">
+                <label>Type of Vehicle</label>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="TypeoOfVehicle">
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option [value]="'Two Wheeler'">
+                            Two Wheeler
+                        </mat-option>
+                        <mat-option [value]="'Three Wheeler'">
+                            Three Wheeler
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+        </li>
+    
+        <li class="">
+            <section class="inputsec" >
+                <label>Count</label>
+                <mat-form-field  appearance="outline">
+                    <input formControlName="vehiclecount" required matInput placeholder="Count">
+                    
+                    </mat-form-field> 
+            </section>
+        </li>
+    </ul>
+    
+    
+    <ul class="list_type">
+        <li class="">
+            <section class="inputsec">
+                <label>Furniture</label>
+                <mat-form-field appearance="outline">
+                    <!-- <mat-select  formControlName="furnitureVal"> -->
+                        <mat-select  formControlName="Furniture">
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option [value]="'yes'">
+                            Yes
+                        </mat-option>
+                        <mat-option [value]="'no'">
+                            No
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+        </li>
+        <li class="">
+            <section class="inputsec">
+                <label>SmartPhone</label>
+                <mat-form-field appearance="outline">
+                    <mat-select   formControlName="SmartPhone">
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option [value]="'yes'">
+                            Yes
+                        </mat-option>
+                        <mat-option [value]="'no'">
+                            No
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+        </li>
+    </ul>
+    
+    <ul class="list_type">
+        <li class="">
+            <section class="inputsec">
+                <label>Electronic items</label>
+                <mat-form-field appearance="outline">
+                    <mat-select   formControlName="ElectronicItems">
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option [value]="'yes'">
+                            Yes
+                        </mat-option>
+                        <mat-option [value]="'no'">
+                            No
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+        </li>
+       
+    </ul>
+    <section class="btnswrapper text-center">
+        <button type="submit" mat-raised-button class="fill_btn" colo="primary"
+       >Save & Next</button>
+    </section>
+    </form>

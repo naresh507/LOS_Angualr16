@@ -1,5 +1,11 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CrudService } from 'src/app/shared/services/crud.service';
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -7,16 +13,34 @@ import Swal from 'sweetalert2';
   templateUrl: './guarantordetails.component.html',
   styleUrls: ['./guarantordetails.component.scss']
 })
-export class GuarantordetailsComponent {
+export class GuarantordetailsComponent implements OnInit {
   @ViewChild('otpdialog') otpdialog!: TemplateRef<any>;
+  form!:FormGroup;
+  userObj: any;
 
   otpDialogRef:any;
 otpverify:boolean=false
 
 
-  constructor(private dialog:MatDialog)
+  constructor(private toastr: ToastrService,  private dialog:MatDialog, private router:Router, private _crudService:CrudService,private fb: FormBuilder )
   {
-
+    this.form=this.fb.group({
+      MemberName:['', Validators.required],
+      Select:[''],
+      GuarantorName:[''],
+      DateofBirth:[''],
+      GuarantorAge:[''],
+      Gender:[''],
+      MaritalStatus:[''],
+      Spouse:[''],
+      Father:[''],
+      MobileNumber:[''],
+      PrimaryKYC:[''],
+      KYCNo:[''],
+      GuarantorOccupation:[''],
+      PresentAddress:[''],
+      //UserID:['']
+    })
   }
   otppopupshow()
   {
@@ -67,6 +91,42 @@ submitclose()
     
     
     
+  }
+
+  ngOnInit(): void {
+    this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+   
+  }
+  
+
+  next(formData: any) {
+      console.log(formData.value)
+    formData.value['UserId']=this.userObj.UserID;
+    console.log(formData.value) 
+      let obj={
+        "GuarantorsDetailsData":[{}]
+       }
+    
+    obj.GuarantorsDetailsData=[formData.value]
+    
+      this._crudService.GuarantorsSubmit(obj).subscribe({
+        next: (value: any) => {
+       console.log(value)
+       if(value.status==true || value.status=='True')
+       {
+        
+      
+        this.toastr.success('Member Data Added Successfully');
+        //this.dialogRef.close();
+         
+       }
+        },
+        
+            error: (err: HttpErrorResponse) => {
+              console.log(err)
+            }
+       }) 
+  
   }
   
 
