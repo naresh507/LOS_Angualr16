@@ -31,7 +31,7 @@ export class SamvoterComponent {
   street:string='';
   imagedisable:boolean=true;
 
-  constructor(private auth: CrudService) { }
+  constructor(private auth: CrudService , private router:Router ) { }
 
   ngOnInit(): void {
   }
@@ -135,5 +135,8 @@ export class SamvoterComponent {
     } else {
       console.error('Image base64 data is empty. Ensure that it is set in the imageCropped function.');
     }
+  }
+  save(){
+    this.router.navigateByUrl('/details')
   }
 }

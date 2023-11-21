@@ -11,7 +11,7 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   templateUrl: './aadharclientpicture.component.html',
   styleUrls: ['./aadharclientpicture.component.scss']
 })
-export class AadharclientpictureComponent {
+export class AadharclientpictureComponent implements OnInit{
   imageupload: boolean = false;
   imagebase64Data: any = '';
   url: any;
@@ -55,7 +55,7 @@ export class AadharclientpictureComponent {
   get $trigger(): Observable<void> {
     return this.trigger.asObservable();
   }
-  constructor(public dialog: MatDialog, private auth: CrudService, router: Router) { }
+  constructor(public dialog: MatDialog, private auth: CrudService, private router: Router) { }
 
   snap(event: WebcamImage) {
     console.log(event);
@@ -98,6 +98,7 @@ export class AadharclientpictureComponent {
 
   closecameraerror(): void {
     this.dialog.closeAll();
+    this.router.navigateByUrl('/aadharotp')
   }
 
 

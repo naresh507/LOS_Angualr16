@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -36,7 +37,7 @@ import Swal from 'sweetalert2';
 
 
 
-  constructor(private dialog:MatDialog, private _crudService:CrudService, private fb:FormBuilder, private toastr: ToastrService)
+  constructor(private dialog:MatDialog, private _crudService:CrudService, private fb:FormBuilder, private toastr: ToastrService,private route: Router)
   {
     this.form=this.fb.group({
       MemberName:['', Validators.required],
@@ -232,6 +233,7 @@ warningpopup()
       this.dialogRef.close();
        
      }
+     this.route.navigateByUrl('/gstdetails')
       },
       
           error: (err: HttpErrorResponse) => {
