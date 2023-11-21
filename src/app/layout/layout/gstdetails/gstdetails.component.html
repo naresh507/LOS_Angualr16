@@ -1,3 +1,5 @@
+
+<form [formGroup]="form"  (ngSubmit)="submit(form)">
 <section class="pagebreadcrumb">
     <section class="contentwrap">
         <h3>Home > New Application  > GST Details</h3>
@@ -12,7 +14,7 @@
         <li>  <section class="inputsec">
             <label>Company Knowledge</label>
             <mat-form-field appearance="outline">
-                <mat-select>
+                <mat-select formControlName="CompanyKnowledge">
                     <mat-option>
                         Select
                     </mat-option>
@@ -29,7 +31,7 @@
         <li>  <section class="inputsec">
             <label>Group Orientation and Responsibilitye</label>
             <mat-form-field appearance="outline">
-                <mat-select>
+                <mat-select formControlName="GroupOrientationResponsibilty">
                     <mat-option>
                         Select
                     </mat-option>
@@ -46,7 +48,7 @@
         <li>  <section class="inputsec">
             <label>Product Knowledge</label>
             <mat-form-field appearance="outline">
-                <mat-select>
+                <mat-select formControlName="ProdcrtKnowledge">
                     <mat-option>
                         Select
                     </mat-option>
@@ -63,7 +65,7 @@
         <li>  <section class="inputsec">
             <label>Grievance Redressal Mechanism</label>
             <mat-form-field appearance="outline">
-                <mat-select>
+                <mat-select formControlName="GrievanceRedressalMechanism">
                     <mat-option>
                         Select
                     </mat-option>
@@ -80,7 +82,7 @@
         <li>  <section class="inputsec">
             <label>Loan Recovery Process</label>
             <mat-form-field appearance="outline">
-                <mat-select>
+                <mat-select formControlName="LoanRecoveryProcess">
                     <mat-option>
                         Select
                     </mat-option>
@@ -97,7 +99,7 @@
         <li>  <section class="inputsec">
             <label>Insurance Knowledge</label>
             <mat-form-field appearance="outline">
-                <mat-select>
+                <mat-select formControlName="InsuranceKnowlege">
                     <mat-option>
                         Select
                     </mat-option>
@@ -114,7 +116,7 @@
         <li>  <section class="inputsec">
             <label>Awareness on Financial Literacy</label>
             <mat-form-field appearance="outline">
-                <mat-select>
+                <mat-select formControlName="AwarenessFinancialLiterancy">
                     <mat-option>
                         Select
                     </mat-option>
@@ -131,7 +133,7 @@
         <li>  <section class="inputsec">
             <label>Awareness about Financial Malpractices</label>
             <mat-form-field appearance="outline">
-                <mat-select>
+                <mat-select formControlName="AwarenessFinancialMalpractices">
                     <mat-option>
                         Select
                     </mat-option>
@@ -147,7 +149,7 @@
         </li>  <li>  <section class="inputsec">
             <label>Impact of timely loan repayment in credit bureau</label>
             <mat-form-field appearance="outline">
-                <mat-select>
+                <mat-select formControlName="Impactoftimelyloanrepaymentincreditbureau">
                     <mat-option>
                         Select
                     </mat-option>
@@ -190,7 +192,7 @@
         <li>  <section class="inputsec">
             <label>FCO Remarks</label>
             <mat-form-field appearance="outline">
-                <textarea matInput ></textarea>
+                <textarea matInput formControlName="Remarks" ></textarea>
             </mat-form-field>
         </section>
         </li>
@@ -209,6 +211,8 @@
     
     </section>
     </section>
+
+</form>
     
     
     

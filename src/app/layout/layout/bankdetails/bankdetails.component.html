@@ -7,11 +7,12 @@
                 <section class="inputsec">
                     <label>Enter Code</label>
                     <mat-form-field appearance="outline">
-                        <input required matInput placeholder="Enter IFSC Code" value="0" formControlName="PresentAddress" >
+                        <input required matInput placeholder="Enter IFSC Code" formControlName="IFSCCode" >
                     </mat-form-field>
                 </section>
             </li>
-            <li class="insideotp"><a mat-raised-button  class="otplink filledbtn" >Validate</a>
+            <li>
+            <a mat-raised-button class="otplink filledbtn" (click)="validateForm(form)">Validate</a>
         
                 
             </li>
