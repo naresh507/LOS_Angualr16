@@ -195,7 +195,7 @@ this.updatescreen2=true;
   }).then((result) => {
     if(result.isConfirmed)
     {
-      this.route.navigateByUrl('/clientpicture')
+      this.route.navigateByUrl('/kyc')
   //    this.unlinkconfirm()
     }
     else

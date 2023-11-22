@@ -1,6 +1,8 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { CrudService } from 'src/app/shared/services/crud.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,13 +10,48 @@ import Swal from 'sweetalert2';
   templateUrl: './kyc.component.html',
   styleUrls: ['./kyc.component.scss']
 })
-export class KycComponent {
+export class KycComponent implements OnInit{
+  // VoterOCRData:any;
+  ExsitingData:any;
+  // VoterEditedData:any;
+  // VoterVerifiedData:any;
+  // AadharOCRData:any;
+  // AadharEditedData:any;
+  userObj:any;
   @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
   dialogRef: any;
-  constructor(private dialog:MatDialog, private router:Router)
+  constructor(private dialog:MatDialog, private router:Router, private _crudService:CrudService)
   {
 
   }
+
+  ngOnInit(): void {
+    this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.getMasterData();
+  }
+
+  getMasterData() {
+    let obj = {
+      "UserId": this.userObj.UserID,
+      "Type": ["ExD", "VOCRD", "VED", "AOCRD", "AED"]
+
+    }
+    this._crudService.ExistingData(obj).subscribe({
+      next: (value: any) => {
+        console.log(value)
+        this.ExsitingData= value.ExsitingDataDetails[0];
+       
+        console.log(this.ExsitingData)
+        if (value.status == true) {
+        }
+      },
+
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+  }
+
   enlarge()
   {
 

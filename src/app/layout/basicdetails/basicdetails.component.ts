@@ -254,7 +254,9 @@ export class BasicdetailsComponent implements OnInit {
     this._crudService.centerdatasubmit(obj).subscribe({
       next: (value: any) => {
         console.log(value)
-
+        this.mainbasicDetails = false;
+        this.memberDetails = false;
+        this.householdDetails = true;
 
       },
 

@@ -185,6 +185,11 @@ voterocr(VoterOcrData: any): Observable<any> {
   return this.http.post(`${environment.karzaVoterApiUrl}/ocrkyc`, VoterOcrData);
 }
 
+ExistingData(VoterOcrData: any): Observable<any> {
+  return this.http.post(`${environment.karzaVoterApiUrl}/ExistingData`, VoterOcrData);
+}
+
+
 
 // Upload Image
 
