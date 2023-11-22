@@ -1,37 +1,35 @@
-<section class="detailsbox whiteclr marT20">
-    <ul class="list_type">
-               
-        
 
+<section class="detailsbox whiteclr marT20">
+
+    <ul class="list_type">
+        <form [formGroup]="form">
             <li>
                 <section class="inputsec">
                     <label>Enter Code</label>
                     <mat-form-field appearance="outline">
-                        <input required matInput placeholder="Enter IFSC Code" formControlName="IFSCCode" >
+                        <input required matInput placeholder="Enter IFSC Code" formControlName="IFSCCode">
                     </mat-form-field>
                 </section>
+                {{obj.IFSCCode}}
             </li>
             <li>
             <a mat-raised-button class="otplink filledbtn" (click)="validateForm(form)">Validate</a>
-        
-                
             </li>
-            
+      
             <li>
-               
-               
-               
-               
                 <section class="inputsec">
                     <label>Branch Address</label>
-                    Manik Chhak,at Po Karanjia,dist Mayurbhanj,orissa - 757037
+                    <!-- <span>{{searchbankDetails['Address'] }}</span> -->
+                    <span>{{ searchbankDetails?.Address }}</span>
                 </section>
             </li>
+        </form>
+        <form [formGroup]="isform">
 
   <li>  <section class="inputsec">
         <label>Account Holder Type</label>
         <mat-form-field appearance="outline">
-            <mat-select>
+            <mat-select formControlName="AccountHolderType">
                 <mat-option>
                     Select
                 </mat-option>
@@ -49,14 +47,14 @@
         <section class="inputsec">
             <label>Account Holder Name</label>
             <mat-form-field appearance="outline">
-                <input required matInput placeholder="" value="">
+                <input required matInput placeholder="" value="" formControlName="AccountHolderName">
             </mat-form-field>
         </section>
     </li>
     <li>  <section class="inputsec">
         <label>Account Type</label>
         <mat-form-field appearance="outline">
-            <mat-select>
+            <mat-select formControlName="AccountType">
                 <mat-option>
                     Select
                 </mat-option>
@@ -75,7 +73,7 @@
         <section class="inputsec">
             <label>Account No</label>
             <mat-form-field appearance="outline">
-                <input required matInput placeholder="" value="">
+                <input required matInput placeholder="" value="" formControlName="AccountNo">
             </mat-form-field>
         </section>
         </li>
@@ -83,7 +81,7 @@
         <li>  <section class="inputsec">
             <label>Digital Payment</label>
             <mat-form-field appearance="outline">
-                <mat-select>
+                <mat-select formControlName="DigitalPayment">
                     <mat-option>
                         Select
                     </mat-option>
@@ -103,11 +101,12 @@
                 <label>UPI ID</label>
                 
                 <mat-form-field appearance="outline">
-                    <input required matInput  value="10000">
+                    <input required matInput  value="0" formControlName="UPIID">
                 </mat-form-field>
             </section>
             </li>
     <li></li>
+    </form>
       </ul>
     
       <ul class="list_type">
@@ -132,7 +131,7 @@
                  
     <section class="btnscontainer marT30">
        <section> <button class="strokebtn"  mat-raised-button (click)="bankcheck()"  >Bank Check</button></section>
-        <section><button class="filledbtn"  mat-raised-button  >Save</button></section>
+        <section><button class="filledbtn"  mat-raised-button  (click)="Save(isform)">Save</button></section>
     </section>
     
    <ng-container *ngIf="bankstatus">
@@ -195,5 +194,5 @@
             <button mat-stroked-button class="strokedBtn" (click)="close()">Close</button>
         </div>
     </ng-template>
-    
+
     

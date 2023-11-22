@@ -195,7 +195,7 @@ this.updatescreen2=true;
   }).then((result) => {
     if(result.isConfirmed)
     {
-      this.route.navigateByUrl('/details')
+      this.route.navigateByUrl('/clientpicture')
   //    this.unlinkconfirm()
     }
     else
@@ -230,7 +230,7 @@ sucesscenter()
     {
       this.updatescreen1=true;
   this.updatescreen2=false;
-    
+  this.route.navigateByUrl('/clientpicture')
     }
     else
     {

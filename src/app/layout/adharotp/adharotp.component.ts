@@ -180,4 +180,7 @@ export class AdharotpComponent implements OnInit{
       }
     );
   }
+  save(){
+    this.router.navigateByUrl('/voterocr')
+  }
 }

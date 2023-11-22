@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -16,121 +16,147 @@ export class BankdetailsComponent {
   @ViewChild('otpdialog') otpdialog!: TemplateRef<any>;
   searchbankDetails: any;
   form!: FormGroup;
+  isform!:FormGroup;
   userObj: any;
-//tpDialogRef:any;
-otpDialogRef:any;
-otpverify:boolean=false
-bankstatus:boolean=false;
+  //tpDialogRef:any;
+  obj: any = {};
+  otpDialogRef: any;
+  otpverify: boolean = false
+  bankstatus: boolean = false;
 
-  constructor(private dialog:MatDialog,  private route: Router,
+  constructor(private dialog: MatDialog, private route: Router,
     private fb: FormBuilder,
-   private _crudService:CrudService)
-  {
-    this.form = this.fb.group({
-    
-      IFSCCode: ['', Validators.required]
-     
-    });
+    private _crudService: CrudService) {
+      this.form = this.fb.group({
+        IFSCCode: ['', Validators.required],
+      });
+
+      this.isform = this.fb.group({
+        AccountHolderType: [''],
+        AccountHolderName: [''],
+        AccountType: [''],
+        AccountNo: [''],
+        ConfimAccountNo: [''],
+        DigitalPayment: [''],
+        UPIID: [''],
+        CapturePhoto: [''],
+      });
   }
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
   }
 
-  otppopupshow()
-  {
-    this.otpDialogRef= this.dialog.open(this.otpdialog,{
-  width:'400px'
+  otppopupshow() {
+    this.otpDialogRef = this.dialog.open(this.otpdialog, {
+      width: '400px'
 
-})
+    })
   }
 
 
 
-  close()
-{
-  this.otpDialogRef.close();
-}
+  close() {
+    this.otpDialogRef.close();
+  }
 
 
 
 
-submitclose()
-{
-  this.otpverify=true;
-  this.close();
-}
+  submitclose() {
+    this.otpverify = true;
+    this.close();
+  }
 
 
 
 
 
-  bankcheck()
-  {
-      Swal.fire({
-        width:'300px',
+  bankcheck() {
+    Swal.fire({
+      width: '300px',
       imageUrl: '../../assets/images/tick.png',
       imageHeight: 80,
-      text: 'Bank Check Successfully',  
-     showCancelButton:false,
-     cancelButtonText:'No',
-      confirmButtonText:'Yes',
+      text: 'Bank Check Successfully',
+      showCancelButton: false,
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes',
       customClass: {
         confirmButton: "filledBtn",
-        cancelButton:'strokedBtn'
+        cancelButton: 'strokedBtn'
       }
-  
+
     }).then((result) => {
-      if(result.isConfirmed)
-      {
-   this.bankstatus=true;
+      if (result.isConfirmed) {
+        this.bankstatus = true;
       }
-      else
-      {
+      else {
         console.log('close')
       }
-    }) 
+    })
   }
 
-  
-  validateForm(formData: any){
+
+  validateForm(formData: any) {
 
     console.log(formData.value)
- let obj={
-  "UserID": "",
-  "IFSCCode": "",
-}
-console.log(this.userObj.UserID)
-obj.UserID=this.userObj.UserID;
-obj.IFSCCode=formData.value.IFSCCode
-this.search(obj)
-}
-
-
-  search(obj:any){
-
-
+    let obj = {
+      "UserID": this.userObj.UserID,
+      "IFSCCode": formData.value.IFSCCode,
+    }
+    console.log(this.obj)
     this._crudService.BankIFSCCodeSubmit(obj).subscribe({
       next: (value: any) => {
-     console.log(value)
-     this.searchbankDetails=value.BankIFSCCodeDetils[0];
-     if(value.status==true || value.status=='True')
-     {
-      this.route.navigateByUrl('/gstdetails')
-     }
+        console.log(value)
+        this.searchbankDetails = value.BankIFSCCodeDetils[0];
+        if (value.status == true || value.status == 'True') {
+          // this.route.navigateByUrl('/gstdetails')
+        }
       },
-      
-          error: (err: HttpErrorResponse) => {
-            console.log(err)
-          }
-     });
 
-
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    });
   }
+
+
+  Save(formData: any){
+    console.log(formData.value)
+    formData.value['UserId']=this.userObj.UserID;
   
-gotopage()
-{
-  this.route.navigateByUrl('/gstdetails')
-}
+    let obj={
+      "AccountData":[{
+
+        AccountHolderType: formData.value.AccountHolderType,
+        AccountHolderName: formData.value.AccountHolderName,
+        AccountType: formData.value.AccountType,
+        AccountNo: formData.value.AccountNo,
+        ConfimAccountNo: formData.value.ConfimAccountNo,
+        DigitalPayment: formData.value.DigitalPayment,
+        UPIID: formData.value.UPIID,
+        UserId: this.userObj.UserID
+      }]
+     }
+  
+ // obj.AccountData=[formData.value]
+  
+  this._crudService.BankAccountDetails(obj).subscribe({
+    next: (value: any) => {
+   console.log(value)
+   if(value.status==true || value.status=='True')
+   { 
+    this.route.navigateByUrl('/gstdetails')
+   }
+    },
+    
+        error: (err: HttpErrorResponse) => {
+          console.log(err)
+        }
+   })
+  }
+  gotopage() {
+    this.route.navigateByUrl('/gstdetails')
+  }
 }
 

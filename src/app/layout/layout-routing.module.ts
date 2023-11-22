@@ -63,17 +63,14 @@ const routes: Routes = [
     {path:'video', component:VideoComponent},   /*completed   but not clarity*/
     {path:'notification', component:NotificationComponent},  /*Pending*/
     {path:'village', component:VillageComponent},   /*Pending*/
-    {path:'gstdetails',component:GstdetailsComponent},  /*Pending*/
-    
+    {path:'gstdetails',component:GstdetailsComponent},  /*Pending*  chnaged gstdetails/
     {path:'apperiasal', component:ApperiasalCheckComponent},  /*Pending*/
     {path:'apperiaseldetails', component:ApperiasaldetailsComponent},  /*Pending*/
     {path:'aadharotp', component:AdharotpComponent},  /*completed   design pending*/
-
     {path:'voterocr', component:SamvoterComponent},  /*completed   design pending*/
     {path:'clientpicture', component:AadharclientpictureComponent}  /*completed   design pending  camera capture api integration is pending*/
    ]
   },
- 
 ];
 
 @NgModule({

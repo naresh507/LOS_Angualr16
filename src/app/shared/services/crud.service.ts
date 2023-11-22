@@ -90,6 +90,12 @@ saveHouseHoldDetailsubmit(obj:any):Observable<any>
   return this.http.post(`${environment.apiUrl}HouseHoldDetailsSubmit`,obj);
 }
 
+// HHMothlyIncome  Details Submit component Service  SubMit
+HHMothlyIncome(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}HHMothlyIncome`,obj);
+}
+
 submitRegularExpensesMothlySubmit(obj:any):Observable<any>
 {
   return this.http.post(`${environment.apiUrl}RegularExpensesMothlySubmit`,obj);
@@ -145,12 +151,17 @@ InsuranceSubmit(obj:any):Observable<any>
 }
 
 
-// BankIFSCCode  Details Submit component Service  SubMit
+// BankIFSCCode validate  Details Submit component Service  SubMit
 BankIFSCCodeSubmit(obj:any):Observable<any>
 {
   return this.http.post(`${environment.apiUrl}BankIFSCCode`,obj);
 }
 
+// Bank Account Details Submit component Service SubMit
+BankAccountDetails(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}BankAccountDetails`,obj);
+}
 // CGTDetailsSubmit Details  component Service  SubMit
 CGTDetailsSubmit(obj:any):Observable<any>
 {
