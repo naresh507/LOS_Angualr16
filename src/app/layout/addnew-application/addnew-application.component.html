@@ -1,80 +1,86 @@
 <section class="sign-container search-container">
 
-    <section class="sign-wrapper">
-      <ng-container *ngIf="mobilescreen1">
-    <section class="sign-right-wrapper">
-<h1 class="mainTitle">Client Consent</h1>
+  <section class="sign-wrapper">
+    <ng-container *ngIf="mobilescreen1">
+      <section class="sign-right-wrapper">
+        <h1 class="mainTitle">Client Consent</h1>
 
-    <section class="center">  <img class="headerimg" src="./../../../../assets/images/add-new.svg" /></section>
-      <h2 class="sign-title">{{signTitle}}</h2>
-      
-      <form [formGroup]="form">
-    <ul class="small-list"><li class="small-form"> <section class="inputsec">
-        <label>Select</label>
-        <mat-form-field appearance="outline">
-          <mat-select formControlName="tag">
-              <mat-option>
+        <section class="center"> <img class="headerimg" src="./../../../../assets/images/add-new.svg" /></section>
+        <h2 class="sign-title">{{signTitle}}</h2>
+
+        <form [formGroup]="form">
+          <ul class="small-list">
+            <li class="small-form">
+              <section class="inputsec">
+                <label>Select</label>
+                <mat-form-field appearance="outline">
+                  <mat-select formControlName="tag">
+                    <mat-option>
+                      Select
+                    </mat-option>
+                    <mat-option [value]="'MR'">
+                      MR
+                    </mat-option>
+                    <mat-option [value]="'MISS'">
+                      MISS
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </section>
+
+            </li>
+            <li>
+              <section class="inputsec">
+                <label>Name</label>
+                <mat-form-field appearance="outline">
+                  <input formControlName="name" required matInput placeholder="Enter Name">
+                </mat-form-field>
+              </section>
+            </li>
+          </ul>
+
+          <section class="inputsec">
+            <label>Relationship Details</label>
+            <mat-form-field appearance="outline">
+              <mat-select formControlName="relationship">
+                <mat-option>
                   Select
                 </mat-option>
-              <mat-option  [value]="'MR'">
-                  MR
-                </mat-option>
-                <mat-option  [value]="'MISS'">
-                  MISS
-                </mat-option>
-          </mat-select>
-        </mat-form-field>
-       </section>
-      
-    </li>
-<li> <section class="inputsec">
-    <label>Name</label>
-    <mat-form-field appearance="outline">
-      <input formControlName="name"  required matInput placeholder="Enter Name">
-    </mat-form-field> 
-      </section></li>
-</ul>
+                <!-- <mat-option  [value]="'Wife'"> -->
+                <mat-option [value]="r.ID" *ngFor="let r of FamilyTypeDetails">
 
-<section class="inputsec">
-    <label>Relationship Details</label>
-    <mat-form-field appearance="outline">
-      <mat-select formControlName="relationship">
-          <mat-option>
-              Select
-            </mat-option>
-          <mat-option  [value]="'Wife'">
-              Wife
-            </mat-option>
-            <mat-option  [value]="'Father'">
+
+                  {{r.Name}}
+                  <!-- Wife -->
+                </mat-option>
+                <!-- <mat-option  [value]="'Father'">
               Father
-            </mat-option>
-      </mat-select>
-     
-    </mat-form-field>
-    <span class="smalltxt">(Aadhar registered Mobile Number Preferable)</span>
-   </section>
+            </mat-option> -->
+              </mat-select>
 
-<section class="inputsec">
-    <label>Mobile Number</label>
-    <mat-form-field appearance="outline">
-      <span *ngIf="updatescreen1" class="checktxt"></span>
+            </mat-form-field>
+            <span class="smalltxt">(Aadhar registered Mobile Number Preferable)</span>
+          </section>
 
-      <input formControlName="mobile" required matInput placeholder="Enter Number">
-     
-      <a *ngIf="updatescreen1" class="updatetxt" (click)="update()" >Update</a>
-    
-    </mat-form-field> 
+          <section class="inputsec">
+            <label>Mobile Number</label>
+            <mat-form-field appearance="outline">
+              <span *ngIf="updatescreen1" class="checktxt"></span>
+
+              <input formControlName="mobile" required matInput placeholder="Enter Number">
+
+              <a *ngIf="updatescreen1" class="updatetxt" (click)="update()">Update</a>
+
+            </mat-form-field>
 
 
-    <span (click)="otpclick()">popup</span>
-    <span class="smalltxt" *ngIf="updatescreen1">(Aadhar registered Mobile Number Preferable)</span>
-     
-  </section>
+            <!-- <span (click)="otpclick()">popup</span> -->
+            <span class="smalltxt" *ngIf="updatescreen1">(Aadhar registered Mobile Number Preferable)</span>
 
-      <button *ngIf="updatescreen1" class="search wid100p" [disabled]="!otp"  mat-raised-button color="primary" (click)="search1()" >Save & Next</button>
-        
-      
+          </section>
 
+          <button *ngIf="updatescreen1" class="search wid100p" [disabled]="!otp" mat-raised-button color="primary"
+            (click)="search1()">Save & Next</button>
 
 
 
@@ -82,25 +88,35 @@
 
 
 
-    <ng-container *ngIf="updatescreen">
-<section class="text-right"  *ngIf="!otp"><button class="link_btn" [disabled]="form.get('mobile')?.value ==''"  (click)="sendOtp(); " mat-button>Send OTP</button></section>
-<ng-container *ngIf="otp">
-<section  class="text-right"><a class="link_btn" [disabled]="timer !=0" mat-button  (click)="sendOtp();">Resend OTP in {{timer}} secounds</a>
-<span class="attempts">(<ng-container>{{otpattempts}}</ng-container> Attempts Left)</span>
-</section>
-<section class="inputsec">
-    <label>OTP</label>
-    <mat-form-field appearance="outline">
-      <input formControlName="mobileotp" required matInput placeholder="Enter OTP">
-    </mat-form-field> 
-    <span class="smalltxt">(Please enter verification code sent on your number)</span>
+
+
+
+          <ng-container *ngIf="updatescreen">
+            <section class="text-right" *ngIf="!otp">
+              <button class="link_btn" [disabled]="form.get('mobile')?.value ==''" (click)="sendOtp(); " mat-button>Send
+                OTP</button>
+            </section>
+            <ng-container *ngIf="otp">
+              <section class="text-right">
+                <a class="link_btn" [disabled]="timer !=0" mat-button (click)="sendOtp();">Resend OTP in {{timer}}
+                  secounds</a>
+                <span class="attempts">(<ng-container>{{otpattempts}}</ng-container> Attempts Left)</span>
+              </section>
+              <section class="inputsec">
+                <label>OTP</label>
+                <mat-form-field appearance="outline">
+                  <input formControlName="mobileotp" required matInput placeholder="Enter OTP">
+                </mat-form-field>
+                <span class="smalltxt">(Please enter verification code sent on your number)</span>
+              </section>
+            </ng-container>
+            <button class="search wid100p"
+              [disabled]="form.get('mobileotp')?.value =='' || form.get('mobileotp')?.value.length < 6"
+              mat-raised-button color="primary" (click)="search()">Save & Next</button>
+          </ng-container>
+        </form>
       </section>
-    </ng-container> 
-<button class="search wid100p" [disabled]="form.get('mobileotp')?.value =='' || form.get('mobileotp')?.value.length < 6"  mat-raised-button color="primary" (click)="search()" >Save & Next</button>
-</ng-container>  
-</form> 
-    </section>
-  </ng-container>
+    </ng-container>
 
 
 
@@ -111,61 +127,69 @@
 
 
 
-  
-  <ng-container *ngIf="updatescreen2">
-    <section class="sign-right-wrapper">
-    <section class="center">  <img class="headerimg" src="./../../../../assets/images/add-new.svg" /></section>
-      <h2 class="sign-title">Update Mobile Number</h2>
-      <form>
-    
 
-<section class="inputsec">
-    <label>Mobile Number</label>
-    <mat-form-field appearance="outline">
-      <input  required matInput placeholder="Enter Number" formControlName="mobile"> <a style="position: absolute;right: -9px; color: #442477;font-size: 12px;" class="">Change</a>
-    </mat-form-field> 
-    
-      </section>
+    <ng-container *ngIf="updatescreen2">
+      <form [formGroup]="formupdate">
+        <section class="sign-right-wrapper">
+          <section class="center"> <img class="headerimg" src="./../../../../assets/images/add-new.svg" /></section>
+          <h2 class="sign-title">Update Mobile Number</h2>
 
-      <section class="inputsec">
-        <label>New Mobile Number</label>
-        <mat-form-field appearance="outline">
-          <input formControlName="newmobile"  required matInput placeholder="Enter Number">
-        </mat-form-field> 
-        <span class="smalltxt">(Aadhar registered Mobile Number Preferable)</span>
+          <section class="inputsec">
+            <label>Mobile Number</label>
+            <mat-form-field appearance="outline">
+              <input required matInput placeholder="Enter Number" formControlName="ExistingMobileNumber"> <a
+                style="position: absolute;right: -9px; color: #442477;font-size: 12px;" class="">Change</a>
+            </mat-form-field>
+
+          </section>
+
+          <section class="inputsec">
+            <label>New Mobile Number</label>
+            <mat-form-field appearance="outline">
+              <input required matInput placeholder="Enter Number" formControlName="NewMobileNumber">
+            </mat-form-field>
+            <span class="smalltxt">(Aadhar registered Mobile Number Preferable)</span>
           </section>
 
           <section class="inputsec">
             <label>Confirm Mobile Number</label>
             <mat-form-field appearance="outline">
-              <input formControlName="confirmmobile"  required matInput placeholder="Enter Number">
-            </mat-form-field> 
+              <input required matInput placeholder="Enter Number" formControlName="ConfirmNewMobileNumber">
+            </mat-form-field>
             <span class="smalltxt">(Aadhar registered Mobile Number Preferable)</span>
-              </section>
+          </section>
 
 
-              <section class="text-right"  *ngIf="!otp1"><a class="link_btn" (click)="otp1=!otp1" mat-button>Send OTP</a></section>
-              <ng-container *ngIf="otp1">
-             <section  class="text-right"><a class="link_btn" mat-button>Resend OTP in 120 secounds</a>
-             <span class="attempts">(3 Attempts Left)</span>
-             </section>
-             <section class="inputsec">
-                 <label>OTP</label>
-                 <mat-form-field appearance="outline">
-                   <input  required matInput placeholder="Enter OTP">
-                
-                 </mat-form-field> 
-                 <span class="smalltxt">(Please enter verification code sent on your number)</span>
-                   </section>
-                 </ng-container> 
-             
-             
+          <section class="text-right" *ngIf="!otp1">
+            <button class="link_btn" [disabled]="form.get('ConfirmNewMobileNumber')?.value ==''"
+              (click)="updatesendOTPService(formupdate,type='O'); " mat-button>Send OTP</button>
+          </section>
+          <ng-container *ngIf="otp1">
+            <section class="text-right">
+              <a class="link_btn" [disabled]="timer !=0" mat-button (click)="updatesendOTPService(formupdate,type='O');">Resend OTP in {{timer}}
+                secounds</a>
+              <span class="attempts">(<ng-container>{{otpattempts}}</ng-container> Attempts Left)</span>
+            </section>
+            <section class="inputsec">
+              <label>OTP</label>
+              <mat-form-field appearance="outline">
+                <input formControlName="mobileotp" required matInput placeholder="Enter OTP">
+              </mat-form-field>
+              <span class="smalltxt">(Please enter verification code sent on your number)</span>
+            </section>
+          </ng-container>
 
-<button class="search wid100p" [disabled]="!otp1"  mat-raised-button color="primary" (click)="sucesscenter()" >Update</button>
-<button class="search wid100p" style="margin-top: 20px;"  mat-stroked-button color="primary" (click)="sucesscenter()" >Cancel</button>
-    </form> 
-    </section>
-  </ng-container>
 
-      </section>
+
+
+          <button class="search wid100p" [disabled]="!formupdate.valid" mat-raised-button color="primary"
+            (click)="sucesscenter(type='U')">Update</button>
+          <button class="search wid100p" style="margin-top: 20px;" mat-stroked-button color="primary"
+            (click)="sucesscenter(type='U')">Cancel</button>
+
+        </section>
+      </form>
+    </ng-container>
+
   </section>
+</section>

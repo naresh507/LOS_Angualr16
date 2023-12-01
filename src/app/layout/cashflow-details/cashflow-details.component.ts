@@ -167,7 +167,10 @@ export class CashflowDetailsComponent implements OnInit {
 
 
   saveCashFlowData(data: any) {
-
+this.hhmonthly = false;
+      this.hhexpense = false;
+      this.hhliabilty = true;
+      this.hhLoan = false
     console.log('Received cash flow data:', data);
 
   }

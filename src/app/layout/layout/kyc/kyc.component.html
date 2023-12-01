@@ -16,7 +16,7 @@
         <section id="okycprofile" class="incontent">
 
             <mat-accordion multi>
-                <mat-expansion-panel>
+                <mat-expansion-panel (click)="handleExpansionPanelClick('ExD')">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             Existing Data
@@ -28,29 +28,37 @@
                     <section class="detailsbox whiteclr marT20">
                         <ul class="detailsUL detailsULNew">
                             <li><label>Customer Id</label>
-                                <span>123</span>
+                                <!-- <span>123</span> -->
+                                <span>{{ ExsitingData?.CustomerId }}</span>
                             </li>
                             <li><label>Applicants Name</label>
-                                <span>Jai Prakash</span>
+                                <!-- <span>Jai Prakash</span> -->
+                                <span>{{ ExsitingData?.ApplicantName }}</span>
                             </li>
                             <li><label>Gender</label>
-                                <span>Male</span>
+                                <!-- <span>Male</span> -->
+                                <span>{{ ExsitingData?.Gender }}</span>
                             </li>
                             <li><label>Spouse</label>
-                                <span>Lata kumari</span>
+                                <!-- <span>Lata kumari</span> -->
+                                <span>{{ ExsitingData?.Spouse }}</span>
                             </li>
 
                             <li><label>Father</label>
-                                <span>R.Kumar</span>
+                                <!-- <span>R.Kumar</span> -->
+                                <span>{{ ExsitingData?.Father }}</span>
                             </li>
                             <li><label>DOB</label>
-                                <span>5 Aug 1981</span>
+                                <!-- <span>5 Aug 1981</span> -->
+                                <span>{{ ExsitingData?.DOB }}</span>
                             </li>
                             <li><label>Voter No</label>
-                                <span>123455</span>
+                                <!-- <span>123455</span> -->
+                                <span>{{ ExsitingData?.VoterNO }}</span>
                             </li>
                             <li class="widthlast"><label>Address</label>
-                                <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span>
+                                <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
+                                <span>{{ ExsitingData?.PresentAddress }}</span>
                             </li>
 
 
@@ -65,7 +73,7 @@
 
                 </mat-expansion-panel>
 
-                <mat-expansion-panel>
+                <mat-expansion-panel (click)="handleExpansionPanelClick('VOCRD')">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             Voter OCR Data
@@ -77,29 +85,37 @@
                     <section class="detailsbox whiteclr marT20">
                         <ul class="detailsUL detailsULNew">
                             <li><label>Customer Id</label>
-                                <span>123</span>
+                                <!-- <span>123</span> -->
+                                <span>{{ ExsitingData?.CustomerId }}</span>
                             </li>
                             <li><label>Applicants Name</label>
-                                <span>Jai Prakash</span>
+                                <!-- <span>Jai Prakash</span> -->
+                                <span>{{ ExsitingData?.ApplicantName }}</span>
                             </li>
                             <li><label>Gender</label>
-                                <span>Male</span>
+                                <!-- <span>Male</span> -->
+                                <span>{{ ExsitingData?.Gender }}</span>
                             </li>
                             <li><label>Spouse</label>
-                                <span>Lata kumari</span>
+                                <!-- <span>Lata kumari</span> -->
+                                <span>{{ ExsitingData?.Spouse }}</span>
                             </li>
 
                             <li><label>Father</label>
-                                <span>R.Kumar</span>
+                                <!-- <span>R.Kumar</span> -->
+                                <span>{{ ExsitingData?.Father }}</span>
                             </li>
                             <li><label>DOB</label>
-                                <span>5 Aug 1981</span>
+                                <!-- <span>5 Aug 1981</span> -->
+                                <span>{{ ExsitingData?.DOB }}</span>
                             </li>
                             <li><label>Voter No</label>
-                                <span>123455</span>
+                                <!-- <span>123455</span> -->
+                                <span>{{ ExsitingData?.VoterNO }}</span>
                             </li>
                             <li class="widthlast"><label>Address</label>
-                                <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span>
+                                <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
+                                <span>{{ ExsitingData?.PresentAddress }}</span>
                             </li>
 
 
@@ -114,7 +130,7 @@
 
                 </mat-expansion-panel>
 
-                <mat-expansion-panel>
+                <mat-expansion-panel (click)="handleExpansionPanelClick('VED')">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             Voter Edited Data
@@ -126,29 +142,37 @@
                     <section class="detailsbox whiteclr marT20">
                         <ul class="detailsUL detailsULNew">
                             <li><label>Customer Id</label>
-                                <span>123</span>
+                                <!-- <span>123</span> -->
+                                <span>{{ ExsitingData?.CustomerId }}</span>
                             </li>
                             <li><label>Applicants Name</label>
-                                <span>Jai Prakash</span>
+                                <!-- <span>Jai Prakash</span> -->
+                                <span>{{ ExsitingData?.ApplicantName }}</span>
                             </li>
                             <li><label>Gender</label>
-                                <span>Male</span>
+                                <!-- <span>Male</span> -->
+                                <span>{{ ExsitingData?.Gender }}</span>
                             </li>
                             <li><label>Spouse</label>
-                                <span>Lata kumari</span>
+                                <!-- <span>Lata kumari</span> -->
+                                <span>{{ ExsitingData?.Spouse }}</span>
                             </li>
 
                             <li><label>Father</label>
-                                <span>R.Kumar</span>
+                                <!-- <span>R.Kumar</span> -->
+                                <span>{{ ExsitingData?.Father }}</span>
                             </li>
                             <li><label>DOB</label>
-                                <span>5 Aug 1981</span>
+                                <!-- <span>5 Aug 1981</span> -->
+                                <span>{{ ExsitingData?.DOB }}</span>
                             </li>
                             <li><label>Voter No</label>
-                                <span>123455</span>
+                                <!-- <span>123455</span> -->
+                                <span>{{ ExsitingData?.VoterNO }}</span>
                             </li>
                             <li class="widthlast"><label>Address</label>
-                                <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span>
+                                <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
+                                <span>{{ ExsitingData?.PresentAddress }}</span>
                             </li>
 
 
@@ -162,7 +186,7 @@
 
 
                 </mat-expansion-panel>
-                <mat-expansion-panel>
+                <mat-expansion-panel >
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             Voter Verified Data
@@ -197,7 +221,7 @@
                                 <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span>
                             </li> </ul> </section>
                          </mat-expansion-panel>
-                         <mat-expansion-panel>
+                         <mat-expansion-panel  (click)="handleExpansionPanelClick('AOCRD')">
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
                                     Aadhar OCR Data
@@ -207,34 +231,42 @@
                             <section class="detailsbox whiteclr marT20">
                                 <ul class="detailsUL detailsULNew">
                                     <li><label>Customer Id</label>
-                                        <span>123</span>
+                                        <!-- <span>123</span> -->
+                                        <span>{{ ExsitingData?.CustomerId }}</span>
                                     </li>
                                     <li><label>Applicants Name</label>
-                                        <span>Jai Prakash</span>
+                                        <!-- <span>Jai Prakash</span> -->
+                                        <span>{{ ExsitingData?.ApplicantName }}</span>
                                     </li>
                                     <li><label>Gender</label>
-                                        <span>Male</span>
+                                        <!-- <span>Male</span> -->
+                                        <span>{{ ExsitingData?.Gender }}</span>
                                     </li>
                                     <li><label>Spouse</label>
-                                        <span>Lata kumari</span>
+                                        <!-- <span>Lata kumari</span> -->
+                                        <span>{{ ExsitingData?.Spouse }}</span>
                                     </li>
         
                                     <li><label>Father</label>
-                                        <span>R.Kumar</span>
+                                        <!-- <span>R.Kumar</span> -->
+                                        <span>{{ ExsitingData?.Father }}</span>
                                     </li>
                                     <li><label>DOB</label>
-                                        <span>5 Aug 1981</span>
+                                        <!-- <span>5 Aug 1981</span> -->
+                                        <span>{{ ExsitingData?.DOB }}</span>
                                     </li>
                                     <li><label>Voter No</label>
-                                        <span>123455</span>
+                                        <!-- <span>123455</span> -->
+                                        <span>{{ ExsitingData?.VoterNO }}</span>
                                     </li>
                                     <li class="widthlast"><label>Address</label>
-                                        <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span>
+                                        <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
+                                        <span>{{ ExsitingData?.PresentAddress }}</span>
                                     </li> </ul> </section>
                                  </mat-expansion-panel>
 
 
-                                 <mat-expansion-panel>
+                                 <mat-expansion-panel (click)="handleExpansionPanelClick('AED')">
                                     <mat-expansion-panel-header>
                                         <mat-panel-title>
                                             Aadhar Edited Data
@@ -244,29 +276,37 @@
                                     <section class="detailsbox whiteclr marT20">
                                         <ul class="detailsUL detailsULNew">
                                             <li><label>Customer Id</label>
-                                                <span>123</span>
+                                                <!-- <span>123</span> -->
+                                                <span>{{ ExsitingData?.CustomerId }}</span>
                                             </li>
                                             <li><label>Applicants Name</label>
-                                                <span>Jai Prakash</span>
+                                                <!-- <span>Jai Prakash</span> -->
+                                                <span>{{ ExsitingData?.ApplicantName }}</span>
                                             </li>
                                             <li><label>Gender</label>
-                                                <span>Male</span>
+                                                <!-- <span>Male</span> -->
+                                                <span>{{ ExsitingData?.Gender }}</span>
                                             </li>
                                             <li><label>Spouse</label>
-                                                <span>Lata kumari</span>
+                                                <!-- <span>Lata kumari</span> -->
+                                                <span>{{ ExsitingData?.Spouse }}</span>
                                             </li>
                 
                                             <li><label>Father</label>
-                                                <span>R.Kumar</span>
+                                                <!-- <span>R.Kumar</span> -->
+                                                <span>{{ ExsitingData?.Father }}</span>
                                             </li>
                                             <li><label>DOB</label>
-                                                <span>5 Aug 1981</span>
+                                                <!-- <span>5 Aug 1981</span> -->
+                                                <span>{{ ExsitingData?.DOB }}</span>
                                             </li>
                                             <li><label>Voter No</label>
-                                                <span>123455</span>
+                                                <!-- <span>123455</span> -->
+                                                <span>{{ ExsitingData?.VoterNO }}</span>
                                             </li>
                                             <li class="widthlast"><label>Address</label>
-                                                <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span>
+                                                <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
+                                                <span>{{ ExsitingData?.PresentAddress }}</span>
                                             </li> </ul> </section>
                                          </mat-expansion-panel>              
             </mat-accordion>

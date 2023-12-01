@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/shared/services/crud.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-samvoter',
@@ -10,30 +11,40 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./samvoter.component.css']
 })
 export class SamvoterComponent {
+  responses: any[] = []; 
   name = 'Angular';
   imageChangedEvent: any = '';
   croppedImage: any = '';
+  frontimagebase64data: any = '';
+  backimagebase64data: any = '';
   imagebase64data: any = '';
   showCroppedImage: boolean = false;
   selectedImageType: string = '';
   isFrontImage: boolean = true;
   selecttypepopp: boolean = false;
-  public response: any = {};
-  city:string='';
-  district:string='';
-  houseNumber:string='';
-  landmark:string='';
-  line1:string='';
-  line2:string='';
-  locality:string='';
-  pin:string='';
-  state:string='';
-  street:string='';
-  imagedisable:boolean=true;
+  response: any = {};
+  city: string = '';
+  district: string = '';
+  houseNumber: string = '';
+  landmark: string = '';
+  line1: string = '';
+  line2: string = '';
+  locality: string = '';
+  pin: string = '';
+  state: string = '';
+  street: string = '';
+  imagedisable: boolean = true;
+  userObj: any = {};
+  aadharObj: any = {};
 
-  constructor(private auth: CrudService , private router:Router ) { }
+  constructor(private auth: CrudService, private router: Router) { }
+
+
 
   ngOnInit(): void {
+    this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.aadharObj = JSON.parse(localStorage.getItem('aadharObj') || '{}');
+    console.log(this.aadharObj);
   }
   SelectType() {
     this.selecttypepopp = true;
@@ -42,15 +53,15 @@ export class SamvoterComponent {
   selectImage(imageType: string) {
     this.selectedImageType = imageType;
     this.selecttypepopp = true;
-    
-    
+
+
   }
 
   fileChangeEvent(event: any, docType: string) {
     this.imageChangedEvent = event;
     this.selectedImageType = docType;
-    this.imagedisable=false;
-    
+    this.imagedisable = false;
+
   }
 
   imageCropped(event: ImageCroppedEvent) {
@@ -73,7 +84,7 @@ export class SamvoterComponent {
         console.error('Error fetching or converting the image:', error);
       });
     this.showCroppedImage = true;
-   
+
   }
 
 
@@ -103,15 +114,28 @@ export class SamvoterComponent {
         docType: docType,
         fileB64: this.imagebase64data
       };
-    
+
+      if (this.selectedImageType === 'VF') {
+        this.frontimagebase64data = this.imagebase64data;
+        console.log('Front Image Base64:', this.frontimagebase64data);
+      } else if (this.selectedImageType === 'VB') {
+        this.backimagebase64data = this.imagebase64data;
+        console.log('Back Image Base64:', this.backimagebase64data);
+      } else {
+        console.error('Invalid image type selected.');
+      }
+
+      console.log(this.frontimagebase64data);
+      console.log(this.backimagebase64data);
+
 
       this.auth.voterocr(dataImage).subscribe(
         (responseData) => {
-           let response = responseData.result[0].details;
-          //let response = responseData.result[0];
-          console.log(response);
+          let response = responseData.result[0].details;
+          this.responses.push(response);
+          console.log(this.responses);
           this.response = {
-            name: response.name?.value || '', //  "?" to handle  undefined values
+            name: response.name?.value || '',
             voterid: response.voterid?.value || '',
             gender: response.gender?.value || '',
             relation: response.relation?.value || '',
@@ -131,12 +155,44 @@ export class SamvoterComponent {
             locality: response.addressSplit?.locality || ''
           }
           console.log(this.response);
+          
         });
     } else {
       console.error('Image base64 data is empty. Ensure that it is set in the imageCropped function.');
     }
   }
-  save(){
+
+
+  save(): any {
+    const Obj = {
+      VoteridDetailsData: [
+        {
+          LosUnique_Id: this.aadharObj,
+          CapturePhoto: '',
+          CapturePhotoName: '',
+          voterid_Frontpath: this.frontimagebase64data,
+          voterid_Backpath: this.backimagebase64data,
+          UserID: this.userObj.UserID,
+          voterid:this.responses[0]?.voterid?.value || '',
+          Name: this.responses[0]?.name?.value || '',
+          Gender: this.responses[0]?.gender?.value || '',
+          Relation: this.responses[0]?.relation?.value || '',
+          Dob: this.responses[0]?.dob?.value || '',
+          Doc: this.responses[0]?.doc?.value || '',
+          Age: this.responses[1]?.age?.value || '',
+          Type: this.selectedImageType === 'front' ? 'VF' : 'VB',
+          StatusCode: '',
+        }
+      ]
+    }
+    console.log(Obj);
+
+    this.auth.VoterDetailsSubmit(Obj).subscribe(
+      (responseData) => {
+
+        console.log(responseData);
+
+      });
     this.router.navigateByUrl('/details')
   }
 }

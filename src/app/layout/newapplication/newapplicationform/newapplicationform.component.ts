@@ -35,6 +35,8 @@ export class NewapplicationformComponent implements OnInit {
   ngOnInit(): void {
     
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+
+    console.log(this.userObj)
    
      
   }
@@ -53,10 +55,10 @@ export class NewapplicationformComponent implements OnInit {
   else
   {
   let obj={
-    // "UserID": this.userObj.UserID,
-    // "pincode":  this.form.get('pincode')?.value
-    "UserID": "12",
-    "pincode": "761110"
+     "UserID": this.userObj.UserID,
+    "pincode":  this.form.get('pincode')?.value
+   // "UserID": "12",
+   // "pincode": "761110"
 
     
   }

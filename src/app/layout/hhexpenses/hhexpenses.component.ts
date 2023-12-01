@@ -13,6 +13,7 @@ export class HhexpensesComponent {
   userObj: any;
   form!: FormGroup;
   irform!:FormGroup;
+  
   regularexp:boolean=true;
   @Output() hhexpences = new EventEmitter();
   constructor(private router:Router, private _crudService:CrudService,private fb: FormBuilder  )
@@ -67,6 +68,8 @@ this._crudService.submitRegularExpensesMothlySubmit(obj).subscribe({
  if(value.status==true || value.status=='True')
  { 
   this.regularexp=false;
+
+
  }
   },
   

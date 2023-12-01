@@ -14,294 +14,344 @@ import { OtpComponent } from 'src/app/shared/otp/otp.component';
   styleUrls: ['./addnew-application.component.scss']
 })
 export class AddnewApplicationComponent implements OnInit {
-
-  otp:boolean=false;
-  otpattempts:number=1;
-  otpattempts1:number=1;
-  otp1:boolean=false;
-updatescreen:boolean=true;
-updatescreen1:boolean=false;
-updatescreen2:boolean=false;
-mobilescreen1:boolean=true;
-signTitle:string='Add New';
+  FamilyTypeDetails: any;
+  otp: boolean = false;
+  otpattempts: number = 1;
+  otpattempts1: number = 1;
+  otp1: boolean = false;
+  type :string='';
+  updatescreen: boolean = true;
+  updatescreen1: boolean = false;
+  updatescreen2: boolean = false;
+  mobilescreen1: boolean = true;
+  signTitle: string = 'Add New';
   userObj: any;
   form!: FormGroup;
-  timer:any=15;
+  formupdate!: FormGroup;
+  timer: any = 15;
   intervalId: any;
   otpDialogRef: any;
   constructor(
     private route: Router,
-    private _crudService:CrudService,
+    private _crudService: CrudService,
     private fb: FormBuilder,
-    private dialog:MatDialog
-   
-    
-  ) { 
+    private dialog: MatDialog
+
+
+  ) {
     this.form = this.fb.group({
-      tag: ['' ],
+      tag: [''],
       name: [''],
-      relationship:[''],  
-      mobile:[''],
-      mobileotp:['']  
+      relationship: [''],
+      mobile: [''],
+      mobileotp: ['']
     });
 
+    this.formupdate = this.fb.group({
+      ExistingMobileNumber: [''],
+      NewMobileNumber: [''],
+      ConfirmNewMobileNumber: [''],
+      UserId: [''],
+      OTPNO: ['']
+    });
   }
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+
+    this.getMasterData();
   }
-  sendOtp()
-  {
-    
+  sendOtp() {
+
     this.sendOTPService()
   }
-
-
-
-
-
-  sendOTPService(){
-    this.timer=5;
-    this.otpattempts -1; 
-console.log(this.form.get('mobile')?.value)
-    let obj={
-       "Phoneno": this.form.get('mobile')?.value,
+  sendOTPService() {
+    this.timer = 5;
+    this.otpattempts - 1;
+    console.log(this.form.get('mobile')?.value)
+    let obj = {
+      "Phoneno": this.form.get('mobile')?.value,
       "UserId": this.userObj.UserID,
       "OTPNO": "",
-       //  "UserId": "16985"  
     }
     this._crudService.OTPVerification(obj).subscribe({
-     next: (value: any) => {
-    console.log(value)
-    if(value.status==true)
-    { 
-      this.otp= true;
-      
-      this.intervalId = setInterval(() => {
-        this.timer=this.timer -1;
-        if(this.timer ==0)
-        {
-          clearInterval(this.intervalId);
+      next: (value: any) => {
+        console.log(value)
+        if (value.status == true) {
+          this.otp = true;
+
+          this.intervalId = setInterval(() => {
+            this.timer = this.timer - 1;
+            if (this.timer == 0) {
+              clearInterval(this.intervalId);
+            }
+          }, 1000);
+
+
         }
-      }, 1000);
+      },
 
-      
-    }
-     },
-     
-         error: (err: HttpErrorResponse) => {
-           console.log(err)
-         }
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
     })
-    
+
+  }
+
+
+  updatesendOTPService(formupdate: any,type:any) {
+    this.timer = 5;
+    this.otpattempts - 1;
+    const existingMobileNumber = this.formupdate.get('ExistingMobileNumber')?.value;
+    console.log(existingMobileNumber);
+    console.log(this.formupdate.get('ExistingMobileNumber')?.value)
+    let obj1 = {
+      "ExistingMobileNumber": this.formupdate.get('ExistingMobileNumber')?.value,
+      "NewMobileNumber": this.formupdate.get('NewMobileNumber')?.value,
+      "ConfirmNewMobileNumber": this.formupdate.get('ConfirmNewMobileNumber')?.value,
+      "Phoneno":this.formupdate.get('NewMobileNumber')?.value,
+      "UserId": this.userObj.UserID,
+      "OTPNO": "",
+      "Flag": this.type
     }
+    console.log(obj1);
+    // this._crudService.VerifyMobileNumber(obj1).subscribe({
+    this._crudService.VerifyMobileNumber(obj1).subscribe({
+
+      next: (value: any) => {
+        console.log(value)
+        if (value.status == true) {
+          this.otp1 = true;
+
+          this.intervalId = setInterval(() => {
+            this.timer = this.timer - 1;
+            if (this.timer == 0) {
+              clearInterval(this.intervalId);
+            }
+          }, 1000);
+
+
+        }
+      },
+
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+
+  }
+
+  getMasterData() {
+    let obj = {
+
+      "UserId": this.userObj.UserID,
+
+    }
+    this._crudService.getMasterDetails(obj).subscribe({
+      next: (value: any) => {
+        console.log(value)
+        if (value.status == true) {
+
+          this.FamilyTypeDetails = value.FamilyTypeDetails;
+
+        }
+      },
+
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+  }
 
 
 
 
-
-
-  search()
-  {
-
-
-    let obj={
-       "Phoneno": this.form.get('mobile')?.value,
+  search() {
+    let obj = {
+      "Phoneno": this.form.get('mobile')?.value,
       "UserId": this.userObj.UserID,
       "OTPNO": this.form.get('mobileotp')?.value,
-     }
-    this._crudService.OTPVerification(obj).subscribe({
-     next: (value: any) => {
-    console.log(value)
-    if(value.status==true)
-    {
-     
-      this.saveNext()
-
-      
     }
-     },
-     
-         error: (err: HttpErrorResponse) => {
-           console.log(err)
-         }
+    this._crudService.OTPVerification(obj).subscribe({
+      next: (value: any) => {
+        console.log(value)
+        if (value.status == true) {
+          this.saveNext()
+        }
+      },
+
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
     })
 
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  update()
-  {
-    this.mobilescreen1=false;
-this.updatescreen2=true;
-  
-
-}
-
-  search1(){
-    Swal.fire({
-      width:'350px',
-    imageUrl: '../../assets/images/no-data.svg',
-    imageHeight: 80,
-    text: 'Client Enrollmet',  
-   showCancelButton:true,
-   cancelButtonText:'Field',
-    confirmButtonText:'Branch',
-    customClass: {
-      confirmButton: "filledBtn",
-      cancelButton:'strokedBtn'
-    }
-
-  }).then((result) => {
-    if(result.isConfirmed)
-    {
-      this.route.navigateByUrl('/clientpicture')
-  //    this.unlinkconfirm()
-    }
-    else
-    {
-      console.log('close')
-    }
-  })
-  
-  
+  update() {
+    this.mobilescreen1 = false;
+    this.updatescreen2 = true;
   }
- 
 
-  
-sucesscenter()
-{
-  
+  search1() {
+
+    let obj2 = {
+      VerifyMobileNumberData: [
+        {
+      "Type":this.form.get('tag')?.value,
+      "Name": this.form.get('name')?.value,
+      "ApplicantName": this.form.get('relationship')?.value,
+      "MobileNumber": this.form.get('mobile')?.value,
+      "UserID":  this.userObj.UserID,
+        }
+      ]
+    }
+    this._crudService.VerifyMobileNumberSubmit(obj2).subscribe({
+      next: (value: any) => {
+        console.log(value)
+        if (value.status == true) {
+        }
+        this.ClientEnrollmet();
+        //  this.route.navigateByUrl('/clientpicture');
+      },
+
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+  }
+
+    ClientEnrollmet(){
     Swal.fire({
-      width:'350px',
-    imageUrl: '../../assets/images/tick.png',
-    imageHeight: 80,
-    text: 'Mobile Number Updated Successfully',  
-   showCancelButton:false,
-   
-    confirmButtonText:'Okay',
-    customClass: {
-      confirmButton: "strokedBtn",
-     
+      width: '350px',
+      imageUrl: '../../assets/images/no-data.svg',
+      imageHeight: 80,
+      text: 'Client Enrollmet',
+      showCancelButton: true,
+      cancelButtonText: 'Field',
+      confirmButtonText: 'Branch',
+      customClass: {
+        confirmButton: "filledBtn",
+        cancelButton: 'strokedBtn'
+      }
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.route.navigateByUrl('/clientpicture')
+        // this.unlinkconfirm()
+      }
+      else {
+        console.log('close')
+      }
+    })
+  }
+
+  sucesscenter(type:any) {
+    let obj1 = {
+      "ExistingMobileNumber": this.formupdate.get('ExistingMobileNumber')?.value,
+      "NewMobileNumber": this.formupdate.get('NewMobileNumber')?.value,
+      "ConfirmNewMobileNumber": this.formupdate.get('ConfirmNewMobileNumber')?.value,
+      "Phoneno":this.formupdate.get('NewMobileNumber')?.value,
+      "UserId": this.userObj.UserID,
+      "OTPNO": "",
+      "Flag": this.type
     }
+    this._crudService.VerifyMobileNumber(obj1).subscribe({
+      next: (value: any) => {
+        console.log(value)
+        if (value.status == true) {
+          this.otp1 = true;
 
-  }).then((result) => {
-    if(result.isConfirmed)
-    {
-      this.updatescreen1=true;
-  this.updatescreen2=false;
-  this.route.navigateByUrl('/clientpicture')
-    }
-    else
-    {
-      console.log('close')
-    }
-  })
-  
-}
-
-cancel(){
-
-  this.updatescreen1=true;
-  this.updatescreen2=false;
-}
+          this.intervalId = setInterval(() => {
+            this.timer = this.timer - 1;
+            if (this.timer == 0) {
+              clearInterval(this.intervalId);
+            }
+          }, 1000);
 
 
+          this.showSuccessAlert();
 
+        }
+      },
 
-  
-saveNext()
-{
-  
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+
+  }
+
+  showSuccessAlert() {
     Swal.fire({
-      width:'350px',
-    imageUrl: '../../assets/images/tick.png',
-    imageHeight: 80,
-    text: 'Mobile Number Added Successfully',  
-   showCancelButton:false,
-   
-    confirmButtonText:'Okay',
-    customClass: {
-      confirmButton: "strokedBtn",
-     
-    }
+      width: '350px',
+      imageUrl: '../../assets/images/tick.png',
+      imageHeight: 80,
+      text: 'Mobile Number Updated Successfully',
+      showCancelButton: false,
 
-  }).then((result) => {
-    if(result.isConfirmed)
-    {
-      this.signTitle='Verify Mobile Number';
-      this.updatescreen=false;
-      this.updatescreen1=true
-      this.updatescreen2=false;
-    
-    }
-    else
-    {
-      console.log('close')
-    }
-  })
-  
-}
+      confirmButtonText: 'Okay',
+      customClass: {
+        confirmButton: "strokedBtn",
+
+      }
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.updatescreen2 = false;
+        this.mobilescreen1 = true;
+      }
+      else {
+        console.log('close')
+      }
+    })
+
+  }
+
+  cancel() {
+
+    this.updatescreen1 = true;
+    this.updatescreen2 = false;
+  }
+
+  saveNext() {
+
+    Swal.fire({
+      width: '350px',
+      imageUrl: '../../assets/images/tick.png',
+      imageHeight: 80,
+      text: 'Mobile Number Added Successfully',
+      showCancelButton: false,
+
+      confirmButtonText: 'Okay',
+      customClass: {
+        confirmButton: "strokedBtn",
+
+      }
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.signTitle = 'Verify Mobile Number';
+        this.updatescreen = false;
+        this.updatescreen1 = true
+        this.updatescreen2 = false;
+
+      }
+      else {
+        console.log('close')
+      }
+    })
+
+  }
+
+  /* krishna */
 
 
+  otpclick() {
+    this.otpDialogRef = this.dialog.open(OtpComponent, {
+      width: '330px'
 
-
-
-
-
-/* krishna */
-
-
-otpclick()
-{
-  this.otpDialogRef= this.dialog.open(OtpComponent,{
-    width:'330px'
-  
-  })
-}
-
-
-
+    })
+  }
 
 }
 
