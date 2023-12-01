@@ -174,6 +174,8 @@ export class AadharclientpictureComponent implements OnInit{
     this.auth.CapturePhotoLOS(this.imagecaputureData).subscribe(Response  => {
     this.status =Response.message;
     this.openErrorDialog();
+    
+    this.router.navigateByUrl('/aadharotp')
       console.log(Response);
     });
   }

@@ -36,7 +36,6 @@ import { Router } from '@angular/router';
   bankdetails:boolean=false;
 
 
-
   constructor(private dialog:MatDialog, private _crudService:CrudService, private fb:FormBuilder, private toastr: ToastrService,private route: Router)
   {
     this.form=this.fb.group({

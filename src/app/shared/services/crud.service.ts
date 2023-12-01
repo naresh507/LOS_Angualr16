@@ -7,17 +7,27 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CrudService {
+  private aadharObj={
+    "LosUnique_Id": "",
+  }
   userId: number = 0;
   constructor(private http: HttpClient) {
   }
-  
 
+  setAAdharObj(aadharObj: any) {
+    localStorage.setItem('aadharObj', aadharObj);
+  }
+  getAAdharObj() {
+    return localStorage.getItem('aadharObj')
+  }
+
+  clearAAdharObj() {
+    localStorage.removeItem('aadharObj');
+  }
+  
   statitcsGraph(obj: any): Observable<any> {
     return this.http.post(`${environment.apiUrl}StatisticsDashBoard`, obj);
   }
-
-
-
 
 /* search Clients */
 
@@ -50,11 +60,25 @@ OTPVerification(obj: any): Observable<any> {
 }
 
 
+
+// //new mobile OTP
+// VerifyMobileNumber(obj: any): Observable<any> {
+  
+//   return this.http.post(`${environment.apiUrl}VerifyMobileNumber`, obj);
+// }
+
 //new mobile OTP
 VerifyMobileNumber(obj: any): Observable<any> {
   
-  return this.http.post(`${environment.apiUrl}VerifyMobileNumber`, obj);
+  return this.http.post(`${environment.apiUrl}VerifyMobileNumberUpDate`, obj);
 }
+
+//Verify Mobile Number Submit
+VerifyMobileNumberSubmit(obj: any): Observable<any> {
+  
+  return this.http.post(`${environment.apiUrl}VerifyMobileNumberSubmit`, obj);
+}
+
 
 
 
@@ -178,16 +202,45 @@ EaringMemberDetailsSubmit(obj:any):Observable<any>
 EAdhar(adhardetails: any): Observable<any> {
   return this.http.post(`${environment.karzaAdharapiUrl}/eaadhaarotp`, adhardetails);
 }
+
+// AadharotpInsertSubmit Service  SubMit Local Data BAse
+AadharotpInsertSubmit(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}AadharInsertSubmit`,obj);
+}
+
 EAdharfile(additionalData: any): Observable<any> {
   return this.http.post(`${environment.karzaAdharapiUrl}/eaadhaarFile`, additionalData);
 }
+
 voterocr(VoterOcrData: any): Observable<any> {
   return this.http.post(`${environment.karzaVoterApiUrl}/ocrkyc`, VoterOcrData);
 }
 
-ExistingData(VoterOcrData: any): Observable<any> {
-  return this.http.post(`${environment.karzaVoterApiUrl}/ExistingData`, VoterOcrData);
+// VoterDetailsSubmit Service  SubMit Local Data BAse
+VoterDetailsSubmit(obj:any):Observable<any>
+{
+  return this.http.post(`${environment.apiUrl}VoterDetailsSubmit`,obj);
 }
+
+// VoterFrontimageSubmit Service  SubMit Local Data BAse
+// VoterFrontimageSubmit(obj:any):Observable<any>
+// {
+//   return this.http.post(`${environment.apiUrl}VoterFrontSubmit`,obj);
+// }
+
+// VoterBackimageSubmit Service  SubMit Local Data BAse
+
+// VoterBackimageSubmit(obj:any):Observable<any>
+// {
+//   return this.http.post(`${environment.apiUrl}VoterBackSubmit`,obj);
+// }
+
+
+ExistingData(ExistingData: any): Observable<any> {
+  return this.http.post(`${environment.apiUrl}/ExistingData`, ExistingData);
+}
+
 
 
 

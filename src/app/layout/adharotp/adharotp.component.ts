@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/shared/services/crud.service';
@@ -9,6 +10,10 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./adharotp.component.css']
 })
 export class AdharotpComponent implements OnInit{
+  
+  base64Data = '';
+  userObj: any;
+  requestId:any;
   showOtpInput: boolean = false; 
   showAadharDetails:boolean= false;
   showAadharphoto:boolean= false;
@@ -48,8 +53,10 @@ export class AdharotpComponent implements OnInit{
   }
   
   constructor(private auth: CrudService, private router: Router) {}
-
+  
   ngOnInit(): void {
+    this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+ 
   }
   sendotp() {
     
@@ -106,25 +113,12 @@ export class AdharotpComponent implements OnInit{
   }
 
   Verifyandnext() {
-    // if (this.otp.some(digit => !digit)) {
-    //   this.error = 'Please enter the complete OTP.';
-    //   return;
-    // }
-  
-    // const OTP = this.otp.join('');
-    // console.log('OTP:', OTP); 
-  
-    // if (OTP.length !== 6) {
-    //   this.error = 'Please enter a valid OTP.';
-    //   return;
-    // }
     if (!this.isValidOTP) {
       console.error('Please enter a valid OTP.');
       return;
     }
 
-    //const OTP = this.otp.join('');
-    //console.log('OTP:', OTP);
+ 
   
     const additionalData = {
       aadhaarNo: this.adhardetails.aadhaarNo,
@@ -134,15 +128,14 @@ export class AdharotpComponent implements OnInit{
     };
     this.auth.EAdharfile(additionalData).subscribe(
       (responseData) => {
-       
+        this.requestId=this.requestId;
         const resData2=JSON.parse(responseData['ResponseString']);
-      
         let response= resData2.result.dataFromAadhaar
         console.log(response);
         this.resData3 = {
           address: response.address.combinedAddress,
           dob: response.dob,
-          fatherName: response.fatherName,
+          fatherName: response.relativeName,
           gender: response.gender,
           maskedAadhaarNumber: response.maskedAadhaarNumber,
           name: response.name ,
@@ -150,22 +143,9 @@ export class AdharotpComponent implements OnInit{
           district: response.address.splitAddress.district,
           houseNumber: response.address.splitAddress.houseNumber,
           pincode: response.address.splitAddress.pincode,
-
         }
         this.showAadharphoto=true;
         this.showAadharDetails=true;
-        // if (this.resData3.dob) {
-        //   const dobString = this.resData3.dob;
-        //   const dob = new Date(dobString);
-        //   const today = new Date();
-        //   const age = today.getFullYear() - dob.getFullYear();
-        //   if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())) {
-        //     age--;
-        //   }
-        //   this.resData3.age = age;
-        // }
-  
-
         if (resData2.result && resData2.result.dataFromAadhaar.image) {
           this.name = resData2.result.dataFromAadhaar.name;
           this.maskedAadhaarNumber = resData2.result.dataFromAadhaar.maskedAadhaarNumber;
@@ -180,7 +160,67 @@ export class AdharotpComponent implements OnInit{
       }
     );
   }
-  save(){
-    this.router.navigateByUrl('/voterocr')
+
+
+  aadhardetailsPayload(): any {
+    const imageData = this.image;
+    const prefix = 'data:image/png;base64,';
+ if (imageData.startsWith(prefix)) {
+  this.base64Data = imageData.slice(prefix.length);
+  console.log(this.base64Data); 
+
+  
+} 
+    const payload = {
+      AadharDetailsData: [
+        {
+          Aadhar_Photo: this.base64Data || '', 
+          AadharPhotoName: '', 
+          UserID: this.userObj.UserID,
+          Name1: this.name || '',
+          Aadharid1: this.adhardetails.aadhaarNo || '',
+          Address: this.resData3.address || '',
+          DateofBirth: this.resData3.dob || '',
+          fathersName: this.resData3.fatherName || '',
+          Gender: this.resData3.gender || '',
+          AadharCardNumber2: this.resData3.maskedAadhaarNumber || '',
+          Name2: this.resData3.name || '',
+          State: this.resData3.state || '',
+          District: this.resData3.district || '',
+          HouseNo: this.resData3.houseNumber || '',
+          PinCode: this.resData3.pincode || ''
+        }
+      ]
+    };
+    console.log(payload);
+    return payload;
+  }
+
+
+
+  save():any{
+    const payload = this.aadhardetailsPayload();
+    this.auth.AadharotpInsertSubmit(payload).subscribe({
+      next: (value: any) => {
+       
+        if (value.status == true || value.status == 'True') {
+         
+          const AadharId = value.Aadhar_Id;
+          // this.auth.setAAdharObj(JSON.stringify(AadharId))
+          this.auth.setAAdharObj(AadharId)
+        
+          console.log(AadharId);
+         
+         
+          this.router.navigateByUrl('/voterocr')
+        } else {
+
+        }
+      },
+
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
   }
 }
