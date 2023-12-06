@@ -7,501 +7,564 @@
 <section class="contentwrap contentwrapsmall">
     <section class="data-content whiteclr">
         <ul class="tab_container">
-            <li class="filled">Client Picture</li>
-            <li class="filled">ID Verification</li>
-            <li  class="active">OKYC Profile Review</li>
+            <li [ngClass]="{'current': ClientPicture, 'filled': (IDVerification || OKYCProfileReview) }"
+                (click)="clickDetails('a')">Client Picture</li>
+            <li [ngClass]="{'current': IDVerification, 'filled': ( OKYCProfileReview)}" class=""
+                (click)="clickDetails('b')">ID Verification</li>
+            <li [ngClass]="{'current': OKYCProfileReview}" class="" (click)="clickDetails('c')">OKYC Profile Review</li>
         </ul>
+        <ng-container *ngIf="ClientPicture">
+            <!-- <ng-container *ngIf="IDVerification"> -->
+            <app-aadharclientpicture></app-aadharclientpicture>
+
+            <!-- </ng-container> -->
+        </ng-container>
+
+        <ng-container *ngIf="IDVerification">
+            <ul class="tab_container">
+                <li [ngClass]="{'current': AAdharOTP, 'filled': (VoterId) }" (click)="clickDetailstab('a')">AAdharOTP
+                </li>
+                <li [ngClass]="{'current': VoterId}" class="" (click)="clickDetailstab('b')">VoterId</li>
+            </ul>
+
+            <app-adharotp *ngIf="AAdharOTP"></app-adharotp>
+            <app-samvoter *ngIf="VoterId"></app-samvoter>
+
+            <!-- </ng-container> -->
+        </ng-container>
+
+        <ng-container *ngIf="OKYCProfileReview">
+            <section id="okycprofile" class="incontent">
+
+                <mat-accordion multi>
+                    <mat-expansion-panel (click)="handleExpansionPanelClick('ExD')">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Existing Data
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
 
 
-        <section id="okycprofile" class="incontent">
+                        <section class="detailsbox whiteclr marT20">
+                            <ul class="detailsUL detailsULNew">
+                                <li><label>Customer Id</label>
+                                    <!-- <span>123</span> -->
+                                    <span>{{ ExsitingData?.CustomerId }}</span>
+                                </li>
+                                <li><label>Applicants Name</label>
+                                    <!-- <span>Jai Prakash</span> -->
+                                    <span>{{ ExsitingData?.ApplicantName }}</span>
+                                </li>
+                                <li><label>Gender</label>
+                                    <!-- <span>Male</span> -->
+                                    <span>{{ ExsitingData?.Gender }}</span>
+                                </li>
+                                <li><label>Spouse</label>
+                                    <!-- <span>Lata kumari</span> -->
+                                    <span>{{ ExsitingData?.Spouse }}</span>
+                                </li>
 
-            <mat-accordion multi>
-                <mat-expansion-panel (click)="handleExpansionPanelClick('ExD')">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Existing Data
-                        </mat-panel-title>
-
-                    </mat-expansion-panel-header>
-
-
-                    <section class="detailsbox whiteclr marT20">
-                        <ul class="detailsUL detailsULNew">
-                            <li><label>Customer Id</label>
-                                <!-- <span>123</span> -->
-                                <span>{{ ExsitingData?.CustomerId }}</span>
-                            </li>
-                            <li><label>Applicants Name</label>
-                                <!-- <span>Jai Prakash</span> -->
-                                <span>{{ ExsitingData?.ApplicantName }}</span>
-                            </li>
-                            <li><label>Gender</label>
-                                <!-- <span>Male</span> -->
-                                <span>{{ ExsitingData?.Gender }}</span>
-                            </li>
-                            <li><label>Spouse</label>
-                                <!-- <span>Lata kumari</span> -->
-                                <span>{{ ExsitingData?.Spouse }}</span>
-                            </li>
-
-                            <li><label>Father</label>
-                                <!-- <span>R.Kumar</span> -->
-                                <span>{{ ExsitingData?.Father }}</span>
-                            </li>
-                            <li><label>DOB</label>
-                                <!-- <span>5 Aug 1981</span> -->
-                                <span>{{ ExsitingData?.DOB }}</span>
-                            </li>
-                            <li><label>Voter No</label>
-                                <!-- <span>123455</span> -->
-                                <span>{{ ExsitingData?.VoterNO }}</span>
-                            </li>
-                            <li class="widthlast"><label>Address</label>
-                                <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
-                                <span>{{ ExsitingData?.PresentAddress }}</span>
-                            </li>
+                                <li><label>Father</label>
+                                    <!-- <span>R.Kumar</span> -->
+                                    <span>{{ ExsitingData?.Father }}</span>
+                                </li>
+                                <li><label>DOB</label>
+                                    <!-- <span>5 Aug 1981</span> -->
+                                    <span>{{ ExsitingData?.DOB }}</span>
+                                </li>
+                                <li><label>Voter No</label>
+                                    <!-- <span>123455</span> -->
+                                    <span>{{ ExsitingData?.VoterNO }}</span>
+                                </li>
+                                <li class="widthlast"><label>Address</label>
+                                    <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
+                                    <span>{{ ExsitingData?.PresentAddress }}</span>
+                                </li>
 
 
-                        </ul>
+                            </ul>
 
 
-                    </section>
-
-
-
-
-
-                </mat-expansion-panel>
-
-                <mat-expansion-panel (click)="handleExpansionPanelClick('VOCRD')">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Voter OCR Data
-                        </mat-panel-title>
-
-                    </mat-expansion-panel-header>
-
-
-                    <section class="detailsbox whiteclr marT20">
-                        <ul class="detailsUL detailsULNew">
-                            <li><label>Customer Id</label>
-                                <!-- <span>123</span> -->
-                                <span>{{ ExsitingData?.CustomerId }}</span>
-                            </li>
-                            <li><label>Applicants Name</label>
-                                <!-- <span>Jai Prakash</span> -->
-                                <span>{{ ExsitingData?.ApplicantName }}</span>
-                            </li>
-                            <li><label>Gender</label>
-                                <!-- <span>Male</span> -->
-                                <span>{{ ExsitingData?.Gender }}</span>
-                            </li>
-                            <li><label>Spouse</label>
-                                <!-- <span>Lata kumari</span> -->
-                                <span>{{ ExsitingData?.Spouse }}</span>
-                            </li>
-
-                            <li><label>Father</label>
-                                <!-- <span>R.Kumar</span> -->
-                                <span>{{ ExsitingData?.Father }}</span>
-                            </li>
-                            <li><label>DOB</label>
-                                <!-- <span>5 Aug 1981</span> -->
-                                <span>{{ ExsitingData?.DOB }}</span>
-                            </li>
-                            <li><label>Voter No</label>
-                                <!-- <span>123455</span> -->
-                                <span>{{ ExsitingData?.VoterNO }}</span>
-                            </li>
-                            <li class="widthlast"><label>Address</label>
-                                <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
-                                <span>{{ ExsitingData?.PresentAddress }}</span>
-                            </li>
-
-
-                        </ul>
-
-
-                    </section>
+                        </section>
 
 
 
 
 
-                </mat-expansion-panel>
+                    </mat-expansion-panel>
 
-                <mat-expansion-panel (click)="handleExpansionPanelClick('VED')">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Voter Edited Data
-                        </mat-panel-title>
+                    <mat-expansion-panel (click)="handleExpansionPanelClick('VOCRD')">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Voter OCR Data
+                            </mat-panel-title>
 
-                    </mat-expansion-panel-header>
-
-
-                    <section class="detailsbox whiteclr marT20">
-                        <ul class="detailsUL detailsULNew">
-                            <li><label>Customer Id</label>
-                                <!-- <span>123</span> -->
-                                <span>{{ ExsitingData?.CustomerId }}</span>
-                            </li>
-                            <li><label>Applicants Name</label>
-                                <!-- <span>Jai Prakash</span> -->
-                                <span>{{ ExsitingData?.ApplicantName }}</span>
-                            </li>
-                            <li><label>Gender</label>
-                                <!-- <span>Male</span> -->
-                                <span>{{ ExsitingData?.Gender }}</span>
-                            </li>
-                            <li><label>Spouse</label>
-                                <!-- <span>Lata kumari</span> -->
-                                <span>{{ ExsitingData?.Spouse }}</span>
-                            </li>
-
-                            <li><label>Father</label>
-                                <!-- <span>R.Kumar</span> -->
-                                <span>{{ ExsitingData?.Father }}</span>
-                            </li>
-                            <li><label>DOB</label>
-                                <!-- <span>5 Aug 1981</span> -->
-                                <span>{{ ExsitingData?.DOB }}</span>
-                            </li>
-                            <li><label>Voter No</label>
-                                <!-- <span>123455</span> -->
-                                <span>{{ ExsitingData?.VoterNO }}</span>
-                            </li>
-                            <li class="widthlast"><label>Address</label>
-                                <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
-                                <span>{{ ExsitingData?.PresentAddress }}</span>
-                            </li>
+                        </mat-expansion-panel-header>
 
 
-                        </ul>
+                        <section class="detailsbox whiteclr marT20">
+                            <ul class="detailsUL detailsULNew">
+                                <li><label>Customer Id</label>
+                                    <!-- <span>123</span> -->
+                                    <span>{{ ExsitingData?.CustomerId }}</span>
+                                </li>
+                                <li><label>Applicants Name</label>
+                                    <!-- <span>Jai Prakash</span> -->
+                                    <span>{{ ExsitingData?.ApplicantName }}</span>
+                                </li>
+                                <li><label>Gender</label>
+                                    <!-- <span>Male</span> -->
+                                    <span>{{ ExsitingData?.Gender }}</span>
+                                </li>
+                                <li><label>Spouse</label>
+                                    <!-- <span>Lata kumari</span> -->
+                                    <span>{{ ExsitingData?.Spouse }}</span>
+                                </li>
+
+                                <li><label>Father</label>
+                                    <!-- <span>R.Kumar</span> -->
+                                    <span>{{ ExsitingData?.Father }}</span>
+                                </li>
+                                <li><label>DOB</label>
+                                    <!-- <span>5 Aug 1981</span> -->
+                                    <span>{{ ExsitingData?.DOB }}</span>
+                                </li>
+                                <li><label>Voter No</label>
+                                    <!-- <span>123455</span> -->
+                                    <span>{{ ExsitingData?.VoterNO }}</span>
+                                </li>
+                                <li class="widthlast"><label>Address</label>
+                                    <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
+                                    <span>{{ ExsitingData?.PresentAddress }}</span>
+                                </li>
 
 
-                    </section>
+                            </ul>
 
 
+                        </section>
 
 
 
-                </mat-expansion-panel>
-                <mat-expansion-panel >
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Voter Verified Data
-                        </mat-panel-title>
 
-                    </mat-expansion-panel-header>
-                    <section class="detailsbox whiteclr marT20">
-                        <ul class="detailsUL detailsULNew">
-                            <li><label>Customer Id</label>
-                                <span>123</span>
-                            </li>
-                            <li><label>Applicants Name</label>
-                                <span>Jai Prakash</span>
-                            </li>
-                            <li><label>Gender</label>
-                                <span>Male</span>
-                            </li>
-                            <li><label>Spouse</label>
-                                <span>Lata kumari</span>
-                            </li>
 
-                            <li><label>Father</label>
-                                <span>R.Kumar</span>
-                            </li>
-                            <li><label>DOB</label>
-                                <span>5 Aug 1981</span>
-                            </li>
-                            <li><label>Voter No</label>
-                                <span>123455</span>
-                            </li>
-                            <li class="widthlast"><label>Address</label>
-                                <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span>
-                            </li> </ul> </section>
-                         </mat-expansion-panel>
-                         <mat-expansion-panel  (click)="handleExpansionPanelClick('AOCRD')">
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    Aadhar OCR Data
-                                </mat-panel-title>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel (click)="handleExpansionPanelClick('VED')">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Voter Edited Data
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+
+
+                        <section class="detailsbox whiteclr marT20">
+                            <ul class="detailsUL detailsULNew">
+                                <li><label>Customer Id</label>
+                                    <!-- <span>123</span> -->
+                                    <span>{{ ExsitingData?.CustomerId }}</span>
+                                </li>
+                                <li><label>Applicants Name</label>
+                                    <!-- <span>Jai Prakash</span> -->
+                                    <span>{{ ExsitingData?.ApplicantName }}</span>
+                                </li>
+                                <li><label>Gender</label>
+                                    <!-- <span>Male</span> -->
+                                    <span>{{ ExsitingData?.Gender }}</span>
+                                </li>
+                                <li><label>Spouse</label>
+                                    <!-- <span>Lata kumari</span> -->
+                                    <span>{{ ExsitingData?.Spouse }}</span>
+                                </li>
+
+                                <li><label>Father</label>
+                                    <!-- <span>R.Kumar</span> -->
+                                    <span>{{ ExsitingData?.Father }}</span>
+                                </li>
+                                <li><label>DOB</label>
+                                    <!-- <span>5 Aug 1981</span> -->
+                                    <span>{{ ExsitingData?.DOB }}</span>
+                                </li>
+                                <li><label>Voter No</label>
+                                    <!-- <span>123455</span> -->
+                                    <span>{{ ExsitingData?.VoterNO }}</span>
+                                </li>
+                                <li class="widthlast"><label>Address</label>
+                                    <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
+                                    <span>{{ ExsitingData?.PresentAddress }}</span>
+                                </li>
+
+
+                            </ul>
+
+
+                        </section>
+
+
+
+
+
+                    </mat-expansion-panel>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Voter Verified Data
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+                        <section class="detailsbox whiteclr marT20">
+                            <ul class="detailsUL detailsULNew">
+                                <li><label>Customer Id</label>
+                                    <span>123</span>
+                                </li>
+                                <li><label>Applicants Name</label>
+                                    <span>Jai Prakash</span>
+                                </li>
+                                <li><label>Gender</label>
+                                    <span>Male</span>
+                                </li>
+                                <li><label>Spouse</label>
+                                    <span>Lata kumari</span>
+                                </li>
+
+                                <li><label>Father</label>
+                                    <span>R.Kumar</span>
+                                </li>
+                                <li><label>DOB</label>
+                                    <span>5 Aug 1981</span>
+                                </li>
+                                <li><label>Voter No</label>
+                                    <span>123455</span>
+                                </li>
+                                <li class="widthlast"><label>Address</label>
+                                    <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span>
+                                </li>
+                            </ul>
+                        </section>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (click)="handleExpansionPanelClick('AOCRD')">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Aadhar OCR Data
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+                        <section class="detailsbox whiteclr marT20">
+                            <ul class="detailsUL detailsULNew">
+                                <li><label>Customer Id</label>
+                                    <!-- <span>123</span> -->
+                                    <span>{{ ExsitingData?.CustomerId }}</span>
+                                </li>
+                                <li><label>Applicants Name</label>
+                                    <!-- <span>Jai Prakash</span> -->
+                                    <span>{{ ExsitingData?.ApplicantName }}</span>
+                                </li>
+                                <li><label>Gender</label>
+                                    <!-- <span>Male</span> -->
+                                    <span>{{ ExsitingData?.Gender }}</span>
+                                </li>
+                                <li><label>Spouse</label>
+                                    <!-- <span>Lata kumari</span> -->
+                                    <span>{{ ExsitingData?.Spouse }}</span>
+                                </li>
+
+                                <li><label>Father</label>
+                                    <!-- <span>R.Kumar</span> -->
+                                    <span>{{ ExsitingData?.Father }}</span>
+                                </li>
+                                <li><label>DOB</label>
+                                    <!-- <span>5 Aug 1981</span> -->
+                                    <span>{{ ExsitingData?.DOB }}</span>
+                                </li>
+                                <li><label>Voter No</label>
+                                    <!-- <span>123455</span> -->
+                                    <span>{{ ExsitingData?.VoterNO }}</span>
+                                </li>
+                                <li class="widthlast"><label>Address</label>
+                                    <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
+                                    <span>{{ ExsitingData?.PresentAddress }}</span>
+                                </li>
+                            </ul>
+                        </section>
+                    </mat-expansion-panel>
+
+
+                    <mat-expansion-panel (click)="handleExpansionPanelClick('AED')">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Aadhar Edited Data
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+                        <section class="detailsbox whiteclr marT20">
+                            <ul class="detailsUL detailsULNew">
+                                <li><label>Customer Id</label>
+                                    <!-- <span>123</span> -->
+                                    <span>{{ ExsitingData?.CustomerId }}</span>
+                                </li>
+                                <li><label>Applicants Name</label>
+                                    <!-- <span>Jai Prakash</span> -->
+                                    <span>{{ ExsitingData?.ApplicantName }}</span>
+                                </li>
+                                <li><label>Gender</label>
+                                    <!-- <span>Male</span> -->
+                                    <span>{{ ExsitingData?.Gender }}</span>
+                                </li>
+                                <li><label>Spouse</label>
+                                    <!-- <span>Lata kumari</span> -->
+                                    <span>{{ ExsitingData?.Spouse }}</span>
+                                </li>
+
+                                <li><label>Father</label>
+                                    <!-- <span>R.Kumar</span> -->
+                                    <span>{{ ExsitingData?.Father }}</span>
+                                </li>
+                                <li><label>DOB</label>
+                                    <!-- <span>5 Aug 1981</span> -->
+                                    <span>{{ ExsitingData?.DOB }}</span>
+                                </li>
+                                <li><label>Voter No</label>
+                                    <!-- <span>123455</span> -->
+                                    <span>{{ ExsitingData?.VoterNO }}</span>
+                                </li>
+                                <li class="widthlast"><label>Address</label>
+                                    <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
+                                    <span>{{ ExsitingData?.PresentAddress }}</span>
+                                </li>
+                            </ul>
+                        </section>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+
+
+                <section class="kform">
+                    <ul class="list_type">
+                        <li class="">
+                            <section class="inputsec">
+                                <label>POI Type</label>
+                                <mat-form-field appearance="outline">
+                                    <mat-select>
+                                        <mat-option>
+                                            Select
+                                        </mat-option>
+                                        <mat-option [value]="'option1'">
+                                            option1
+                                        </mat-option>
+                                        <mat-option [value]="'option2'">
+                                            option2
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </section>
+
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>POI No</label>
+                                <mat-form-field appearance="outline">
+                                    <input required matInput placeholder="Enter Name">
+                                </mat-form-field>
+                            </section>
+                        </li>
+                    </ul>
+
+                    <ul class="list_type">
+                        <li class="">
+                            <section class="inputsec">
+                                <label>POA Type</label>
+                                <mat-form-field appearance="outline">
+                                    <mat-select>
+                                        <mat-option>
+                                            Select
+                                        </mat-option>
+                                        <mat-option [value]="'option1'">
+                                            option1
+                                        </mat-option>
+                                        <mat-option [value]="'option2'">
+                                            option2
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </section>
+
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>POA No</label>
+                                <mat-form-field appearance="outline">
+                                    <input required matInput placeholder="Enter Name">
+                                </mat-form-field>
+                            </section>
+                        </li>
+                    </ul>
+
+                    <ul class="list_type">
+                        <li class="">
+                            <section class="inputsec">
+                                <label>Alternative KYC Type</label>
+                                <mat-form-field appearance="outline">
+                                    <mat-select>
+                                        <mat-option>
+                                            Select
+                                        </mat-option>
+                                        <mat-option [value]="'option1'">
+                                            option1
+                                        </mat-option>
+                                        <mat-option [value]="'option2'">
+                                            option2
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </section>
+
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>Alternative KYC No</label>
+                                <mat-form-field appearance="outline">
+                                    <input required matInput placeholder="Enter Name">
+                                </mat-form-field>
+                            </section>
+                        </li>
+                    </ul>
+
+                    <ul class="list_type">
+                        <li class="">
+                            <section class="inputsec">
+                                <label>Marital Status</label>
+                                <mat-form-field appearance="outline">
+                                    <mat-select>
+                                        <mat-option>
+                                            Select
+                                        </mat-option>
+                                        <mat-option [value]="'option1'">
+                                            option1
+                                        </mat-option>
+                                        <mat-option [value]="'option2'">
+                                            option2
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </section>
+
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>Perment Address</label>
+                                <mat-form-field appearance="outline">
+                                    <input required matInput placeholder="Enter Name">
+                                </mat-form-field>
+                            </section>
+                        </li>
+                    </ul>
+
+                    <ul class="list_type">
+                        <li class="">
+                            <section class="inputsec">
+                                <label>Inquiry Purpose</label>
+                                <mat-form-field appearance="outline">
+                                    <mat-select>
+                                        <mat-option>
+                                            Select
+                                        </mat-option>
+                                        <mat-option [value]="'option1'">
+                                            option1
+                                        </mat-option>
+                                        <mat-option [value]="'option2'">
+                                            option2
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </section>
+
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>Applied Amount</label>
+                                <mat-form-field appearance="outline">
+                                    <input required matInput placeholder="Enter Name">
+                                </mat-form-field>
+                            </section>
+                        </li>
+                    </ul>
+
+                </section>
+                <section class="addressBox">
+                    <label>Present Address</label>
+                    <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
+                    <span>{{ imageresponse?.PresentAddress }}</span>
+
+                </section>
+
+                <section class="">
+                    <h3 class="sub_title">Images Data</h3>
+                    <h4 class="sub_text">Click on the thumbnail for full image preview </h4>
+                    <ul class="imagesgrid">
+                        <li><a (click)="enlarge()"><img [src]="imageresponse.MemberPhoto"  /></a></li>
+                        <li><a (click)="enlarge()"><img [src]="imageresponse.voterid_Frontpath"  /></a></li>
+                        <li><a (click)="enlarge()"><img  [src]="imageresponse.voterid_Backpath" /></a></li>
+                        <!-- <li><a (click)="enlarge()"><img src="../../../../assets/images/img4.png" /></a></li> -->
+                    </ul>
+                </section>
+
+                <section class="btnswrapper"><button mat-stroked-button class="btns" colo="primary"
+                        (click)="kycProceed()">VID Verification</button>
+                    <button mat-raised-button class="btns" color="primary" (click)="proceed()">Proceed</button>
+                </section>
+
+
+            </section>
+        </ng-container>
+
+        <ng-template #enlargedialog>
+
+
+            <div mat-dialog-content>
+                <!-- <img src="../../../../assets/images/img1.jpg" style="width:500px" /> -->
+                <img [src]="MemberPhoto" style="width:500px" style="width:500px"/>
+              
+                <img [src]="voterid_Frontpath" style="width:500px" style="width:500px" />
+                <img [src]="voterid_Backpath" style="width:500px" style="width:500px" />
+            </div>
+            <div mat-dialog-actions class="center">
         
-                            </mat-expansion-panel-header>
-                            <section class="detailsbox whiteclr marT20">
-                                <ul class="detailsUL detailsULNew">
-                                    <li><label>Customer Id</label>
-                                        <!-- <span>123</span> -->
-                                        <span>{{ ExsitingData?.CustomerId }}</span>
-                                    </li>
-                                    <li><label>Applicants Name</label>
-                                        <!-- <span>Jai Prakash</span> -->
-                                        <span>{{ ExsitingData?.ApplicantName }}</span>
-                                    </li>
-                                    <li><label>Gender</label>
-                                        <!-- <span>Male</span> -->
-                                        <span>{{ ExsitingData?.Gender }}</span>
-                                    </li>
-                                    <li><label>Spouse</label>
-                                        <!-- <span>Lata kumari</span> -->
-                                        <span>{{ ExsitingData?.Spouse }}</span>
-                                    </li>
-        
-                                    <li><label>Father</label>
-                                        <!-- <span>R.Kumar</span> -->
-                                        <span>{{ ExsitingData?.Father }}</span>
-                                    </li>
-                                    <li><label>DOB</label>
-                                        <!-- <span>5 Aug 1981</span> -->
-                                        <span>{{ ExsitingData?.DOB }}</span>
-                                    </li>
-                                    <li><label>Voter No</label>
-                                        <!-- <span>123455</span> -->
-                                        <span>{{ ExsitingData?.VoterNO }}</span>
-                                    </li>
-                                    <li class="widthlast"><label>Address</label>
-                                        <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
-                                        <span>{{ ExsitingData?.PresentAddress }}</span>
-                                    </li> </ul> </section>
-                                 </mat-expansion-panel>
-
-
-                                 <mat-expansion-panel (click)="handleExpansionPanelClick('AED')">
-                                    <mat-expansion-panel-header>
-                                        <mat-panel-title>
-                                            Aadhar Edited Data
-                                        </mat-panel-title>
-                
-                                    </mat-expansion-panel-header>
-                                    <section class="detailsbox whiteclr marT20">
-                                        <ul class="detailsUL detailsULNew">
-                                            <li><label>Customer Id</label>
-                                                <!-- <span>123</span> -->
-                                                <span>{{ ExsitingData?.CustomerId }}</span>
-                                            </li>
-                                            <li><label>Applicants Name</label>
-                                                <!-- <span>Jai Prakash</span> -->
-                                                <span>{{ ExsitingData?.ApplicantName }}</span>
-                                            </li>
-                                            <li><label>Gender</label>
-                                                <!-- <span>Male</span> -->
-                                                <span>{{ ExsitingData?.Gender }}</span>
-                                            </li>
-                                            <li><label>Spouse</label>
-                                                <!-- <span>Lata kumari</span> -->
-                                                <span>{{ ExsitingData?.Spouse }}</span>
-                                            </li>
-                
-                                            <li><label>Father</label>
-                                                <!-- <span>R.Kumar</span> -->
-                                                <span>{{ ExsitingData?.Father }}</span>
-                                            </li>
-                                            <li><label>DOB</label>
-                                                <!-- <span>5 Aug 1981</span> -->
-                                                <span>{{ ExsitingData?.DOB }}</span>
-                                            </li>
-                                            <li><label>Voter No</label>
-                                                <!-- <span>123455</span> -->
-                                                <span>{{ ExsitingData?.VoterNO }}</span>
-                                            </li>
-                                            <li class="widthlast"><label>Address</label>
-                                                <!-- <span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span> -->
-                                                <span>{{ ExsitingData?.PresentAddress }}</span>
-                                            </li> </ul> </section>
-                                         </mat-expansion-panel>              
-            </mat-accordion>
-
-
-
-<section class="kform">
-    <ul class="list_type">
-        <li class=""> <section class="inputsec">
-        <label>POI Type</label>
-        <mat-form-field appearance="outline">
-          <mat-select>
-              <mat-option>
-                  Select
-                </mat-option>
-              <mat-option  [value]="'option1'">
-                  option1
-                </mat-option>
-                <mat-option  [value]="'option2'">
-                    option2
-                </mat-option>
-          </mat-select>
-        </mat-form-field>
-       </section>
-      
-    </li>
-<li> <section class="inputsec">
-    <label>POI No</label>
-    <mat-form-field appearance="outline">
-      <input  required matInput placeholder="Enter Name">
-    </mat-form-field> 
-      </section></li>
-</ul>
-
-<ul class="list_type">
-    <li class=""> <section class="inputsec">
-    <label>POA Type</label>
-    <mat-form-field appearance="outline">
-      <mat-select>
-          <mat-option>
-              Select
-            </mat-option>
-          <mat-option  [value]="'option1'">
-              option1
-            </mat-option>
-            <mat-option  [value]="'option2'">
-                option2
-            </mat-option>
-      </mat-select>
-    </mat-form-field>
-   </section>
-  
-</li>
-<li> <section class="inputsec">
-<label>POA No</label>
-<mat-form-field appearance="outline">
-  <input  required matInput placeholder="Enter Name">
-</mat-form-field> 
-  </section></li>
-</ul>
-
-<ul class="list_type">
-    <li class=""> <section class="inputsec">
-    <label>Alternative KYC Type</label>
-    <mat-form-field appearance="outline">
-      <mat-select>
-          <mat-option>
-              Select
-            </mat-option>
-          <mat-option  [value]="'option1'">
-              option1
-            </mat-option>
-            <mat-option  [value]="'option2'">
-                option2
-            </mat-option>
-      </mat-select>
-    </mat-form-field>
-   </section>
-  
-</li>
-<li> <section class="inputsec">
-<label>Alternative KYC No</label>
-<mat-form-field appearance="outline">
-  <input  required matInput placeholder="Enter Name">
-</mat-form-field> 
-  </section></li>
-</ul>
-
-<ul class="list_type">
-    <li class=""> <section class="inputsec">
-    <label>Marital Status</label>
-    <mat-form-field appearance="outline">
-      <mat-select>
-          <mat-option>
-              Select
-            </mat-option>
-          <mat-option  [value]="'option1'">
-              option1
-            </mat-option>
-            <mat-option  [value]="'option2'">
-                option2
-            </mat-option>
-      </mat-select>
-    </mat-form-field>
-   </section>
-  
-</li>
-<li> <section class="inputsec">
-<label>Perment Address</label>
-<mat-form-field appearance="outline">
-  <input  required matInput placeholder="Enter Name">
-</mat-form-field> 
-  </section></li>
-</ul>
-
-<ul class="list_type">
-    <li class=""> <section class="inputsec">
-    <label>Inquiry Purpose</label>
-    <mat-form-field appearance="outline">
-      <mat-select>
-          <mat-option>
-              Select
-            </mat-option>
-          <mat-option  [value]="'option1'">
-              option1
-            </mat-option>
-            <mat-option  [value]="'option2'">
-                option2
-            </mat-option>
-      </mat-select>
-    </mat-form-field>
-   </section>
-  
-</li>
-<li> <section class="inputsec">
-<label>Applied Amount</label>
-<mat-form-field appearance="outline">
-  <input  required matInput placeholder="Enter Name">
-</mat-form-field> 
-  </section></li>
-</ul>
-
-</section>
-<section class="addressBox">
-<label>Present Address</label>
-<span>Village/Locality - Dakarangia G. Pitown - Greesingia P.S. G.Udayagiri</span>
-
-</section>
-
-<section class="">
-    <h3 class="sub_title">Images Data</h3>
-    <h4 class="sub_text">Click on the thumbnail for full image preview </h4>
-    <ul class="imagesgrid"><li><a (click)="enlarge()"><img src="../../../../assets/images/img1.jpg"/></a></li>
-        <li><a (click)="enlarge()"><img src="../../../../assets/images/img2.png"/></a></li>
-        <li><a (click)="enlarge()"><img src="../../../../assets/images/img3.png"/></a></li>
-        <li><a (click)="enlarge()"><img src="../../../../assets/images/img4.png"/></a></li>
-    </ul>
-</section>
-
-<section class="btnswrapper"><button mat-stroked-button class="btns" colo="primary" (click)="kycProceed()">VID Verification</button>
-    <button mat-raised-button class="btns" color="primary"  (click)="proceed()">Proceed</button>
-</section>
-
-
-        </section>
-
-
-
-      
+                <button mat-stroked-button class="strokedBtn" (click)="close()">Close</button>
+            </div>
+        </ng-template>
 
 
 
 
-       
+
+
+
+
+
 
 
     </section>
+
 
 </section>
 
 
 <ng-template #reasondialog>
 
-   
-<div mat-dialog-content>
-   <section class="label-center"> Please Enter Reason of Raising Request</section>
-    <section class="inputsec">
-        <!-- <label>Applied Amount</label> -->
-        <mat-form-field appearance="outline">
-          <input  required matInput placeholder="Add Remarks">
-        </mat-form-field> 
-          </section>
-</div>
-<div mat-dialog-actions class="center">
-  <button mat-raised-button class="filledBtn" (click)="onNoClick()">Submit</button>
-  <button mat-stroked-button class="strokedBtn" (click)="onNoClick()">Cancel</button>
-</div>
+
+    <div mat-dialog-content>
+        <section class="label-center"> Please Enter Reason of Raising Request</section>
+        <section class="inputsec">
+            <!-- <label>Applied Amount</label> -->
+            <mat-form-field appearance="outline">
+                <input required matInput placeholder="Add Remarks">
+            </mat-form-field>
+        </section>
+    </div>
+    <div mat-dialog-actions class="center">
+        <button mat-raised-button class="filledBtn" (click)="onNoClick()">Submit</button>
+        <button mat-stroked-button class="strokedBtn" (click)="onNoClick()">Cancel</button>
+    </div>
 </ng-template>

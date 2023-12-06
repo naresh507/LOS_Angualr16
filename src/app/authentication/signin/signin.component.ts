@@ -79,7 +79,7 @@ logIn() {
               this.router.navigateByUrl('/dashboard')
               
             } else {
-              this.warningPopup('An error has occurred.')
+              this.warningPopup('The Username or Password is Incorrect.')
             
             }
           },
@@ -95,7 +95,7 @@ logIn() {
 
   warningPopup(msg:any){
     Swal.fire({
-    imageUrl: '../../assets/images/warining.svg',
+   imageUrl: '../../assets/images/warining.svg',
     imageHeight: 80,
     text: msg,  
   });

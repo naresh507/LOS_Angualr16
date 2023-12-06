@@ -12,6 +12,7 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./aadharclientpicture.component.scss']
 })
 export class AadharclientpictureComponent implements OnInit{
+  LosUnique_Id: any = {};
   imageupload: boolean = false;
   imagebase64Data: any = '';
   url: any;
@@ -20,7 +21,7 @@ export class AadharclientpictureComponent implements OnInit{
   videoWidth = 640;
   videoHeight = 480;
   mimeType:any=''
-  uId: any;
+  userObj: any;
   detailsObj = {
     "UserId": ""
   }
@@ -98,7 +99,7 @@ export class AadharclientpictureComponent implements OnInit{
 
   closecameraerror(): void {
     this.dialog.closeAll();
-    this.router.navigateByUrl('/aadharotp')
+    //this.router.navigateByUrl('/aadharotp')
   }
 
 
@@ -149,24 +150,26 @@ export class AadharclientpictureComponent implements OnInit{
     reader.readAsArrayBuffer(file);
   }
   ngOnInit() {
-
-    this.uId = localStorage.getItem('userId');
-    this.detailsObj['UserId'] = this.uId;
-    console.log('UserID from local storage:', this.uId);
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
+    this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+   // this.userObj = localStorage.getItem('userId');
+    this.detailsObj['UserId'] = this.userObj;
+    console.log('UserID from local storage:', this.userObj);
     console.log('ss')
   }
 
   userdetailsData() {
-    this.uId = localStorage.getItem('userId');
-    this.detailsObj['UserId'] = this.uId;
+    this.userObj = localStorage.getItem('userId');
+    this.detailsObj['UserId'] = this.userObj;
     }
 
 // Upload Function //
   Upload() {
     const imageData: any = []
     imageData.push({
+      LosUnique_Id: this.LosUnique_Id,
         CapturePhoto: this.imagebase64Data,
-        UserID: this.uId,
+        UserID: this.userObj.UserID,
         CapturePhotoName: this.mimeType
       });
     this.imagecaputureData.CapturePhotoLOSRequestsData = [imageData[0]]
@@ -175,7 +178,7 @@ export class AadharclientpictureComponent implements OnInit{
     this.status =Response.message;
     this.openErrorDialog();
     
-    this.router.navigateByUrl('/aadharotp')
+   // this.router.navigateByUrl('/aadharotp')
       console.log(Response);
     });
   }
@@ -183,6 +186,17 @@ export class AadharclientpictureComponent implements OnInit{
   // Camera Submit Function
   submit() {
     console.log(this.previewimage);
+    const imagecaputureData: any = []
+    imagecaputureData.push({
+        LosUnique_Id: this.LosUnique_Id,
+        CapturePhoto: this.previewimage,
+        UserID: this.userObj.UserID,
+        CapturePhotoName: this.mimeType
+      });
+      this.auth.CapturePhotoLOS(this.imagecaputureData).subscribe(Response  => {
+        this.status =Response.message;
+        this.openErrorDialog();
+        });
   }
 
 }

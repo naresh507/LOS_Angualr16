@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CrudService } from 'src/app/shared/services/crud.service';
 
@@ -11,6 +12,8 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./memberdetails.component.scss']
 })
 export class MemberdetailsComponent  implements OnInit{
+  MainEarningBasicDetails: boolean = true
+  EarningbasicDetails: boolean = true;
   form!:FormGroup;
   userObj:any;
   dialogRef: any;
@@ -36,6 +39,7 @@ export class MemberdetailsComponent  implements OnInit{
     private _fb:FormBuilder,
     private _crudService:CrudService,
     private toastr: ToastrService,
+    private router:Router
     ) {
       this.form=this._fb.group({
         MemberName:['', Validators.required],
@@ -109,5 +113,8 @@ export class MemberdetailsComponent  implements OnInit{
             console.log(err)
           }
      })
+  }
+  addearningMember(){
+    this.router.navigateByUrl('/addnewClient')
   }
 }
