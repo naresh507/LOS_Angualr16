@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./loandetails.component.scss']
 })
   export class LoandetailsComponent implements OnInit{
+    LosUnique_Id: any = {};
   LoanDetails:any;
   userObj:any;
   form!:FormGroup;
@@ -59,6 +60,7 @@ import { Router } from '@angular/router';
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
     this.getMasterLoanDetailsData();
   }
 
@@ -66,6 +68,7 @@ import { Router } from '@angular/router';
     let obj = {
       "UserId": this.userObj.UserID,
       "LoanID" :this.userObj.LoanID,
+      "LosUnique_Id":this.LosUnique_Id,
     }
     this._crudService.LoanDetailsget(obj).subscribe({
       next: (value: any) => {
@@ -215,10 +218,12 @@ warningpopup()
 
   
   Submit(formData: any) {
+    formData.value['UserID'] = this.userObj.UserID;
+    formData.value['LosUnique_Id'] = this.LosUnique_Id;
     let obj={
-      "UserID": "",
+      "UserID": this.userObj.UserID,
       "type": "",
-      "Id": ""
+      "LosUnique_Id": this.LosUnique_Id
     }
   
     this._crudService.LoanDetailsSubmit(obj).subscribe({

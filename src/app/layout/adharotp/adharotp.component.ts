@@ -10,7 +10,7 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./adharotp.component.css']
 })
 export class AdharotpComponent implements OnInit{
-  
+  LosUnique_Id: any = {};
   base64Data = '';
   userObj: any;
   requestId:any;
@@ -56,6 +56,7 @@ export class AdharotpComponent implements OnInit{
   
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
  
   }
   sendotp() {
@@ -174,6 +175,7 @@ export class AdharotpComponent implements OnInit{
     const payload = {
       AadharDetailsData: [
         {
+          LosUnique_Id: this.LosUnique_Id,
           Aadhar_Photo: this.base64Data || '', 
           AadharPhotoName: '', 
           UserID: this.userObj.UserID,
@@ -205,14 +207,14 @@ export class AdharotpComponent implements OnInit{
        
         if (value.status == true || value.status == 'True') {
          
-          const AadharId = value.Aadhar_Id;
-          // this.auth.setAAdharObj(JSON.stringify(AadharId))
-          this.auth.setAAdharObj(AadharId)
+          // const AadharId = value.Aadhar_Id;
+          // // this.auth.setAAdharObj(JSON.stringify(AadharId))
+          // this.auth.setAAdharObj(AadharId)
         
-          console.log(AadharId);
+          // console.log(AadharId);
          
          
-          this.router.navigateByUrl('/voterocr')
+         //this.router.navigateByUrl('/voterocr')
         } else {
 
         }

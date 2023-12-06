@@ -18,4 +18,7 @@ export class MpinForgotComponent {
   ngOnInit(): void {
     
   }
+  save(){
+    this.router.navigateByUrl('/createMpin');
+  }
 }

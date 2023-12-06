@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CrudService {
   private aadharObj={
-    "LosUnique_Id": "",
+    "Unique_Id": "",
   }
   userId: number = 0;
   constructor(private http: HttpClient) {
@@ -238,7 +238,7 @@ VoterDetailsSubmit(obj:any):Observable<any>
 
 
 ExistingData(ExistingData: any): Observable<any> {
-  return this.http.post(`${environment.apiUrl}/ExistingData`, ExistingData);
+  return this.http.post(`${environment.apiUrl}ExistingData`, ExistingData);
 }
 
 
@@ -254,7 +254,13 @@ CapturePhotoLOS(uploadphoto: any):Observable<any>{
 // BasicDetails (Borrower)
 
 basicdetails(basicdetails: any):Observable<any>{
-  return this.http.post(`${environment.apiUrl}/BasicBorrowerFetch`, basicdetails);
+  return this.http.post(`${environment.apiUrl}BasicBorrowerFetch`, basicdetails);
+}
+
+// BasicDetails Images
+
+getimageBasicdetails(basicdetailsimages: any):Observable<any>{
+  return this.http.post(`${environment.apiUrl}OKYCVoterPhotoVIEW`, basicdetailsimages);
 }
 
 

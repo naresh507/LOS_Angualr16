@@ -14,6 +14,7 @@ import { OtpComponent } from 'src/app/shared/otp/otp.component';
   styleUrls: ['./addnew-application.component.scss']
 })
 export class AddnewApplicationComponent implements OnInit {
+  message:string='';
   FamilyTypeDetails: any;
   otp: boolean = false;
   otpattempts: number = 1;
@@ -208,10 +209,19 @@ export class AddnewApplicationComponent implements OnInit {
     this._crudService.VerifyMobileNumberSubmit(obj2).subscribe({
       next: (value: any) => {
         console.log(value)
+      this.message = value.message;
         if (value.status == true) {
+       
         }
-        this.ClientEnrollmet();
-        //  this.route.navigateByUrl('/clientpicture');
+        // else (value.status == false) {
+        //   this.existingclienAlert();
+        // }
+
+        this.ClientEnrollmet(value);
+
+        const Unique_Id = value.Unique_Id;
+        this._crudService.setAAdharObj(Unique_Id)
+        console.log(Unique_Id);
       },
 
       error: (err: HttpErrorResponse) => {
@@ -220,23 +230,32 @@ export class AddnewApplicationComponent implements OnInit {
     })
   }
 
-    ClientEnrollmet(){
+    ClientEnrollmet(value: any){
     Swal.fire({
       width: '350px',
       imageUrl: '../../assets/images/no-data.svg',
       imageHeight: 80,
-      text: 'Client Enrollmet',
-      showCancelButton: true,
+      text: this.message,
+      // showCancelButton: true,
+
+      // cancelButtonText: 'Field',
+      // confirmButtonText: 'Branch',
+      // customClass: {
+      //   confirmButton: "filledBtn",
+      //   cancelButton: 'strokedBtn'
+      // }
+      showCancelButton: value.status === 'True',
+      showConfirmButton: value.status === 'True',
       cancelButtonText: 'Field',
       confirmButtonText: 'Branch',
       customClass: {
-        confirmButton: "filledBtn",
-        cancelButton: 'strokedBtn'
+        confirmButton: value.status === 'True' ? "filledBtn" : "hiddenBtn",
+        cancelButton: value.status === 'True' ? 'strokedBtn' : 'hiddenBtn'
       }
 
     }).then((result) => {
       if (result.isConfirmed) {
-        this.route.navigateByUrl('/clientpicture')
+        this.route.navigateByUrl('/kyc')
         // this.unlinkconfirm()
       }
       else {
@@ -306,6 +325,8 @@ export class AddnewApplicationComponent implements OnInit {
     })
 
   }
+
+
 
   cancel() {
 

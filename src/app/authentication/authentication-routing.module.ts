@@ -11,6 +11,7 @@ import { MpinForgotComponent } from './mpin-forgot/mpin-forgot.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: '', redirectTo: 'mpin', pathMatch: 'full' },
   {path:'mpin',component:MpinComponent} ,
   { path: 'login', component: SigninComponent },
   { path: 'forgotpassword', component: ForgotPasswordComponent },

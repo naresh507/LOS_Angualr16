@@ -18,6 +18,7 @@ export class GstdetailsComponent{
   @ViewChild('enlargedialog') enlargedialog!: TemplateRef<any>;
   form!: FormGroup;
   userObj: any;
+  LosUnique_Id: any = {};
   addmember:boolean=false;
   dialogRef: any;
   enlargeDialogRef:any;
@@ -52,6 +53,7 @@ export class GstdetailsComponent{
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
    
   }
 
@@ -195,7 +197,8 @@ warningpopup()
 
 submit(formData: any) {
   console.log(formData.value)
-  formData.value['UserId'] = this.userObj.UserID;
+  formData.value['UserID'] = this.userObj.UserID;
+  formData.value['LosUnique_Id'] = this.LosUnique_Id;
   console.log(formData.value)
   let obj = {
     "CGTDetailsData": [{}]
