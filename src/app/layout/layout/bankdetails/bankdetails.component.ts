@@ -18,6 +18,7 @@ export class BankdetailsComponent {
   form!: FormGroup;
   isform!:FormGroup;
   userObj: any;
+  LosUnique_Id: any = {};
   //tpDialogRef:any;
   obj: any = {};
   otpDialogRef: any;
@@ -45,6 +46,7 @@ export class BankdetailsComponent {
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
   }
 
   otppopupshow() {
@@ -103,6 +105,7 @@ export class BankdetailsComponent {
     let obj = {
       "UserID": this.userObj.UserID,
       "IFSCCode": formData.value.IFSCCode,
+      "LosUnique_Id":this.LosUnique_Id
     }
     console.log(this.obj)
     this._crudService.BankIFSCCodeSubmit(obj).subscribe({
@@ -123,7 +126,8 @@ export class BankdetailsComponent {
 
   Save(formData: any){
     console.log(formData.value)
-    formData.value['UserId']=this.userObj.UserID;
+    formData.value['UserID'] = this.userObj.UserID;
+    formData.value['LosUnique_Id'] = this.LosUnique_Id;
   
     let obj={
       "AccountData":[{
@@ -136,10 +140,11 @@ export class BankdetailsComponent {
         DigitalPayment: formData.value.DigitalPayment,
         UPIID: formData.value.UPIID,
         UserId: this.userObj.UserID
+
       }]
      }
   
- // obj.AccountData=[formData.value]
+  obj.AccountData=[formData.value]
   
   this._crudService.BankAccountDetails(obj).subscribe({
     next: (value: any) => {

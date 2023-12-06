@@ -68,24 +68,24 @@ export class CreatempinComponent implements OnInit {
     this.userRole = userObj.UserRole;
   }
   save() {
-    const requestBody = {
-      "UserID": this.userId.toString(),
-      // "NewMPIN": this.newMPINValues.join(''),
-      "NewMPIN": this.newMPINValues,
-      // "ConfirmMPIN": this.confirmMPINValues.join(''),
-      "ConfirmMPIN": this.confirmMPINValues,
-      "OLDMPIN": "",
-      "Flag": "I"
-    };
-    this.authenticationService.mpinandforgotandcreate(requestBody).subscribe(
-      (Response) => {
-      this.router.navigateByUrl('./mpin');
-    })
-  }
+    // const requestBody = {
+    //   "UserID": this.userId.toString(),
+    //   // "NewMPIN": this.newMPINValues.join(''),
+    //   "NewMPIN": this.newMPINValues,
+    //   // "ConfirmMPIN": this.confirmMPINValues.join(''),
+    //   "ConfirmMPIN": this.confirmMPINValues,
+    //   "OLDMPIN": "",
+    //   "Flag": "I"
+    // };
+    // this.authenticationService.mpinandforgotandcreate(requestBody).subscribe(
+    //   (Response) => {
+     this.router.navigateByUrl('./mpin');
+    // })
+   }
 
 
   password() {
-
+    this.router.navigateByUrl('/mpin')
   }
 
 }

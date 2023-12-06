@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./hhliablity.component.scss']
 })
 export class HhliablityComponent implements OnInit{
+  LosUnique_Id: any = {};
   form!:FormGroup;
   userObj:any;
   dialogRef: any;
@@ -38,6 +39,7 @@ export class HhliablityComponent implements OnInit{
 
     ngOnInit(): void {
       this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+      this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
       this.getMasterData();
     }
 
@@ -45,6 +47,7 @@ export class HhliablityComponent implements OnInit{
       let obj = {
         "UserId": this.userObj.UserID,
         "LoanID" :this.userObj.LoanID,
+       " LosUnique_Id":this.LosUnique_Id
       }
       this._crudService.HHLiabilityFetchSub(obj).subscribe({
         next: (value: any) => {
@@ -86,6 +89,7 @@ export class HhliablityComponent implements OnInit{
   addliablityDetails(formData: any) {
     console.log(formData.value)
   formData.value['UserId']=this.userObj.UserID;
+  formData.value['LosUnique_Id']=this.LosUnique_Id;
   console.log(formData.value) 
     let obj={
       "HouseHoldLiabilityData":[{}]

@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 export class InsurancedetailsComponent {
   @ViewChild('otpdialog') otpdialog!: TemplateRef<any>;
   form!: FormGroup;
+  LosUnique_Id: any = {};
   userObj: any;
   otpDialogRef: any;
   otpverify: boolean = false
@@ -38,6 +39,7 @@ export class InsurancedetailsComponent {
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
    
   }
   otppopupshow() {
@@ -88,7 +90,8 @@ export class InsurancedetailsComponent {
 
   submit(formData: any) {
     console.log(formData.value)
-    formData.value['UserId'] = this.userObj.UserID;
+    formData.value['UserID'] = this.userObj.UserID;
+    formData.value['LosUnique_Id'] = this.LosUnique_Id;
     console.log(formData.value)
     let obj = {
       "InsuranceDetailsSubmitInfo": [{}]

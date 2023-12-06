@@ -45,7 +45,7 @@ login()
       this.auth.sendOtp(additionalData).subscribe(
         (response) => {
           if (response && response.status && response.status === true && response.message === 'OTP Successfully Verified') {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/resetpasword']);
           } else {
             
             Swal.fire({

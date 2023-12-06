@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./hhloan.component.scss']
 })
 export class HhloanComponent implements OnInit {
+  LosUnique_Id: any = {};
   form!:FormGroup;
   userObj:any;
   HLoan:any;
@@ -27,6 +28,8 @@ constructor(private router:Router, private _crudservce:CrudService, private _fb:
     HouseHoldIncome:[''],
     HouseHoldExpenditure:[''],
     UserID:[''],
+    LosUnique_Id:[]
+
     
   })
 }
@@ -37,6 +40,7 @@ constructor(private router:Router, private _crudservce:CrudService, private _fb:
 getData() {
   let obj = {
     "UserId": this.userObj.UserID,
+    "LosUnique_Id":this.LosUnique_Id
     
   }
   this._crudservce.LoanEligbiltyget(obj).subscribe({
@@ -71,6 +75,7 @@ getData() {
   
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
     this.getData();
   }
 
@@ -78,14 +83,22 @@ getData() {
 
 submit(formData: any)
 {
-  console.log(formData.value)
-  formData.value['UserId']=this.userObj.UserID;
-  console.log(formData.value) 
+  formData.value['UserID'] = this.userObj.UserID;
+  formData.value['LosUnique_Id'] = this.LosUnique_Id;
 
-  let hLoanData = this.HLoan; 
-    let obj={
-      "LoanEligbiltyData":[{hLoanData}]
-     }
+  let hLoanData = this.HLoan;
+  let obj = {
+    "LoanEligbiltyData": [{}]
+  };
+  // console.log(formData.value)
+  // formData.value['UserId']=this.userObj.UserID;
+  // formData.value['LosUnique_Id']=this.LosUnique_Id;
+  // console.log(formData.value) 
+
+  // let hLoanData = this.HLoan; 
+  //   let obj={
+  //     "LoanEligbiltyData":[{hLoanData}]
+  //    }
   
   obj.LoanEligbiltyData=[hLoanData]
   

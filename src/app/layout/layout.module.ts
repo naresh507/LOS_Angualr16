@@ -56,6 +56,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { AadharclientpictureComponent } from './aadharclientpicture/aadharclientpicture.component';
 import { WebcamModule } from 'ngx-webcam';
+import { MemberdetailsComponent } from './memberdetails/memberdetails.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { WebcamModule } from 'ngx-webcam';
     AddnewApplicationComponent,
     BasicdetailsComponent,
     HouseholddetailsComponent,
+    MemberdetailsComponent,
     CashflowDetailsComponent,
     CashflowformsComponent,
     HhexpensesComponent,
@@ -100,7 +102,7 @@ import { WebcamModule } from 'ngx-webcam';
     ApperiasalCheckComponent,
     ApperiasalSearchComponent,
     ApperiasaldetailsComponent,
-    
+  
     StatisticsGraphComponent,
     StaffDashboardComponent,
     BMDashboardComponent,

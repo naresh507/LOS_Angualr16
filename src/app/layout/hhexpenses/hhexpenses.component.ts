@@ -10,6 +10,7 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./hhexpenses.component.scss']
 })
 export class HhexpensesComponent {
+  LosUnique_Id: any = {};
   userObj: any;
   form!: FormGroup;
   irform!:FormGroup;
@@ -50,11 +51,13 @@ this.irform=this.fb.group({
 
 ngOnInit(): void {
   this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+  this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
  
 }
 
 submit(formData: any) {
 formData.value['UserId']=this.userObj.UserID;
+formData.value['LosUnique_Id']=this.LosUnique_Id;
 
   let obj={
     "RegularExpensesMothlyData":[{}]
@@ -83,6 +86,7 @@ this._crudService.submitRegularExpensesMothlySubmit(obj).subscribe({
 
 submitirregular(formData: any) {
   formData.value['UserId']=this.userObj.UserID;
+  formData.value['LosUnique_Id']=this.LosUnique_Id;
   
     let obj={
       "IrRegularExpensesAnnuallyData":[{}]

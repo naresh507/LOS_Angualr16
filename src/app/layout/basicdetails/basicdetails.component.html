@@ -74,11 +74,11 @@
                     <section class="">
                         <h3 class="sub_title">Images Data</h3>
                         <h4 class="sub_text">Click on the thumbnail for full image preview </h4>
-                        <ul class="imagesgrid">
-                            <li><a (click)="enlarge()"><img src="../../../../assets/images/img1.jpg" /></a></li>
-                            <li><a (click)="enlarge()"><img src="../../../../assets/images/img2.png" /></a></li>
-                            <li><a (click)="enlarge()"><img src="../../../../assets/images/img3.png" /></a></li>
-                            <li><a (click)="enlarge()"><img src="../../../../assets/images/img4.png" /></a></li>
+                        <ul class="imagesgrid m-auto">
+                            <li><a (click)="enlarge()"><img [src]="imageresponse.MemberPhoto"  /></a></li>
+                        <li><a (click)="enlarge()"><img [src]="imageresponse.voterid_Frontpath"  /></a></li>
+                        <li><a (click)="enlarge()"><img  [src]="imageresponse.voterid_Backpath" /></a></li>
+                            <!-- <li><a (click)="enlarge()"><img src="../../../../assets/images/img4.png" /></a></li> -->
                         </ul>
                     </section>
 
@@ -226,13 +226,13 @@
 
         </ng-container>
 
-        <!-- <ng-container *ngIf="memberDetails">
-<app-memberdetails></app-memberdetails>
-        </ng-container> -->
+        <ng-container *ngIf="memberDetails">
+            <app-memberdetails></app-memberdetails>
+        </ng-container>
 
 
         <ng-container *ngIf="householdDetails">
-            <!-- <app-memberdetails></app-memberdetails> -->
+         
             <app-householddetails></app-householddetails>
         </ng-container>
 
@@ -320,7 +320,9 @@
 
 
     <div mat-dialog-content>
-        <img src="../../../../assets/images/img1.jpg" style="width:500px" />
+        <img [src]="MemberPhoto" style="width:500px" style="width:500px"/>
+        <img [src]="voterid_Frontpath" style="width:500px" style="width:500px" />
+        <img [src]="voterid_Backpath" style="width:500px" style="width:500px" />
     </div>
     <div mat-dialog-actions class="center">
 
