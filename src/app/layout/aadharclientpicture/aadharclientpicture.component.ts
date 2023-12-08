@@ -198,6 +198,9 @@ export class AadharclientpictureComponent implements OnInit{
         this.openErrorDialog();
         });
   }
-
+goto()
+{
+  this.router.navigateByUrl('/kyc/idverification')
+}
 }
 

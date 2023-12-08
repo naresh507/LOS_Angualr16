@@ -10,7 +10,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { NewapplicationComponent } from './newapplication/newapplication.component';
 import { NewapplicationsearchComponent } from './newapplication/newapplicationsearch/newapplicationsearch.component';
 import { NewapplicationformComponent } from './newapplication/newapplicationform/newapplicationform.component';
-import { KycComponent } from './layout/kyc/kyc.component';
+// import { KycComponent } from './layout/kyc/kyc.component';
 import { AddnewApplicationComponent } from './addnew-application/addnew-application.component';
 import { BasicdetailsComponent } from './basicdetails/basicdetails.component';
 import { HouseholddetailsComponent } from './householddetails/householddetails.component';
@@ -68,7 +68,7 @@ import { MemberdetailsComponent } from './memberdetails/memberdetails.component'
     NewapplicationComponent,
     NewapplicationsearchComponent,
     NewapplicationformComponent,
-    KycComponent,
+    // KycComponent,
     AddnewApplicationComponent,
     BasicdetailsComponent,
     HouseholddetailsComponent,
@@ -108,10 +108,10 @@ import { MemberdetailsComponent } from './memberdetails/memberdetails.component'
     BMDashboardComponent,
     AMDashboardComponent,
     InsightsComponent,
-    AdharotpComponent,
     
-    SamvoterComponent,
-    AadharclientpictureComponent
+    
+    // SamvoterComponent,
+    // AadharclientpictureComponent
 
 
   ],
@@ -119,11 +119,10 @@ import { MemberdetailsComponent } from './memberdetails/memberdetails.component'
     LayoutRoutingModule,
     SharedModule,
     NgApexchartsModule,
-    WebcamModule,
-    ImageCropperModule,
-    NgOtpInputModule,
+    // WebcamModule,
+    
     CommonModule,
-    WebcamModule
+    
   ]
 })
 export class LayoutModule { }

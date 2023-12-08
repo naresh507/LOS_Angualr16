@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NewapplicationsearchComponent } from './newapplication/newapplicationsearch/newapplicationsearch.component';
 import { NewapplicationComponent } from './newapplication/newapplication.component';
 import { NewapplicationformComponent } from './newapplication/newapplicationform/newapplicationform.component';
-import { KycComponent } from './layout/kyc/kyc.component';
+// import { KycComponent } from './layout/kyc/kyc.component';
 import { AddnewApplicationComponent } from './addnew-application/addnew-application.component';
 import { BasicdetailsComponent } from './basicdetails/basicdetails.component';
 import { MemberdetailsComponent } from './memberdetails/memberdetails.component';
@@ -46,7 +46,7 @@ const routes: Routes = [
     { path: 'newapplication', component: NewapplicationComponent },
     { path: 'newapplicationform', component: NewapplicationformComponent },
     { path: 'addnewClient', component: AddnewApplicationComponent },
-    {path:'kyc', component:KycComponent},
+    // {path:'kyc', component:KycComponent},
     {path:'details', component:BasicdetailsComponent},
     {path:'cashflow',component:CashflowDetailsComponent},
     {path:'loanDetails',component:LoandetailsComponent},
