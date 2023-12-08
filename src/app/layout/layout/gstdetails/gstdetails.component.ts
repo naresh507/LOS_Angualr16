@@ -1,5 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CrudService } from 'src/app/shared/services/crud.service';
 import Swal from 'sweetalert2';
 
 
@@ -11,6 +16,9 @@ import Swal from 'sweetalert2';
 export class GstdetailsComponent{
   @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
   @ViewChild('enlargedialog') enlargedialog!: TemplateRef<any>;
+  form!: FormGroup;
+  userObj: any;
+  LosUnique_Id: any = {};
   addmember:boolean=false;
   dialogRef: any;
   enlargeDialogRef:any;
@@ -27,10 +35,29 @@ export class GstdetailsComponent{
 
 
 
-  constructor(private dialog:MatDialog)
+  constructor(private dialog: MatDialog, private toastr: ToastrService,
+    private router: Router, private _crudService: CrudService, private fb: FormBuilder)
   {
-
+    this.form = this.fb.group({
+      CompanyKnowledge: ['', Validators.required],
+      GroupOrientationResponsibilty: [''],
+      ProdcrtKnowledge: [''],
+      GrievanceRedressalMechanism: [''],
+      LoanRecoveryProcess: [''],
+      InsuranceKnowlege: [''],
+      AwarenessFinancialLiterancy: [''],
+      AwarenessFinancialMalpractices: [''],
+      Remarks: [''],
+    })
   }
+
+  ngOnInit(): void {
+    this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
+   
+  }
+
+
   enlarge()
   {
 this.enlargeDialogRef= this.dialog.open(this.enlargedialog,{
@@ -38,6 +65,8 @@ this.enlargeDialogRef= this.dialog.open(this.enlargedialog,{
 
 })
   }
+
+
 
   addnewcenter()
 {
@@ -59,11 +88,12 @@ onNoClick()
   this.sucesscenter();
   this.dialogRef.close();
 }
+
+
 close()
 {
   this.enlargeDialogRef.close();
 }
-
 
 
 
@@ -96,6 +126,7 @@ sucesscenter()
   })
   
 }
+
 
 clickDetails(element:any)
 {
@@ -164,6 +195,33 @@ warningpopup()
   
 }
 
+submit(formData: any) {
+  console.log(formData.value)
+  formData.value['UserID'] = this.userObj.UserID;
+  formData.value['LosUnique_Id'] = this.LosUnique_Id;
+  console.log(formData.value)
+  let obj = {
+    "CGTDetailsData": [{}]
+  }
+  obj.CGTDetailsData = [formData.value]
 
+  this._crudService.CGTDetailsSubmit(obj).subscribe({
+    next: (value: any) => {
+      console.log(value)
+      if (value.status == true || value.status == 'True') {
+
+
+        this.toastr.success('Member Data Added Successfully');
+        //this.dialogRef.close();
+
+      }
+    },
+
+    error: (err: HttpErrorResponse) => {
+      console.log(err)
+    }
+  })
+
+}
 
 }

@@ -10,9 +10,11 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./hhexpenses.component.scss']
 })
 export class HhexpensesComponent {
+  LosUnique_Id: any = {};
   userObj: any;
   form!: FormGroup;
   irform!:FormGroup;
+  
   regularexp:boolean=true;
   @Output() hhexpences = new EventEmitter();
   constructor(private router:Router, private _crudService:CrudService,private fb: FormBuilder  )
@@ -49,11 +51,13 @@ this.irform=this.fb.group({
 
 ngOnInit(): void {
   this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+  this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
  
 }
 
 submit(formData: any) {
 formData.value['UserId']=this.userObj.UserID;
+formData.value['LosUnique_Id']=this.LosUnique_Id;
 
   let obj={
     "RegularExpensesMothlyData":[{}]
@@ -67,6 +71,8 @@ this._crudService.submitRegularExpensesMothlySubmit(obj).subscribe({
  if(value.status==true || value.status=='True')
  { 
   this.regularexp=false;
+
+
  }
   },
   
@@ -80,6 +86,7 @@ this._crudService.submitRegularExpensesMothlySubmit(obj).subscribe({
 
 submitirregular(formData: any) {
   formData.value['UserId']=this.userObj.UserID;
+  formData.value['LosUnique_Id']=this.LosUnique_Id;
   
     let obj={
       "IrRegularExpensesAnnuallyData":[{}]

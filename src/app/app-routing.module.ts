@@ -18,6 +18,7 @@ const routes: Routes = [
   
   { path: '', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
   { path: '', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule) },
+  { path: 'kyc', loadChildren: () => import('./layout/layout/kyc/kyc.module').then(m => m.KYCModule) },
   //  { path: 'applicationsearch', component: NewapplicationsearchComponent },
   //   { path: 'newapplication', component: NewapplicationComponent },
   //   { path: 'newapplicationform', component: NewapplicationformComponent },

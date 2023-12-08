@@ -14,7 +14,11 @@ import Swal from 'sweetalert2';
 export class BasicdetailsComponent implements OnInit {
   @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
   @ViewChild('enlargedialog') enlargedialog!: TemplateRef<any>;
+  LosUnique_Id: any = {};
   LoanPurposeInfo:any;
+  voterid_Frontpath: any='';
+  MemberPhoto: any='';
+  voterid_Backpath:any ='';
   dialogRef: any;
   enlargeDialogRef: any;
   basicDetails: boolean = true;
@@ -23,6 +27,7 @@ export class BasicdetailsComponent implements OnInit {
   householdDetails: boolean = false;
   userObj: any;
   response:any;
+  imageresponse:any;
   form!: FormGroup;
   form1!: FormGroup;
   form2!: FormGroup;
@@ -53,14 +58,18 @@ export class BasicdetailsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
+    this.getimageBasicdetails();
     this.getBasicdetails();
     this.getMasterData();
   }
   enlarge() {
     this.enlargeDialogRef = this.dialog.open(this.enlargedialog, {
       width: '600px'
-
     })
+    this.MemberPhoto = this.imageresponse.MemberPhoto;
+    this.voterid_Frontpath = this.imageresponse.voterid_Frontpath;
+    this.voterid_Backpath = this.imageresponse.voterid_Backpath;
   }
 
   addnewcenter() {
@@ -97,6 +106,7 @@ export class BasicdetailsComponent implements OnInit {
 
       }
       else {
+        
         console.log('close')
       }
     })
@@ -171,6 +181,7 @@ export class BasicdetailsComponent implements OnInit {
           "LoanPurpose": this.form.get('loanpurpose')?.value,
           "AppliedAmount": this.form.get('amount')?.value,
           "UserId": this.userObj.UserID,
+          "LosUnique_Id": this.LosUnique_Id,
         }
       ]
 
@@ -254,7 +265,9 @@ export class BasicdetailsComponent implements OnInit {
     this._crudService.centerdatasubmit(obj).subscribe({
       next: (value: any) => {
         console.log(value)
-
+        this.mainbasicDetails = false;
+        this.memberDetails = false;
+        this.householdDetails = true;
 
       },
 
@@ -300,11 +313,12 @@ export class BasicdetailsComponent implements OnInit {
   getBasicdetails() {
     let obj = {
       "UserId": this.userObj.UserID,
+      "LosUnique_Id": this.LosUnique_Id,
     };
   
     this._crudService.basicdetails(obj).subscribe(
       (responseData) => {
-        let response = responseData.BasicBrowwerFetchDetails[0];
+        let response = responseData && responseData.BasicBrowwerFetchDetails && responseData.BasicBrowwerFetchDetails[0];
         console.log(response);
        
         this.response = {
@@ -321,11 +335,36 @@ export class BasicdetailsComponent implements OnInit {
       });
   }
 
+  getimageBasicdetails() {
+    let obj = {
+      "UserId": this.userObj.UserID,
+      "LosUnique_Id": this.LosUnique_Id,
+    };
+  
+    this._crudService.getimageBasicdetails(obj).subscribe(
+      (responseimageData) => {
+        let imageresponse = responseimageData && responseimageData.OKYCVoterPhotoVIEWDataInfo && responseimageData.OKYCVoterPhotoVIEWDataInfo[0];
+        console.log(imageresponse);
+       
+        this.imageresponse = {
+          voterid_Frontpath: imageresponse.voterid_Frontpath || '', 
+          voterid_Backpath: imageresponse.voterid_Backpath || '',
+         MemberPhoto: imageresponse.MemberPhoto || '',
+          PresentAddress : imageresponse.PresentAddress || '',
+          ApplicantName  : imageresponse.ApplicantName || '',
+          LosUnique_Id: imageresponse.LosUnique_Id || '',
+      
+        }
+        console.log(imageresponse);
+      });
+  }
+
   getMasterData()
 {
   let obj={
   
    "UserId": this.userObj.UserID,
+   "LosUnique_Id": this.LosUnique_Id,
    
  }
   this._crudService.getMasterDetails(obj).subscribe({

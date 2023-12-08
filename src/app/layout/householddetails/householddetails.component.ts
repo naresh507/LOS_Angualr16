@@ -11,6 +11,7 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./householddetails.component.scss']
 })
 export class HouseholddetailsComponent implements OnInit {
+  LosUnique_Id: any = {};
   userObj: any;
   dialogRef: any;
   LivestockInfo: any;
@@ -58,12 +59,14 @@ export class HouseholddetailsComponent implements OnInit {
       vehicle: [''],
       SmartPhone: [''],
       ElectronicItems: ['']
+      
     });
 
   }
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
     this.getMasterData();
   }
 
@@ -71,6 +74,7 @@ export class HouseholddetailsComponent implements OnInit {
     let obj = {
 
       "UserId": this.userObj.UserID,
+      LosUnique_Id: this.LosUnique_Id,
 
     }
     this._crudService.getMasterDetails(obj).subscribe({
@@ -127,6 +131,7 @@ export class HouseholddetailsComponent implements OnInit {
   submit(formData: any) {
 
     formData.value['UserId']=this.userObj.UserID;
+    formData.value['LosUnique_Id']=this.LosUnique_Id;
 
   let obj={
     "HouseHoldDetailsSubmitDataInfo":[{}]

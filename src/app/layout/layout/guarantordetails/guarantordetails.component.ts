@@ -17,12 +17,12 @@ export class GuarantordetailsComponent implements OnInit {
   @ViewChild('otpdialog') otpdialog!: TemplateRef<any>;
   form!:FormGroup;
   userObj: any;
-
+  LosUnique_Id: any = {};
   otpDialogRef:any;
 otpverify:boolean=false
 
 
-  constructor(private toastr: ToastrService,  private dialog:MatDialog, private router:Router, private _crudService:CrudService,private fb: FormBuilder )
+  constructor(private toastr: ToastrService, private dialog:MatDialog, private router:Router, private _crudService:CrudService,private fb: FormBuilder )
   {
     this.form=this.fb.group({
       MemberName:['', Validators.required],
@@ -95,13 +95,15 @@ submitclose()
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
    
   }
   
 
   next(formData: any) {
       console.log(formData.value)
-    formData.value['UserId']=this.userObj.UserID;
+      formData.value['UserID'] = this.userObj.UserID;
+      formData.value['LosUnique_Id'] = this.LosUnique_Id;
     console.log(formData.value) 
       let obj={
         "GuarantorsDetailsData":[{}]

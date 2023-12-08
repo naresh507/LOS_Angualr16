@@ -10,7 +10,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { NewapplicationComponent } from './newapplication/newapplication.component';
 import { NewapplicationsearchComponent } from './newapplication/newapplicationsearch/newapplicationsearch.component';
 import { NewapplicationformComponent } from './newapplication/newapplicationform/newapplicationform.component';
-import { KycComponent } from './layout/kyc/kyc.component';
+// import { KycComponent } from './layout/kyc/kyc.component';
 import { AddnewApplicationComponent } from './addnew-application/addnew-application.component';
 import { BasicdetailsComponent } from './basicdetails/basicdetails.component';
 import { HouseholddetailsComponent } from './householddetails/householddetails.component';
@@ -56,6 +56,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { AadharclientpictureComponent } from './aadharclientpicture/aadharclientpicture.component';
 import { WebcamModule } from 'ngx-webcam';
+import { MemberdetailsComponent } from './memberdetails/memberdetails.component';
 
 @NgModule({
   declarations: [
@@ -67,10 +68,11 @@ import { WebcamModule } from 'ngx-webcam';
     NewapplicationComponent,
     NewapplicationsearchComponent,
     NewapplicationformComponent,
-    KycComponent,
+    // KycComponent,
     AddnewApplicationComponent,
     BasicdetailsComponent,
     HouseholddetailsComponent,
+    MemberdetailsComponent,
     CashflowDetailsComponent,
     CashflowformsComponent,
     HhexpensesComponent,
@@ -100,16 +102,16 @@ import { WebcamModule } from 'ngx-webcam';
     ApperiasalCheckComponent,
     ApperiasalSearchComponent,
     ApperiasaldetailsComponent,
-    
+  
     StatisticsGraphComponent,
     StaffDashboardComponent,
     BMDashboardComponent,
     AMDashboardComponent,
     InsightsComponent,
-    AdharotpComponent,
     
-    SamvoterComponent,
-    AadharclientpictureComponent
+    
+    // SamvoterComponent,
+    // AadharclientpictureComponent
 
 
   ],
@@ -117,11 +119,10 @@ import { WebcamModule } from 'ngx-webcam';
     LayoutRoutingModule,
     SharedModule,
     NgApexchartsModule,
-    WebcamModule,
-    ImageCropperModule,
-    NgOtpInputModule,
+    // WebcamModule,
+    
     CommonModule,
-    WebcamModule
+    
   ]
 })
 export class LayoutModule { }

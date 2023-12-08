@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,6 +16,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./loandetails.component.scss']
 })
   export class LoandetailsComponent implements OnInit{
+    LosUnique_Id: any = {};
+  LoanDetails:any;
   userObj:any;
   form!:FormGroup;
   @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
@@ -34,8 +37,7 @@ import Swal from 'sweetalert2';
   bankdetails:boolean=false;
 
 
-
-  constructor(private dialog:MatDialog, private _crudService:CrudService, private fb:FormBuilder, private toastr: ToastrService)
+  constructor(private dialog:MatDialog, private _crudService:CrudService, private fb:FormBuilder, private toastr: ToastrService,private route: Router)
   {
     this.form=this.fb.group({
       MemberName:['', Validators.required],
@@ -58,8 +60,32 @@ import Swal from 'sweetalert2';
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
-   // this.getMasterData();
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
+    this.getMasterLoanDetailsData();
   }
+
+  getMasterLoanDetailsData() {
+    let obj = {
+      "UserId": this.userObj.UserID,
+      "LoanID" :this.userObj.LoanID,
+      "LosUnique_Id":this.LosUnique_Id,
+    }
+    this._crudService.LoanDetailsget(obj).subscribe({
+      next: (value: any) => {
+        console.log(value)
+        this.LoanDetails= value.LoanDetailFetchFCODataInfo[0];
+
+        console.log(this.LoanDetails)
+        if (value.status == true) {
+        }
+      },
+
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+  }
+
   enlarge()
   {
 this.enlargeDialogRef= this.dialog.open(this.enlargedialog,{
@@ -192,14 +218,13 @@ warningpopup()
 
   
   Submit(formData: any) {
-    console.log(formData.value)
-  formData.value['UserId']=this.userObj.UserID;
-  console.log(formData.value) 
+    formData.value['UserID'] = this.userObj.UserID;
+    formData.value['LosUnique_Id'] = this.LosUnique_Id;
     let obj={
-      "LoanDetailsData":[{}]
-     }
-  
-  obj.LoanDetailsData=[formData.value]
+      "UserID": this.userObj.UserID,
+      "type": "",
+      "LosUnique_Id": this.LosUnique_Id
+    }
   
     this._crudService.LoanDetailsSubmit(obj).subscribe({
       next: (value: any) => {
@@ -212,6 +237,7 @@ warningpopup()
       this.dialogRef.close();
        
      }
+     this.route.navigateByUrl('/gstdetails')
       },
       
           error: (err: HttpErrorResponse) => {
