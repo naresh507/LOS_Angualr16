@@ -318,7 +318,7 @@ export class BasicdetailsComponent implements OnInit {
   
     this._crudService.basicdetails(obj).subscribe(
       (responseData) => {
-        let response = responseData.BasicBrowwerFetchDetails[0];
+        let response = responseData && responseData.BasicBrowwerFetchDetails && responseData.BasicBrowwerFetchDetails[0];
         console.log(response);
        
         this.response = {
@@ -343,7 +343,7 @@ export class BasicdetailsComponent implements OnInit {
   
     this._crudService.getimageBasicdetails(obj).subscribe(
       (responseimageData) => {
-        let imageresponse = responseimageData.OKYCVoterPhotoVIEWDataInfo[0];
+        let imageresponse = responseimageData && responseimageData.OKYCVoterPhotoVIEWDataInfo && responseimageData.OKYCVoterPhotoVIEWDataInfo[0];
         console.log(imageresponse);
        
         this.imageresponse = {

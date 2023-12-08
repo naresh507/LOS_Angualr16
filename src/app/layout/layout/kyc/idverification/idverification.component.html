@@ -1,0 +1,10 @@
+    <ul class="tab_container">
+        <li [ngClass]="{'current': AAdharOTP, 'filled': (VoterId) }" (click)="clickDetailstab('a')">AAdharOTP
+        </li>
+        <li [ngClass]="{'current': VoterId}" class="" (click)="clickDetailstab('b')">VoterId</li>
+    </ul>
+
+    <app-adharotp *ngIf="AAdharOTP"></app-adharotp>
+    <app-samvoter *ngIf="VoterId"></app-samvoter>
+
+    
