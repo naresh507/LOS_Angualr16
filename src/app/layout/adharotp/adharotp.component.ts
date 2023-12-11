@@ -10,6 +10,8 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./adharotp.component.css']
 })
 export class AdharotpComponent implements OnInit{
+  inputnumber: string='';
+  aadharNumberEntered = false;
   LosUnique_Id: any = {};
   base64Data = '';
   userObj: any;
@@ -51,6 +53,28 @@ export class AdharotpComponent implements OnInit{
     this.isValidOTP = this.otp.length === 6;
     console.log('OTP Changed:', this.otp);
   }
+  convertNumber() {
+    const aadharLength = 8;
+    const inputNumber = this.adhardetails.aadhaarNo;
+  
+    if (/^[0-9]+$/.test(inputNumber)) {
+      if (inputNumber.length === aadharLength) {
+        const first8Digits = inputNumber.slice(0, 8);
+        const last4Digits = inputNumber.slice(8);
+  
+        this.adhardetails.aadhaarNo = 'X'.repeat(8) + last4Digits;
+        this.error = '';
+      } else {
+        this.error = 'Aadhar number should be 12 digits long.';
+      }
+    } else {
+      this.error = 'Invalid input. Only numeric values are allowed.';
+    }
+  }
+  
+  // onAadharNumberChange() {
+  //   this.aadharNumberEntered = !!this.adhardetails.aadhaarNo;
+  // }
   
   constructor(private auth: CrudService, private router: Router) {}
   

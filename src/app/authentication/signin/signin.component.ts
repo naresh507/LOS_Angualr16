@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 export class SigninComponent implements OnInit {
   hide = true;
   loginForm!: FormGroup;
+  rememberPassword: boolean = false;
 
   userObj= {
     UserID: '',
@@ -40,6 +41,10 @@ export class SigninComponent implements OnInit {
     })
    
      
+  }
+
+  rememberpwd(){
+
   }
 
 forgotpwd()

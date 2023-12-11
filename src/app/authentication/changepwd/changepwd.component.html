@@ -55,7 +55,8 @@
               <p class="validation-message red-text" *ngIf="changeDetails.NewPassword.length >= 8 && validationMessage">{{ validationMessage }}</p>
               
   
-    <button class="loginBtn"  mat-stroked-button color="primary" (click)="save()">Save Password</button>
+    <!-- <button class="loginBtn"  mat-stroked-button color="primary" (click)="save()">Save Password</button> -->
+    <button class="loginBtn"  tabindex="1" mat-raised-button color="primary" [disabled]="!passwordsMatch"  (click)="save()">Save Password</button>
 </form>    
 </section>
       
