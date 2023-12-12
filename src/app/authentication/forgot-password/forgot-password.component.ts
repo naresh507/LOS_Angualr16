@@ -9,6 +9,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent {
+
+  isLastDigitEntered: boolean= false;
   hide = true;
   otp:boolean=false;
   resendCooldown: number = 0;
@@ -18,8 +20,21 @@ export class ForgotPasswordComponent {
   ForgotDetails: any = {
     UserId: '',
     Phoneno: '',
-    OTPNO: ''
+    OTPNO: '',
+    Flag:'U'
+  
   };
+
+
+  checkOtpLength() {
+    const enteredOtp = this.ForgotDetails.OTPNO;
+    if (enteredOtp && enteredOtp.length == 6) {
+      const lastChar = enteredOtp.slice(-1); 
+      this.isLastDigitEntered = !isNaN(parseInt(lastChar));
+    } else {
+      this.isLastDigitEntered = false;
+    }
+  }
   constructor(
     private router: Router,private auth:AuthenticationService
     
@@ -33,14 +48,15 @@ export class ForgotPasswordComponent {
   }
 login()
 {
-  this.router.navigateByUrl('/signin')
+  this.router.navigateByUrl('/login')
 }
 
   simpleAlert(){
       const additionalData = {
         UserId: this.ForgotDetails.UserId,
         Phoneno: this.ForgotDetails.Phoneno,
-        OTPNO: this.ForgotDetails.OTPNO
+        OTPNO: this.ForgotDetails.OTPNO,
+        Flag:"O"
       };
       this.auth.sendOtp(additionalData).subscribe(
         (response) => {
@@ -65,7 +81,7 @@ login()
         Swal.fire({
           imageUrl: '../../assets/images/warining.svg',
           imageHeight: 80,
-          text: 'Maximum attempts reached. Try again after 48 hours',
+          text: 'Maximum attempts reached. Please try after a while',
         });
       }
       return; 

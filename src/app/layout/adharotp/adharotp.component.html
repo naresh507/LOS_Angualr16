@@ -13,8 +13,8 @@
   }
 </style>
 
-
 <div class="onboarding">
+
   <div class="container" style="flex-direction: row;gap: 10px;padding: 10px 100px;">
 
     <div class="right-section">
@@ -25,7 +25,7 @@
             <label class="form-label" >Aadhar Number </label>
             <div class="form-group_div">
               <input type="text" [(ngModel)]="adhardetails.aadhaarNo" [ngModelOptions]="{ standalone: true }"
-                class="form-control form-control-sm" placeholder="Enter Number" required />
+                class="form-control form-control-sm" placeholder="Enter Number"  maxlength="12" required   (input)="convertNumber()"/>
               <div class="" style="display: flex;gap: 10px;justify-content: space-between;margin-top: 5px;">
                 <div class="me-1">
                   <div class="sent-otp align-items-start">

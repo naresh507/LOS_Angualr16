@@ -50,11 +50,13 @@
             </mat-form-field> 
               </section>
 
-              <p class="note" *ngIf="changeDetails.OldPassword.length || changeDetails.NewPassword.length>= 8 && validationMessage" class="validation-message red-text">{{ validationMessage }}</p>
-              <p class="note" *ngIf="changeDetails.ConfirmPassword.length >= 8 &&passwordMismatchError" class="validation-message red-text">Passwords do not match.</p>
-            <p class="note" *ngIf="changeDetails.NewPassword.length >= 8 && validationMessage" class="validation-message red-text">{{ validationMessage }}</p>
+              <p class="validation-message red-text" *ngIf="(changeDetails.OldPassword.length || changeDetails.NewPassword.length >= 8) && validationMessage">{{ validationMessage }}</p>
+              <p class="validation-message red-text" *ngIf="changeDetails.ConfirmPassword.length >= 8 && passwordMismatchError">Passwords do not match.</p>
+              <p class="validation-message red-text" *ngIf="changeDetails.NewPassword.length >= 8 && validationMessage">{{ validationMessage }}</p>
+              
   
-    <button class="loginBtn"  mat-stroked-button color="primary" (click)="save()">Save Password</button>
+    <!-- <button class="loginBtn"  mat-stroked-button color="primary" (click)="save()">Save Password</button> -->
+    <button class="loginBtn"  tabindex="1" mat-raised-button color="primary" [disabled]="!passwordsMatch"  (click)="save()">Save Password</button>
 </form>    
 </section>
       

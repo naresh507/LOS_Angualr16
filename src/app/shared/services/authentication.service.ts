@@ -106,10 +106,17 @@ setUserId()
      
     }
 
-    sendOtp(sendotpOBJPayload: any): Observable<any> {
-      return this.http.post(`${environment.apiLoginUrl}OTPVerification`, sendotpOBJPayload);
+    // sendOtp(sendotpOBJPayload: any): Observable<any> {
+    //   return this.http.post(`${environment.apiLoginUrl}OTPVerification`, sendotpOBJPayload);
+     
+    // }
+       sendOtp(sendotpOBJPayload: any): Observable<any> {
+      return this.http.post(`${environment.apiLoginUrl}ForgotPasswordMoblieNumberSendOTP `, sendotpOBJPayload);
      
     }
+
+
+    
 
     ChangePassword(changepasswordOBJPayload: any): Observable<any> {
       return this.http.post(`${environment.apiLoginUrl}ChangePassword`, changepasswordOBJPayload);

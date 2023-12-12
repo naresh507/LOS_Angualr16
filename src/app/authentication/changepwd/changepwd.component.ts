@@ -9,7 +9,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./changepwd.component.scss']
 })
 export class ChangepwdComponent implements OnInit {
-
+  changeResponse:string='';
+  passwordsMatch: boolean = false;
   UserID: any;
   isOldPassword = true;
   isNewPassword = true;
@@ -42,6 +43,7 @@ export class ChangepwdComponent implements OnInit {
     this.passwordMismatchError =
     this.changeDetails.NewPassword !==
     this.changeDetails.ConfirmPassword;
+    this.passwordsMatch = true;
 
   }
 
@@ -60,15 +62,24 @@ export class ChangepwdComponent implements OnInit {
     this.auth.ChangePassword(this.changeDetails).subscribe(
       (response) => {
         console.log(response);
-        if (response && response.status && response.status === true && response.message === 'OTP Successfully Verified') {
+        if (response && response.status && response.status === true && response.message === 'Data Fetch Successfully') {
+          this.changeResponse= response.ChangePasswordData[0].Message;
+          Swal.fire({
+            imageUrl: '../../assets/images/warining.svg',
+            imageHeight: 80,
+            text: this.changeResponse,
+            
+          });
+          console.log(this.changeResponse);
           this.router.navigateByUrl('/login')
         } else {
-          
-          Swal.fire({
-                imageUrl: '../../assets/images/warining.svg',
-                imageHeight: 80,
-                text: response.message,
-              });
+          // Swal.fire({
+          //   imageUrl: '../../assets/images/warining.svg',
+          //   imageHeight: 80,
+          //   text: this.changeResponse,
+            
+          // });
+      
         }
       }
      

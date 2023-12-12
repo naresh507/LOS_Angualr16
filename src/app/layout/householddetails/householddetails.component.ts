@@ -83,16 +83,16 @@ export class HouseholddetailsComponent implements OnInit {
         if (value.status == true) {
 
 
-          this.LivestockInfo = value.LivestockInfo;
-          this.VehicleInfo = value.VehicleInfo;
+          this.LivestockInfo = value?.LivestockInfo;
+          this.VehicleInfo = value?.VehicleInfo;
 
 
-          this.FamilyTypeDetails = value.FamilyTypeDetails;
-          this.TypeofRoofDetails = value.TypeofRoofDetails;
-          this.OwnershipDetails = value.OwnershipDetails;
-          this.LOCALITYDetails = value.LOCALITYDetails;
-          this.CasteCategoryDetails = value.CasteCategoryDetails;
-          this.ReligionCommunityDetails = value.ReligionCommunityDetails
+          this.FamilyTypeDetails = value?.FamilyTypeDetails;
+          this.TypeofRoofDetails = value?.TypeofRoofDetails;
+          this.OwnershipDetails = value?.OwnershipDetails;
+          this.LOCALITYDetails = value?.LOCALITYDetails;
+          this.CasteCategoryDetails = value?.CasteCategoryDetails;
+          this.ReligionCommunityDetails = value?.ReligionCommunityDetails
 
 
         }
