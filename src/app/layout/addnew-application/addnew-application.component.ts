@@ -32,6 +32,7 @@ export class AddnewApplicationComponent implements OnInit {
   timer: any = 15;
   intervalId: any;
   otpDialogRef: any;
+  mobileNo:any;
   constructor(
     private route: Router,
     private _crudService: CrudService,
@@ -279,7 +280,7 @@ export class AddnewApplicationComponent implements OnInit {
         console.log(value)
         if (value.status == true) {
           this.otp1 = true;
-
+this.mobileNo=this.formupdate.get('NewMobileNumber')?.value
           this.intervalId = setInterval(() => {
             this.timer = this.timer - 1;
             if (this.timer == 0) {
