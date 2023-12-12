@@ -67,7 +67,7 @@
             <mat-form-field appearance="outline">
               <span *ngIf="updatescreen1" class="checktxt"></span>
 
-              <input formControlName="mobile" required matInput placeholder="Enter Number">
+              <input [ngClass]="{'checktxtpadd': updatescreen1 }" formControlName="mobile" required matInput placeholder="Enter Number">
 
               <a *ngIf="updatescreen1" class="updatetxt" (click)="update()">Update</a>
 
