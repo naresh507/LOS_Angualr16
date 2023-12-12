@@ -67,7 +67,7 @@
             <mat-form-field appearance="outline">
               <span *ngIf="updatescreen1" class="checktxt"></span>
 
-              <input [ngClass]="{'checktxtpadd': updatescreen1 }" formControlName="mobile" required matInput placeholder="Enter Number">
+              <input [(ngModel)]="mobileNo" [ngClass]="{'checktxtpadd': updatescreen1 }" formControlName="mobile" required matInput placeholder="Enter Number">
 
               <a *ngIf="updatescreen1" class="updatetxt" (click)="update()">Update</a>
 
@@ -137,7 +137,7 @@
           <section class="inputsec">
             <label>Mobile Number</label>
             <mat-form-field appearance="outline">
-              <input required matInput placeholder="Enter Number" formControlName="ExistingMobileNumber"> <a
+              <input [(ngModel)]="mobileNo" required matInput placeholder="Enter Number" formControlName="ExistingMobileNumber"> <a
                 style="position: absolute;right: -9px; color: #442477;font-size: 12px;" class="">Change</a>
             </mat-form-field>
 
