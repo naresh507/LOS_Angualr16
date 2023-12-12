@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CrudService } from 'src/app/shared/services/crud.service';
+import { AddnewApplicationComponent } from '../addnew-application/addnew-application.component';
 
 @Component({
   selector: 'app-memberdetails',
@@ -12,6 +13,7 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./memberdetails.component.scss']
 })
 export class MemberdetailsComponent  implements OnInit{
+  dialogref:any;
   MainEarningBasicDetails: boolean = true
   EarningbasicDetails: boolean = true;
   form!:FormGroup;
@@ -39,7 +41,7 @@ export class MemberdetailsComponent  implements OnInit{
     private _fb:FormBuilder,
     private _crudService:CrudService,
     private toastr: ToastrService,
-    private router:Router
+    private router:Router,private Dialog:MatDialog
     ) {
       this.form=this._fb.group({
         MemberName:['', Validators.required],
@@ -115,6 +117,7 @@ export class MemberdetailsComponent  implements OnInit{
      })
   }
   addearningMember(){
-    this.router.navigateByUrl('/addnewClient')
+this.dialogRef= this.Dialog.open(AddnewApplicationComponent,{width:'600px'})
+   // this.router.navigateByUrl('/addnewClient')
   }
 }
