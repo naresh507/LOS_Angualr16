@@ -12,6 +12,7 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./aadharclientpicture.component.scss']
 })
 export class AadharclientpictureComponent implements OnInit{
+  referance_id:any='';
   LosUnique_Id: any = {};
   imageupload: boolean = false;
   imagebase64Data: any = '';
@@ -152,7 +153,7 @@ export class AadharclientpictureComponent implements OnInit{
   ngOnInit() {
     this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
-   // this.userObj = localStorage.getItem('userId');
+    this.referance_id = JSON.parse(localStorage.getItem('refObj') || '{}');
     this.detailsObj['UserId'] = this.userObj;
     console.log('UserID from local storage:', this.userObj);
     console.log('ss')
@@ -170,7 +171,9 @@ export class AadharclientpictureComponent implements OnInit{
       LosUnique_Id: this.LosUnique_Id,
         CapturePhoto: this.imagebase64Data,
         UserID: this.userObj.UserID,
-        CapturePhotoName: this.mimeType
+        CapturePhotoName: this.mimeType,
+        // RefId: this.referance_id,
+        "RefId": localStorage.getItem('refObj')|| '',
       });
     this.imagecaputureData.CapturePhotoLOSRequestsData = [imageData[0]]
     console.log(this.imagecaputureData)
@@ -191,7 +194,8 @@ export class AadharclientpictureComponent implements OnInit{
         LosUnique_Id: this.LosUnique_Id,
         CapturePhoto: this.previewimage,
         UserID: this.userObj.UserID,
-        CapturePhotoName: this.mimeType
+        CapturePhotoName: this.mimeType,
+        RefId: this.referance_id.RefId,
       });
       this.auth.CapturePhotoLOS(this.imagecaputureData).subscribe(Response  => {
         this.status =Response.message;

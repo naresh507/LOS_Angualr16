@@ -21,12 +21,13 @@
                     <section class="detailsbox whiteclr marT20 shadowbox">
 
                         <ul class="profileflex">
-                            <li class="imglabel"> <img src="../../../../assets/images/img1.jpg" style="width:34px" />
+                            <li class="imglabel imagesgrid m-auto"> 
+                                <img [src]="imageresponse?.MemberPhoto" style="width:34px" />
                                 <div><label>Spouse</label>
-                                    <span>{{response?.Spouse}}</span>
+                                    <span>{{response?.Name}}</span>
                                 </div>
                             </li>
-                            <li><a class="textfilledbutton">Add Earning number</a></li>
+                            <li><a class="textfilledbutton" (click)="addearningMember()">Add Earning Member</a></li>
                         </ul>
 
 
@@ -173,11 +174,11 @@
                                         <mat-form-field class="searchfield" appearance="outline">
 
 
-                                            <mat-select formControlName="village">
+                                            <mat-select formControlName="village" (click)="searchcode()">
 
                                                 <mat-option *ngFor="let v of MasterPinCodeDetails"
                                                     [value]="v.VillageName">
-                                                    {{ v.VillageName }}
+                                                    {{ v.VillageName }} 
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
@@ -189,8 +190,23 @@
                                         <label>Center</label>
                                         <mat-form-field class="searchfield" appearance="outline">
                                             <!-- <mat-label>User Name</mat-label> -->
-                                            <input formControlName="center" required matInput placeholder="Search">
-                                            <i class="searchicon"></i>
+                                            <!-- <input formControlName="center" required matInput placeholder="Search"> -->
+                                            <!-- <mat-select formControlName="center" required placeholder="Search">
+                                          
+                                            <mat-option *ngFor="let v of CenterSerchDetails" [value]="v.CenterName">
+                                                {{ v.CenterName }}
+                                              </mat-option>
+                                            </mat-select> -->
+                                            <!-- <i class="searchicon" (click)="CenterDataSerch()"></i> -->
+                                            <input type="text" placeholder="Pick one" aria-label="Number" matInput formControlName="center" [matAutocomplete]="auto">
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                                
+                                              <mat-option *ngFor="let v of CenterSerchDetails" [value]="v.CenterName">
+                                                {{v.CenterName}}
+                                              </mat-option>
+                                              
+                                            </mat-autocomplete>
+                                            <i class="searchicon" (click)="CenterDataSerch()"></i>
 
                                         </mat-form-field>
 

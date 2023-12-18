@@ -41,6 +41,7 @@ export class BankdetailsComponent {
         DigitalPayment: [''],
         UPIID: [''],
         CapturePhoto: [''],
+        CapturePhotoName:[''],
       });
   }
 
@@ -139,8 +140,8 @@ export class BankdetailsComponent {
         ConfimAccountNo: formData.value.ConfimAccountNo,
         DigitalPayment: formData.value.DigitalPayment,
         UPIID: formData.value.UPIID,
-        UserId: this.userObj.UserID
-
+        UserId: this.userObj.UserID,
+        CapturePhotoName:''
       }]
      }
   

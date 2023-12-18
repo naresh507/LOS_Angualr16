@@ -1,22 +1,50 @@
 <ng-container *ngIf="MainEarningBasicDetails">
     <ng-container *ngIf="EarningbasicDetails">
         <section id="basicDetails" class="incontent">
-
-            <section class="detailsbox whiteclr marT20 shadowbox">
-
-                <ul class="profileflex">
-                    <!-- <li class="imglabel"> <img src="../../../../assets/images/img1.jpg" style="width:34px" />
-                        <div><label>Spouse</label>
-                            <span>{{response.Spouse}}</span>
-                        </div>
-                    </li> -->
-                    <!-- <li><a class="textfilledbutton">Add Earning number</a></li> -->
-                    <li class="textfilledbutton" style="text-align: right; margin: 30px 0;">
-                        <button class="loginBtn"  mat-raised-button color="" (click)="addearningMember()">Add Earning number</button>
-                    </li>
-                    
-                </ul>
+           
+            <section class="detailsbox whiteclr marT20 shadowbox" *ngFor="let member of response" >
+                
+                    <ul class="detailsUL detailsULNew" >
+                      <li><label>Capture Photo</label>
+                              <!-- <span>{{member.CapturePhoto }}</span> -->
+                            <img [src]="member?.CapturePhoto"  style="width:80px" />
+                        </li>
+                        <li><label>voterID Frontpath</label> 
+                   
+                            <!-- <span>{{member.voterID_Frontpath }}</span> -->
+                         <img [src]="member?.voterID_Frontpath" style="width:80px"  />
+                         
+                        </li> 
+                        <li><label>voterID Backpath</label>
+                           
+                            <!-- <span>{{member.voterID_Backpat }}</span> -->
+                            <img [src]="member?.voterID_Backpath" style="width:80px" />
+                          
+                        </li>
+                        <!-- <li><label>Capture Photo Name</label>
+                          
+                            <span>{{member.CapturePhotoName }}</span>
+                           
+                        </li> -->
+                        <li><label>Name</label>
+                            <span>{{member.Name }}</span>
+                        </li>
+                
+                        <li><label>Aadhar ID</label>
+                            <span>{{member.AadharID }}</span>
+                        </li>
+                        <li><label>DateofBirth</label>
+                            <span>{{member.DateofBirth }}</span>
+                        </li>
+                        <li><label>voter ID</label>
+                            <span>{{member.voterID }}</span>
+                        </li>
+                        <li><label>Address</label>
+                            <span>{{member.Address }}</span>
+                        </li>
+                    </ul>
             </section>
+          
         </section>
     </ng-container>
 

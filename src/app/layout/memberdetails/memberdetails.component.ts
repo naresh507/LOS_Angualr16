@@ -13,6 +13,8 @@ import { AddnewApplicationComponent } from '../addnew-application/addnew-applica
   styleUrls: ['./memberdetails.component.scss']
 })
 export class MemberdetailsComponent  implements OnInit{
+  response:any;
+  LosUnique_Id: any = {};
   dialogref:any;
   MainEarningBasicDetails: boolean = true
   EarningbasicDetails: boolean = true;
@@ -32,7 +34,9 @@ export class MemberdetailsComponent  implements OnInit{
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
     this.getMasterData();
+    this.EarningMembersDataFetch();
   }
  
 
@@ -88,6 +92,31 @@ export class MemberdetailsComponent  implements OnInit{
   
     
   }
+
+  EarningMembersDataFetch()
+  {
+    let obj={
+    
+     "UserId": this.userObj.UserID,
+     "LosUnique_Id" : this.LosUnique_Id,
+     
+   }
+    this._crudService.EarningMembersDataFetch(obj).subscribe({
+      next: (value: any) => {
+
+     console.log(value)
+     console.log('EarningMembers:' ,this.response)
+     if(value.status==true && value.EarningMembersDataFetchDataInfo.length >= 1)
+     {
+      this.response = value.EarningMembersDataFetchDataInfo;
+     }
+      },
+      
+          error: (err: HttpErrorResponse) => {
+            console.log(err)
+          }
+     })
+  }
   
 
   getMasterData()
@@ -95,6 +124,7 @@ export class MemberdetailsComponent  implements OnInit{
     let obj={
     
      "UserId": this.userObj.UserID,
+     "LosUnique_Id" : this.LosUnique_Id,
      
    }
     this._crudService.getMasterDetails(obj).subscribe({

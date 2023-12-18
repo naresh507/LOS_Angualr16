@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/shared/services/crud.service';
 import Swal from 'sweetalert2';
+import { CashflowformsComponent } from '../cashflowforms/cashflowforms.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -13,6 +15,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./cashflow-details.component.scss']
 })
 export class CashflowDetailsComponent implements OnInit {
+  @ViewChild(CashflowformsComponent) childComponents!: CashflowformsComponent[];
   @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
   @ViewChild('enlargedialog') enlargedialog!: TemplateRef<any>;
   form!: FormGroup
@@ -164,12 +167,44 @@ export class CashflowDetailsComponent implements OnInit {
   save(formData: any) {
     formData.value['UserId'] = this.userObj.UserID;
   }
+  public savedData:any=[]
+  applicantsaveCashFlowData(data: any){
+  this.savedData.push(data)
+  }
 
+  addmoresaveCashFlowData(data: any){
+    this.savedData.push(data)
+  }
 
+  earningaddmoresaveCashFlowData(data: any){
+    this.savedData.push(data)
+  }
   saveCashFlowData(data: any) {
+    let obj={
+      MemberData: this.savedData
+     }
+ 
+    console.log( this.savedData)
+    this._crudService.HHMothlyIncome(obj).subscribe({
+      next: (value: any) => {
+     console.log(value)
+     if(value.status==true || value.status=='True')
+     {
+      
+    
+   //   this.toastr.success('Member Data Added Successfully');
+      this.dialogRef.close();
+       
+     }
+      },
+      
+          error: (err: HttpErrorResponse) => {
+            console.log(err)
+          }
+     })
 this.hhmonthly = false;
-      this.hhexpense = false;
-      this.hhliabilty = true;
+      this.hhexpense = true;
+      this.hhliabilty = false;
       this.hhLoan = false
     console.log('Received cash flow data:', data);
 

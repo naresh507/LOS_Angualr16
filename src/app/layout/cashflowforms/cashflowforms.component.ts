@@ -75,10 +75,10 @@ export class CashflowformsComponent implements OnInit {
   }
 
   saveData() {
-    if (this.form.valid) {
+    // if (this.form.valid) {
       const formData = this.form.value;
       this.cashFlowData.emit(formData);
-    }
+    // }
   }
 
 }

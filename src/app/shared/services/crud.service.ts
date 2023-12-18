@@ -10,9 +10,32 @@ export class CrudService {
   private aadharObj={
     "Unique_Id": "",
   }
+
+  private refObj={
+    "RefId": "",
+  }
+  
   userId: number = 0;
   constructor(private http: HttpClient) {
   }
+
+
+  seRefId(refObj: any) {
+    localStorage.setItem('refObj', refObj);
+  }
+  getRefId() {
+    return localStorage.getItem('refObj')
+  }
+
+  clearRefId() {
+    localStorage.removeItem('refObj');
+  }
+
+
+
+
+
+
 
   setAAdharObj(aadharObj: any) {
     localStorage.setItem('aadharObj', aadharObj);
@@ -51,6 +74,19 @@ masterVillageCode(obj: any): Observable<any> {
   return this.http.post(`${environment.apiUrl}MasterVillageCode`, obj);
 }
 
+
+// VillageSubmitData (VillageSubmitData)
+
+VillageSubmitData(basicdetails: any):Observable<any>{
+  return this.http.post(`${environment.apiUrl}VillageSubmitData`, basicdetails);
+}
+
+
+// EarningMembersDataFetch (EarningMembersDataFetch)
+
+EarningMembersDataFetch(basicdetails: any):Observable<any>{
+  return this.http.post(`${environment.apiUrl}EarningMembersDataFetch`, basicdetails);
+}
 
 
 //OTP
@@ -94,6 +130,11 @@ newcenter(obj: any): Observable<any> {
   return this.http.post(`${environment.apiUrl}CenterCreateData`, obj);
 }
 
+CenterDataSerch(obj: any): Observable<any> {
+  
+  return this.http.post(`${environment.apiUrl}CenterDataSerch`, obj);
+}
+
 
 centerdatasubmit(obj: any): Observable<any> {
   
@@ -113,6 +154,8 @@ saveHouseHoldDetailsubmit(obj:any):Observable<any>
 {
   return this.http.post(`${environment.apiUrl}HouseHoldDetailsSubmit`,obj);
 }
+
+
 
 // HHMothlyIncome  Details Submit component Service  SubMit
 HHMothlyIncome(obj:any):Observable<any>
@@ -256,6 +299,7 @@ CapturePhotoLOS(uploadphoto: any):Observable<any>{
 basicdetails(basicdetails: any):Observable<any>{
   return this.http.post(`${environment.apiUrl}BasicBorrowerFetch`, basicdetails);
 }
+
 
 // BasicDetails Images
 

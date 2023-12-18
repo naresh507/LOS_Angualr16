@@ -40,7 +40,7 @@ constructor(private router:Router, private _crudservce:CrudService, private _fb:
 getData() {
   let obj = {
     "UserId": this.userObj.UserID,
-    "LosUnique_Id":this.LosUnique_Id
+    "LosUnique_Id":this.LosUnique_Id,
     
   }
   this._crudservce.LoanEligbiltyget(obj).subscribe({
@@ -76,6 +76,7 @@ getData() {
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
     this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
+    console.log(this.LosUnique_Id)
     this.getData();
   }
 
@@ -83,12 +84,12 @@ getData() {
 
 submit(formData: any)
 {
-  formData.value['UserID'] = this.userObj.UserID;
-  formData.value['LosUnique_Id'] = this.LosUnique_Id;
+  formData.value['UserId']=this.userObj.UserID;
+  formData.value['LosUnique_Id']=this.LosUnique_Id;
 
-  let hLoanData = this.HLoan;
+   let hLoanData = this.HLoan;
   let obj = {
-    "LoanEligbiltyData": [{}]
+    "LoanEligbiltyData": [{hLoanData}]
   };
   // console.log(formData.value)
   // formData.value['UserId']=this.userObj.UserID;
@@ -100,7 +101,8 @@ submit(formData: any)
   //     "LoanEligbiltyData":[{hLoanData}]
   //    }
   
-  obj.LoanEligbiltyData=[hLoanData]
+  // obj.LoanEligbiltyData=[hLoanData]
+  obj.LoanEligbiltyData=[formData.value]
   
     this._crudservce.LoanEligbiltySubmit(obj).subscribe({
       next: (value: any) => {

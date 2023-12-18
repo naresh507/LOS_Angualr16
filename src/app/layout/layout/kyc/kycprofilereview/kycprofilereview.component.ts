@@ -82,8 +82,8 @@ export class KycprofilereviewComponent implements OnInit{
     let obj = {
       "UserId": this.userObj.UserID,
       "Type": type,
-      "LosUnique_Id": this.LosUnique_Id,
-
+      "LosUnique": this.LosUnique_Id,
+    
     }
     this._crudService.ExistingData(obj).subscribe({
       next: (value: any) => {
@@ -156,6 +156,7 @@ reason()
 }
 proceed()
 {
+  // RefId: this.LosUnique_Id,
   this.router.navigateByUrl('/details')
 }
 

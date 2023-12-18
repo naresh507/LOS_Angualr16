@@ -1,30 +1,34 @@
+<!-- 
+<form [formGroup]="form"  (ngSubmit)="addliablityDetails(form1)"> -->
+
+    <div *ngFor ="let HHLiability of HHLiabilityInfo">
 <section class="detailsbox whiteclr marT20">
     <ul class="detailsUL detailsULNew">
         <li><label>Member Name</label>
             <!-- <span>S sharma</span> -->
-            <span>{{HHLiability['MemberName'] }}</span>
+            <span>{{HHLiability?.MemberName }}</span>
 
         </li>
         <li><label>Institution Type</label>
             <!-- <span>Own</span> -->
-            <span>{{HHLiability['InstitutionType'] }}</span>
+            <span>{{HHLiability?.InstitutionType }}</span>
         </li>
         <li><label>Institution Name</label>
             <!-- <span>Name of Institution</span> -->
-            <span>{{HHLiability['InstitutionName'] }}</span>
+            <span>{{HHLiability?.InstitutionName }}</span>
         </li>
         <li><label>Loan Account No</label>
             <!-- <span>123456</span> -->
-            <span>{{HHLiability['LoanAccountNo'] }}</span>
+            <span>{{HHLiability?.LoanAccountNo }}</span>
         </li>
 
         <li><label>Outstanding Bal</label>
             <!-- <span>23000</span> -->
-            <span>{{HHLiability['OutstandingBalance'] }}</span>
+            <span>{{HHLiability?.OutstandingBalance }}</span>
         </li>
         <li><label>EMI</label>
             <!-- <span>2000</span> -->
-            <span>{{HHLiability['EMI'] }}</span>
+            <span>{{HHLiability?.EMI }}</span>
         </li>
        
 
@@ -42,7 +46,7 @@
         <li class=""> <section class="inputsec">
         <label>Force Clouser</label>
         <mat-form-field appearance="outline">
-          <mat-select>
+          <mat-select name="Preclosure" [(ngModel)]="HHLiability.Preclosure">
               <mat-option>
                   Select
                 </mat-option>
@@ -61,7 +65,7 @@
     <li class=""> <section class="inputsec">
         <label>Account Status</label>
         <mat-form-field appearance="outline">
-          <mat-select>
+          <mat-select [(ngModel)]="HHLiability.AccountStatus">
               <mat-option>
                   Select
                 </mat-option>
@@ -79,7 +83,7 @@
     <li class=""> <section class="inputsec">
         <label>Balance Transfer</label>
         <mat-form-field appearance="outline">
-          <mat-select>
+          <mat-select [(ngModel)]="HHLiability.BlanceTransfer">
               <mat-option>
                   Select
                 </mat-option>
@@ -97,35 +101,35 @@
 </ul>
 
 </section>
+</div>
 
-
-<h3 class="box-title">Member Two</h3>
-<section class="detailsbox whiteclr detailsboxnew">
+<!-- <h3 class="box-title">Member Two</h3> -->
+<!-- <section class="detailsbox whiteclr detailsboxnew">
    
     <ul class="detailsUL detailsULNew">
         <li><label>Member Name</label>
             <span>{{HHLiability['MemberName'] }}</span>
-            <!-- <span>Rakesh</span> -->
+           
         </li>
         <li><label>Institution Type</label>
-            <!-- <span>Own</span> -->
+           
             <span>{{HHLiability['InstitutionType'] }}</span>
         </li>
         <li><label>Institution Name</label>
-            <!-- <span>Name of Institution</span> -->
+          
             <span>{{HHLiability['InstitutionName'] }}</span>
         </li>
         <li><label>Loan Account No</label>
             <span>{{HHLiability['LoanAccountNo'] }}</span>
-            <!-- <span>123456</span> -->
+           
         </li>
 
         <li><label>Outstanding Bal</label>
-            <!-- <span>23000</span> -->
+          
             <span>{{HHLiability['OutstandingBalance'] }}</span>
         </li>
         <li><label>EMI</label>
-            <!-- <span>2000</span> -->
+         
             <span>{{HHLiability['EMI'] }}</span>
         </li>
        
@@ -134,12 +138,12 @@
     </ul>
 
 
-</section>
+</section> -->
 
 
 
 
-<section class="kform">
+<!-- <section class="kform">
     <ul class="list_type">
         <li class=""> <section class="inputsec">
         <label>Force Clouser</label>
@@ -198,67 +202,48 @@
     </li>
 </ul>
 
-</section>
+</section> -->
 
 
-
+<!-- 
 <section class="detailsbox  detailsboxnew-bg">
    
     <ul class="detailsUL detailsULNew">
         <li><label>Total Household Liability</label>
-            <!-- <span>20,000</span> -->
+           
             <span>{{HHLiability['TotalHouseholdLiability'] }}</span>
 
         </li>
         <li><label>Own Liability</label>
-            <!-- <span>2000</span> -->
+           
             <span>{{HHLiability['OwnLiability'] }}</span>
         </li>
         <li><label>Other Household Liability</label>
-            <!-- <span>1000</span> -->
+           
             <span>{{HHLiability['OtherHouseholdLiability'] }}</span>
         </li></ul>
-</section>
+</section> -->
 
 
 <section class="btnswrapper"><button mat-stroked-button class="btns addBtns" (click)="openAddMember()" >Add</button>
-    <button mat-raised-button class="btns" color="primary" >Save & Next</button>
+    <button mat-raised-button class="btns" color="primary" (click)="addliablityDetails()">Save & Next</button>
 </section>
 
 
-
+<!-- </form> -->
 <ng-template #addmember>
-    <form [formGroup]="form"  (ngSubmit)="addliablityDetails(form)">
+    <!-- <form [formGroup]="form"  (ngSubmit)="addliablityDetails(form)"> -->
+   
     <div mat-dialog-content>
      
      <div>
-        
-
-
     <ul class="list_type fulllist">
-        <!-- <li class="">
-            <section class="inputsec">
-                <label>Electricity</label>
-                <mat-form-field  appearance="outline">
-                    <mat-select formControlName="Electricty" (selectionChange)="eleData($event)">
-                        <mat-option>
-                            Select
-                        </mat-option>
-                        <mat-option [value]="'yes'">
-                            Yes
-                        </mat-option>
-                        <mat-option [value]="'no'">
-                            No
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </section>
-        </li> -->
+   
         <li class="">
             <section class="inputsec">
                 <label>Member Name</label>
                 <mat-form-field  appearance="outline">
-                    <input   formControlName="MemberName" required matInput placeholder="Member Name">
+                    <input   [(ngModel)]="obj.MemberName" required matInput placeholder="Member Name">
                    
                     </mat-form-field> 
             </section>
@@ -270,7 +255,7 @@
             <section class="inputsec">
                 <label>Institution Type</label>
                 <mat-form-field  appearance="outline">
-                    <input formControlName="InstitutionType" required matInput placeholder="Institution Type">
+                    <input [(ngModel)]="obj.InstitutionType" required matInput placeholder="Institution Type">
                     
                     </mat-form-field> 
             </section>
@@ -281,7 +266,7 @@
             <section class="inputsec">
                 <label>Institution Name</label>
                 <mat-form-field  appearance="outline">
-                    <input formControlName="InstitutionName" required matInput placeholder="Institution Name">
+                    <input [(ngModel)]="obj.InstitutionName" required matInput placeholder="Institution Name">
                     
                     </mat-form-field> 
             </section>
@@ -290,7 +275,7 @@
             <section class="inputsec">
                 <label>LoanAccount NO</label>
                 <mat-form-field  appearance="outline">
-                    <input formControlName="LoanAccountNO" matInput placeholder="LoanAccount NO">
+                    <input [(ngModel)]="obj.LoanAccountNo" matInput placeholder="LoanAccount NO">
                     
                     </mat-form-field> 
             </section>
@@ -299,7 +284,7 @@
             <section class="inputsec">
                 <label>Outstanding Balance</label>
                 <mat-form-field  appearance="outline">
-                    <input formControlName="OutstandingBalance"  matInput placeholder="Outstanding Balance">
+                    <input [(ngModel)]="obj.OutstandingBalance"  matInput placeholder="Outstanding Balance">
                     
                     </mat-form-field> 
             </section>
@@ -308,7 +293,7 @@
             <section class="inputsec">
                 <label>EMI</label>
                 <mat-form-field  appearance="outline">
-                    <input formControlName="EMI"  matInput placeholder="EMI">
+                    <input [(ngModel)]="obj.EMI"  matInput placeholder="EMI">
                     
                     </mat-form-field> 
             </section>
@@ -317,7 +302,7 @@
             <section class="inputsec">
                 <label>Preclosure</label>
                 <mat-form-field  appearance="outline">
-                    <input formControlName="Preclosure"  matInput placeholder="Preclosure">
+                    <input [(ngModel)]="obj.Preclosure"  matInput placeholder="Preclosure">
                     
                     </mat-form-field> 
             </section>
@@ -326,7 +311,7 @@
             <section class="inputsec">
                 <label>Account Status</label>
                 <mat-form-field  appearance="outline">
-                    <input formControlName="AccountStatus"  matInput placeholder="Account Status">
+                    <input [(ngModel)]="obj.AccountStatus"  matInput placeholder="Account Status">
                     
                     </mat-form-field> 
             </section>
@@ -342,12 +327,12 @@
      
         <div mat-dialog-actions align="center">
             <button [disabled]="!form.valid" type="submit" mat-raised-button class="fill_btn" colo="primary"
-            >ADD</button>
+            (click)="addmember1()">ADD</button>
         <a mat-button class="close" (click)="onNoClick('No')">Close </a>
        
        
       </div>
-    </form>
+    <!-- </form> -->
 
 
   </ng-template>  

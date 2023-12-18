@@ -11,6 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./samvoter.component.css']
 })
 export class SamvoterComponent {
+  referance_id:any='';
   responses: any[] = []; 
   name = 'Angular';
   imageChangedEvent: any = '';
@@ -44,6 +45,7 @@ export class SamvoterComponent {
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
     this.aadharObj = JSON.parse(localStorage.getItem('aadharObj') || '{}');
+    this.referance_id = JSON.parse(localStorage.getItem('refObj') || '{}');
     console.log(this.aadharObj);
   }
   SelectType() {
@@ -167,6 +169,8 @@ export class SamvoterComponent {
     const Obj = {
       VoteridDetailsData: [
         {
+          "RefId": localStorage.getItem('refObj')|| '',
+          // RefId: this.referance_id,
           LosUnique_Id: this.aadharObj,
           CapturePhoto: '',
           CapturePhotoName: '',
@@ -193,6 +197,6 @@ export class SamvoterComponent {
         console.log(responseData);
 
       });
-    this.router.navigateByUrl('/details')
+   // this.router.navigateByUrl('/details')
   }
 }

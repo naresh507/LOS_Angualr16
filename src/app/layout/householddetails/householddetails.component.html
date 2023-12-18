@@ -10,7 +10,8 @@
                         <mat-option>
                             Select
                         </mat-option>
-                        <mat-option  [value]="f.ID" *ngFor="let f of FamilyTypeDetails">
+                        <!-- <mat-option  [value]="f.ID" *ngFor="let f of FamilyTypeDetails"> -->
+                            <mat-option  [value]="f.Name" *ngFor="let f of FamilyTypeDetails">
                            
                         
                             {{f.Name}}
@@ -71,7 +72,8 @@
                              <mat-option>
                                  Select
                              </mat-option>
-                             <mat-option  [value]="r.ID" *ngFor="let r of TypeofRoofDetails">
+                             <!-- <mat-option  [value]="r.ID" *ngFor="let r of TypeofRoofDetails"> -->
+                                <mat-option  [value]="r.Name" *ngFor="let r of TypeofRoofDetails">
                            
                         
                                 {{r.Name}}
@@ -95,7 +97,8 @@
                              <mat-option>
                                  Select
                              </mat-option>
-                             <mat-option  [value]="r.ID" *ngFor="let r of OwnershipDetails">
+                             <!-- <mat-option  [value]="r.ID" *ngFor="let r of OwnershipDetails"> -->
+                                <mat-option  [value]="r.Name" *ngFor="let r of OwnershipDetails">
                            
                         
                                 {{r.Name}}
@@ -113,7 +116,8 @@
                              <mat-option>
                                  Select
                              </mat-option>
-                             <mat-option  [value]="r.ID" *ngFor="let r of LOCALITYDetails">
+                             <!-- <mat-option  [value]="r.ID" *ngFor="let r of LOCALITYDetails"> -->
+                                <mat-option  [value]="r.Name" *ngFor="let r of LOCALITYDetails">
                            
                         
                                 {{r.Name}}
@@ -136,7 +140,8 @@
                              <mat-option>
                                  Select
                              </mat-option>
-                             <mat-option  [value]="r.ID" *ngFor="let r of ReligionCommunityDetails">
+                             <!-- <mat-option  [value]="r.ID" *ngFor="let r of ReligionCommunityDetails"> -->
+                                <mat-option  [value]="r.Name" *ngFor="let r of ReligionCommunityDetails">
                            
                         
                                 {{r.Name}}
@@ -154,7 +159,11 @@
                              <mat-option>
                                  Select
                              </mat-option>
-                             <mat-option  [value]="r.ID" *ngFor="let r of CasteCategoryDetails">
+                             <!-- <mat-option  [value]="r.ID" *ngFor="let r of CasteCategoryDetails"> -->
+                                <mat-option  [value]="r.Name" *ngFor="let r of CasteCategoryDetails">
+
+
+                                
                                 {{r.Name}}
                             </mat-option>
                          </mat-select>
@@ -321,7 +330,8 @@
                         <mat-option>
                             Select
                         </mat-option>
-                        <mat-option  [value]="r.ID" *ngFor="let r of LivestockInfo">
+                        <!-- <mat-option  [value]="r.ID" *ngFor="let r of LivestockInfo"> -->
+                            <mat-option  [value]="r.Name" *ngFor="let r of LivestockInfo">
                       
                    
                            {{r.Name}}
@@ -373,7 +383,8 @@
                         <mat-option>
                             Select
                         </mat-option>
-                        <mat-option  [value]="r.ID" *ngFor="let r of VehicleInfo">
+                        <!-- <mat-option  [value]="r.ID" *ngFor="let r of VehicleInfo"> -->
+                            <mat-option  [value]="r.Name" *ngFor="let r of VehicleInfo">
                       
                    
                            {{r.Name}}
