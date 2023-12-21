@@ -27,7 +27,6 @@ export class MemberdetailsComponent  implements OnInit{
   TypeofRoofDetails:any;
 
   @Output() gotonext = new EventEmitter()
-
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
     this.getMasterData();
