@@ -29,8 +29,8 @@ export class MemberdetailsComponent  implements OnInit{
   PurposeDetails:any;
   ReligionCommunityDetails:any;
   TypeofRoofDetails:any;
-
   @Output() gotonext = new EventEmitter()
+  // @Output() gotonext = new EventEmitter()
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
     this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
@@ -90,6 +90,10 @@ export class MemberdetailsComponent  implements OnInit{
      })
   
     
+  }
+
+  Next(){
+    this.gotonext.emit;
   }
 
   EarningMembersDataFetch()
