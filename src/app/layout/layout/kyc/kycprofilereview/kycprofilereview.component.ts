@@ -22,6 +22,10 @@ export class KycprofilereviewComponent implements OnInit{
   type: string = '';
   imageresponse:any = '';
   userObj:any;
+  VOCRD:any;
+  VED:any;
+  AOCRD:any;
+  AED:any;
   AAdharOTP:boolean=true;
   VoterId: boolean = false;
   ClientPicture: boolean = true
@@ -82,13 +86,28 @@ export class KycprofilereviewComponent implements OnInit{
     let obj = {
       "UserId": this.userObj.UserID,
       "Type": type,
-      "LosUnique_Id": this.LosUnique_Id,
-
+      "LosUnique": this.LosUnique_Id,
+    
     }
     this._crudService.ExistingData(obj).subscribe({
       next: (value: any) => {
         console.log(value)
-        this.ExsitingData = value.ExsitingDataDetails[0];
+
+        if(type=='ExD'){
+          this.ExsitingData = value.ExsitingDataDetails[0];
+        }else if(type=='VOCRD'){
+          this.VOCRD = value.ExsitingDataDetails[0];
+        }
+        else if(type=='VED'){
+          this.VED = value.ExsitingDataDetails[0];
+        }
+        else if(type=='AOCRD'){
+          this.AOCRD = value.ExsitingDataDetails[0];
+        }
+        else if(type=='AED'){
+          this.AED = value.ExsitingDataDetails[0];
+        }
+        // this.ExsitingData = value.ExsitingDataDetails[0];
       
         if (value.status === false) {
           console.error(value.message);
@@ -156,6 +175,7 @@ reason()
 }
 proceed()
 {
+  // RefId: this.LosUnique_Id,
   this.router.navigateByUrl('/details')
 }
 

@@ -1,9 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CrudService } from 'src/app/shared/services/crud.service';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MemberdetailsComponent } from '../memberdetails/memberdetails.component';
 
 
 @Component({
@@ -12,8 +14,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./basicdetails.component.scss']
 })
 export class BasicdetailsComponent implements OnInit {
+  @ViewChild(MemberdetailsComponent) childComponents!: MemberdetailsComponent[];
   @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
   @ViewChild('enlargedialog') enlargedialog!: TemplateRef<any>;
+  res:any =''
   LosUnique_Id: any = {};
   LoanPurposeInfo:any;
   voterid_Frontpath: any='';
@@ -33,8 +37,15 @@ export class BasicdetailsComponent implements OnInit {
   form2!: FormGroup;
   MasterPinCodeDetails: any;
   mastervillageDetails: any;
+  @ViewChild('earningButton')
+  earningButton!: ElementRef;
+  
+  @ViewChild('householdButton')
+  householdButton!: ElementRef;
+
+  CenterSerchDetails:any;
   constructor(private dialog: MatDialog, private _crudService: CrudService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder, private router:Router) {
     this.form = this.fb.group({
       pan: [''],
       loanpurpose: [''],
@@ -70,6 +81,13 @@ export class BasicdetailsComponent implements OnInit {
     this.MemberPhoto = this.imageresponse.MemberPhoto;
     this.voterid_Frontpath = this.imageresponse.voterid_Frontpath;
     this.voterid_Backpath = this.imageresponse.voterid_Backpath;
+  }
+
+  clicktonext(){
+    const earnbutton: any = this.householdButton.nativeElement;
+    earnbutton.click();
+
+    
   }
 
   addnewcenter() {
@@ -217,21 +235,33 @@ export class BasicdetailsComponent implements OnInit {
 
   searchcode() {
     console.log(this.form1.get('pincode')?.value)
-    if (this.form1.get('pincode')?.value == '') {
+    // if (this.form1.get('pincode')?.value == '') {
 
-    }
-    else {
+    // }
+    // else {
       let obj = {
         //  "UserID": this.userObj.UserID,
         // "pincode":  this.form1.get('pincode')?.value
-        "UserID": "12",
-        "pincode": "761110"
+        "UserID": this.userObj.UserID,
+        "pincode":  this.form1.get('pincode')?.value
 
       }
       this._crudService.masterPinCode(obj).subscribe({
         next: (value: any) => {
           console.log(value)
-          this.MasterPinCodeDetails = value.MasterPinCodeDetails;
+          this.res = value.message;
+          if(value.status == true)
+          {
+            this.MasterPinCodeDetails = value.MasterPinCodeDetails;
+          }
+          else{
+            Swal.fire({
+              imageUrl: '../../assets/images/warining.svg',
+              imageHeight: 80,
+              text: this.res,
+            });
+          }
+        
         },
 
         error: (err: HttpErrorResponse) => {
@@ -239,9 +269,53 @@ export class BasicdetailsComponent implements OnInit {
         }
       })
 
-    }
+    // }
   }
 
+
+  CenterDataSerch(){
+      console.log(this.form1.get('village')?.value)
+      // if (this.form1.get('village')?.value == '') {
+  
+      // }
+      // else {
+        let obj = {
+         
+          "UserID": this.userObj.UserID,
+          "village":  this.form1.get('village')?.value,
+          "pincode":  this.form1.get('pincode')?.value,
+          // "CenterName":'',
+  
+        }
+        this._crudService.CenterDataSerch(obj).subscribe({
+          next: (value: any) => {
+            console.log(value)
+            this.res = value.message;
+            console.log(this.res);
+            if(value.status == true)
+            {
+              this.CenterSerchDetails = value.CenterSerchDetails;
+            }
+            else{
+              Swal.fire({
+                imageUrl: '../../assets/images/warining.svg',
+                imageHeight: 80,
+                text: this.res,
+              });
+            }
+          
+            console.log('center : ', this.CenterSerchDetails)
+          },
+  
+          error: (err: HttpErrorResponse) => {
+            console.log(err)
+          }
+        })
+  
+      // }
+
+
+  }
 
 
   centerdatasubmit() {
@@ -253,21 +327,19 @@ export class BasicdetailsComponent implements OnInit {
         {
           "PinCode": this.form1.get('pincode')?.value,
           "Village": this.form1.get('village')?.value,
-          "CenterName": "CenterNamr",
-          "UserID": "16985"
+          "CenterName":this.form1.get('center')?.value,
+          "UserID":this.userObj.UserID,
         }
       ]
 
     }
 
-
-
     this._crudService.centerdatasubmit(obj).subscribe({
       next: (value: any) => {
         console.log(value)
         this.mainbasicDetails = false;
-        this.memberDetails = false;
-        this.householdDetails = true;
+        this.memberDetails = true;
+        this.householdDetails = false;
 
       },
 
@@ -280,16 +352,16 @@ export class BasicdetailsComponent implements OnInit {
   addnewcenterfn() {
 
     let obj = {
-      // "UserID": this.userObj.UserID,
-      // "pincode":  this.form.get('pincode')?.value
+      "UserID": this.userObj.UserID,
+      "pincode":  this.form.get('pincode')?.value,
       "CenterCreateData": [
         {
           "MettingDay": this.form2.get('day')?.value,
           "MettingWeek": this.form2.get('week')?.value,
-          "UserID": "11229"
+          "Village": this.form1.get('village')?.value,
+          // "UserID": this.userObj.UserID
         }
       ]
-
 
     }
 
@@ -386,5 +458,23 @@ export class BasicdetailsComponent implements OnInit {
         }
    })
 }
+
+addearningMember(){
+
+  const refIds = this.LosUnique_Id
+
+  console.log(refIds);
+  
+  this._crudService.seRefId(refIds)
+
+      this.router.navigateByUrl('/addnewClient')
+    }
+
+    Next(){
+      this.mainbasicDetails = false;
+      this.memberDetails = false;
+      this.householdDetails = true;
+
+    }
 
 }

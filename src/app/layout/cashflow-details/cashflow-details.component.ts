@@ -3,8 +3,12 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+
 import { CrudService } from 'src/app/shared/services/crud.service';
 import Swal from 'sweetalert2';
+import { CashflowformsComponent } from '../cashflowforms/cashflowforms.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { HhexpensesComponent } from '../hhexpenses/hhexpenses.component';
 
 
 @Component({
@@ -13,11 +17,16 @@ import Swal from 'sweetalert2';
   styleUrls: ['./cashflow-details.component.scss']
 })
 export class CashflowDetailsComponent implements OnInit {
+  @ViewChild(CashflowformsComponent) childComponents!: CashflowformsComponent[];
+  @ViewChild(HhexpensesComponent) childComponents1!: HhexpensesComponent;
   @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
   @ViewChild('enlargedialog') enlargedialog!: TemplateRef<any>;
   form!: FormGroup
 
+
+  LosUnique_Id: any = {};
   userObj: any;
+  // userObj: any;
   addmember: boolean = false;
   dialogRef: any;
   enlargeDialogRef: any;
@@ -43,6 +52,7 @@ export class CashflowDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
   }
   enlarge() {
     this.enlargeDialogRef = this.dialog.open(this.enlargedialog, {
@@ -158,21 +168,69 @@ export class CashflowDetailsComponent implements OnInit {
   }
   hhexpencesSave() {
     console.log('save data')
-    this.clickDetails('c')
+    // this.clickDetails('c')
+    this.hhmonthly = false;   
+    this.hhexpense = false;
+    this.hhliabilty = true;
+    this.hhLoan = false
+
+
   }
 
   save(formData: any) {
     formData.value['UserId'] = this.userObj.UserID;
   }
+  public savedData:any=[]
+  applicantsaveCashFlowData(data: any){
+  this.savedData.push(data)
+  }
 
+  addmoresaveCashFlowData(data: any){
+    this.savedData.push(data)
+  }
 
+  earningaddmoresaveCashFlowData(data: any){
+    this.savedData.push(data)
+  }
   saveCashFlowData(data: any) {
+
+   
+    let obj={
+
+      MemberData: this.savedData
+     }
+ 
+    console.log( this.savedData)
+    this._crudService.HHMothlyIncome(obj).subscribe({
+      next: (value: any) => {
+     console.log(value)
+     if(value.status==true || value.status=='True')
+     {
+      
+    
+   //   this.toastr.success('Member Data Added Successfully');
+   if (this.enlargeDialogRef) {
+    this.enlargeDialogRef.close();
+  }
+       
+     }
+      },
+      
+          error: (err: HttpErrorResponse) => {
+            console.log(err)
+          }
+     })
 this.hhmonthly = false;
-      this.hhexpense = false;
-      this.hhliabilty = true;
+      this.hhexpense = true;
+      this.hhliabilty = false;
       this.hhLoan = false
     console.log('Received cash flow data:', data);
 
+  }
+  next(){
+    this.hhexpense = false;
+    this.hhliabilty = true;
+    this.hhLoan = false
   }
 
 }

@@ -8,10 +8,12 @@ import Swal from 'sweetalert2';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
+  forgotuserObj: any;
+  UserID:any;
   resetResponse:string='';
   errorMessage: string = ''; 
   passwordsMatch: boolean = false;
-  UserID: any;
+  // UserID: any;
   NewPassword:string='';
   ConfirmPassword:string='';
   validationMessage = '';
@@ -25,10 +27,9 @@ export class ResetPasswordComponent implements OnInit {
     NewPassword:'',
     ConfirmPassword:'',
     UserID: '',
-    OTP: "418645",
-    MoblieNumber: "8500567429",
-    Oldpassword: "An@123"
-
+    OTP: "",
+    MoblieNumber: "",
+    Oldpassword: ""
   };
 
   validatePasswordCriteria(){
@@ -54,10 +55,13 @@ export class ResetPasswordComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
-    this.UserID = parseInt(userObj.UserID);
-    this.reset.UserID=this.UserID;
-    
+    //this.forgotuserObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+
+    this.forgotuserObj = JSON.parse(localStorage.getItem('ForgotUserid') || '{}');
+    this.reset.UserID = this.forgotuserObj.userId;
+
+    console.log(this.forgotuserObj);
+    console.log(this.forgotuserObj.userId);
   }
   savepassword(){
     this.auth.resetPassword(this.reset).subscribe(

@@ -4,6 +4,7 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/shared/services/crud.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-samvoter',
@@ -11,6 +12,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./samvoter.component.css']
 })
 export class SamvoterComponent {
+  res:any;
+  referance_id:any='';
   responses: any[] = []; 
   name = 'Angular';
   imageChangedEvent: any = '';
@@ -44,6 +47,7 @@ export class SamvoterComponent {
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
     this.aadharObj = JSON.parse(localStorage.getItem('aadharObj') || '{}');
+    this.referance_id = JSON.parse(localStorage.getItem('refObj') || '{}');
     console.log(this.aadharObj);
   }
   SelectType() {
@@ -167,6 +171,8 @@ export class SamvoterComponent {
     const Obj = {
       VoteridDetailsData: [
         {
+          "RefId": localStorage.getItem('refObj')|| '',
+          // RefId: this.referance_id,
           LosUnique_Id: this.aadharObj,
           CapturePhoto: '',
           CapturePhotoName: '',
@@ -181,7 +187,9 @@ export class SamvoterComponent {
           Doc: this.responses[0]?.doc?.value || '',
           Age: this.responses[1]?.age?.value || '',
           Type: this.selectedImageType === 'front' ? 'VF' : 'VB',
+          Address:this.responses[1]?.address?.value || '',
           StatusCode: '',
+          
         }
       ]
     }
@@ -190,9 +198,16 @@ export class SamvoterComponent {
     this.auth.VoterDetailsSubmit(Obj).subscribe(
       (responseData) => {
 
+        this.res = responseData.message;
+
+        Swal.fire({
+          imageUrl: '../../assets/images/warining.svg',
+          imageHeight: 80,
+          text: this.res,
+        });
         console.log(responseData);
 
       });
-    this.router.navigateByUrl('/details')
+    this.router.navigateByUrl('/kycprofilereview')
   }
 }

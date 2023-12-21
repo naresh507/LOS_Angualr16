@@ -26,7 +26,8 @@
                         </mat-panel-title>
 
                     </mat-expansion-panel-header>
-<app-cashflowforms  (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms>
+<!-- <app-cashflowforms  (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms> -->
+<app-cashflowforms  (cashFlowData)="applicantsaveCashFlowData($event)"></app-cashflowforms>
                    
 
                     <section style="text-align: right; margin: 30px 0;">
@@ -34,8 +35,10 @@
                     </section>
 <ng-container *ngIf="addmember">
     <hr />
-  <section class="smalltitlewrap"><div>  <h2>Income 2</h2></div> <button class="removeBtn"  mat-raised-button  (click)="addmember = !addmember"><mat-icon>close_outlined</mat-icon>Remove Income</button></section>
-    <app-cashflowforms (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms>
+  <!-- <section class="smalltitlewrap"><div>  <h2>Income 2</h2></div> <button class="removeBtn"  mat-raised-button  (click)="addmember = !addmember"><mat-icon>close_outlined</mat-icon>Remove Income</button></section>
+    <app-cashflowforms (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms> -->
+    <section class="smalltitlewrap"><div>  <h2>Income 2</h2></div> <button class="removeBtn"  mat-raised-button  (click)="addmember = !addmember"><mat-icon>close_outlined</mat-icon>Remove Income</button></section>
+    <app-cashflowforms (cashFlowData)="addmoresaveCashFlowData($event)"></app-cashflowforms>
 </ng-container>
 
                     </mat-expansion-panel>
@@ -53,7 +56,7 @@
     
                         </mat-expansion-panel-header>
     
-                        <app-cashflowforms></app-cashflowforms>
+                        <app-cashflowforms (cashFlowData)="earningaddmoresaveCashFlowData($event)"></app-cashflowforms>
     
                         </mat-expansion-panel>
 

@@ -14,13 +14,17 @@ import { OtpComponent } from 'src/app/shared/otp/otp.component';
   styleUrls: ['./addnew-application.component.scss']
 })
 export class AddnewApplicationComponent implements OnInit {
-  message:string='';
+  responsetype :string='';
+  refId: string = '';
+  LosUnique_Id: any = '';
+  referance_id: any;
+  message: string = '';
   FamilyTypeDetails: any;
   otp: boolean = false;
   otpattempts: number = 1;
   otpattempts1: number = 1;
   otp1: boolean = false;
-  type :string='';
+  type: string = '';
   updatescreen: boolean = true;
   updatescreen1: boolean = false;
   updatescreen2: boolean = false;
@@ -29,10 +33,10 @@ export class AddnewApplicationComponent implements OnInit {
   userObj: any;
   form!: FormGroup;
   formupdate!: FormGroup;
-  timer: any = 15;
+  timer: any = 90;
   intervalId: any;
   otpDialogRef: any;
-  mobileNo:any;
+  mobileNo: any;
   constructor(
     private route: Router,
     private _crudService: CrudService,
@@ -60,6 +64,10 @@ export class AddnewApplicationComponent implements OnInit {
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
+    this.referance_id = JSON.parse(localStorage.getItem('refObj') || '{}');
+    // this.RefId =this.referance_id.RefId
+    console.log(this.referance_id)
 
     this.getMasterData();
   }
@@ -68,7 +76,7 @@ export class AddnewApplicationComponent implements OnInit {
     this.sendOTPService()
   }
   sendOTPService() {
-    this.timer = 5;
+    this.timer = 90;
     this.otpattempts - 1;
     console.log(this.form.get('mobile')?.value)
     let obj = {
@@ -76,9 +84,16 @@ export class AddnewApplicationComponent implements OnInit {
       "UserId": this.userObj.UserID,
       "OTPNO": "",
     }
+   
     this._crudService.OTPVerification(obj).subscribe({
       next: (value: any) => {
         console.log(value)
+        this.responsetype=value.message;
+        Swal.fire({
+          imageUrl: '../../assets/images/warining.svg',
+          imageHeight: 80,
+          text: this.responsetype,
+        });
         if (value.status == true) {
           this.otp = true;
 
@@ -101,8 +116,8 @@ export class AddnewApplicationComponent implements OnInit {
   }
 
 
-  updatesendOTPService(formupdate: any,type:any) {
-    this.timer = 5;
+  updatesendOTPService(formupdate: any, type: any) {
+    this.timer = 90;
     this.otpattempts - 1;
     const existingMobileNumber = this.formupdate.get('ExistingMobileNumber')?.value;
     console.log(existingMobileNumber);
@@ -111,10 +126,11 @@ export class AddnewApplicationComponent implements OnInit {
       "ExistingMobileNumber": this.formupdate.get('ExistingMobileNumber')?.value,
       "NewMobileNumber": this.formupdate.get('NewMobileNumber')?.value,
       "ConfirmNewMobileNumber": this.formupdate.get('ConfirmNewMobileNumber')?.value,
-      "Phoneno":this.formupdate.get('NewMobileNumber')?.value,
+      "Phoneno": this.formupdate.get('NewMobileNumber')?.value,
       "UserId": this.userObj.UserID,
       "OTPNO": "",
-      "Flag": this.type
+      "Flag": this.type,
+
     }
     console.log(obj1);
     // this._crudService.VerifyMobileNumber(obj1).subscribe({
@@ -147,6 +163,7 @@ export class AddnewApplicationComponent implements OnInit {
     let obj = {
 
       "UserId": this.userObj.UserID,
+      "Refid": localStorage.getItem('refObj')|| '',
 
     }
     this._crudService.getMasterDetails(obj).subscribe({
@@ -155,6 +172,9 @@ export class AddnewApplicationComponent implements OnInit {
         if (value.status == true) {
 
           this.FamilyTypeDetails = value.FamilyTypeDetails;
+          
+          // this.FamilyTypeDetails = value.RelationshipOneDataInfo;
+ 
 
         }
       },
@@ -173,10 +193,17 @@ export class AddnewApplicationComponent implements OnInit {
       "Phoneno": this.form.get('mobile')?.value,
       "UserId": this.userObj.UserID,
       "OTPNO": this.form.get('mobileotp')?.value,
+
     }
     this._crudService.OTPVerification(obj).subscribe({
       next: (value: any) => {
+        
         console.log(value)
+        Swal.fire({
+          imageUrl: '../../assets/images/warining.svg',
+          imageHeight: 80,
+          text: this.responsetype,
+        });
         if (value.status == true) {
           this.saveNext()
         }
@@ -196,23 +223,32 @@ export class AddnewApplicationComponent implements OnInit {
 
   search1() {
 
+
+
     let obj2 = {
       VerifyMobileNumberData: [
         {
-      "Type":this.form.get('tag')?.value,
-      "Name": this.form.get('name')?.value,
-      "ApplicantName": this.form.get('relationship')?.value,
-      "MobileNumber": this.form.get('mobile')?.value,
-      "UserID":  this.userObj.UserID,
+          "Type": this.form.get('tag')?.value,
+          "Name": this.form.get('name')?.value,
+          "ApplicantName": this.form.get('relationship')?.value,
+          "MobileNumber": this.form.get('mobile')?.value,
+          "UserID": this.userObj.UserID,
+          // "RefId": this.referance_id || '',
+          // "RefId": this.referance_id?.RefId || '',
+          "RefId": localStorage.getItem('refObj')|| '',
+          // "RefId": this.referance_id ? this.referance_id.RefId : '',
         }
       ]
     }
+
+    console.log(obj2);
+
     this._crudService.VerifyMobileNumberSubmit(obj2).subscribe({
       next: (value: any) => {
         console.log(value)
-      this.message = value.message;
+        this.message = value.message;
         if (value.status == true) {
-       
+
         }
         // else (value.status == false) {
         //   this.existingclienAlert();
@@ -231,7 +267,7 @@ export class AddnewApplicationComponent implements OnInit {
     })
   }
 
-    ClientEnrollmet(value: any){
+  ClientEnrollmet(value: any) {
     Swal.fire({
       width: '350px',
       imageUrl: '../../assets/images/no-data.svg',
@@ -265,22 +301,22 @@ export class AddnewApplicationComponent implements OnInit {
     })
   }
 
-  sucesscenter(type:any) {
+  sucesscenter(type: any) {
     let obj1 = {
       "ExistingMobileNumber": this.formupdate.get('ExistingMobileNumber')?.value,
       "NewMobileNumber": this.formupdate.get('NewMobileNumber')?.value,
       "ConfirmNewMobileNumber": this.formupdate.get('ConfirmNewMobileNumber')?.value,
-      "Phoneno":this.formupdate.get('NewMobileNumber')?.value,
+      "Phoneno": this.formupdate.get('NewMobileNumber')?.value,
       "UserId": this.userObj.UserID,
       "OTPNO": "",
-      "Flag": this.type
+      "Flag": this.type
     }
     this._crudService.VerifyMobileNumber(obj1).subscribe({
       next: (value: any) => {
         console.log(value)
         if (value.status == true) {
           this.otp1 = true;
-this.mobileNo=this.formupdate.get('NewMobileNumber')?.value
+          this.mobileNo = this.formupdate.get('NewMobileNumber')?.value
           this.intervalId = setInterval(() => {
             this.timer = this.timer - 1;
             if (this.timer == 0) {
@@ -372,11 +408,7 @@ this.mobileNo=this.formupdate.get('NewMobileNumber')?.value
     this.otpDialogRef = this.dialog.open(OtpComponent, {
       width: '330px'
 
-    })
-  }
+    })
+  }
 
 }
-
-
-
-

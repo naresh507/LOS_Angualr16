@@ -9,16 +9,20 @@
       <label>Choose Search type</label>
       <mat-form-field appearance="outline">
         <mat-select formControlName="type">
-            <mat-option>
-                Select
-              </mat-option>
-            <mat-option  [value]="'BrroweId'">
-                Borrower Id
-              </mat-option>
-              <mat-option  [value]="'VoterId'">
-                Voter Id
-              </mat-option>
-        </mat-select>
+          <mat-option>
+              Select
+            </mat-option>
+          <!-- <mat-option  [value]="'BrroweId'">
+              Borrower Id
+            </mat-option>
+            <mat-option  [value]="'VoterId'">
+              Voter Id -->
+              <mat-option  [value]="r.Name" *ngFor="let r of Borrower_SearchInfo">
+                    
+                 
+                {{r.Name}}
+            </mat-option>
+      </mat-select>
       </mat-form-field>
      </section>
      <section class="inputsec">

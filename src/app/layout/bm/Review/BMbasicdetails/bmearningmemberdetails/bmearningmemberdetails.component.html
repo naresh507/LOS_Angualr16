@@ -1,0 +1,168 @@
+<ng-container *ngIf="MainEarningBasicDetails">
+    <ng-container *ngIf="EarningbasicDetails">
+        <section id="basicDetails" class="incontent">
+          
+            <section class="boxsection">
+                <h2 class="bgtitle">Member Details</h2>
+                  <section class="inbox">
+                    <ul class="list_type bglisttype ">
+                        <li>
+                            <section class="inputsec">
+                                <label>Family Type</label>
+                                <section>AP</section>
+                                
+                            </section>
+                            </li>
+                            <li>
+                                <section class="inputsec">
+                                    <label>Type Of Roof</label>
+                                    <section>Kurnool</section>
+                                    
+                                </section>
+                                </li>
+                                <li>
+                                    <section class="inputsec">
+                                        <label>Type Of Ownership</label>
+                                        <section>765498</section>
+                                        
+                                    </section>
+                                    </li>
+            
+                                
+            
+                          
+            
+                              
+                    
+                      </ul>
+            
+                      <ul class="list_type bglisttype ">
+                        <li>
+                            <section class="inputsec">
+                                <label>No. Of Earning Member</label>
+                                <section>AP</section>
+                                
+                            </section>
+                            </li>
+                            <li>
+                                <section class="inputsec">
+                                    <label>No. Of Non Earning Member</label>
+                                    <section>Kurnool</section>
+                                    
+                                </section>
+                                </li>
+                                <li>
+                                    <section class="inputsec">
+                                        <label>No. Of Unmarried Child</label>
+                                        <section>765498</section>
+                                        
+                                    </section>
+                                    </li>
+            
+                           
+            
+                                
+            
+                          
+            
+                              
+                    
+                      </ul>
+                      <ul class="list_type bglisttype ">
+                        <li>
+                            <section class="inputsec">
+                                <label>Total Household Family Members</label>
+                                <section>AP</section>
+                                
+                            </section>
+                            </li>
+                            <li>
+                                <section class="inputsec">
+                                    <label>No. Of Dependents</label>
+                                    <section>Kurnool</section>
+                                    
+                                </section>
+                                </li>
+                                <li>
+                                    <section class="inputsec">
+                                        <label>RelationShip</label>
+                                        <section>765498</section>
+                                        
+                                    </section>
+                                    </li>
+            
+                           
+            
+                                
+                           
+            
+                                
+            
+                          
+            
+                              
+                    
+                      </ul>
+                      <ul class="list_type bglisttype ">
+                        <li>
+                            <section class="inputsec">
+                                <label>Locality</label>
+                                <section>AP</section>
+                                
+                            </section>
+                            </li>
+                            <li>
+                                <section class="inputsec">
+                                    <label>Religion/Community</label>
+                                    <section>Kurnool</section>
+                                    
+                                </section>
+                                </li>
+                                <li>
+                                    <section class="inputsec">
+                                        <label>Caste/category</label>
+                                        <section>765498</section>
+                                        
+                                    </section>
+                                    </li>
+                           
+                      </ul>
+                
+                        <mat-accordion multi>
+                <mat-expansion-panel>   
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Update Details
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+<!-- <app-cashflowforms  (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms> -->
+    <app-bmupdateerarningmember></app-bmupdateerarningmember>
+                   
+
+                    <section style="text-align: right; margin: 30px 0;">
+                        <button class="loginBtn"  mat-raised-button color="primary" (click)="addmember = !addmember">Save & Next</button>
+                    </section>
+<ng-container *ngIf="addmember">
+    <hr />
+  <!-- <section class="smalltitlewrap"><div>  <h2>Income 2</h2></div> <button class="removeBtn"  mat-raised-button  (click)="addmember = !addmember"><mat-icon>close_outlined</mat-icon>Remove Income</button></section>
+    <app-cashflowforms (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms> -->
+    <section class="smalltitlewrap"><div>  <h2>Income 2</h2></div> <button class="removeBtn"  mat-raised-button  (click)="addmember = !addmember"><mat-icon>close_outlined</mat-icon>Remove Income</button></section>
+    <app-cashflowforms ></app-cashflowforms>
+</ng-container>
+
+                    </mat-expansion-panel>
+
+</mat-accordion>
+                  </section>
+                    </section>
+                    
+                    
+            </section>
+          
+
+    </ng-container>
+
+    
+</ng-container>
+

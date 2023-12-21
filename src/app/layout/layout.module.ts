@@ -58,11 +58,29 @@ import { AadharclientpictureComponent } from './aadharclientpicture/aadharclient
 import { WebcamModule } from 'ngx-webcam';
 import { MemberdetailsComponent } from './memberdetails/memberdetails.component';
 
+import { BmverifyclientdetailsComponent } from './BM/Review/bmverifyclientdetails/bmverifyclientdetails.component';
+import { BmbasicdetailsBorrowerComponent } from './BM/Review/BMbasicdetails/bmbasicdetails-borrower/bmbasicdetails-borrower.component';
+import { BmearningmemberdetailsComponent } from './BM/Review/BMbasicdetails/bmearningmemberdetails/bmearningmemberdetails.component';
+import { BmhouseholddetailsComponent } from './BM/Review/BMbasicdetails/bmhouseholddetails/bmhouseholddetails.component';
+
+import { BmcashflowdetailsComponent } from './BM/Review/CashFlow/bmcashflowdetails/bmcashflowdetails.component';
+
+import { BmhhexpensesComponent } from './BM/Review/CashFlow/bmhhexpenses/bmhhexpenses.component';
+import { BmhhliabilityComponent } from './BM/Review/CashFlow/bmhhliability/bmhhliability.component';
+import { BmhhloaneligibilityComponent } from './BM/Review/CashFlow/bmhhloaneligibility/bmhhloaneligibility.component';
+import { BmGuarantorsdetailsComponent } from './BM/Review/LoanDetails/bm-guarantorsdetails/bm-guarantorsdetails.component';
+import { BminsurancedetailsComponent } from './BM/Review/LoanDetails/bminsurancedetails/bminsurancedetails.component';
+import { BmbankdetailsComponent } from './BM/Review/LoanDetails/bmbankdetails/bmbankdetails.component';
+import { BmloandetailsComponent } from './BM/Review/LoanDetails/bmloandetails/bmloandetails.component';
+import { BmcashflowformsComponent } from './BM/Review/CashFlow/bmcashflowforms/bmcashflowforms.component';
+import { BmupdateerarningmemberComponent } from './BM/Review/BMbasicdetails/bmupdateerarningmember/bmupdateerarningmember.component';
+import { BmUpdateHoulddetailsComponent } from './BM/Review/BMbasicdetails/bm-update-houlddetails/bm-update-houlddetails.component';
+
 @NgModule({
   declarations: [
     LayoutComponent,
     DashboardComponent,
-    
+  
     SidebarComponent,
     ContactusComponent,
     NewapplicationComponent,
@@ -108,6 +126,24 @@ import { MemberdetailsComponent } from './memberdetails/memberdetails.component'
     BMDashboardComponent,
     AMDashboardComponent,
     InsightsComponent,
+  
+    BmverifyclientdetailsComponent,
+    BmbasicdetailsBorrowerComponent,
+    BmearningmemberdetailsComponent,
+    BmhouseholddetailsComponent,
+
+    BmcashflowdetailsComponent,
+  
+    BmhhexpensesComponent,
+    BmhhliabilityComponent,
+    BmhhloaneligibilityComponent,
+    BmGuarantorsdetailsComponent,
+    BminsurancedetailsComponent,
+    BmbankdetailsComponent,
+    BmloandetailsComponent,
+    BmcashflowformsComponent,
+    BmupdateerarningmemberComponent,
+    BmUpdateHoulddetailsComponent,
     
     
     // SamvoterComponent,
@@ -119,7 +155,7 @@ import { MemberdetailsComponent } from './memberdetails/memberdetails.component'
     LayoutRoutingModule,
     SharedModule,
     NgApexchartsModule,
-    // WebcamModule,
+    WebcamModule,
     
     CommonModule,
     

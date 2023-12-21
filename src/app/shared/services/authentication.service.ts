@@ -8,8 +8,10 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  private rememberKey = 'rememberedCredentials';
+  private ForgotUserid = 'ForgotUserid';
 
-  isUserLoggedIn: boolean = false;
+
   private accessToken: any;
   private refreshTokenStr: any;
   constructor(private http: HttpClient) { }
@@ -22,6 +24,37 @@ private userObj={
 
 }
 
+
+
+getForgotCredentials(): { userId: string } | null {
+  const ForgotUserId = localStorage.getItem(this.ForgotUserid);
+  return ForgotUserId ? JSON.parse(ForgotUserId) : null;
+}
+
+setForgotCredentials(userId: string): void {
+  const Forgotcredentials = { userId };
+  localStorage.setItem(this.ForgotUserid, JSON.stringify(Forgotcredentials));
+}
+
+clearForgotCredentials(): void {
+  localStorage.removeItem(this.ForgotUserid);
+}
+
+
+getRememberedCredentials(): { userId: string, Password: string } | null {
+  const rememberedCredentials = localStorage.getItem(this.rememberKey);
+  return rememberedCredentials ? JSON.parse(rememberedCredentials) : null;
+}
+
+setRememberedCredentials(userId: string, Password: string): void {  
+  // const credentials = btoa { userId, Password };
+  const credentials = { userId, Password };
+  localStorage.setItem(this.rememberKey, JSON.stringify(credentials));
+}
+
+clearRememberedCredentials(): void {
+  localStorage.removeItem(this.rememberKey);
+}
 
 // setUserObj(token: any) {
 //   this.userObj = token;

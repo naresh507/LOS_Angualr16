@@ -86,10 +86,10 @@ vilageData(event:any){
   const selectedValue = event.value;
   console.log('Selected Value:', selectedValue);
   let obj={
-    // "UserID": this.userObj.UserID,
-    // "pincode":  this.form.get('pincode')?.value
-    "UserID":"12",
-    "pincode":"761110",
+     "UserID": this.userObj.UserID,
+    "pincode":  this.form.get('pincode')?.value,
+    // "UserID":"12",
+    // "pincode":"761110",
     "village":selectedValue
   }
  this._crudService.masterVillageCode(obj).subscribe({
@@ -148,9 +148,32 @@ vilageData(event:any){
 
   newformUrl()
   {
-    this.route.navigateByUrl('/addnewClient')
 
-  }
+    const villageData = {
+      MLV_Name: this.mastervillageDetails[0].VillageName, 
+      GramPanchayat: this.mastervillageDetails[0].GramPanchayat,
+      Block: this.mastervillageDetails[0].Block, 
+      District: this.mastervillageDetails[0].District, 
+      CensusId: this.mastervillageDetails[0].CensusId,
+      Lat: this.mastervillageDetails[0].Lat, 
+      Long: this.mastervillageDetails[0].Long, // Change this based on your data structure
+      Userid: this.userObj.UserID
+    };
+    this._crudService.VillageSubmitData({ VillageSubmitDataInfo: [villageData] })
+    .subscribe({
+      next: (response: any) => {
+    
+        console.log('Data saved:', response);
+        this.route.navigateByUrl('/addnewClient');
+      },
+      error: (err: HttpErrorResponse) => {
+      
+        console.error('Error occurred:', err);
+      }
+    });
+    this.route.navigateByUrl('/addnewClient')
+}
+
 } 
 
 

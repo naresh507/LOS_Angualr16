@@ -1,195 +1,53 @@
 <ng-container *ngIf="MainEarningBasicDetails">
     <ng-container *ngIf="EarningbasicDetails">
         <section id="basicDetails" class="incontent">
-
-            <section class="detailsbox whiteclr marT20 shadowbox">
-
-                <ul class="profileflex">
-                    <!-- <li class="imglabel"> <img src="../../../../assets/images/img1.jpg" style="width:34px" />
-                        <div><label>Spouse</label>
-                            <span>{{response.Spouse}}</span>
-                        </div>
-                    </li> -->
-                    <!-- <li><a class="textfilledbutton">Add Earning number</a></li> -->
-                    <li class="textfilledbutton" style="text-align: right; margin: 30px 0;">
-                        <button class="loginBtn"  mat-raised-button color="" (click)="addearningMember()">Add Earning number</button>
-                    </li>
-                    
-                </ul>
+           
+            <section class="detailsbox whiteclr marT20 shadowbox" *ngFor="let member of response" >
+                
+                    <ul class="detailsUL detailsULNew" >
+                      <li><label>Capture Photo</label>
+                              <!-- <span>{{member.CapturePhoto }}</span> -->
+                            <img [src]="member?.CapturePhoto"  style="width:80px" />
+                        </li>
+                        <li><label>voterID Frontpath</label> 
+                   
+                            <!-- <span>{{member.voterID_Frontpath }}</span> -->
+                         <img [src]="member?.voterID_Frontpath" style="width:80px"  />
+                         
+                        </li> 
+                        <li><label>voterID Backpath</label>
+                           
+                            <!-- <span>{{member.voterID_Backpat }}</span> -->
+                            <img [src]="member?.voterID_Backpath" style="width:80px" />
+                          
+                        </li>
+                        <!-- <li><label>Capture Photo Name</label>
+                          
+                            <span>{{member.CapturePhotoName }}</span>
+                           
+                        </li> -->
+                        <li><label>Name</label>
+                            <span>{{member.Name }}</span>
+                        </li>
+                
+                        <li><label>Aadhar ID</label>
+                            <span>{{member.AadharID }}</span>
+                        </li>
+                        <li><label>DateofBirth</label>
+                            <span>{{member.DateofBirth }}</span>
+                        </li>
+                        <li><label>voter ID</label>
+                            <span>{{member.voterID }}</span>
+                        </li>
+                        <li><label>Address</label>
+                            <span>{{member.Address }}</span>
+                        </li>
+                    </ul>
             </section>
+            <button mat-raised-button class="fill_btn" colo="primary"
+            (click)="Next()">Next</button>
         </section>
     </ng-container>
-
     
 </ng-container>
 
-<!-- <ul class="list_type">
-    <li>
-   <section class="inputsec">
-            <label>Family Type</label>
-            <mat-form-field appearance="outline">
-                <mat-select>
-                    <mat-option>
-                        Select
-                    </mat-option>
-                    <mat-option  [value]="f.ID" *ngFor="let f of FamilyTypeDetails">
-                       
-                    
-                        {{f.Name}}
-                    </mat-option>
-                  
-                </mat-select>
-            </mat-form-field>
-        </section>
-      
-    </li>
-    <li class="">
-        <section class="inputsec">
-            <label>Non-Earning members</label>
-            <mat-form-field appearance="outline">
-                <input required matInput placeholder="Enter">
-            </mat-form-field>
-        </section>
-    </li>
-</ul>
-
-
-<ul class="list_type">
-    <li class="">
-        <section class="inputsec">
-            <label>Total Household Family members</label>
-            <mat-form-field appearance="outline">
-                <input required matInput placeholder="Enter">
-            </mat-form-field>
-        </section>
-    </li>
-    <li class="">
-        <section class="inputsec">
-            <label>No of Unmarried Children</label>
-            <mat-form-field appearance="outline">
-                <input required matInput placeholder="Enter">
-            </mat-form-field>
-        </section>
-    </li>
-</ul>
-
-
-
-<ul class="list_type">
-   
-    <li class="">
-        <section class="inputsec">
-            <label>No of Dependents</label>
-            <mat-form-field appearance="outline">
-                <input required matInput placeholder="Enter">
-            </mat-form-field>
-        </section>
-    </li>
-    <li>
-        <section class="inputsec">
-                 <label>Type of Roof</label>
-                 <mat-form-field appearance="outline">
-                     <mat-select>
-                         <mat-option>
-                             Select
-                         </mat-option>
-                         <mat-option  [value]="r.ID" *ngFor="let r of TypeofRoofDetails">
-                       
-                    
-                            {{r.Name}}
-                        </mat-option>
-                     </mat-select>
-                 </mat-form-field>
-             </section>
-           
-         </li>
-</ul>
-
-
-
-<ul class="list_type">
-   
-    <li>
-        <section class="inputsec">
-                 <label>Type Of Ownership</label>
-                 <mat-form-field appearance="outline">
-                     <mat-select>
-                         <mat-option>
-                             Select
-                         </mat-option>
-                         <mat-option  [value]="r.ID" *ngFor="let r of OwnershipDetails">
-                       
-                    
-                            {{r.Name}}
-                        </mat-option>
-                     </mat-select>
-                 </mat-form-field>
-             </section>
-           
-         </li>
-    <li>
-        <section class="inputsec">
-                 <label>Locality</label>
-                 <mat-form-field appearance="outline">
-                     <mat-select>
-                         <mat-option>
-                             Select
-                         </mat-option>
-                         <mat-option  [value]="r.ID" *ngFor="let r of LOCALITYDetails">
-                       
-                    
-                            {{r.Name}}
-                        </mat-option>
-                     </mat-select>
-                 </mat-form-field>
-             </section>
-           
-         </li>
-</ul>
-
-
-<ul class="list_type">
-   
-    <li>
-        <section class="inputsec">
-                 <label>Religion /Community</label>
-                 <mat-form-field appearance="outline">
-                     <mat-select>
-                         <mat-option>
-                             Select
-                         </mat-option>
-                         <mat-option  [value]="r.ID" *ngFor="let r of ReligionCommunityDetails">
-                       
-                    
-                            {{r.Name}}
-                        </mat-option>
-                     </mat-select>
-                 </mat-form-field>
-             </section>
-           
-         </li>
-    <li>
-        <section class="inputsec">
-                 <label>Caste/Category</label>
-                 <mat-form-field appearance="outline">
-                     <mat-select>
-                         <mat-option>
-                             Select
-                         </mat-option>
-                         <mat-option  [value]="r.ID" *ngFor="let r of CasteCategoryDetails">
-                            {{r.Name}}
-                        </mat-option>
-                     </mat-select>
-                 </mat-form-field>
-             </section>
-           
-         </li>
-</ul> -->
-
-<!-- <section class="btnswrapper text-center">
-  
-    
-    <button mat-raised-button class="fill_btn" colo="primary"
-   >Save & Next</button>
-
-</section> -->

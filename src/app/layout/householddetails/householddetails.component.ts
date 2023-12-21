@@ -34,10 +34,16 @@ export class HouseholddetailsComponent implements OnInit {
   constructor(private router: Router, private _crudService: CrudService, private fb: FormBuilder, private toastr: ToastrService,) {
     this.form = this.fb.group({
 
-      MemberName: ['', Validators.required],
-      FamilyType:[''],
+      // MemberName: ['', Validators.required],
+      FamilyType:['', Validators.required],
      
-   
+      NonEaringMembers:[''],
+      TotalHouseholdFamilyMembers:[''],
+      NoOfunmarriedchildren:[''],
+      NoOfDependents:[''],
+
+
+      
       TypeOfRoof:[''],
       TypeofOwnership:[''],
       Locality:[''],

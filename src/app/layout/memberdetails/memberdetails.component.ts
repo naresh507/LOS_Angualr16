@@ -1,10 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CrudService } from 'src/app/shared/services/crud.service';
+import { AddnewApplicationComponent } from '../addnew-application/addnew-application.component';
 
 @Component({
   selector: 'app-memberdetails',
@@ -12,6 +13,9 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./memberdetails.component.scss']
 })
 export class MemberdetailsComponent  implements OnInit{
+  response:any;
+  LosUnique_Id: any = {};
+  dialogref:any;
   MainEarningBasicDetails: boolean = true
   EarningbasicDetails: boolean = true;
   form!:FormGroup;
@@ -25,12 +29,13 @@ export class MemberdetailsComponent  implements OnInit{
   PurposeDetails:any;
   ReligionCommunityDetails:any;
   TypeofRoofDetails:any;
-
-
-
+  @Output() gotonext = new EventEmitter()
+  // @Output() gotonext = new EventEmitter()
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
     this.getMasterData();
+    this.EarningMembersDataFetch();
   }
  
 
@@ -39,7 +44,7 @@ export class MemberdetailsComponent  implements OnInit{
     private _fb:FormBuilder,
     private _crudService:CrudService,
     private toastr: ToastrService,
-    private router:Router
+    private router:Router,private Dialog:MatDialog
     ) {
       this.form=this._fb.group({
         MemberName:['', Validators.required],
@@ -86,6 +91,35 @@ export class MemberdetailsComponent  implements OnInit{
   
     
   }
+
+  Next(){
+    this.gotonext.emit();
+  }
+
+  EarningMembersDataFetch()
+  {
+    let obj={
+    
+     "UserId": this.userObj.UserID,
+     "LosUnique_Id" : this.LosUnique_Id,
+     
+   }
+    this._crudService.EarningMembersDataFetch(obj).subscribe({
+      next: (value: any) => {
+
+     console.log(value)
+     console.log('EarningMembers:' ,this.response)
+     if(value.status==true && value.EarningMembersDataFetchDataInfo.length >= 1)
+     {
+      this.response = value.EarningMembersDataFetchDataInfo;
+     }
+      },
+      
+          error: (err: HttpErrorResponse) => {
+            console.log(err)
+          }
+     })
+  }
   
 
   getMasterData()
@@ -93,6 +127,7 @@ export class MemberdetailsComponent  implements OnInit{
     let obj={
     
      "UserId": this.userObj.UserID,
+     "LosUnique_Id" : this.LosUnique_Id,
      
    }
     this._crudService.getMasterDetails(obj).subscribe({
@@ -115,6 +150,7 @@ export class MemberdetailsComponent  implements OnInit{
      })
   }
   addearningMember(){
-    this.router.navigateByUrl('/addnewClient')
+this.dialogRef= this.Dialog.open(AddnewApplicationComponent,{width:'600px'})
+   // this.router.navigateByUrl('/addnewClient')
   }
 }

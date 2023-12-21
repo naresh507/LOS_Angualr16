@@ -218,13 +218,26 @@ warningpopup()
 
   
   Submit(formData: any) {
-    formData.value['UserID'] = this.userObj.UserID;
-    formData.value['LosUnique_Id'] = this.LosUnique_Id;
-    let obj={
-      "UserID": this.userObj.UserID,
-      "type": "",
-      "LosUnique_Id": this.LosUnique_Id
-    }
+
+    formData.value['UserId']=this.userObj.UserID;
+    formData.value['LosUnique_Id']=this.LosUnique_Id;
+
+  let obj={
+    "LoanDetailsData":[{}]
+   }
+
+  obj.LoanDetailsData=[formData.value]
+ 
+    console.log(obj.LoanDetailsData);
+
+
+    // formData.value['UserID'] = this.userObj.UserID;
+    // formData.value['LosUnique_Id'] = this.LosUnique_Id;
+    // let obj={
+    //   "UserID": this.userObj.UserID,
+    //   "type": "",
+    //   "LosUnique_Id": this.LosUnique_Id
+    // }
   
     this._crudService.LoanDetailsSubmit(obj).subscribe({
       next: (value: any) => {
@@ -235,16 +248,18 @@ warningpopup()
     
       this.toastr.success('Member Data Added Successfully');
       this.dialogRef.close();
+      
        
      }
-     this.route.navigateByUrl('/gstdetails')
+     
+    // this.route.navigateByUrl('/gstdetails')
       },
       
           error: (err: HttpErrorResponse) => {
             console.log(err)
           }
      })
-  
+     this.clickDetails('b');
     
   }
   

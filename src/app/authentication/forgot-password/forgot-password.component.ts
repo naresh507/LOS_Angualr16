@@ -9,25 +9,25 @@ import Swal from 'sweetalert2';
   styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent {
-
+  UserID: any;
   isLastDigitEntered: boolean= false;
   hide = true;
   otp:boolean=false;
   resendCooldown: number = 0;
   remainingAttempts: number = 2;
-
+  sendotpresponse:string='';
 
   ForgotDetails: any = {
-    UserId: '',
-    Phoneno: '',
-    OTPNO: '',
+    UserID: '',
+    MoblieNumber: '',
+    OTP: '',
     Flag:'U'
   
   };
 
 
   checkOtpLength() {
-    const enteredOtp = this.ForgotDetails.OTPNO;
+    const enteredOtp = this.ForgotDetails.OTP;
     if (enteredOtp && enteredOtp.length == 6) {
       const lastChar = enteredOtp.slice(-1); 
       this.isLastDigitEntered = !isNaN(parseInt(lastChar));
@@ -41,10 +41,7 @@ export class ForgotPasswordComponent {
   ) { }
 
   ngOnInit(): void {
-    
 
-   
-     
   }
 login()
 {
@@ -53,24 +50,32 @@ login()
 
   simpleAlert(){
       const additionalData = {
-        UserId: this.ForgotDetails.UserId,
-        Phoneno: this.ForgotDetails.Phoneno,
-        OTPNO: this.ForgotDetails.OTPNO,
+        UserID: this.ForgotDetails.UserID,
+        MoblieNumber: this.ForgotDetails.MoblieNumber,
+        OTP: this.ForgotDetails.OTP,
         Flag:"O"
       };
       this.auth.sendOtp(additionalData).subscribe(
         (response) => {
-          if (response && response.status && response.status === true && response.message === 'OTP Successfully Verified') {
-            this.router.navigate(['/resetpasword']);
-          } else {
-            
+          if (response && response.status && response.status === true && response.message === 'Data Fetch Successfully') {
+            this.sendotpresponse = response.ForgotPasswordMoblieNumberInfo[0].Message;
+            this.auth.setForgotCredentials(this.ForgotDetails.UserID);
+
+            //this.auth.clearForgotCredentials();
+
             Swal.fire({
-                  imageUrl: '../../assets/images/warining.svg',
-                  imageHeight: 80,
-                  text: response.message,
-                });
+              imageUrl: '../../assets/images/warining.svg',
+              imageHeight: 80,
+              text: this.sendotpresponse,
+            });
+      }
+     
+            this.router.navigate(['/resetpasword']);
           }
-        }
+        //    else {
+            
+           
+        // }
       );
   }
 
@@ -117,7 +122,24 @@ login()
 
   sucessOTP() {
     this.auth.sendOtp(this.ForgotDetails).subscribe(
-      () => {
+      (response) => {
+        this.sendotpresponse = response.ForgotPasswordMoblieNumberInfo[0].Message;
+        console.log(this.sendotpresponse);
+        Swal.fire({
+          width: '350px',
+          imageUrl: '../../assets/images/tick.png',
+          imageHeight: 80,
+          text: this.sendotpresponse,
+          showCancelButton: false,
+          confirmButtonText: 'Okay',
+          customClass: {
+            confirmButton: 'strokedBtn',
+          }
+        }).then((result) => {
+          if (!result.isConfirmed) {
+            console.log('close');
+          }
+        });
         this.resendCooldown = 90;
         this.startCooldownTimer();
         this.otp = true;
@@ -127,22 +149,6 @@ login()
         // Handle error if needed
       }
     );
-  
-    Swal.fire({
-      width: '350px',
-      imageUrl: '../../assets/images/tick.png',
-      imageHeight: 80,
-      text: 'OTP Sent Successfully',
-      showCancelButton: false,
-      confirmButtonText: 'Okay',
-      customClass: {
-        confirmButton: 'strokedBtn',
-      }
-    }).then((result) => {
-      if (!result.isConfirmed) {
-        console.log('close');
-      }
-    });
   }
 
   startCooldownTimer() {

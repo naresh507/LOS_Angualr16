@@ -15,6 +15,7 @@ export class NewapplicationsearchComponent implements OnInit {
   searchClientDetails: any;
   form!: FormGroup;
   userObj: any;
+  Borrower_SearchInfo: any;
   
   constructor(
     private route: Router,
@@ -35,9 +36,30 @@ export class NewapplicationsearchComponent implements OnInit {
   ngOnInit(): void {
     
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
-   
+    this.getMasterData();
      
   }
+  getMasterData() {
+    let obj = {
+
+      "UserId": this.userObj.UserID,
+      
+
+    }
+    this._crudService.getMasterDetails(obj).subscribe({
+      next: (value: any) => {
+        console.log(value)
+        if (value.status == true) {
+          this.Borrower_SearchInfo = value?.Borrower_SearchInfo;
+
+        }
+      },
+
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+  }
 
  // When Cliked on Submit
  submit(formData: any) {

@@ -115,8 +115,36 @@
                 <section class="inputsec">
                     <label>Bank Passbook</label>
                 <section class="imgwrapper">
-                    <img src="../../../../assets/images/passbook.png" />  
+                    <!-- <img src="../../../../assets/images/passbook.png" />   -->
+                    <input type="file" #fileInput style="display: none" (click)="fileInput.click()" (change)="selectFile($event)" accept="image/*" />
+                    <img src="../../../assets/capture.png" class="my-dp dp rounded-circle" *ngIf="!url" />
+				<img [src]="url" *ngIf="url">
                 </section>
+                <div class="d-flex align-items-center mt-10">
+                    <button mat-button class="mat-button-primary btn-sm me-2 w-100" (click)=" camera()"  [style.background-color]="'#4205b9'" [style.color]="'white'" >
+                      <span class="me-2"><i class="bi bi-camera-fill"></i></span>Open Camera
+                    </button>
+                    
+                    <button mat-button class="mat-button-primary btn-sm w-100" (click)="fileInput.click()" [style.background-color]="'#4205b9'" [style.color]="'white'" style="margin-left: 10px;"*ngIf="!imageupload">
+                      <span class="me-2"><i class="bi bi-upload"></i>
+                      </span>Upload Photo
+                    </button>
+             
+                  </div>
+                  <div  *ngIf="stream ">
+                    <webcam [trigger]="$trigger" (imageCapture)="snap($event)" [imageQuality]="1"></webcam> 
+                <button mat-button class="mat-button-primary btn-sm w-100" (click)="captueimage()">{{btnLabel}} </button>
+                </div>
+                <ng-template #statusPopup>
+                    <div mat-dialog-content>
+                        <p>{{status}} </p>
+                    </div>
+                    <div mat-dialog-actions align="center">
+                        <button mat-button (click)="closecameraerror()">OK</button>
+                    </div>
+                </ng-template>
+                
+                
                  
                 </section>
                 </li>
