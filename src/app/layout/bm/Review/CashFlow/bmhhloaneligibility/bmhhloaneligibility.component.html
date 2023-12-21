@@ -1,0 +1,43 @@
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+    <section class="detailsbox whiteclr marT20">
+    
+        <ul class="detailsUL detailsULNew">
+            <li><label>Member Loan Cycle</label>
+                <!-- <span>1</span> -->
+                <span>{{HLoan['MemberLoanCycle'] }}</span>
+            </li>
+            <li><label>ROI</label>
+                <!-- <span>-</span> -->
+                <span>{{HLoan['ROI'] }}</span>
+            </li>
+            <li><label>EMI Eligibility</label>
+                <!-- <span>-</span> -->
+                <span>{{HLoan['EMIEligibility'] }}</span>
+            </li>
+            <li><label>HouseHold  Income</label>
+                <!-- <span>-</span> -->
+                <span>{{HLoan['HouseholdIncome'] }}</span>
+            </li>
+            <li><label>HouseHold Expenditure</label>
+                <!-- <span>-</span> -->
+                <span>{{HLoan['HouseholdExpenditure'] }}</span>
+            </li>
+            <li><label>Loan Eligibility</label>
+                <!-- <span>-</span> -->
+                <span>{{HLoan['LoanEligibility'] }}</span>
+            </li>
+    
+            <li><label>Tenture</label>
+                <!-- <span>12</span> -->
+                <span>{{HLoan['Tenure'] }}</span>
+            </li>
+            
+    
+        </ul>
+    </section>
+    <section class="btnswrapper"><button mat-stroked-button class="btns addBtns" (click)="loanCheck()" >Check Loan Eligibility</button>
+        <button mat-raised-button class="btns" color="primary" type="submit">Save & Next</button>
+    
+    </section>
+    </form>
+    

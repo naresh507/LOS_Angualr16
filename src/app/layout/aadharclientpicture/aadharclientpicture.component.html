@@ -1,49 +1,49 @@
 <div class="text-center my-3">
-		<h5>Capture Client Photo</h5>
-		<p class="center mt-10 mb-10">	
-		  Make sure the customer’s face aligned and towards the camera!
-		</p>
-		<div class="d-flex justify-content-center mt-30">
-		  <figure class="dummy-upload">
-			<input type="file" #fileInput style="display: none" (click)="fileInput.click()" (change)="selectFile($event)" accept="image/*" />
-			<div class="image-container">
-				<img src="../../../assets/capture.png" class="my-dp dp rounded-circle" *ngIf="!url" />
-				<img [src]="url" *ngIf="url">
-			</div>
-		  </figure>
+	<h5>Capture Client Photo</h5>
+	<p class="center mt-10 mb-10">	
+	  Make sure the customer’s face aligned and towards the camera!
+	</p>
+	<div class="d-flex justify-content-center mt-30">
+	  <figure class="dummy-upload">
+		<input type="file" #fileInput style="display: none" (click)="fileInput.click()" (change)="selectFile($event)" accept="image/*" />
+		<div class="image-container">
+			<img src="../../../assets/capture.png" class="my-dp dp rounded-circle" *ngIf="!url" />
+			<img [src]="url" *ngIf="url">
 		</div>
-		<div class="d-flex align-items-center mt-10">
-		  <button mat-button class="mat-button-primary btn-sm me-2 w-100" (click)=" camera()"  [style.background-color]="'#4205b9'" [style.color]="'white'" >
-			<span class="me-2"><i class="bi bi-camera-fill"></i></span>Open Camera
-		  </button>
-		  
-		  <button mat-button class="mat-button-primary btn-sm w-100" (click)="fileInput.click()" [style.background-color]="'#4205b9'" [style.color]="'white'" style="margin-left: 10px;"*ngIf="!imageupload">
-			<span class="me-2"><i class="bi bi-upload"></i>
-			</span>Upload Photo
-		  </button>
-		  <button mat-button class="mat-button-primary btn-sm w-100" (click)="Upload()" [style.background-color]="'#4205b9'" [style.color]="'white'" style="margin-left: 10px;" *ngIf="imageupload">
-			<span class="me-2"><i class="bi bi-upload"></i>
-			</span>Upload
-		  </button>
-		</div>
-	  </div>
+	  </figure>
+	</div>
+	<div class="d-flex align-items-center mt-10">
+	  <button mat-button class="mat-button-primary btn-sm me-2 w-100" (click)=" camera()"  [style.background-color]="'#4205b9'" [style.color]="'white'" >
+		<span class="me-2"><i class="bi bi-camera-fill"></i></span>Open Camera
+	  </button>
+	  
+	  <button mat-button class="mat-button-primary btn-sm w-100" (click)="fileInput.click()" [style.background-color]="'#4205b9'" [style.color]="'white'" style="margin-left: 10px;"*ngIf="!imageupload">
+		<span class="me-2"><i class="bi bi-upload"></i>
+		</span>Upload Photo
+	  </button>
+	  <button mat-button class="mat-button-primary btn-sm w-100" (click)="Upload()" [style.background-color]="'#4205b9'" [style.color]="'white'" style="margin-left: 10px;" *ngIf="imageupload">
+		<span class="me-2"><i class="bi bi-upload"></i>
+		</span>Upload
+	  </button>
+	</div>
+  </div>
 
- <div  *ngIf="stream ">
-	<webcam [trigger]="$trigger" (imageCapture)="snap($event)" [imageQuality]="1"></webcam> 
+<div  *ngIf="stream ">
+<webcam [trigger]="$trigger" (imageCapture)="snap($event)" [imageQuality]="1"></webcam> 
 <button mat-button class="mat-button-primary btn-sm w-100" (click)="captueimage()">{{btnLabel}} </button>
 </div>
 <div class="div" *ngIf="previewimage">
-	<img [src]="previewimage" height="100%" width="100%">
-	<button mat-button class="mat-button-primary btn-sm w-100" (click)="submit()">save</button>
-	<button mat-buttob class="" (click)=goto();>Next</button>
-	
+<img [src]="url" height="150px" width="150px">
+<button mat-button class="mat-button-primary btn-sm w-100" (click)="submit()">save</button>
+<button mat-buttob class="" (click)=goto();>Next</button>
+
 </div>
 
 <ng-template #statusPopup>
-    <div mat-dialog-content>
-        <p>{{status}} </p>
-    </div>
-    <div mat-dialog-actions align="center">
-        <button mat-button (click)="closecameraerror()">OK</button>
-    </div>
+<div mat-dialog-content>
+	<p>{{status}} </p>
+</div>
+<div mat-dialog-actions align="center">
+	<button mat-button (click)="closecameraerror()">OK</button>
+</div>
 </ng-template>

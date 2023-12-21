@@ -163,6 +163,7 @@ export class AddnewApplicationComponent implements OnInit {
     let obj = {
 
       "UserId": this.userObj.UserID,
+      "Refid": localStorage.getItem('refObj')|| '',
 
     }
     this._crudService.getMasterDetails(obj).subscribe({
@@ -171,6 +172,9 @@ export class AddnewApplicationComponent implements OnInit {
         if (value.status == true) {
 
           this.FamilyTypeDetails = value.FamilyTypeDetails;
+          
+          // this.FamilyTypeDetails = value.RelationshipOneDataInfo;
+ 
 
         }
       },

@@ -1,0 +1,222 @@
+<form [formGroup]="form"  (ngSubmit)="saveData()">
+    <ul class="list_type">
+        <li>
+            <section class="inputsec">
+                <label>Name</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Name" value="Rajesh" formControlName="Name">
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Relationship</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="relationship" value="Husband" formControlName="Relationship">
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+    <section class="inputsec">
+        <label>Type of source</label>
+        <mat-form-field appearance="outline">
+            <mat-select formControlName="TypeOfSource">
+                <mat-option>
+                    Select
+                </mat-option>
+                <mat-option [value]="'option1'">
+                    option1
+                </mat-option>
+                <mat-option [value]="'option2'">
+                    option2
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
+    </li>
+    
+    <li>
+        <section class="inputsec">
+            <label>Avg Daily Transaction</label>
+            <mat-form-field appearance="outline">
+                <mat-select formControlName="AvgDailyTranscation">
+                    <mat-option>
+                        Select
+                    </mat-option>
+                    <mat-option [value]="'option1'">
+                        option1
+                    </mat-option>
+                    <mat-option [value]="'option2'">
+                        option2
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </section>
+        </li>
+    
+        <li>
+            <section class="inputsec">
+                <label>No of days in a month</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter Days" formControlName="NoOfDaysInMonth">
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Monthly Gross Sale</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="" formControlName="MothlyGrossSale" [disabled]="property"  >
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Raw Materials consume(Monthly)</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="RawMaterialsConsume">
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Rent for Shop(Monthly)</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter Days" formControlName="ReantForShop">
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Labour/Wages(Monthly)</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="Labour">
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Electricity(Monthly)</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="Electricity">
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Conveyance-Fuel & Maintenance (Monthly)</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="Maintenace">
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Other Manufacturing (Monthly)</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="otherManufacturing">
+                </mat-form-field>
+            </section>
+        </li>
+    
+    
+        <li>
+            <section class="inputsec">
+                <label>Admin and Operating Expenses (Monthly)</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="AdminandOperatingExpenses">
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Total Business Expenses (Monthly)</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="TotalBusinessExpenses">
+                </mat-form-field>
+            </section>
+        </li>
+    
+    
+        <li>
+            <section class="inputsec">
+                <label>Avg Daily Expenditure</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="AvgDailyExpenlture">
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Avg Net Profit Daily</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="AvgNetProfitDaily">
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Income frequency</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="IncomeFrequency">
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Net Business Income Monthly</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="" [disabled]="property" formControlName="NetBussinessIncomeMothly">
+                </mat-form-field>
+            </section>
+        </li>
+    
+    
+        <li>
+            <section class="inputsec">
+                <label>Income frequency</label>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="IncomeFrequency">
+                        <mat-option>
+                            Select
+                        </mat-option>
+                        <mat-option [value]="'option1'">
+                            option1
+                        </mat-option>
+                        <mat-option [value]="'option2'">
+                            option2
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </section>
+            </li>
+            <li>
+                <section class="inputsec">
+                    <label>Net Business Income Monthly</label>
+                    <mat-form-field appearance="outline">
+                        <input required matInput placeholder="" [disabled]="property" formControlName="NetBussinessIncomeMothly">
+                    </mat-form-field>
+                </section>
+            </li>
+            <li>
+                <section class="inputsec">
+                    <label>Net Business Income Monthly (Margin %)</label>
+                    <mat-form-field appearance="outline">
+                        <input required matInput placeholder="Enter"  formControlName="NetBussinessIncomemothlyMargin">
+                    </mat-form-field>
+                </section>
+            </li>
+            <li>
+                <section class="inputsec">
+                    <label>Annuual Income </label>
+                    <mat-form-field appearance="outline">
+                        <input required matInput placeholder="" [disabled]="property" formControlName="ApplicanteType">
+                    </mat-form-field>
+                </section>
+            </li>
+    </ul>
+    <section class="btnswrapper text-center">
+        <button type="submit" mat-raised-button class="fill_btn" colo="primary"
+       >Save & Next</button>
+    </section>
+    </form>

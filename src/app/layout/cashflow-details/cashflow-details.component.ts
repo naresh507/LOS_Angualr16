@@ -3,10 +3,12 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+
 import { CrudService } from 'src/app/shared/services/crud.service';
 import Swal from 'sweetalert2';
 import { CashflowformsComponent } from '../cashflowforms/cashflowforms.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { HhexpensesComponent } from '../hhexpenses/hhexpenses.component';
 
 
 @Component({
@@ -16,11 +18,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class CashflowDetailsComponent implements OnInit {
   @ViewChild(CashflowformsComponent) childComponents!: CashflowformsComponent[];
+  @ViewChild(HhexpensesComponent) childComponents1!: HhexpensesComponent;
   @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
   @ViewChild('enlargedialog') enlargedialog!: TemplateRef<any>;
   form!: FormGroup
 
+
+  LosUnique_Id: any = {};
   userObj: any;
+  // userObj: any;
   addmember: boolean = false;
   dialogRef: any;
   enlargeDialogRef: any;
@@ -46,6 +52,7 @@ export class CashflowDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
+    this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
   }
   enlarge() {
     this.enlargeDialogRef = this.dialog.open(this.enlargedialog, {
@@ -161,7 +168,13 @@ export class CashflowDetailsComponent implements OnInit {
   }
   hhexpencesSave() {
     console.log('save data')
-    this.clickDetails('c')
+    // this.clickDetails('c')
+    this.hhmonthly = false;   
+    this.hhexpense = false;
+    this.hhliabilty = true;
+    this.hhLoan = false
+
+
   }
 
   save(formData: any) {
@@ -180,7 +193,10 @@ export class CashflowDetailsComponent implements OnInit {
     this.savedData.push(data)
   }
   saveCashFlowData(data: any) {
+
+   
     let obj={
+
       MemberData: this.savedData
      }
  
@@ -193,7 +209,9 @@ export class CashflowDetailsComponent implements OnInit {
       
     
    //   this.toastr.success('Member Data Added Successfully');
-      this.dialogRef.close();
+   if (this.enlargeDialogRef) {
+    this.enlargeDialogRef.close();
+  }
        
      }
       },
@@ -208,6 +226,11 @@ this.hhmonthly = false;
       this.hhLoan = false
     console.log('Received cash flow data:', data);
 
+  }
+  next(){
+    this.hhexpense = false;
+    this.hhliabilty = true;
+    this.hhLoan = false
   }
 
 }

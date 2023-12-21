@@ -195,7 +195,7 @@ responsetype :string='';
         this.resData3 = {
           address: response.address.combinedAddress,
           dob: response.dob,
-          fatherName: response.relativeName,
+          fatherName: response.fatherName,
           gender: response.gender,
           maskedAadhaarNumber: response.maskedAadhaarNumber,
           name: response.name,
@@ -265,9 +265,16 @@ responsetype :string='';
     const payload = this.aadhardetailsPayload();
     this.auth.AadharotpInsertSubmit(payload).subscribe({
       next: (value: any) => {
-
+ this.responsetype = value.message;
+ Swal.fire({
+          imageUrl: '../../assets/images/warining.svg',
+          imageHeight: 80,
+          text: this.responsetype
+,
+        });
         if (value.status == true || value.status == 'True') {
 
+        
           // const AadharId = value.Aadhar_Id;
           // // this.auth.setAAdharObj(JSON.stringify(AadharId))
           // this.auth.setAAdharObj(AadharId)

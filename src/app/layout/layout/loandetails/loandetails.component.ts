@@ -248,8 +248,10 @@ warningpopup()
     
       this.toastr.success('Member Data Added Successfully');
       this.dialogRef.close();
+      
        
      }
+     
     // this.route.navigateByUrl('/gstdetails')
       },
       
@@ -257,7 +259,7 @@ warningpopup()
             console.log(err)
           }
      })
-  
+     this.clickDetails('b');
     
   }
   

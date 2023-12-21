@@ -242,8 +242,13 @@
 
         </ng-container>
 
-        <ng-container *ngIf="memberDetails">
-            <app-memberdetails></app-memberdetails>
+        <ng-container *ngIf="memberDetails" >
+            <app-memberdetails>
+           
+            </app-memberdetails>
+            <button mat-raised-button class="fill_btn" colo="primary"
+    (click)="Next()">Next</button>
+         
         </ng-container>
 
 

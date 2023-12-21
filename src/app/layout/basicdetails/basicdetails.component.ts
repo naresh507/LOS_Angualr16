@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CrudService } from 'src/app/shared/services/crud.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MemberdetailsComponent } from '../memberdetails/memberdetails.component';
 
 
 @Component({
@@ -13,6 +14,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./basicdetails.component.scss']
 })
 export class BasicdetailsComponent implements OnInit {
+  @ViewChild(MemberdetailsComponent) childComponents!: MemberdetailsComponent[];
   @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
   @ViewChild('enlargedialog') enlargedialog!: TemplateRef<any>;
   res:any =''
@@ -326,8 +328,8 @@ export class BasicdetailsComponent implements OnInit {
       next: (value: any) => {
         console.log(value)
         this.mainbasicDetails = false;
-        this.memberDetails = false;
-        this.householdDetails = true;
+        this.memberDetails = true;
+        this.householdDetails = false;
 
       },
 
@@ -456,6 +458,13 @@ addearningMember(){
   this._crudService.seRefId(refIds)
 
       this.router.navigateByUrl('/addnewClient')
+    }
+
+    Next(){
+      this.mainbasicDetails = false;
+      this.memberDetails = false;
+      this.householdDetails = true;
+
     }
 
 }

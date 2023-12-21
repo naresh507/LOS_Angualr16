@@ -43,6 +43,7 @@ export class NewapplicationsearchComponent implements OnInit {
     let obj = {
 
       "UserId": this.userObj.UserID,
+      
 
     }
     this._crudService.getMasterDetails(obj).subscribe({

@@ -21,7 +21,7 @@ export class AadharclientpictureComponent implements OnInit{
   photo: string = '';
   videoWidth = 640;
   videoHeight = 480;
-  mimeType:any=''
+  mimeType:any='';
   userObj: any;
   detailsObj = {
     "UserId": ""
@@ -40,7 +40,10 @@ export class AadharclientpictureComponent implements OnInit{
       [{
         "CapturePhoto": "",
         "CapturePhotoName": "",
-        "UserID": ""
+        "UserID": "",
+        "LosUnique_Id":'',
+        "RefId":''
+        
       }
       ]
   }
@@ -61,7 +64,12 @@ export class AadharclientpictureComponent implements OnInit{
 
   snap(event: WebcamImage) {
     console.log(event);
-    this.previewimage = event.imageAsDataUrl;
+    this.url = event.imageAsDataUrl;
+    this.previewimage = event.imageAsDataUrl.toString().split(',')[1];
+
+    // reader.result?.toString().split(',')[1];
+
+   
 
     console.log(this.previewimage);
     this.btnLabel = 're Capture image'
@@ -103,9 +111,20 @@ export class AadharclientpictureComponent implements OnInit{
     //this.router.navigateByUrl('/aadharotp')
   }
 
-
+  stopCamera() {
+    if (this.stream) {
+      this.stream.getTracks().forEach((track: MediaStreamTrack) => {
+        if (track.readyState === 'live' && track.kind === 'video') {
+          track.stop(); // Stop the camera track
+        }
+      });
+      this.stream = null; // Reset the stream reference
+    }
+  }
   captueimage() {
     this.trigger.next();
+    // this.closecameraerror();
+    this.stopCamera();
   }
   //  Camera Logic end
 
@@ -189,14 +208,16 @@ export class AadharclientpictureComponent implements OnInit{
   // Camera Submit Function
   submit() {
     console.log(this.previewimage);
-    const imagecaputureData: any = []
-    imagecaputureData.push({
+    const imagecaputureData1: any = []
+    imagecaputureData1.push({
         LosUnique_Id: this.LosUnique_Id,
         CapturePhoto: this.previewimage,
         UserID: this.userObj.UserID,
         CapturePhotoName: this.mimeType,
-        RefId: this.referance_id.RefId,
+        RefId: localStorage.getItem('refObj')|| '',
       });
+
+      this.imagecaputureData.CapturePhotoLOSRequestsData = [imagecaputureData1[0]]
       this.auth.CapturePhotoLOS(this.imagecaputureData).subscribe(Response  => {
         this.status =Response.message;
         this.openErrorDialog();
@@ -207,4 +228,3 @@ goto()
   this.router.navigateByUrl('/kyc/idverification')
 }
 }
-
