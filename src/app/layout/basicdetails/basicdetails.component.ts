@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CrudService } from 'src/app/shared/services/crud.service';
@@ -37,6 +37,11 @@ export class BasicdetailsComponent implements OnInit {
   form2!: FormGroup;
   MasterPinCodeDetails: any;
   mastervillageDetails: any;
+  @ViewChild('earningButton')
+  earningButton!: ElementRef;
+  
+  @ViewChild('householdButton')
+  householdButton!: ElementRef;
 
   CenterSerchDetails:any;
   constructor(private dialog: MatDialog, private _crudService: CrudService,
@@ -78,7 +83,12 @@ export class BasicdetailsComponent implements OnInit {
     this.voterid_Backpath = this.imageresponse.voterid_Backpath;
   }
 
-  
+  clicktonext(){
+    const earnbutton: HTMLButtonElement = this.householdButton.nativeElement;
+    earnbutton.click();
+
+    alert('hi')
+  }
 
   addnewcenter() {
     this.dialogRef = this.dialog.open(this.reasondialog, {
