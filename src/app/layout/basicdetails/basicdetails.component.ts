@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CrudService } from 'src/app/shared/services/crud.service';
@@ -14,6 +14,14 @@ import Swal from 'sweetalert2';
 export class BasicdetailsComponent implements OnInit {
   @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
   @ViewChild('enlargedialog') enlargedialog!: TemplateRef<any>;
+
+  
+  @ViewChild('closeButton')
+  earningButton!: ElementRef;
+  
+  @ViewChild('closeButton')
+  householdButton!: ElementRef;
+  
   LosUnique_Id: any = {};
   LoanPurposeInfo:any;
   voterid_Frontpath: any='';
@@ -385,6 +393,14 @@ export class BasicdetailsComponent implements OnInit {
           console.log(err)
         }
    })
+}
+
+clicktonext()
+{
+
+
+const earnbutton: HTMLButtonElement = this.earningButton.nativeElement;
+earnbutton.click();
 }
 
 }
