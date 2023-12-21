@@ -93,7 +93,6 @@ export class BasicdetailsComponent implements OnInit {
   addnewcenter() {
     this.dialogRef = this.dialog.open(this.reasondialog, {
       width: '400px'
-
     });
 
     this.dialogRef.afterClosed().subscribe((result: any) => {
