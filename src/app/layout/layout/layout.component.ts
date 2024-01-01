@@ -57,7 +57,7 @@ export class LayoutComponent {
       width:'350px',
     imageUrl: '../../assets/images/warining.svg',
     imageHeight: 80,
-    text: 'Are you sure to logout Confirm.',  
+    text: 'Are You Sure You Want To logout?',  
    showCancelButton:true,
    cancelButtonText:'Cancel',
     confirmButtonText:'Yes'
@@ -66,6 +66,8 @@ export class LayoutComponent {
     if(result.isConfirmed)
     {
       localStorage.removeItem('userObj');
+      localStorage.removeItem('refObj');
+      localStorage.removeItem('aadharObj');
       this.router.navigateByUrl('/login')
 
     }

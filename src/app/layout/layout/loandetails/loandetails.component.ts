@@ -1,6 +1,6 @@
 
 
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CrudService } from 'src/app/shared/services/crud.service';
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
@@ -36,6 +36,14 @@ import { Router } from '@angular/router';
   insurancedetails:boolean=false;
   bankdetails:boolean=false;
 
+  @ViewChild('guarantordetailsButton')
+  guarantordetailsButton!: ElementRef;
+  
+  @ViewChild('insurancedetailsButton')
+  insurancedetailsButton!: ElementRef;
+
+  @ViewChild('bankdetailsButton')
+  bankdetailsButton!: ElementRef;
 
   constructor(private dialog:MatDialog, private _crudService:CrudService, private fb:FormBuilder, private toastr: ToastrService,private route: Router)
   {
@@ -182,6 +190,20 @@ clickDetails(element:any)
     this.insurancedetails=false;
     this.bankdetails=true
   }
+}
+
+guarantordetailsSave(){
+  const guarantordetailss: any = this.insurancedetailsButton.nativeElement;
+  
+  guarantordetailss.click();
+  console.log('save data')
+}
+
+insurancedetailsSave(){
+  const insurancedetailss: any = this.bankdetailsButton.nativeElement;
+  
+  insurancedetailss.click();
+  console.log('save data')
 }
 
 

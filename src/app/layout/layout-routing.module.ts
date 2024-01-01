@@ -32,11 +32,11 @@ import { ApperiasaldetailsComponent } from './ao/apperiasalDetails/apperiasaldet
 import { AdharotpComponent } from './adharotp/adharotp.component';
 import { SamvoterComponent } from './samvoter/samvoter.component';
 import { AadharclientpictureComponent } from './aadharclientpicture/aadharclientpicture.component';
-import { BmbasicdetailsBorrowerComponent } from './BM/Review/BMbasicdetails/bmbasicdetails-borrower/bmbasicdetails-borrower.component';
-import { BmcashflowdetailsComponent } from './BM/Review/CashFlow/bmcashflowdetails/bmcashflowdetails.component';
-import { BmloandetailsComponent } from './BM/Review/LoanDetails/bmloandetails/bmloandetails.component';
-import { BmverifyclientdetailsComponent } from './BM/Review/bmverifyclientdetails/bmverifyclientdetails.component';
-
+import { BmverifyclientdetailsComponent } from './bmverifyclientdetails/bmverifyclientdetails.component';
+import { BMBmbasicdetailsComponent } from './bmbmbasicdetails/bmbmbasicdetails.component';
+import { BMbmcashflowdetailsComponent } from './bmbmcashflowdetails/bmbmcashflowdetails.component';
+import { BMloandetailsHhloanComponent } from './bmloandetails-hhloan/bmloandetails-hhloan.component';
+import { Bmcgt1detailsComponent } from './bmcgt1details/bmcgt1details.component';
 
 
 const routes: Routes = [
@@ -78,12 +78,13 @@ const routes: Routes = [
 
 
     // BM 
-    
-    {path:'Bmbasicdetails', component:BmbasicdetailsBorrowerComponent},
-    {path:'bmcashflow', component:BmcashflowdetailsComponent},
-    {path:'bmloandetails', component:BmloandetailsComponent},
     {path:'bmverifyclientdeails', component:BmverifyclientdetailsComponent},
-    
+
+
+    {path:'Bmbasicdetails/:LosUnique_Id', component:BMBmbasicdetailsComponent},
+{path:'bmcashflow', component:BMbmcashflowdetailsComponent},
+{path:'bmloandetails', component:BMloandetailsHhloanComponent},
+{path:'bmcgtdetails', component:Bmcgt1detailsComponent},
    ]
   },
  

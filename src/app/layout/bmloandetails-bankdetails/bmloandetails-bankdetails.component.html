@@ -1,0 +1,285 @@
+<mat-accordion multi>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Bank Details
+            </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <section >
+           
+            <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>IFSC Code </label>
+                        <section>IFSC1234</section>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Bank Branch Name</label>
+                        <section>Bank Of India</section>
+
+                    </section>
+                </li>
+            </ul>
+                <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>Bank Of Address</label>
+                        <section>Manik Chhak,at Po Karanjia, dist Mayurbhanj,orissa - 757037</section>
+
+                    </section>
+                </li>
+
+            </ul>
+        
+
+           
+
+
+
+
+           
+        </section>
+
+    </mat-expansion-panel>
+
+</mat-accordion>
+
+<mat-accordion multi>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Nominee Details
+            </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <section>
+            <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>A/C Holder Name</label>
+                        <section>jai prakash</section>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>A/C Holder type</label>
+                        <section>joint</section>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>A/C type</label>
+                        <section>Saving</section>
+
+                    </section>
+                </li>
+
+            </ul>
+
+            <ul class="list_type bglisttype ">
+               
+                <li>
+                    <section class="inputsec">
+                        <label>Joint Account Holder name</label>
+                        <section>Lata Kumari</section>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Joint Holder Relationship with Client</label>
+                        <section>Spouse</section>
+
+                    </section>
+                </li>
+
+
+            </ul>
+
+            <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>A/C No</label>
+                        <section>1234567898</section>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Confirm A/C No</label>
+                        <section>1234567898</section>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Digital Payment</label>
+                        <section>Yes</section>
+
+                    </section>
+                </li>
+
+            </ul>
+
+            <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>UPI ID</label>
+                        <section>demo@upi</section>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Bank passbook</label>
+                        <section>1234567898</section>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Bene Validation</label>
+                        <section>Success</section>
+
+                    </section>
+                </li>
+
+            </ul>
+            
+
+
+
+
+           
+        </section>
+
+       
+    </mat-expansion-panel>
+
+</mat-accordion>
+<mat-accordion multi>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Bank Details
+            </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <section >
+           
+            <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>Account Validation Status</label>
+                        <section>Success</section>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Beneficiary Name</label>
+                        <section>Ramesh</section>
+
+                    </section>
+                </li>
+           
+                
+                <li>
+                    <section class="inputsec">
+                        <label>Match Status</label>
+                        <section>90%</section>
+
+                    </section>
+                </li>
+
+            </ul>
+        
+
+           
+
+
+
+
+           
+        </section>
+
+    </mat-expansion-panel>
+
+</mat-accordion>
+
+
+    
+                 
+    <section class="btnscontainer marT30">
+       <section> <button class="strokebtn"  mat-raised-button (click)="bankcheck()"  >Bank Check</button></section>
+        <section><button class="filledbtn"  mat-raised-button  (click)="Save(isform)">Save</button></section>
+    </section>
+    
+   <ng-container *ngIf="bankstatus">
+    <h2 class="subtitle">Bank Status</h2>
+    <ul class="list_type bglisttype">
+    <li>
+        <section class="inputsec">
+            <label>Account Validation Status</label>
+            <section>Success</section>
+            
+        </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Beneficiary Name</label>
+                <section>Ramesh</section>
+                
+            </section>
+            </li>
+            <li>
+                <section class="inputsec">
+                    <label>Match Status</label>
+                    <section>90%</section>
+                    
+                </section>
+                </li>
+<li></li>
+  </ul>
+  <section class="btnscontainer marT30">
+    <section> <button class="strokebtn"  mat-raised-button  >Raise Requestk</button></section>
+     <section><button class="filledbtn"  mat-raised-button (click)="gotopage()"  >Next</button></section>
+ </section>
+</ng-container>
+    
+    <ng-template #otpdialog>
+        <div mat-dialog-content>
+    
+           <section class="modelimg"> <img src="../../../../assets/images/mobile_ic.png" /></section>
+    
+            <section class="label-title"> Verify Mobile Number</section>
+         
+    
+            <section class="inputsec">
+                <label class="otplabel">OTP</label>
+    
+    <section class="otpBlock">
+        <section><input /></section> <section><input /></section> <section><input /></section> <section><input /></section> <section><input /></section> <section><input /></section>
+    </section>
+    
+                <!-- <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter " value="">
+                </mat-form-field> -->
+            </section>
+          
+          
+          
+        </div>
+        <div mat-dialog-actions  class="center fullbtns">
+            <button mat-raised-button class="filledBtn" (click)="submitclose()">Submit</button>
+            <button mat-stroked-button class="strokedBtn" (click)="close()">Close</button>
+        </div>
+    </ng-template>
+
+    

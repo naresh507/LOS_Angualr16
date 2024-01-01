@@ -15,6 +15,9 @@ import { AdharotpComponent } from '../layout/adharotp/adharotp.component';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { SamvoterComponent } from '../layout/samvoter/samvoter.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+
+
+
 @NgModule({
   declarations: [
     shared,
@@ -23,7 +26,10 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     OtpComponent,
     AadharclientpictureComponent,
     AdharotpComponent,
-    SamvoterComponent
+    SamvoterComponent,
+   
+   
+
   ],
   imports: [
     CommonModule, 

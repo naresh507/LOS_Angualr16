@@ -7,10 +7,15 @@ import { KycRoutingModule } from './kyc-routing.module';
 import { KycprofilereviewComponent } from './kycprofilereview/kycprofilereview.component';
 import { IdverificationComponent } from './idverification/idverification.component';
 import { ClientverificationComponent } from './clientverification/clientverification.component';
+import { OCRAdharComponent } from '../../ocradhar/ocradhar.component';
+
 
 
 @NgModule({
-  declarations: [KycComponent, KycprofilereviewComponent, IdverificationComponent, ClientverificationComponent],
+  declarations: [KycComponent, KycprofilereviewComponent, 
+    IdverificationComponent, 
+    ClientverificationComponent, OCRAdharComponent,
+  ],
   imports: [
     KycRoutingModule,
     CommonModule, SharedModule],

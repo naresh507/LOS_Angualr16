@@ -10,9 +10,9 @@
     <section class="data-content whiteclr">
         <ul class="tab_container">
             <li  [ngClass]="{'current': hhmonthly, 'filled': (hhexpense || hhliabilty || hhLoan) }" (click)="clickDetails('a')">HH Monthly Income</li>
-            <li [ngClass]="{'current': hhexpense, 'filled': (hhliabilty || hhLoan)}" class="" (click)="clickDetails('b')">HH Expenses</li>
-            <li  [ngClass]="{'current': hhliabilty, 'filled': (hhLoan)}" class="" (click)="clickDetails('c')">HH Liability</li>
-            <li  [ngClass]="{'current': hhLoan}" class="" (click)="clickDetails('d')">Loan Eligibility</li>
+            <li  #expensesButton [ngClass]="{'current': hhexpense, 'filled': (hhliabilty || hhLoan)}" class="" (click)="clickDetails('b')">HH Expenses</li>
+            <li  #LiabilityButton [ngClass]="{'current': hhliabilty, 'filled': (hhLoan)}" class="" (click)="clickDetails('c')">HH Liability</li>
+            <li  #LoanEligibilityButton [ngClass]="{'current': hhLoan}" class="" (click)="clickDetails('d')">Loan Eligibility</li>
         </ul>
 
         <ng-container *ngIf="hhmonthly">
@@ -67,12 +67,15 @@
     </ng-container>
 
     <ng-container *ngIf="hhexpense">
-<app-hhexpenses (hhexpences)="hhexpencesSave()"></app-hhexpenses>
+<app-hhexpenses (hhexpences)="hhexpencesSave()" ></app-hhexpenses>
+
+<!-- <app-memberdetails (gotonext)="clicktonext()"> -->
+
         </ng-container>
 
 
         <ng-container *ngIf="hhliabilty">
-            <app-hhliablity></app-hhliablity>
+            <app-hhliablity (hhliabilty)="hhliabiltySave()"></app-hhliablity>
                     </ng-container>
             
                     <ng-container *ngIf="hhLoan">

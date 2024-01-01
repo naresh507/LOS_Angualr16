@@ -25,7 +25,8 @@ export class NewapplicationformComponent implements OnInit {
 
     this.form = this.fb.group({
       village: ['' , Validators.required],
-      pincode: ['', Validators.required]
+      pincode: ['', Validators.required],
+    
      
     });
 
@@ -149,15 +150,25 @@ vilageData(event:any){
   newformUrl()
   {
 
+  //   let villageName = '';
+
+  // if (this.mastervillageDetails.length > 0) {
+  // villageName = this.mastervillageDetails[0].VillageName || '';
+  // }
+
+
     const villageData = {
       MLV_Name: this.mastervillageDetails[0].VillageName, 
+      // MLV_Name: villageName, 
+
       GramPanchayat: this.mastervillageDetails[0].GramPanchayat,
       Block: this.mastervillageDetails[0].Block, 
       District: this.mastervillageDetails[0].District, 
       CensusId: this.mastervillageDetails[0].CensusId,
       Lat: this.mastervillageDetails[0].Lat, 
       Long: this.mastervillageDetails[0].Long, // Change this based on your data structure
-      Userid: this.userObj.UserID
+      Userid: this.userObj.UserID,
+      LosUnique_Id:''
     };
     this._crudService.VillageSubmitData({ VillageSubmitDataInfo: [villageData] })
     .subscribe({

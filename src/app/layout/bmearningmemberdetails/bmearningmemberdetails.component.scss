@@ -1,0 +1,28 @@
+.detailsbox{     box-shadow: 1px 1px 6px 4px #e8e8e8;}
+.box-title{ border-radius: 10px 10px 0px 0px;
+    background: #DBDEE3; padding: 10px; margin: 0;}
+    .detailsboxnew{ border-radius: 0 0 10px;}
+
+    .detailsboxnew-bg{ background: #F1F1F1;}
+
+    
+    .detailsUL li label{ width: 100%;}
+    .list_type{ flex-wrap: wrap;}
+    .list_type li{ flex: 0 0 50%; padding-right: 10px !important; padding-left: 0 !important;}
+   
+
+    .bglisttype{  border-radius: 10px; padding: 10px 0 10px 10px; & li{ flex:33%; & label{ min-height: 0; font-size: 12px; }}}
+
+
+.bgtitle{ background: #DBDEE3; border-radius: 10px 10px 0 0; padding: 5px 10px; margin: 0 0 0px; font-size: 16px;}
+
+.boxsection{ border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 16px 24px 0px rgba(22, 34, 51, 0.08), 0px 4px 8px -4px rgba(22, 34, 51, 0.08);}
+    .inbox{ padding: 10px;}
+
+    .imagesgrid{ display: flex; flex-wrap: wrap;     justify-content: center;
+        margin-top: 20px;
+        a{ height: 80px; margin-right: 10px; border-radius: 10px;}
+    & img{ height: 80px; width: auto; border-radius: 10px;}
+    }

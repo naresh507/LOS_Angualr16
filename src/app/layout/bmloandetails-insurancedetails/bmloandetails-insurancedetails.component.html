@@ -1,0 +1,266 @@
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+    <mat-accordion multi>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Nominee Details
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <section *ngIf=!hide>
+                <ul class="list_type bglisttype ">
+                    <li>
+                        <section class="inputsec">
+                            <label>Nominee Name</label>
+                            <section>Rakesh sharma</section>
+
+                        </section>
+                    </li>
+                    <li>
+                        <section class="inputsec">
+                            <label>Relationship With Client</label>
+                            <section>Uncle</section>
+
+                        </section>
+                    </li>
+                    <li>
+                        <section class="inputsec">
+                            <label>Date Of Birth</label>
+                            <section>12 Dec 1990</section>
+
+                        </section>
+                    </li>
+
+                </ul>
+
+                <ul class="list_type bglisttype ">
+                    <li>
+                        <section class="inputsec">
+                            <label>nominee Age</label>
+                            <section>31</section>
+
+                        </section>
+                    </li>
+                    <li>
+                        <section class="inputsec">
+                            <label>Nominee Gaurdian Name</label>
+                            <section>Parbhakar</section>
+
+                        </section>
+                    </li>
+
+
+                </ul>
+
+
+
+
+                <section style="text-align: right; margin: 30px 0;">
+                    <button class="loginBtn" mat-raised-button color="primary" (click)="hide = !hide">Update
+                        Details</button>
+                </section>
+            </section>
+
+            <section *ngIf=hide>
+
+                <ul class="list_type">
+                    <li>
+                        <label>Select Nominee</label>
+                        <mat-form-field appearance="outline">
+                            <mat-select formControlName="LoanType">
+                                <mat-option>
+                                    Select
+                                </mat-option>
+                                <mat-option [value]="'option1'">
+                                    option1
+                                </mat-option>
+                                <mat-option [value]="'option2'">
+                                    option2
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </li>
+                    <li>
+                        <label>Relationship With Client</label>
+                        <mat-form-field appearance="outline">
+                            <mat-select formControlName="LoanType">
+                                <mat-option>
+                                    Select
+                                </mat-option>
+                                <mat-option [value]="'option1'">
+                                    option1
+                                </mat-option>
+                                <mat-option [value]="'option2'">
+                                    option2
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </li>
+                </ul>
+
+
+                <ul class="list_type">
+                    <li class="">
+                        <section class="inputsec">
+                            <label>Date Of Birth</label>
+                            <mat-form-field appearance="outline">
+                                <input required matInput placeholder="Enter" formControlName="NonEaringMembers">
+                            </mat-form-field>
+                        </section>
+                    </li>
+                    <li class="">
+                        <section class="inputsec">
+                            <label>nominee Age</label>
+                            <mat-form-field appearance="outline">
+                                <input required matInput placeholder="Enter" formControlName="NonEaringMembers">
+                            </mat-form-field>
+                        </section>
+                    </li>
+                </ul>
+
+
+
+                <ul class="list_type">
+
+                    <li class="">
+                        <section class="inputsec">
+                            <label>Nominee Gaurdian Name</label>
+                            <mat-form-field appearance="outline">
+                                <input required matInput placeholder="Enter" formControlName="NonEaringMembers">
+                            </mat-form-field>
+                        </section>
+                    </li>
+
+                </ul>
+
+
+            </section>
+        </mat-expansion-panel>
+
+    </mat-accordion>
+
+    <mat-accordion multi>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Insurance DFeta
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+           
+            <section>
+                <ul class="list_type bglisttype ">
+                    <li>
+                        <section class="inputsec">
+                            <label>Applicant Insurance</label>
+                            <section>Yes</section>
+
+                        </section>
+                    </li>
+                    <li>
+                        <section class="inputsec">
+                            <label>Premium</label>
+                            <section>Yes</section>
+
+                        </section>
+                    </li>
+                    <li>
+                        <section class="inputsec">
+                            <label>Sum Assured</label>
+                            <section>20000</section>
+
+                        </section>
+                    </li>
+
+                </ul>
+</section>
+
+
+        </mat-expansion-panel>
+
+    </mat-accordion>
+
+    <section >
+        <ul class="list_type bglisttype1 ">
+            <li>
+                <label>Relationship With Client</label>
+                        <mat-form-field appearance="outline">
+                            <mat-select formControlName="LoanType">
+                                <mat-option>
+                                    Select
+                                </mat-option>
+                                <mat-option [value]="'option1'">
+                                    option1
+                                </mat-option>
+                                <mat-option [value]="'option2'">
+                                    option2
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+            </li>
+            <li>
+                <section class="inputsec">
+                    <label>Premium</label>
+                    <section>1200</section>
+
+                </section>
+            </li>
+            <li>
+                <section class="inputsec">
+                    <label>Sum Assured</label>
+                    <section>20000</section>
+
+                </section>
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <section class="btnscontainer marT30">
+        <section> <button class="strokebtn" mat-raised-button>Back</button></section>
+        <section><button class="filledbtn" mat-raised-button>Next</button></section>
+    </section>
+
+</form>
+
+ 
+<div mat-dialog-actions class="center">
+    <button mat-raised-button class="filledBtn" (click)="save()">Save & Next</button>
+ 
+</div>
+
+
+
+
+
+<ng-template #otpdialog>
+    <div mat-dialog-content>
+
+        <section class="modelimg"> <img src="../../../../assets/images/mobile_ic.png" /></section>
+
+        <section class="label-title"> Verify Mobile Number</section>
+
+
+        <section class="inputsec">
+            <label class="otplabel">OTP</label>
+
+            <section class="otpBlock">
+                <section><input /></section>
+                <section><input /></section>
+                <section><input /></section>
+                <section><input /></section>
+                <section><input /></section>
+                <section><input /></section>
+            </section>
+            <!-- <mat-form-field appearance="outline">
+                        <input required matInput placeholder="Enter " value="">
+                    </mat-form-field> -->
+        </section>
+    </div>
+    <div mat-dialog-actions class="center fullbtns">
+        <button mat-raised-button class="filledBtn" (click)="submitclose()">Submit</button>
+        <button mat-stroked-button class="strokedBtn" (click)="close()">Close</button>
+    </div>
+</ng-template>

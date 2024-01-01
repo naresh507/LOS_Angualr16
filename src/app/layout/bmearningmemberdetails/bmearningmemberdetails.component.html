@@ -1,0 +1,116 @@
+<ng-container *ngIf="MainEarningBasicDetails">
+    <ng-container *ngIf="EarningbasicDetails">
+        <section id="basicDetails" class="incontent">
+          
+            <section class="detailsbox whiteclr marT20" *ngFor="let r of response">
+                <ul class="detailsUL detailsULNew">
+                    <li><label>Name</label>
+                        <!-- <span>S sharma</span> -->
+                        <span>{{r?.ApplicantName }}</span>
+            
+                    </li>
+                    <li><label>Date Of Birth</label>
+                        <!-- <span>Own</span> -->
+                        <span>{{r?.DOB }}</span>
+                    </li>
+                    <li><label>Age</label>
+                        
+                        <span>{{r?.Age }}</span>
+                    </li>
+                    <li><label>Gender</label>
+                        <!-- <span>123456</span> -->
+                        <span>{{r?.Gender }}</span>
+                    </li>
+            
+                    <li><label>Marital Status</label>
+                        <!-- <span>23000</span> -->
+                        <span>{{r?.MaritalStatus }}</span>
+                    </li>
+                    <li><label>Spouse</label>
+                        <!-- <span>2000</span> -->
+                        <span>{{r?.Spouse }}</span>
+                    </li>
+                    <li><label>Father</label>
+                        <!-- <span>S sharma</span> -->
+                        <span>{{r?.Father }}</span>
+            
+                    </li>
+                    <li><label>POI KYC Type</label>
+                        <!-- <span>Own</span> -->
+                        <span>{{r?.KYCTYPE }}</span>
+                    </li>
+                    <li><label>POI KYC ID</label>
+                        <!-- <span>Name of Institution</span> -->
+                        <span>{{r?.KYCID }}</span>
+                    </li>
+            
+                <li><label>Mobil Number</label>
+                    <span>  {{r?.MobileNumber}}</span>
+                    
+                  
+                </li>
+
+                <li><label>Pan ID</label>
+                    <span>{{r?.Pan}}</span>
+                    
+                    
+                </li>
+                
+                <li><label>Applied Amont</label>
+                    <span>{{r?.AppliedAmont}}</span>
+                    
+                    
+                </li>
+                <li><label>Loan Purpose</label>
+                    <span>{{r?.LoanPurpose}}</span>
+                    
+                    
+                </li>
+                <li><label>Address</label>
+                    <span>{{r?.Address}}</span>
+                    
+                    
+                </li>
+                
+                <li><label>voterid</label>
+                    <span>{{r?.voterid}}</span>
+                    
+                    
+                </li>
+                <li>
+                               
+                    <label>KYC Images</label>
+                    
+                    <b><a (click)="toggleImagesSection()" style="text-decoration: underline; color: #442477;"><mat-icon>photo</mat-icon>View Images</a></b>
+                </li>
+
+            </ul>
+            <section class="" *ngIf="isImagesEnabled">
+                <h3 class="sub_title">Images Data</h3>
+                <h4 class="sub_text">Click on the thumbnail for full image preview </h4>
+                <ul class="imagesgrid m-auto">
+                    <li><a (click)="enlarge()"><img [src]="r?.CapturePhoto"  /></a></li>
+                <li><a (click)="enlarge()"><img [src]="r?.voterid_Frontpath"  /></a></li>
+                <li><a (click)="enlarge()"><img  [src]="r?.voterid_Backpath" /></a></li>
+
+                </ul>
+            </section>
+                   
+                   
+            
+            
+                
+            
+            
+            </section>
+                    <button mat-raised-button class="fill_btn" colo="primary"
+                    (click)="Next()">Save&Next</button>
+                    
+            </section>
+          
+
+    </ng-container>
+
+    
+</ng-container>
+

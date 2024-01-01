@@ -113,7 +113,7 @@ export class KycprofilereviewComponent implements OnInit{
           console.error(value.message);
           // Handle the error or show a message to the user
         } else {
-          this.ExsitingData = value.ExsitingDataDetails ? value.ExsitingDataDetails[0] : null;
+          //this.ExsitingData = value.ExsitingDataDetails ? value.ExsitingDataDetails[0] : null;
           console.log(this.ExsitingData);
           // Continue with processing the data
         }

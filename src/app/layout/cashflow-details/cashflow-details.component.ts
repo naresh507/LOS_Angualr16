@@ -1,5 +1,5 @@
 
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef,ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -40,6 +40,15 @@ export class CashflowDetailsComponent implements OnInit {
   hhexpense: boolean = false;
   hhliabilty: boolean = false;
   hhLoan: boolean = false;
+
+  @ViewChild('expensesButton')
+  expensesButton!: ElementRef;
+  
+  @ViewChild('LiabilityButton')
+  LiabilityButton!: ElementRef;
+
+  @ViewChild('LoanEligibilityButton')
+  LoanEligibilityButton!: ElementRef;
 
 
 
@@ -167,15 +176,31 @@ export class CashflowDetailsComponent implements OnInit {
     }
   }
   hhexpencesSave() {
+
+    const earnbutton: any = this.LiabilityButton.nativeElement;
+    
+    earnbutton.click();
     console.log('save data')
-    // this.clickDetails('c')
-    this.hhmonthly = false;   
-    this.hhexpense = false;
-    this.hhliabilty = true;
-    this.hhLoan = false
-
-
+    // // this.clickDetails('c')
+    // this.hhmonthly = false;   
+    // this.hhexpense = false;
+    // this.hhliabilty = true;
+    // this.hhLoan = false;
   }
+
+  hhliabiltySave(){
+    const hhliabilt: any = this.LoanEligibilityButton.nativeElement;
+    
+    hhliabilt.click();
+    console.log('save data')
+  }
+
+  // hhLoan(){
+  //   const Loan: any = this.LoanEligibilityButton.nativeElement;
+    
+  //   Loan.click();
+  //   console.log('save data')
+  // }
 
   save(formData: any) {
     formData.value['UserId'] = this.userObj.UserID;
@@ -214,6 +239,7 @@ export class CashflowDetailsComponent implements OnInit {
   }
        
      }
+     
       },
       
           error: (err: HttpErrorResponse) => {

@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -19,7 +19,9 @@ export class GuarantordetailsComponent implements OnInit {
   userObj: any;
   LosUnique_Id: any = {};
   otpDialogRef:any;
-otpverify:boolean=false
+otpverify:boolean=false;
+
+@Output() guarantor = new EventEmitter()
 
 
   constructor(private toastr: ToastrService, private dialog:MatDialog, private router:Router, private _crudService:CrudService,private fb: FormBuilder )
@@ -122,6 +124,7 @@ submitclose()
         //this.dialogRef.close();
          
        }
+       this.guarantor.emit();
         },
         
             error: (err: HttpErrorResponse) => {

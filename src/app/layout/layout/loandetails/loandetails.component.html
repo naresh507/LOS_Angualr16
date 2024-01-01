@@ -8,9 +8,9 @@
     <section class="data-content whiteclr">
         <ul class="tab_container">
             <li  [ngClass]="{'current': loanDetails, 'filled': (guarantordetails || insurancedetails || bankdetails) }" (click)="clickDetails('a')">Loan Details</li>
-            <li [ngClass]="{'current': guarantordetails, 'filled': (insurancedetails || bankdetails)}" class="" (click)="clickDetails('b')">Guarantor’s Details</li>
-            <li  [ngClass]="{'current': insurancedetails, 'filled': (bankdetails)}" class="" (click)="clickDetails('c')">Insurance Details</li>
-            <li  [ngClass]="{'current': bankdetails}" class="" (click)="clickDetails('d')">Bank Details</li>
+            <li #guarantordetailsButton [ngClass]="{'current': guarantordetails, 'filled': (insurancedetails || bankdetails)}" class="" (click)="clickDetails('b')">Guarantor’s Details</li>
+            <li #insurancedetailsButton [ngClass]="{'current': insurancedetails, 'filled': (bankdetails)}" class="" (click)="clickDetails('c')">Insurance Details</li>
+            <li #bankdetailsButton [ngClass]="{'current': bankdetails}" class="" (click)="clickDetails('d')">Bank Details</li>
         </ul>
 
         <ng-container *ngIf="loanDetails">
@@ -240,12 +240,12 @@
     </ng-container>
 
     <ng-container *ngIf="guarantordetails">
-<app-guarantordetails></app-guarantordetails>
+<app-guarantordetails  (guarantor)="guarantordetailsSave()"></app-guarantordetails>
         </ng-container>
 
 
         <ng-container *ngIf="insurancedetails">
-            <app-insurancedetails></app-insurancedetails>
+            <app-insurancedetails (insurance)="insurancedetailsSave()"></app-insurancedetails>
                     </ng-container>
             
                     <ng-container *ngIf="bankdetails">

@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CrudService } from 'src/app/shared/services/crud.service';
@@ -21,6 +21,9 @@ export class HhliablityComponent implements OnInit{
 
   @ViewChild('addmember', { static: true })
   addmember!: TemplateRef<any>;
+
+  @Output() hhliabilty = new EventEmitter()
+
   public obj={
       MemberName:'',
       InstitutionType:'',
@@ -171,6 +174,7 @@ export class HhliablityComponent implements OnInit{
       this.dialogRef.close();
        
      }
+     this.hhliabilty.emit();
       },
       
           error: (err: HttpErrorResponse) => {

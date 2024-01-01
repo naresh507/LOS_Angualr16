@@ -9,7 +9,10 @@ import Swal from 'sweetalert2';
   templateUrl: './adharotp.component.html',
   styleUrls: ['./adharotp.component.css']
 })
+
+
 export class AdharotpComponent implements OnInit {
+  @Output() AAdharOTP = new EventEmitter()
 responsetype :string='';
   sendOTP:boolean=false;
   referance_id: any = '';
@@ -286,6 +289,8 @@ responsetype :string='';
         } else {
 
         }
+        this.AAdharOTP.emit();
+        
       },
 
       error: (err: HttpErrorResponse) => {

@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 export class GstdetailsComponent{
   @ViewChild('reasondialog') reasondialog!: TemplateRef<any>;
   @ViewChild('enlargedialog') enlargedialog!: TemplateRef<any>;
+  responsetype :string='';
   form!: FormGroup;
   userObj: any;
   LosUnique_Id: any = {};
@@ -198,7 +199,7 @@ warningpopup()
 submit(formData: any) {
   console.log(formData.value)
   formData.value['UserID'] = this.userObj.UserID;
-  formData.value['LosUnique_Id'] = this.LosUnique_Id;
+  formData.value['LosUnique_Id'] = localStorage.getItem('aadharObj') || '{}';
   console.log(formData.value)
   let obj = {
     "CGTDetailsData": [{}]
@@ -208,18 +209,31 @@ submit(formData: any) {
   this._crudService.CGTDetailsSubmit(obj).subscribe({
     next: (value: any) => {
       console.log(value)
+      this.responsetype=value.message;
+      Swal.fire({
+        imageUrl: '../../assets/images/warining.svg',
+        imageHeight: 80,
+        text: this.responsetype,
+      });
       if (value.status == true || value.status == 'True') {
+       
+        // this.toastr.success('Member Data Added Successfully');
 
-
-        this.toastr.success('Member Data Added Successfully');
+        localStorage.removeItem('refObj');
+        localStorage.removeItem('aadharObj');
+        // localStorage.removeItem('userObj');
+        // localStorage.removeItem('token');
         //this.dialogRef.close();
-
+        // this.clearRefId();
+        // this.clearAAdharObj();
+        // this.clearForgotCredentials();
       }
+      this.router.navigateByUrl('/dashboard')
     },
 
-    error: (err: HttpErrorResponse) => {
-      console.log(err)
-    }
+    // error: (err: HttpErrorResponse) => {
+    //   console.log(err)
+    // }
   })
 
 }

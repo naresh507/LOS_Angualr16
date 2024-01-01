@@ -64,7 +64,8 @@ export class HouseholddetailsComponent implements OnInit {
      // Count: [''],
       vehicle: [''],
       SmartPhone: [''],
-      ElectronicItems: ['']
+      ElectronicItems: [''],
+      NonofnonEaringMembers:['']
       
     });
 

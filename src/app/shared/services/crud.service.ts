@@ -307,6 +307,41 @@ getimageBasicdetails(basicdetailsimages: any):Observable<any>{
   return this.http.post(`${environment.apiUrl}OKYCVoterPhotoVIEW`, basicdetailsimages);
 }
 
+// VerifyClientListBMBM
+
+VerifyClientListBM(basicdetailsVerifyClientDetailsBM: any):Observable<any>{
+  return this.http.post(`${environment.apiUrl}VerifyClientListBM`, basicdetailsVerifyClientDetailsBM);
+}
+
+// VerifyClientDetailsBM
+
+VerifyClientDetailsBM(basicdetailsVerifyClientDetailsBM: any):Observable<any>{
+  return this.http.post(`${environment.apiUrl}VerifyClientDetailsBM`, basicdetailsVerifyClientDetailsBM);
+}
+
+// BMProfileREVIEW
+
+BMProfileREVIEW(BMProfileREVIEW: any):Observable<any>{
+  return this.http.post(`${environment.apiUrl}BMProfileREVIEW`, BMProfileREVIEW);
+}
+
+// BMEarningMembersData
+
+BMEarningMembersData(BMEarningMembersData: any):Observable<any>{
+  return this.http.post(`${environment.apiUrl}BMEarningMembersData`, BMEarningMembersData);
+}
+
+
+// BMHouseHoldDetailsSubmitionFetch
+
+BMHouseHoldDetailsSubmitionFetch(BMHouseHoldDetailsSubmitionFetch: any):Observable<any>{
+  return this.http.post(`${environment.apiUrl}BMHouseHoldDetailsSubmitionFetch`, BMHouseHoldDetailsSubmitionFetch);
+}
+
+
+
+
+
 
 }
 

@@ -1,0 +1,423 @@
+<mat-accordion multi>
+    <mat-expansion-panel>   
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Regular Expenses (Monthly)
+            </mat-panel-title>
+
+        </mat-expansion-panel-header>
+<!-- <app-cashflowforms  (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms> -->
+<!-- <app-bmcashflowforms  (cashFlowData)="applicantsaveCashFlowData($event)"></app-bmcashflowforms> -->
+<section *ngIf =!hide >
+<ul class="list_type bglisttype ">
+<li>
+<section class="inputsec">
+<label>Accommodation/Rent</label>
+<section>500</section>
+
+</section>
+</li>
+<li>
+<section class="inputsec">
+    <label>Food+Cooking Fuel</label>
+    <section>600</section>
+    
+</section>
+</li>
+<li>
+    <section class="inputsec">
+        <label>Clothes</label>
+        <section>500</section>
+        
+    </section>
+    </li>
+    
+</ul>
+
+<ul class="list_type bglisttype ">
+<li>
+<section class="inputsec">
+<label>Regular Education Expenses</label>
+<section>1000</section>
+
+</section>
+</li>
+<li>
+<section class="inputsec">
+    <label>Electricity/Phone/Data/Cable</label>
+    <section>400</section>
+    
+</section>
+</li>
+<li>
+    <section class="inputsec">
+        <label>Entertainment/Social obligation</label>
+        <section>500</section>
+        
+    </section>
+    </li>
+    
+</ul>
+
+<ul class="list_type bglisttype ">
+<li>
+<section class="inputsec">
+<label>Regular Medical Costs</label>
+<section>2000</section>
+
+</section>
+</li>
+<li>
+    <section class="inputsec">
+        <label>Savings</label>
+        <section>5000</section>
+        
+    </section>
+    </li>
+    <li>
+        <section class="inputsec">
+            <label>Transport</label>
+            <section>500</section>
+            
+        </section>
+        </li>
+
+    
+</ul>
+
+<ul class="list_type bglisttype ">
+<li>
+<section class="inputsec">
+<label>Total Regular Expenses(Monthly)</label>
+<section>2000</section>
+
+</section>
+</li>
+<li>
+<section class="inputsec">
+    <label>Remarks</label>
+    <section>Lorem ipsum is a dummy text for printing & digital graphics</section>
+    
+</section>
+</li>
+</ul>
+<section style="text-align: right; margin: 30px 0;">
+    <button class="loginBtn"  mat-raised-button color="primary" (click)="hide = !hide">Update Details</button>
+</section>
+</section>
+
+<section *ngIf =hide>
+       
+    <ul class="list_type">
+        <li>
+       <section class="inputsec">
+                <label>Accommodation/Rent</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+          
+        </li>
+        <li class="">
+            <section class="inputsec">
+                <label>Food+Cooking Fuel</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+        </li>
+    </ul>
+    
+    
+    <ul class="list_type">
+        <li class="">
+            <section class="inputsec">
+                <label>Clothes</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+        </li>
+        <li class="">
+            <section class="inputsec">
+                <label>Regular Education Expenses</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+        </li>
+    </ul>
+    
+    
+    
+    <ul class="list_type">
+       
+        <li class="">
+            <section class="inputsec">
+                <label>Electricity/Phone/Data/Cable</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Entertainment/Social obligation</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+               
+             </li>
+    </ul>
+    
+    
+    
+    <ul class="list_type">
+       
+        <li>
+            <section class="inputsec">
+                <label>Regular Medical Costs</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+               
+             </li>
+             <li class="">
+                <section class="inputsec">
+                    <label>Savings</label>
+                    <mat-form-field appearance="outline">
+                        <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                    </mat-form-field>
+                </section>
+            </li>
+        
+    </ul>
+
+    <ul class="list_type">
+       
+        <li>
+            <section class="inputsec">
+                <label>Transport</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+               
+             </li>
+             <li class="">
+                <section class="inputsec">
+                    <label>Others</label>
+                    <mat-form-field appearance="outline">
+                        <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                    </mat-form-field>
+                </section>
+            </li>
+        
+    </ul>
+
+   
+    <ul class="list_type bglisttype ">
+        <li>
+            <section class="inputsec">
+                <label>Total Regular Expense(Monthly)</label>
+                <section>9000</section>
+                
+            </section>
+            </li>
+           
+               
+      </ul>
+    
+    
+
+    
+    
+    
+</section>
+        </mat-expansion-panel>
+
+</mat-accordion>
+
+<mat-accordion multi>
+    <mat-expansion-panel>   
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Irregular Expenses (Annually)
+            </mat-panel-title>
+
+        </mat-expansion-panel-header>
+<!-- <app-cashflowforms  (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms> -->
+<!-- <app-bmcashflowforms  (cashFlowData)="applicantsaveCashFlowData($event)"></app-bmcashflowforms> -->
+<section *ngIf =!hide1 >
+<ul class="list_type bglisttype ">
+<li>
+<section class="inputsec">
+<label>Medical/Health</label>
+<section>500</section>
+
+</section>
+</li>
+<li>
+<section class="inputsec">
+    <label>House Renovation</label>
+    <section>600</section>
+    
+</section>
+</li>
+<li>
+    <section class="inputsec">
+        <label>Functions</label>
+        <section>500</section>
+        
+    </section>
+    </li>
+    
+</ul>
+
+<ul class="list_type bglisttype ">
+<li>
+<section class="inputsec">
+<label>Purchase Of Household Goods</label>
+<section>1000</section>
+
+</section>
+</li>
+<li>
+<section class="inputsec">
+    <label>Education</label>
+    <section>600</section>
+    
+</section>
+</li>
+<li>
+    <section class="inputsec">
+        <label>Others</label>
+        <section>600</section>
+        
+    </section>
+    </li>
+    
+</ul>
+
+
+
+<ul class="list_type bglisttype ">
+<li>
+<section class="inputsec">
+<label>Total Regular Expenses(Monthly)</label>
+<section>2000</section>
+
+</section>
+</li>
+<li>
+<section class="inputsec">
+    <label>Remarks</label>
+    <section>Lorem ipsum is a dummy text for printing & digital graphics</section>
+    
+</section>
+</li>
+</ul>
+<section style="text-align: right; margin: 30px 0;">
+    <button class="loginBtn"  mat-raised-button color="primary" (click)="hide1 = !hide1">Update Details</button>
+</section>
+</section>
+<section *ngIf =hide1>
+       
+    <ul class="list_type">
+        <li>
+       <section class="inputsec">
+                <label>Medical/Health</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+          
+        </li>
+        <li class="">
+            <section class="inputsec">
+                <label>House Renovation
+                </label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+        </li>
+    </ul>
+    
+    
+    <ul class="list_type">
+        <li class="">
+            <section class="inputsec">
+                <label>Functions</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+        </li>
+        <li class="">
+            <section class="inputsec">
+                <label>Purchase Of Household Goods</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+        </li>
+    </ul>
+    
+    
+    
+    <ul class="list_type">
+       
+        <li class="">
+            <section class="inputsec">
+                <label>Education</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+        </li>
+        <li>
+            <section class="inputsec">
+                <label>Others</label>
+                <mat-form-field appearance="outline">
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                </mat-form-field>
+            </section>
+               
+             </li>
+    </ul>
+
+    <ul class="list_type bglisttype ">
+        <li>
+            <section class="inputsec">
+                <label>Total Irregular Expense (Monthly)</label>
+                <section>9000</section>
+                
+            </section>
+            </li>
+            <li>
+                <section class="inputsec">
+                    <label>Total Irregular Expense(Annually)</label>
+                    <section>12500</section>
+                    
+                </section>
+                </li>
+               
+      </ul>
+    
+    
+    
+</section>
+        </mat-expansion-panel>
+
+        <div mat-dialog-actions class="center">
+            <button mat-raised-button class="filledBtn" (click)="next()">Save & Next</button>
+         
+        </div>
+
+
+</mat-accordion>
+
+    

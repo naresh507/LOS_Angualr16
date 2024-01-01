@@ -16,7 +16,7 @@ export class HhexpensesComponent {
   irform!:FormGroup;
   
   regularexp:boolean=true;
-  @Output() hhexpences = new EventEmitter();
+  @Output() hhexpences = new EventEmitter()
   constructor(private router:Router, private _crudService:CrudService,private fb: FormBuilder  )
 { 
   this.form = this.fb.group({
@@ -93,14 +93,18 @@ submitirregular(formData: any) {
      }
   
   obj.IrRegularExpensesAnnuallyData=[formData.value]
+
+  // this.hhexpences.emit();
   
   this._crudService.submitIrRegularExpensesAnnuallySubmit(obj).subscribe({
     next: (value: any) => {
    console.log(value)
    if(value.status==true || value.status=='True')
    { 
-    this.hhexpences.emit();
+   
    }
+
+   this.hhexpences.emit();
     },
     
         error: (err: HttpErrorResponse) => {

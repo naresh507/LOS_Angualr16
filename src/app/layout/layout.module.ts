@@ -57,24 +57,23 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { AadharclientpictureComponent } from './aadharclientpicture/aadharclientpicture.component';
 import { WebcamModule } from 'ngx-webcam';
 import { MemberdetailsComponent } from './memberdetails/memberdetails.component';
+import { BmverifyclientdetailsComponent } from './bmverifyclientdetails/bmverifyclientdetails.component';
+import { BMBmbasicdetailsComponent } from './bmbmbasicdetails/bmbmbasicdetails.component';
+import { BMearningmemberdetailsComponent } from './bmearningmemberdetails/bmearningmemberdetails.component';
+import { BMupdateerarningmemberComponent } from './bmupdateerarningmember/bmupdateerarningmember.component';
+import { BMhouseholddetailsComponent } from './bmhouseholddetails/bmhouseholddetails.component';
+import { BMupdatehoulddetailsComponent } from './bmupdatehoulddetails/bmupdatehoulddetails.component';
+import { BMbmcashflowdetailsComponent } from './bmbmcashflowdetails/bmbmcashflowdetails.component';
+import { BMbmcashflowHhexpensesComponent } from './bmbmcashflow-hhexpenses/bmbmcashflow-hhexpenses.component';
+import { BMbmcashflowHhliablityComponent } from './bmbmcashflow-hhliablity/bmbmcashflow-hhliablity.component';
+import { BMbmcashflowHhloanComponent } from './bmbmcashflow-hhloanelgibitty/bmbmcashflow-hhloan.component';
+import { BMloandetailsHhloanComponent } from './bmloandetails-hhloan/bmloandetails-hhloan.component';
+import { BMloandetailsGuarantordetailsComponent } from './bmloandetails-guarantordetails/bmloandetails-guarantordetails.component';
+import { BMloandetailsInsurancedetailsComponent } from './bmloandetails-insurancedetails/bmloandetails-insurancedetails.component';
+import { BMloandetailsBankdetailsComponent } from './bmloandetails-bankdetails/bmloandetails-bankdetails.component';
+import { Bmcgt1detailsComponent } from './bmcgt1details/bmcgt1details.component';
+import { OCRAdharComponent } from './ocradhar/ocradhar.component';
 
-import { BmverifyclientdetailsComponent } from './BM/Review/bmverifyclientdetails/bmverifyclientdetails.component';
-import { BmbasicdetailsBorrowerComponent } from './BM/Review/BMbasicdetails/bmbasicdetails-borrower/bmbasicdetails-borrower.component';
-import { BmearningmemberdetailsComponent } from './BM/Review/BMbasicdetails/bmearningmemberdetails/bmearningmemberdetails.component';
-import { BmhouseholddetailsComponent } from './BM/Review/BMbasicdetails/bmhouseholddetails/bmhouseholddetails.component';
-
-import { BmcashflowdetailsComponent } from './BM/Review/CashFlow/bmcashflowdetails/bmcashflowdetails.component';
-
-import { BmhhexpensesComponent } from './BM/Review/CashFlow/bmhhexpenses/bmhhexpenses.component';
-import { BmhhliabilityComponent } from './BM/Review/CashFlow/bmhhliability/bmhhliability.component';
-import { BmhhloaneligibilityComponent } from './BM/Review/CashFlow/bmhhloaneligibility/bmhhloaneligibility.component';
-import { BmGuarantorsdetailsComponent } from './BM/Review/LoanDetails/bm-guarantorsdetails/bm-guarantorsdetails.component';
-import { BminsurancedetailsComponent } from './BM/Review/LoanDetails/bminsurancedetails/bminsurancedetails.component';
-import { BmbankdetailsComponent } from './BM/Review/LoanDetails/bmbankdetails/bmbankdetails.component';
-import { BmloandetailsComponent } from './BM/Review/LoanDetails/bmloandetails/bmloandetails.component';
-import { BmcashflowformsComponent } from './BM/Review/CashFlow/bmcashflowforms/bmcashflowforms.component';
-import { BmupdateerarningmemberComponent } from './BM/Review/BMbasicdetails/bmupdateerarningmember/bmupdateerarningmember.component';
-import { BmUpdateHoulddetailsComponent } from './BM/Review/BMbasicdetails/bm-update-houlddetails/bm-update-houlddetails.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +85,6 @@ import { BmUpdateHoulddetailsComponent } from './BM/Review/BMbasicdetails/bm-upd
     NewapplicationComponent,
     NewapplicationsearchComponent,
     NewapplicationformComponent,
-    // KycComponent,
     AddnewApplicationComponent,
     BasicdetailsComponent,
     HouseholddetailsComponent,
@@ -126,29 +124,22 @@ import { BmUpdateHoulddetailsComponent } from './BM/Review/BMbasicdetails/bm-upd
     BMDashboardComponent,
     AMDashboardComponent,
     InsightsComponent,
-  
     BmverifyclientdetailsComponent,
-    BmbasicdetailsBorrowerComponent,
-    BmearningmemberdetailsComponent,
-    BmhouseholddetailsComponent,
-
-    BmcashflowdetailsComponent,
-  
-    BmhhexpensesComponent,
-    BmhhliabilityComponent,
-    BmhhloaneligibilityComponent,
-    BmGuarantorsdetailsComponent,
-    BminsurancedetailsComponent,
-    BmbankdetailsComponent,
-    BmloandetailsComponent,
-    BmcashflowformsComponent,
-    BmupdateerarningmemberComponent,
-    BmUpdateHoulddetailsComponent,
-    
-    
-    // SamvoterComponent,
-    // AadharclientpictureComponent
-
+    BMBmbasicdetailsComponent,
+    BMearningmemberdetailsComponent,
+    BMupdateerarningmemberComponent,
+    BMhouseholddetailsComponent,
+    BMupdatehoulddetailsComponent,
+    BMbmcashflowdetailsComponent,
+    BMbmcashflowHhexpensesComponent,
+    BMbmcashflowHhliablityComponent,
+    BMbmcashflowHhloanComponent,
+    BMloandetailsHhloanComponent,
+    BMloandetailsGuarantordetailsComponent,
+    BMloandetailsInsurancedetailsComponent,
+    BMloandetailsBankdetailsComponent,
+    Bmcgt1detailsComponent,
+    // OCRAdharComponent,
 
   ],
   imports: [
@@ -156,7 +147,7 @@ import { BmUpdateHoulddetailsComponent } from './BM/Review/BMbasicdetails/bm-upd
     SharedModule,
     NgApexchartsModule,
     WebcamModule,
-    
+    ImageCropperModule,
     CommonModule,
     
   ]

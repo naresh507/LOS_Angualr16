@@ -200,7 +200,7 @@ export class AadharclientpictureComponent implements OnInit{
     this.status =Response.message;
     this.openErrorDialog();
     
-   // this.router.navigateByUrl('/aadharotp')
+   this.router.navigateByUrl('/kyc/idverification');
       console.log(Response);
     });
   }

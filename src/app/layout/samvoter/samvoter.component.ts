@@ -208,6 +208,6 @@ export class SamvoterComponent {
         console.log(responseData);
 
       });
-    this.router.navigateByUrl('/kycprofilereview')
+    this.router.navigateByUrl('/kyc/kycprofilereview')
   }
 }

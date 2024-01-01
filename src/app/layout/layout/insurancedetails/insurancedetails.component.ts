@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -18,7 +18,9 @@ export class InsurancedetailsComponent {
   LosUnique_Id: any = {};
   userObj: any;
   otpDialogRef: any;
-  otpverify: boolean = false
+  otpverify: boolean = false;
+
+  @Output() insurance = new EventEmitter()
 
 
   constructor(private dialog: MatDialog, private toastr: ToastrService,
@@ -108,6 +110,7 @@ export class InsurancedetailsComponent {
           //this.dialogRef.close();
 
         }
+        this.insurance.emit();
       },
 
       error: (err: HttpErrorResponse) => {
