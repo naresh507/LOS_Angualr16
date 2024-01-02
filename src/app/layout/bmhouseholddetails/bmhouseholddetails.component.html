@@ -114,17 +114,17 @@
 
                     </mat-expansion-panel-header>
 <!-- <app-cashflowforms  (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms> -->
-    <app-bmupdateerarningmember></app-bmupdateerarningmember>
+    <app-bmupdateerarningmember [earningMemberData]="response" (cashFlowData)="earningaddmoresaveCashFlowData($event)"></app-bmupdateerarningmember>
                    
 
-                    <section style="text-align: right; margin: 30px 0;">
+                    <!-- <section style="text-align: right; margin: 30px 0;">
                         <button class="loginBtn"  mat-raised-button color="primary" (click)="addmember = !addmember">Save & Next</button>
-                    </section>
+                    </section> -->
 
 
                     </mat-expansion-panel>
                     <button mat-raised-button class="fill_btn" colo="primary" (click)="hide = !hide"
-                    >Next</button>
+                    (click)="saveCashFlowData(form)">Next</button>
 
 </mat-accordion>
                   </section>
@@ -140,21 +140,24 @@
             <li>
                 <section class="inputsec">
                     <label>Electricity</label>
-                    <section>Yes</section>
+                    <!-- <section>Yes</section> -->
+                    <!-- <span> {{response?.Locality}}</span> -->
                     
                 </section>
                 </li>
                 <li>
                     <section class="inputsec">
                         <label>Customer ID</label>
-                        <section>9891098970</section>
+                        <!-- <section>9891098970</section> -->
+                        <!-- <span> {{response?.Locality}}</span> -->
                         
                     </section>
                     </li>
                     <li>
                         <section class="inputsec">
                             <label>Water</label>
-                            <section>Yes</section>
+                            <!-- <section>Yes</section> -->
+                            <!-- <span> {{response?.Locality}}</span> -->
                             
                         </section>
                         </li>
@@ -163,21 +166,23 @@
             <li>
                 <section class="inputsec">
                     <label>Toilet</label>
-                    <section>Yes</section>
+                    <!-- <section>Yes</section> -->
+                    <!-- <span> {{response?.Locality}}</span> -->
                     
                 </section>
                 </li>
                 <li>
                     <section class="inputsec">
                         <label>Sewage</label>
-                        <section>Yes</section>
+                        <!-- <section>Yes</section> -->
+                        <!-- <span> {{response?.Locality}}</span> -->
                         
                     </section>
                     </li>
                     <li>
                         <section class="inputsec">
                             <label>Land</label>
-                            <section>Yes</section>
+                            <!-- <section>Yes</section> -->
                             
                         </section>
                         </li>
@@ -186,21 +191,24 @@
             <li>
                 <section class="inputsec">
                     <label>LPG</label>
-                    <section>Yes</section>
-                    
+                    <!-- <section>Yes</section> -->
+                    <!-- <span> {{response?.Locality}}</span>
+                     -->
                 </section>
                 </li>
                 <li>
                     <section class="inputsec">
                         <label>LPG Consumwer No</label>
-                        <section>9891098970</section>
+                        <!-- <section>9891098970</section> -->
+                        <!-- <span> {{response?.Locality}}</span> -->
                         
                     </section>
                     </li>
                     <li>
                         <section class="inputsec">
                             <label>Livestock</label>
-                            <section>Yes</section>
+                            <!-- <section>Yes</section> -->
+                            <!-- <span> {{response?.Locality}}</span> -->
                             
                         </section>
                         </li>
@@ -209,21 +217,24 @@
             <li>
                 <section class="inputsec">
                     <label>Cow</label>
-                    <section>2</section>
+                    <!-- <section>2</section> -->
+                    <!-- <span> {{response?.Locality}}</span> -->
                     
                 </section>
                 </li>
                 <li>
                     <section class="inputsec">
                         <label>Buffaloes</label>
-                        <section>1</section>
+                        <!-- <section>1</section> -->
+                        <!-- <span> {{response?.Locality}}</span> -->
                         
                     </section>
                     </li>
                     <li>
                         <section class="inputsec">
                             <label>Goats</label>
-                            <section>1</section>
+                            <!-- <section>1</section> -->
+                            <!-- <span> {{response?.Locality}}</span> -->
                             
                         </section>
                         </li>
@@ -232,22 +243,25 @@
             <li>
                 <section class="inputsec">
                     <label>Poultry</label>
-                    <section>1</section>
+                    <!-- <section>1</section> -->
+                    <!-- <span> {{response?.Locality}}</span> -->
                     
                 </section>
                 </li>
                 <li>
                     <section class="inputsec">
                         <label>Vehicle</label>
-                        <section>No</section>
-                        
+                        <!-- <section>No</section> -->
+                        <!-- <span> {{response?.Locality}}</span>
+                         -->
                     </section>
                     </li>
                     <li>
                         <section class="inputsec">
                             <label>Furniture</label>
-                            <section>No</section>
-                            
+                            <!-- <section>No</section> -->
+                            <!-- <span> {{response?.Locality}}</span>
+                             -->
                         </section>
                         </li>
           </ul>
@@ -256,14 +270,16 @@
                 <li>
                     <section class="inputsec">
                         <label>SmartPhone</label>
-                        <section>Yes</section>
+                        <!-- <section>Yes</section> -->
+                        <!-- <span> {{response?.Locality}}</span> -->
                         
                     </section>
                     </li>
                     <li>
                         <section class="inputsec">
                             <label>Electronic Items</label>
-                            <section>No</section>
+                            <!-- <section>No</section> -->
+                            <!-- <span> {{response?.Locality}}</span> -->
                             
                         </section>
                         </li>
@@ -279,7 +295,7 @@
 
                 </mat-expansion-panel-header>
 <!-- <app-cashflowforms  (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms> -->
-<app-bmupdatehoulddetails></app-bmupdatehoulddetails>
+<app-bmupdatehoulddetails (cashFlowData)="OtherDetailsHosehold($event)"></app-bmupdatehoulddetails>
                
 
                 <section style="text-align: right; margin: 30px 0;">
@@ -311,7 +327,7 @@
 
     
       
-<!-- <app-bm-update-houlddetails></app-bm-update-houlddetails> -->
+
 
 
 

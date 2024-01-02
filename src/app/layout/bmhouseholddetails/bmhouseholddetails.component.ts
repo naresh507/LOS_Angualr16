@@ -12,9 +12,10 @@ import { CrudService } from 'src/app/shared/services/crud.service';
 })
 export class BMhouseholddetailsComponent {
   addmember: boolean = false;
-
-  response:any='';
-  hide:boolean=false;
+  public savedData: any = [];
+  response: any = '';
+  responses:any='';
+  hide: boolean = false;
   LosUnique_Id: any = {};
   userObj: any;
   dialogRef: any;
@@ -39,22 +40,22 @@ export class BMhouseholddetailsComponent {
     this.form = this.fb.group({
 
       // MemberName: ['', Validators.required],
-      FamilyType:['', Validators.required],
-     
-      NonEaringMembers:[''],
-      TotalHouseholdFamilyMembers:[''],
-      NoOfunmarriedchildren:[''],
-      NoOfDependents:[''],
+      FamilyType: ['', Validators.required],
+
+      NonEaringMembers: [''],
+      TotalHouseholdFamilyMembers: [''],
+      NoOfunmarriedchildren: [''],
+      NoOfDependents: [''],
 
 
-      
-      TypeOfRoof:[''],
-      TypeofOwnership:[''],
-      Locality:[''],
-      Community:[''],
-      Category:[''],
+
+      TypeOfRoof: [''],
+      TypeofOwnership: [''],
+      Locality: [''],
+      Community: [''],
+      Category: [''],
       Electricty: [''],
-     // CoustomerID: [''],
+      // CoustomerID: [''],
       Water: [''],
       Toilet: [''],
       Land: [''],
@@ -65,11 +66,11 @@ export class BMhouseholddetailsComponent {
       LPGConsumerNo: [''],
       Livestock: [''],
       TypeOfLivestock: [''],
-     // Count: [''],
+      // Count: [''],
       vehicle: [''],
       SmartPhone: [''],
       ElectronicItems: ['']
-      
+
     });
 
   }
@@ -78,40 +79,109 @@ export class BMhouseholddetailsComponent {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
     this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
     this.getMasterData();
+   // this.getMasterDataotherdeatils();
   }
+
+  earningaddmoresaveCashFlowData(data: any) {
+    // this.savedData.push(data)
+    this.savedData = data;
+  }
+
+  OtherDetailsHosehold(data: any) {
+    // this.savedData.push(data)
+    this.savedData = data;
+  }
+
+  saveCashFlowData(data: any) {
+
+
+    console.log(this.savedData)
+    this._crudService.BMHouseHoldDetailsSubmitData(this.savedData).subscribe({
+      next: (value: any) => {
+        this.hide = true;
+        console.log(value)
+        if (value.status == true || value.status == 'True') {
+
+
+        }
+
+      },
+
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+
+    console.log('Received cash flow data:', data);
+
+  }
+
+
+
+  save() {
+    console.log(this.savedData)
+    this._crudService.BMHouseHoldDetailsSubmitData(this.savedData).subscribe({
+      next: (value: any) => {
+
+        console.log(value)
+        if (value.status == true || value.status == 'True') {
+          this.router.navigateByUrl('bmcashflow');
+
+        }
+
+      },
+
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+
+    // this.router.navigateByUrl('bmcashflow')
+  }
+
+
+
+  // getMasterDataotherdeatils() {
+  //   let obj = {
+  //     Flag: 'O',
+  //     UserId: this.userObj.UserID,
+  //     LosUnique_Id: this.LosUnique_Id,
+
+  //   }
+  //   this._crudService.BMHouseHoldFetchData(obj).subscribe({
+  //     next: (value: any) => {
+  //       console.log(value)
+  //       this.response = value.BMHouseHoldDetailsFetchDataInfo[0];
+  //       this.form.patchValue(this.response);
+  //       console.log(this.response);
+  //       if (value.status == true) {
+
+  //       }
+  //     },
+
+  //     error: (err: HttpErrorResponse) => {
+  //       console.log(err)
+  //     }
+  //   })
+  // }
+
+
+
 
   getMasterData() {
     let obj = {
-      Flag:'V',
+      Flag: 'V',
       UserId: this.userObj.UserID,
       LosUnique_Id: this.LosUnique_Id,
-      FamilyType:'',
-      TypeOfRoof:'',
-      TypeofOwnership:'',
-      NoOfunmarriedchildren:'',
-      TotalHouseholdFamilyMembers:'',
-      NoOfDependents:'',
-      Locality:'',
-      Community:'',
-      Category:'',
-      NonEaringMembers:'',
-      NonofnonEaringMembers:'',
+
     }
-    this._crudService.BMHouseHoldDetailsSubmitionFetch(obj).subscribe({
+    this._crudService.BMHouseHoldFetchData(obj).subscribe({
       next: (value: any) => {
         console.log(value)
-        this.response = value?.BMHouseHoldDetailsSubmitionFetchDataInfo[0];
-
-         console.log(this.response);
-        
-
+        this.response = value?.BMHouseHoldDetailsFetchDataInfo[0];
+        this.form.patchValue(this.responses);
+        console.log(this.responses);
         if (value.status == true) {
-// this.response =value.HouseHoldDetailsSubmitionFetchDataInfo[0];
-
-// console.log(this.response);
-
-         
-
 
         }
       },
@@ -122,9 +192,13 @@ export class BMhouseholddetailsComponent {
     })
   }
 
-  proceed() {
-    this.router.navigateByUrl('/cashflow')
-  }
+
+
+
+
+
+
+
 
   eleData(e: any) {
 
@@ -146,47 +220,6 @@ export class BMhouseholddetailsComponent {
     this.vehicleList = e.value == 'yes' ? true : false
   }
 
-  submit(formData: any) {
-
-    formData.value['UserId']=this.userObj.UserID;
-    formData.value['LosUnique_Id']=this.LosUnique_Id;
-
-  let obj={
-    "HouseHoldDetailsSubmitDataInfo":[{}]
-   }
-
-  obj.HouseHoldDetailsSubmitDataInfo=[formData.value]
- 
-    console.log(obj.HouseHoldDetailsSubmitDataInfo);
-
-    // obj.HouseHoldDataSubmit = [formData.value]
-
-    // this._crudService.saveHouseHoldDetail(obj).subscribe({
-      this._crudService.saveHouseHoldDetailsubmit(obj).subscribe({
-      next: (value: any) => {
-        console.log(value)
-        if (value.status == true || value.status == 'True') {
-
-          this.router.navigateByUrl('bmcashflow')
-        }
-      },
-
-      error: (err: HttpErrorResponse) => {
-        console.log(err)
-      }
-    })
 
 
-
-    
-  }
-  save(){
-    // this.hide=true
-
-    this.router.navigateByUrl('bmcashflow')
-  }
-
-  next(){
-    this.hide=true
-  }
 }

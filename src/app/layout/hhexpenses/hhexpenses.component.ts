@@ -54,7 +54,13 @@ ngOnInit(): void {
   this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
  
 }
-
+chcekValue(event: any): boolean {
+  const code = (event.which) ? event.which : event.keyCode;
+  if (code > 31 && (code < 48 || code > 57)) {
+    return false
+  }
+  return true;
+}
 submit(formData: any) {
 formData.value['UserId']=this.userObj.UserID;
 formData.value['LosUnique_Id']=this.LosUnique_Id;

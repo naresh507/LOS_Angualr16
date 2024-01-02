@@ -8,7 +8,7 @@
             <section class="inputsec">
                 <label>Accommodation/Rent</label>
                 <mat-form-field class="iconform" appearance="outline">
-                    <input  matInput formControlName="AccommodationRent" placeholder="Rent" value="0">
+                    <input  matInput formControlName="AccommodationRent" placeholder="Rent" value="0" (keypress)="chcekValue($event)" >
                     <span class="fromicon iconnot" (click)="popup()"></span>
                 </mat-form-field>
             </section>
@@ -18,7 +18,7 @@
             <section class="inputsec">
                 <label>Food + Cooking fuel</label>
                 <mat-form-field class="iconform" appearance="outline">
-                    <input  matInput formControlName="FoodCookingfuel" placeholder="" >
+                    <input  matInput formControlName="FoodCookingfuel" placeholder="" (keypress)="chcekValue($event)" >
                     <span class=" fromicon iconnot"></span>
                 </mat-form-field>
             </section>
@@ -27,7 +27,7 @@
             <section class="inputsec">
                 <label>Clothes</label>
                 <mat-form-field class="iconform" appearance="outline">
-                    <input  formControlName="Cothes"  matInput placeholder="">
+                    <input  formControlName="Cothes"  matInput placeholder="" (keypress)="chcekValue($event)" >
                     <span class=" fromicon iconnot"></span>
                 </mat-form-field>
             </section>
@@ -36,7 +36,7 @@
             <section class="inputsec">
                 <label>Regular Educationexpenses</label>
                 <mat-form-field class="iconform" appearance="outline">
-                    <input  formControlName="RegularEducationExpenses"   matInput placeholder="" >
+                    <input  formControlName="RegularEducationExpenses"   matInput placeholder="" (keypress)="chcekValue($event)"  >
                     <span class=" fromicon iconnot"></span>
                 </mat-form-field>
             </section>
@@ -55,7 +55,7 @@
             <section class="inputsec">
                 <label>Regular medical costs</label>
                 <mat-form-field class="iconform" appearance="outline">
-                    <input formControlName="RegularMedicalCosts"  matInput placeholder="">
+                    <input formControlName="RegularMedicalCosts"  matInput placeholder="" (keypress)="chcekValue($event)" >
                     <span class=" fromicon iconnot"></span>
                 </mat-form-field>
             </section>
@@ -64,7 +64,7 @@
             <section class="inputsec">
                 <label>Transport</label>
                 <mat-form-field class="iconform" appearance="outline">
-                    <input formControlName="Transport"  matInput placeholder="">
+                    <input formControlName="Transport"  matInput placeholder="" (keypress)="chcekValue($event)" >
                     <span class=" fromicon iconnot"></span>
                 </mat-form-field>
             </section>
@@ -73,7 +73,7 @@
             <section class="inputsec">
                 <label>Entertainment/social obligations</label>
                 <mat-form-field class="iconform" appearance="outline">
-                    <input formControlName="EntertainmentSocialobligations"  matInput placeholder="">
+                    <input formControlName="EntertainmentSocialobligations"  matInput placeholder="" (keypress)="chcekValue($event)" >
                     <span class=" fromicon iconnot"></span>
                 </mat-form-field>
             </section>
@@ -82,7 +82,7 @@
             <section class="inputsec">
                 <label>Savings</label>
                 <mat-form-field class="iconform" appearance="outline">
-                    <input formControlName="Saving"  matInput placeholder="">
+                    <input formControlName="Saving"  matInput placeholder="" (keypress)="chcekValue($event)" >
                     <span class=" fromicon iconnot"></span>
                 </mat-form-field>
             </section>
@@ -91,7 +91,7 @@
             <section class="inputsec">
                 <label>Others</label>
                 <mat-form-field class="iconform" appearance="outline">
-                    <input formControlName="Other"  matInput placeholder="">
+                    <input formControlName="Other"  matInput placeholder="" (keypress)="chcekValue($event)" >
                     <span class=" fromicon iconnot"></span>
                 </mat-form-field>
             </section>
@@ -100,7 +100,7 @@
             <section class="inputsec">
                 <label>Total Regular Expenses</label>
                 <mat-form-field class="iconform" appearance="outline">
-                    <input formControlName="TotalIrregularExpenseMothly" matInput placeholder="">
+                    <input formControlName="TotalIrregularExpenseMothly" matInput placeholder="" (keypress)="chcekValue($event)" >
                     <span class=" fromicon iconnot"></span>
                 </mat-form-field>
             </section>
@@ -123,7 +123,7 @@
                 <section class="inputsec">
                     <label>Medical/Health</label>
                     <mat-form-field class="iconform" appearance="outline">
-                        <input formControlName="MedicalHeath" matInput placeholder="Rent" value="0">
+                        <input formControlName="MedicalHeath" matInput placeholder="Rent" value="0"  (keypress)="chcekValue($event)">
                         <span class="fromicon iconnot" (click)="popup()"></span>
                     </mat-form-field>
                 </section>
@@ -133,7 +133,7 @@
                 <section class="inputsec">
                     <label>House Renovation</label>
                     <mat-form-field class="iconform" appearance="outline">
-                        <input formControlName="HouseRenovation" matInput placeholder="" >
+                        <input formControlName="HouseRenovation" matInput placeholder=""  (keypress)="chcekValue($event)">
                         <span class=" fromicon iconnot"></span>
                     </mat-form-field>
                 </section>
@@ -142,7 +142,7 @@
                 <section class="inputsec">
                     <label>Purchase of household goods</label>
                     <mat-form-field class="iconform" appearance="outline">
-                        <input formControlName="PurchaseOfHouseHoldGoods" matInput placeholder="" >
+                        <input formControlName="PurchaseOfHouseHoldGoods" matInput placeholder=""  (keypress)="chcekValue($event)" >
                         <span class=" fromicon iconnot"></span>
                     </mat-form-field>
                 </section>
@@ -151,7 +151,7 @@
                 <section class="inputsec">
                     <label>Functions</label>
                     <mat-form-field class="iconform" appearance="outline">
-                        <input formControlName="Functions" matInput placeholder="" >
+                        <input formControlName="Functions" matInput placeholder=""   (keypress)="chcekValue($event)">
                         <span class=" fromicon iconnot"></span>
                     </mat-form-field>
                 </section>
@@ -161,7 +161,7 @@
                 <section class="inputsec">
                     <label>Education</label>
                     <mat-form-field class="iconform" appearance="outline">
-                        <input formControlName="Education" matInput placeholder="" >
+                        <input formControlName="Education" matInput placeholder=""  (keypress)="chcekValue($event)">
                         <span class=" fromicon iconnot"></span>
                     </mat-form-field>
                 </section>
@@ -170,7 +170,7 @@
                 <section class="inputsec">
                     <label>Others</label>
                     <mat-form-field class="iconform" appearance="outline">
-                        <input formControlName="Others" matInput placeholder="" >
+                        <input formControlName="Others" matInput placeholder=""  (keypress)="chcekValue($event)">
                         <span class=" fromicon iconnot"></span>
                     </mat-form-field>
                 </section>
@@ -180,7 +180,7 @@
                 <section class="inputsec">
                     <label>Total Irregular Expenses(Monthly)</label>
                     <mat-form-field class="iconform" appearance="outline">
-                        <input formControlName="TotalIrregularExpenseMothly"   matInput placeholder="" >
+                        <input formControlName="TotalIrregularExpenseMothly"   matInput placeholder=""  (keypress)="chcekValue($event)" >
                         <span class=" fromicon iconnot"></span>
                     </mat-form-field>
                 </section>
@@ -189,7 +189,7 @@
                 <section class="inputsec">
                     <label>Total Irregular Expenses(Annually)</label>
                     <mat-form-field class="iconform" appearance="outline">
-                        <input formControlName="TotalIrregularExpenseAnnually"   matInput placeholder="" >
+                        <input formControlName="TotalIrregularExpenseAnnually"   matInput placeholder=""  (keypress)="chcekValue($event)" >
                         <span class=" fromicon iconnot"></span>
                     </mat-form-field>
                 </section>      

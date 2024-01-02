@@ -125,7 +125,7 @@
                                     <section class="inputsec">
                                         <label>Applied Amount</label>
                                         <mat-form-field appearance="outline">
-                                            <input formControlName="amount" required matInput placeholder="Amount">
+                                            <input formControlName="amount" required matInput placeholder="Amount" (keypress)="chcekValue($event)" >
                                         </mat-form-field>
                                     </section>
                                 </li>

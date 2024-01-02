@@ -47,7 +47,12 @@ export class AddnewApplicationComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       tag: [''],
-      name: [''],
+      name: ['', [
+        Validators.required,
+        Validators.maxLength(30),
+        Validators.pattern('^[a-zA-Z ]*$')
+      ]
+],
       relationship: [''],
       mobile: [''],
       mobileotp: ['']
@@ -70,6 +75,22 @@ export class AddnewApplicationComponent implements OnInit {
     console.log(this.referance_id)
 
     this.getMasterData();
+  }
+
+ 
+  chcekValue(event: any): boolean {
+    const code = (event.which) ? event.which : event.keyCode;
+    if (code > 31 && (code < 48 || code > 57)) {
+      return false
+    }
+    return true;
+  }
+  checkValue(event: any): boolean {
+    const code = (event.which) ? event.which : event.keyCode;
+    if ((code >= 65 && code <= 90) || (code >= 97 && code <= 122) || code === 32) {
+      return true; // Allow alphabets and space
+    }
+    return false; // Disallow other characters
   }
   sendOtp() {
 
@@ -273,32 +294,46 @@ export class AddnewApplicationComponent implements OnInit {
       imageUrl: '../../assets/images/no-data.svg',
       imageHeight: 80,
       text: this.message,
-      // showCancelButton: true,
+      showCancelButton: true,
 
-      // cancelButtonText: 'Field',
-      // confirmButtonText: 'Branch',
-      // customClass: {
-      //   confirmButton: "filledBtn",
-      //   cancelButton: 'strokedBtn'
-      // }
-      showCancelButton: value.status === 'True',
-      showConfirmButton: value.status === 'True',
       cancelButtonText: 'Field',
       confirmButtonText: 'Branch',
       customClass: {
-        confirmButton: value.status === 'True' ? "filledBtn" : "hiddenBtn",
-        cancelButton: value.status === 'True' ? 'strokedBtn' : 'hiddenBtn'
+        confirmButton: "filledBtn",
+        cancelButton: 'strokedBtn'
       }
+      // showCancelButton: value.status === 'True',
+      // showConfirmButton: value.status === 'True',
+      // cancelButtonText: 'Field',
+      // confirmButtonText: 'Branch',
+      // customClass: {
+      //   confirmButton: value.status === 'True' ? "filledBtn" : "hiddenBtn",
+      //   cancelButton: value.status === 'True' ? 'strokedBtn' : 'hiddenBtn'
+      // }
 
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.route.navigateByUrl('/kyc')
-        // this.unlinkconfirm()
-      }
-      else {
-        console.log('close')
-      }
-    })
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     this.route.navigateByUrl('/kyc')
+    //     // this.unlinkconfirm()
+    //   }
+    //   else {
+    //     console.log('close')
+    //   }
+    // })
+
+  }).then((result) => {
+    if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop) {
+      this.route.navigateByUrl('/kyc');
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+      this.route.navigateByUrl('/kyc');
+      // Perform the action for 'Field' button
+      // For example: this.someFunctionForFieldButton();
+      // Or navigate: this.route.navigateByUrl('/someOtherPage');
+    } else {
+      console.log('close');
+    }
+  });
   }
 
   sucesscenter(type: any) {

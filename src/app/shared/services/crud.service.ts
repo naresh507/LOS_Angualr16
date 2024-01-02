@@ -332,12 +332,19 @@ BMEarningMembersData(BMEarningMembersData: any):Observable<any>{
 }
 
 
-// BMHouseHoldDetailsSubmitionFetch
+// BMHouseHoldDetailsFetchData
 
-BMHouseHoldDetailsSubmitionFetch(BMHouseHoldDetailsSubmitionFetch: any):Observable<any>{
-  return this.http.post(`${environment.apiUrl}BMHouseHoldDetailsSubmitionFetch`, BMHouseHoldDetailsSubmitionFetch);
+BMHouseHoldFetchData(BMHouseFetchData: any):Observable<any>{
+  return this.http.post(`${environment.apiUrl}BMHouseHoldDetailsFetchData`, BMHouseFetchData);
 }
 
+
+
+// BMHouseHoldDetailsSubmitData
+
+BMHouseHoldDetailsSubmitData(BMHouseHoldsubmitData: any):Observable<any>{
+  return this.http.post(`${environment.apiUrl}BMHouseHoldDetailsSubmitData`, BMHouseHoldsubmitData);
+}
 
 
 

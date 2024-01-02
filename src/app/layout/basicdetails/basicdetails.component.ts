@@ -74,6 +74,14 @@ export class BasicdetailsComponent implements OnInit {
     this.getBasicdetails();
     this.getMasterData();
   }
+
+  chcekValue(event: any): boolean {
+    const code = (event.which) ? event.which : event.keyCode;
+    if (code > 31 && (code < 48 || code > 57)) {
+      return false
+    }
+    return true;
+  }
   enlarge() {
     this.enlargeDialogRef = this.dialog.open(this.enlargedialog, {
       width: '600px'

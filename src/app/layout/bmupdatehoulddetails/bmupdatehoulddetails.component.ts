@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -11,6 +11,7 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./bmupdatehoulddetails.component.scss']
 })
 export class BMupdatehoulddetailsComponent {
+  @Output() cashFlowData: EventEmitter<any> = new EventEmitter<any>();
   LosUnique_Id: any = {};
   userObj: any;
   dialogRef: any;
@@ -34,7 +35,6 @@ export class BMupdatehoulddetailsComponent {
   constructor(private router: Router, private _crudService: CrudService, private fb: FormBuilder, private toastr: ToastrService,) {
     this.form = this.fb.group({
 
-      // MemberName: ['', Validators.required],
       FamilyType:['', Validators.required],
      
       NonEaringMembers:[''],
@@ -134,37 +134,11 @@ export class BMupdatehoulddetailsComponent {
     this.vehicleList = e.value == 'yes' ? true : false
   }
 
-  submit(formData: any) {
-
-    formData.value['UserId']=this.userObj.UserID;
-    formData.value['LosUnique_Id']=this.LosUnique_Id;
-
-  let obj={
-    "HouseHoldDetailsSubmitDataInfo":[{}]
-   }
-
-  obj.HouseHoldDetailsSubmitDataInfo=[formData.value]
- 
-    console.log(obj.HouseHoldDetailsSubmitDataInfo);
-
-    // obj.HouseHoldDataSubmit = [formData.value]
-
-    // this._crudService.saveHouseHoldDetail(obj).subscribe({
-      this._crudService.saveHouseHoldDetailsubmit(obj).subscribe({
-      next: (value: any) => {
-        console.log(value)
-        if (value.status == true || value.status == 'True') {
-
-          this.router.navigateByUrl('bmcashflow');
-        }
-      },
-
-      error: (err: HttpErrorResponse) => {
-        console.log(err)
-      }
-    })
-
-
-  }
+  submit() {
+    // if (this.form.valid) {
+        const formData = this.form.value; 
+      
+        this.cashFlowData.emit(formData);
+    }
  
 }

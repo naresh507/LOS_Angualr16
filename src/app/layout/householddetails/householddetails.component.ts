@@ -41,30 +41,30 @@ export class HouseholddetailsComponent implements OnInit {
       TotalHouseholdFamilyMembers:[''],
       NoOfunmarriedchildren:[''],
       NoOfDependents:[''],
-
-
-      
       TypeOfRoof:[''],
       TypeofOwnership:[''],
       Locality:[''],
       Community:[''],
       Category:[''],
-      Electricty: [''],
-     // CoustomerID: [''],
+      Electricity: [''],
+      Customerid: [''],
       Water: [''],
       Toilet: [''],
       Land: [''],
       LandUnit: [''],
-      sewage: [''],
+      Sewage: [''],
       LPG: [''],
       Furniture: [''],
-      LPGConsumerNo: [''],
+      LPGConsumerNO: [''],
       Livestock: [''],
-      TypeOfLivestock: [''],
-     // Count: [''],
-      vehicle: [''],
-      SmartPhone: [''],
-      ElectronicItems: [''],
+      TypeLivestock: [''],
+      LivestockCount:[''],
+      Poultry:[''],
+      Vehical: [''],
+      TypeVehical:[''],
+      TypeVehicalCount:[''],
+      Smartphone: [''],
+      Electronicitems: [''],
       NonofnonEaringMembers:['']
       
     });
@@ -76,7 +76,13 @@ export class HouseholddetailsComponent implements OnInit {
     this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
     this.getMasterData();
   }
-
+  chcekValue(event: any): boolean {
+    const code = (event.which) ? event.which : event.keyCode;
+    if (code > 31 && (code < 48 || code > 57)) {
+      return false
+    }
+    return true;
+  }
   getMasterData() {
     let obj = {
 

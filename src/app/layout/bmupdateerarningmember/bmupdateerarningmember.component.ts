@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -11,6 +11,8 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./bmupdateerarningmember.component.scss']
 })
 export class BMupdateerarningmemberComponent {
+  @Input() earningMemberData: any;
+  @Output() cashFlowData: EventEmitter<any> = new EventEmitter<any>();
   response:any='';
   hide:boolean=false;
   LosUnique_Id: any = {};
@@ -35,39 +37,20 @@ export class BMupdateerarningmemberComponent {
   vehicleList: boolean = false;
   constructor(private router: Router, private _crudService: CrudService, private fb: FormBuilder, private toastr: ToastrService,) {
     this.form = this.fb.group({
-
-      // MemberName: ['', Validators.required],
       FamilyType:['', Validators.required],
-     
+      Flag: "S",
       NonEaringMembers:[''],
       TotalHouseholdFamilyMembers:[''],
       NoOfunmarriedchildren:[''],
       NoOfDependents:[''],
-
-
-      
       TypeOfRoof:[''],
       TypeofOwnership:[''],
       Locality:[''],
       Community:[''],
       Category:[''],
-      Electricty: [''],
-     // CoustomerID: [''],
-      Water: [''],
-      Toilet: [''],
-      Land: [''],
-      LandUnit: [''],
-      sewage: [''],
-      LPG: [''],
-      Furniture: [''],
-      LPGConsumerNo: [''],
-      Livestock: [''],
-      TypeOfLivestock: [''],
-     // Count: [''],
-      vehicle: [''],
-      SmartPhone: [''],
-      ElectronicItems: ['']
-      
+      LosUnique_Id: "",
+      UserID: "",
+
     });
 
   }
@@ -75,49 +58,39 @@ export class BMupdateerarningmemberComponent {
  ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
     this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
-    this.getMasterData();
+    // this.getMasterData();
   }
-  getMasterData() {
-    let obj = {
-      Flag:'V',
-      UserId: this.userObj.UserID,
-      LosUnique_Id: this.LosUnique_Id,
-      FamilyType:'',
-      TypeOfRoof:'',
-      TypeofOwnership:'',
-      NoOfunmarriedchildren:'',
-      TotalHouseholdFamilyMembers:'',
-      NoOfDependents:'',
-      Locality:'',
-      Community:'',
-      Category:'',
-      NonEaringMembers:'',
-      NonofnonEaringMembers:'',
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['earningMemberData'] && changes['earningMemberData'].currentValue) {
+      this.patchFormValues();
     }
-    this._crudService.BMHouseHoldDetailsSubmitionFetch(obj).subscribe({
-      next: (value: any) => {
-        console.log(value)
-        this.response = value?.BMHouseHoldDetailsSubmitionFetchDataInfo[0];
-
-         console.log(this.response);
-        
-
-        if (value.status == true) {
-// this.response =value.HouseHoldDetailsSubmitionFetchDataInfo[0];
-
-// console.log(this.response);
-
-         
-
-
-        }
-      },
-
-      error: (err: HttpErrorResponse) => {
-        console.log(err)
-      }
-    })
   }
 
+  patchFormValues(){
+    if (this['earningMemberData']) {
+      this.form.patchValue({
+        LosUnique_Id: this.LosUnique_Id || "",
 
+        UserID: this.userObj.UserID||"",
+
+        FamilyType: this['earningMemberData'].FamilyTypeDetails?.[0]?.ID || '',
+ 
+        NonEaringMembers: this['earningMemberData'].NonEaringMembers || '',
+        TotalHouseholdFamilyMembers: this['earningMemberData'].TotalHouseholdFamilyMembers || '',
+        TypeOfRoof: this['earningMemberData']?.TypeOfRoof || '' ,
+
+        NoOfunmarriedchildren: this['earningMemberData']?.NoOfunmarriedchildren || '',
+        NoOfDependents: this['earningMemberData'].NoOfDependents || '',
+        Community: this['earningMemberData'].Community || '',
+      });
+    }
+  }
+
+  saveData() {
+    // if (this.form.valid) {
+        const formData = this.form.value; 
+      
+        this.cashFlowData.emit(formData);
+    }
 }

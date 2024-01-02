@@ -26,7 +26,7 @@
             <section class="inputsec">
                 <label>Non-Earning members</label>
                 <mat-form-field appearance="outline">
-                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" >
+                    <input required matInput placeholder="Enter" formControlName="NonEaringMembers" (keypress)="chcekValue($event)" >
                 </mat-form-field>
             </section>
         </li>
@@ -38,7 +38,7 @@
             <section class="inputsec">
                 <label>Total Household Family members</label>
                 <mat-form-field appearance="outline">
-                    <input required matInput placeholder="Enter" formControlName="TotalHouseholdFamilyMembers" >
+                    <input required matInput placeholder="Enter" formControlName="TotalHouseholdFamilyMembers" (keypress)="chcekValue($event)" >
                 </mat-form-field>
             </section>
         </li>
@@ -46,7 +46,7 @@
             <section class="inputsec">
                 <label>No of Unmarried Children</label>
                 <mat-form-field appearance="outline">
-                    <input required matInput placeholder="Enter"  formControlName="NoOfunmarriedchildren" >
+                    <input required matInput placeholder="Enter"  formControlName="NoOfunmarriedchildren" (keypress)="chcekValue($event)" >
                 </mat-form-field>
             </section>
         </li>
@@ -60,7 +60,7 @@
             <section class="inputsec">
                 <label>No of Dependents</label>
                 <mat-form-field appearance="outline">
-                    <input required matInput placeholder="Enter" formControlName="NoOfDependents" >
+                    <input required matInput placeholder="Enter" formControlName="NoOfDependents" (keypress)="chcekValue($event)"  >
                 </mat-form-field>
             </section>
         </li>
@@ -177,7 +177,7 @@
             <section class="inputsec">
                 <label>Electricity</label>
                 <mat-form-field  appearance="outline">
-                    <mat-select formControlName="Electricty" (selectionChange)="eleData($event)">
+                    <mat-select formControlName="Electricity" (selectionChange)="eleData($event)">
                         <mat-option>
                             Select
                         </mat-option>
@@ -195,7 +195,7 @@
             <section class="inputsec">
                 <label>Customer Id</label>
                 <mat-form-field  appearance="outline">
-                    <input   formControlName="CoustomerID" required matInput placeholder="Customer Id">
+                    <input   formControlName="Customerid" required matInput placeholder="Customer Id" (keypress)="chcekValue($event)" >
                    
                     </mat-form-field> 
             </section>
@@ -262,7 +262,7 @@
             <section class="inputsec">
                 <label>Land Unit(In Acre)</label>
                 <mat-form-field  appearance="outline">
-                    <input formControlName="LandUnit" required matInput placeholder="Land Unit">
+                    <input formControlName="LandUnit" required matInput placeholder="Land Unit" (keypress)="chcekValue($event)" >
                     
                     </mat-form-field> 
             </section>
@@ -272,7 +272,7 @@
             <section class="inputsec">
                 <label>Sewage</label>
                 <mat-form-field appearance="outline">
-                    <mat-select formControlName="sewage">
+                    <mat-select formControlName="Sewage">
                         <mat-option>
                             Select
                         </mat-option>
@@ -313,7 +313,7 @@
             <section class="inputsec"  *ngIf="lpg">
                 <label>LPG Consumer No</label>
                 <mat-form-field  appearance="outline">
-                    <input   formControlName="LPGConsumerNo" required matInput placeholder="consumer no">
+                    <input   formControlName="LPGConsumerNO" required matInput placeholder="consumer no" (keypress)="chcekValue($event)" >
                     
                     </mat-form-field> 
             </section>
@@ -340,7 +340,17 @@
                 </mat-form-field>
             </section>
         </li>
-        <li></li>
+
+        <li class="">
+            <section class="inputsec" >
+                <label>Count</label>
+                <mat-form-field  appearance="outline">
+                    <input formControlName="LivestockCount" required matInput placeholder="Count" (keypress)="chcekValue($event)" >
+                    
+                    </mat-form-field> 
+            </section>
+        </li>
+       
         </ul>
     
     
@@ -349,7 +359,7 @@
             <section class="inputsec">
                 <label>Type of Livestock</label>
                 <mat-form-field appearance="outline">
-                    <mat-select>
+                    <mat-select formControlName="TypeLivestock">
                         <!-- <mat-option>
                             Select
                         </mat-option>
@@ -363,15 +373,15 @@
             </section>
         </li>
     
-        <li class="">
+        <!-- <li class="">
             <section class="inputsec" >
                 <label>Count</label>
                 <mat-form-field  appearance="outline">
-                    <input formControlName="Count" required matInput placeholder="Count">
+                    <input formControlName="LivestockCount" required matInput placeholder="Count">
                     
                     </mat-form-field> 
             </section>
-        </li>
+        </li> -->
     </ul>
     
     <ul class="list_type">
@@ -393,7 +403,15 @@
                 </mat-form-field>
             </section>
         </li>
-        <li></li>
+        <li class="">
+            <section class="inputsec" >
+                <label>Count</label>
+                <mat-form-field  appearance="outline">
+                    <input formControlName="TypeVehicalCount" required matInput placeholder="Count" (keypress)="chcekValue($event)" >
+                    
+                    </mat-form-field> 
+            </section>
+        </li>
     </ul>
     
     
@@ -403,7 +421,7 @@
             <section class="inputsec">
                 <label>Type of Vehicle</label>
                 <mat-form-field appearance="outline">
-                    <mat-select formControlName="TypeoOfVehicle">
+                    <mat-select formControlName="TypeVehical">
                         <mat-option>
                             Select
                         </mat-option>
@@ -418,15 +436,7 @@
             </section>
         </li>
     
-        <li class="">
-            <section class="inputsec" >
-                <label>Count</label>
-                <mat-form-field  appearance="outline">
-                    <input formControlName="vehiclecount" required matInput placeholder="Count">
-                    
-                    </mat-form-field> 
-            </section>
-        </li>
+       
     </ul>
     
     
@@ -454,7 +464,7 @@
             <section class="inputsec">
                 <label>SmartPhone</label>
                 <mat-form-field appearance="outline">
-                    <mat-select   formControlName="SmartPhone">
+                    <mat-select   formControlName="Smartphone">
                         <mat-option>
                             Select
                         </mat-option>
@@ -475,7 +485,7 @@
             <section class="inputsec">
                 <label>Electronic items</label>
                 <mat-form-field appearance="outline">
-                    <mat-select   formControlName="ElectronicItems">
+                    <mat-select   formControlName="Electronicitems">
                         <mat-option>
                             Select
                         </mat-option>
@@ -494,7 +504,7 @@
             <section class="inputsec">
                 <label>Number of Non-Earning members</label>
                 <mat-form-field appearance="outline">
-                    <input required matInput placeholder="Enter" formControlName="NonofnonEaringMembers" >
+                    <input required matInput placeholder="Enter" formControlName="NonofnonEaringMembers"  (keypress)="chcekValue($event)"  >
                 </mat-form-field>
             </section>
         </li>

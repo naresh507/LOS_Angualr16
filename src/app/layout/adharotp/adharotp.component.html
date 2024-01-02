@@ -26,7 +26,7 @@
             <div class="form-group_div">
 
               <input type="text" [(ngModel)]="adhardetails.aadhaarNo" [ngModelOptions]="{ standalone: true }"
-                class="form-control form-control-sm" placeholder="Enter Number" maxlength="12" required
+                class="form-control form-control-sm" placeholder="Enter Number"(keypress)="chcekValue($event)" [maxlength]="12"required
                 (input)="convertNumber()" />
               <!-- <input type="text" [(ngModel)]="adhardetails.aadhaarNo" [ngModelOptions]="{ standalone: true }"
                 class="form-control form-control-sm" placeholder="Enter Number"  maxlength="12" required /> -->
