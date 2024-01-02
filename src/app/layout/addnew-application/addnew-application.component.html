@@ -33,7 +33,8 @@
               <section class="inputsec">
                 <label>Name</label>
                 <mat-form-field appearance="outline">
-                  <input formControlName="name" required matInput placeholder="Enter Name">
+                  <input formControlName="name" matInput placeholder="Enter Name" [maxlength]="30"  (keypress)="checkValue($event)"
+                  >
                 </mat-form-field>
               </section>
             </li>
@@ -67,7 +68,7 @@
             <mat-form-field appearance="outline">
               <span *ngIf="updatescreen1" class="checktxt"></span>
 
-              <input [(ngModel)]="mobileNo" [ngClass]="{'checktxtpadd': updatescreen1 }" formControlName="mobile" required matInput placeholder="Enter Number">
+              <input [(ngModel)]="mobileNo" [ngClass]="{'checktxtpadd': updatescreen1 }" formControlName="mobile" required matInput placeholder="Enter Number"  (keypress)="chcekValue($event)" [maxlength]="10">
 
               <a *ngIf="updatescreen1" class="updatetxt" (click)="update()">Update</a>
 
@@ -137,7 +138,7 @@
           <section class="inputsec">
             <label>Mobile Number</label>
             <mat-form-field appearance="outline">
-              <input [(ngModel)]="mobileNo" required matInput placeholder="Enter Number" formControlName="ExistingMobileNumber"> <a
+              <input [(ngModel)]="mobileNo" required matInput placeholder="Enter Number" formControlName="ExistingMobileNumber" (keypress)="chcekValue($event)" [maxlength]="10"> <a
                 style="position: absolute;right: -9px; color: #442477;font-size: 12px;" class="">Change</a>
             </mat-form-field>
 
@@ -146,7 +147,7 @@
           <section class="inputsec">
             <label>New Mobile Number</label>
             <mat-form-field appearance="outline">
-              <input required matInput placeholder="Enter Number" formControlName="NewMobileNumber">
+              <input required matInput placeholder="Enter Number" formControlName="NewMobileNumber" (keypress)="chcekValue($event)" [maxlength]="10">
             </mat-form-field>
             <span class="smalltxt">(Aadhar registered Mobile Number Preferable)</span>
           </section>
@@ -154,7 +155,7 @@
           <section class="inputsec">
             <label>Confirm Mobile Number</label>
             <mat-form-field appearance="outline">
-              <input required matInput placeholder="Enter Number" formControlName="ConfirmNewMobileNumber">
+              <input required matInput placeholder="Enter Number" formControlName="ConfirmNewMobileNumber" (keypress)="chcekValue($event)" [maxlength]="10">
             </mat-form-field>
             <span class="smalltxt">(Aadhar registered Mobile Number Preferable)</span>
           </section>
