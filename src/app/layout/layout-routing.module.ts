@@ -37,6 +37,7 @@ import { BMBmbasicdetailsComponent } from './bmbmbasicdetails/bmbmbasicdetails.c
 import { BMbmcashflowdetailsComponent } from './bmbmcashflowdetails/bmbmcashflowdetails.component';
 import { BMloandetailsHhloanComponent } from './bmloandetails-hhloan/bmloandetails-hhloan.component';
 import { Bmcgt1detailsComponent } from './bmcgt1details/bmcgt1details.component';
+import { ViewUpdateClientComponent } from './ao/review/view-update-client/view-update-client.component';
 
 
 const routes: Routes = [
@@ -85,6 +86,9 @@ const routes: Routes = [
 {path:'bmcashflow', component:BMbmcashflowdetailsComponent},
 {path:'bmloandetails', component:BMloandetailsHhloanComponent},
 {path:'bmcgtdetails', component:Bmcgt1detailsComponent},
+
+{path:'AOViewUpdateClient', component:ViewUpdateClientComponent},
+
    ]
   },
  

@@ -70,13 +70,12 @@
           <div *ngIf="showOtpInput" style="display: flex;justify-content: center;align-items: start;">
             <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
               <ng-otp-input (onInputChange)="checkValidOTP($event)" [config]="{length:6}"></ng-otp-input>
-              {{otp[0]}}
               <div class="info mt-1">
                 <p>(Please enter verification code sent on your number.)</p>
               </div>
             </div>
           </div>
-          <div style="text-align: end;">
+          <div style="text-align: end;" *ngIf="hide">
             <button type="button" style="background-color: #4205b9;color: #fff;padding: 5px 10px;border-radius: 3px;
             border: 1px solid #4205b9;" (click)="Verifyandnext()">
               Verify & Next
@@ -175,5 +174,5 @@
   </div>
 </div>
 <section style="text-align: center; margin-top: 30px;">
-  <button class="loginBtn" mat-raised-button color="primary" (click)="save()">Save & next</button>
+  <button class="loginBtn" mat-raised-button color="primary" (click)="save()" [disabled]="!aadharVerified">Save & next</button>
 </section>

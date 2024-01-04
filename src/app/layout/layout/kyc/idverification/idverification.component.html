@@ -10,9 +10,9 @@
     <section class="contentwrap contentwrapsmall">
         <section class="data-content whiteclr">
             <ul class="tab_container1">
-                <li  [ngClass]="{'current': AAdharOTP, 'filled': (AAdharocr) }" (click)="clickDetailstab('a')">AAdharOTP
+                <li  [ngClass]="{'current': AAdharOTP, 'filled': (AAdharocr || VoterId ) }" (click)="clickDetailstab('a')">AAdharOTP
                 </li>
-                <li #AAdharOCRButton [ngClass]="{ 'current': VoterId}" class="" (click)="clickDetailstab('b')">Aadhar OCR</li>
+                <li #AAdharOCRButton [ngClass]="{ 'current': AAdharocr, 'filled': (VoterId)}" class="" (click)="clickDetailstab('b')" >Aadhar OCR</li>
                 <li #VoterIdButton [ngClass]="{'current': ''}" class="" (click)="clickDetailstab('c')">VoterId</li>
     
             </ul>
@@ -20,6 +20,7 @@
             </section>
     <app-adharotp *ngIf="AAdharOTP" (AAdharOTP)="AAdharOTPSave()"></app-adharotp>
     <app-ocradhar *ngIf="AAdharocr" (AAdharOCR)="AAdharOCRSave()"></app-ocradhar>
+    
     <app-samvoter *ngIf="VoterId"></app-samvoter>
 
 

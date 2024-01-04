@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 export class SamvoterComponent {
   res:any;
   referance_id:any='';
+  VoterVerified:boolean=false;
   responses: any[] = []; 
   name = 'Angular';
   imageChangedEvent: any = '';
@@ -124,6 +125,7 @@ export class SamvoterComponent {
         console.log('Front Image Base64:', this.frontimagebase64data);
       } else if (this.selectedImageType === 'VB') {
         this.backimagebase64data = this.imagebase64data;
+        this.VoterVerified =true;
         console.log('Back Image Base64:', this.backimagebase64data);
       } else {
         console.error('Invalid image type selected.');

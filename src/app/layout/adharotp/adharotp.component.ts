@@ -16,8 +16,11 @@ export class AdharotpComponent implements OnInit {
 responsetype :string='';
   sendOTP:boolean=false;
   referance_id: any = '';
+  aadharVerified:boolean=false;
   aadharNumberEntered = false;
   LosUnique_Id: any = {};
+  isLastDigitEntered: boolean= false;
+  hide:boolean=false;
   base64Data = '';
   userObj: any;
   requestId: any;
@@ -65,8 +68,12 @@ responsetype :string='';
     console.log(event)
     this.otp = event;
     this.isValidOTP = this.otp.length === 6;
+    this.hide = true;
     console.log('OTP Changed:', this.otp);
+    // this.isLastDigitEntered = true;
   }
+
+ 
 
 
   convertNumber() {
@@ -123,6 +130,7 @@ responsetype :string='';
         this.responsetype=Response.result.message;
         console.log(this.responsetype)
         this.sendOTP=true;
+      
         this.showOtpInput = true;
         this.resendCooldown = 90;
         this.startCooldownTimer();
@@ -198,6 +206,7 @@ responsetype :string='';
         const resData2 = JSON.parse(responseData['ResponseString']);
         let response = resData2.result.dataFromAadhaar
         console.log(response);
+        this.aadharVerified =true;
         // Swal.fire({
         //   imageUrl: '../../assets/images/warining.svg',
         //   imageHeight: 80,

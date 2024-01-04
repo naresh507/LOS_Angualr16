@@ -13,6 +13,7 @@ import { CrudService } from 'src/app/shared/services/crud.service';
 export class BMhouseholddetailsComponent {
   addmember: boolean = false;
   public savedData: any = [];
+  public role:any='';
   response: any = '';
   responses:any='';
   hide: boolean = false;
@@ -79,7 +80,8 @@ export class BMhouseholddetailsComponent {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
     this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
     this.getMasterData();
-   // this.getMasterDataotherdeatils();
+   this.role= this.userObj.UserRole;
+   console.log(this.role);
   }
 
   earningaddmoresaveCashFlowData(data: any) {
@@ -99,6 +101,7 @@ export class BMhouseholddetailsComponent {
     this._crudService.BMHouseHoldDetailsSubmitData(this.savedData).subscribe({
       next: (value: any) => {
         this.hide = true;
+       this.getMasterDataotherdeatils();
         console.log(value)
         if (value.status == true || value.status == 'True') {
 
@@ -141,29 +144,29 @@ export class BMhouseholddetailsComponent {
 
 
 
-  // getMasterDataotherdeatils() {
-  //   let obj = {
-  //     Flag: 'O',
-  //     UserId: this.userObj.UserID,
-  //     LosUnique_Id: this.LosUnique_Id,
+  getMasterDataotherdeatils() {
+    let obj = {
+      Flag: 'O',
+      UserId: this.userObj.UserID,
+      LosUnique_Id: this.LosUnique_Id,
 
-  //   }
-  //   this._crudService.BMHouseHoldFetchData(obj).subscribe({
-  //     next: (value: any) => {
-  //       console.log(value)
-  //       this.response = value.BMHouseHoldDetailsFetchDataInfo[0];
-  //       this.form.patchValue(this.response);
-  //       console.log(this.response);
-  //       if (value.status == true) {
+    }
+    this._crudService.BMHouseHoldFetchData(obj).subscribe({
+      next: (value: any) => {
+        console.log(value)
+        this.responses = value.BMHouseHoldDetailsFetchDataInfo[0];
+        this.form.patchValue(this.response);
+        console.log(this.response);
+        if (value.status == true) {
 
-  //       }
-  //     },
+        }
+      },
 
-  //     error: (err: HttpErrorResponse) => {
-  //       console.log(err)
-  //     }
-  //   })
-  // }
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+  }
 
 
 

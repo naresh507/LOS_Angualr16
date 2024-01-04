@@ -7,20 +7,21 @@
 .tab_container1 {
     
     margin-bottom: 20px; 
-    
+    line-height: 10px;
     padding-right: 20px;
 & li{ 
-    
+    margin-right: 5px;
     border-radius: 0; 
     
     width: 33.3%;
     background: #DBDEE3;
+    border-radius: 20px; 
     padding: 10px 10px 10px 40px; position: relative; color: #808080;
     &:first-child{border-radius: 20px 20px 20px 20px;
         padding-left: 36px;}
 
 &:after{
-content: '';
+// content: "";
 position: absolute;
 display: block;
 right: -25px;
@@ -28,14 +29,15 @@ top: 0;
 bottom: 0;
 width: 25px;
 height: 100%;
-background: #DBDEE3;    
+background: #DBDEE3;   
+border-radius: 20px; 
 // -webkit-clip-path: polygon(0 0, 50% 50%, 0 100%);
 
 // clip-path: polygon(0 0, 50% 50%, 0 100%);
  z-index: 99;
  }
 &:before{
-    content: "";
+   // content: "";
     position: absolute;
     display: block;
     right: -29px;

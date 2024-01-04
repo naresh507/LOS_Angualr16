@@ -72,7 +72,21 @@ import { BMloandetailsGuarantordetailsComponent } from './bmloandetails-guaranto
 import { BMloandetailsInsurancedetailsComponent } from './bmloandetails-insurancedetails/bmloandetails-insurancedetails.component';
 import { BMloandetailsBankdetailsComponent } from './bmloandetails-bankdetails/bmloandetails-bankdetails.component';
 import { Bmcgt1detailsComponent } from './bmcgt1details/bmcgt1details.component';
-import { OCRAdharComponent } from './ocradhar/ocradhar.component';
+
+import { CashFlowComponent } from './ao/review/cash-flow/cash-flow.component';
+import { Ct1DetailsComponent } from './ao/review/ct1-details/ct1-details.component';
+import { LoanDetailsComponent } from './ao/review/loan-details/loan-details.component';
+import { ViewUpdateClientdetailComponent } from './ao/review/view-update-clientdetail/view-update-clientdetail.component';
+import { ViewUpdateClientComponent } from './ao/review/view-update-client/view-update-client.component';
+//import { AocashflowHhexpensesComponent } from './AO/review/aocashflow-hhexpenses/aocashflow-hhexpenses.component';
+//import { AocashflowHhliabilityComponent } from './AO/review/aocashflow-hhliability/aocashflow-hhliability.component';
+//import { AocashflowHhloaneligibilityComponent } from './AO/review/aocashflow-hhloaneligibility/aocashflow-hhloaneligibility.component';
+//import { AoLoandetailsGaurantorDetailsComponent } from './AO/review/ao-loandetails-gaurantor-details/ao-loandetails-gaurantor-details.component';
+//import { AoLoandetailsInsuranceDetailsComponent } from './AO/review/ao-loandetails-insurance-details/ao-loandetails-insurance-details.component';
+//import { AoLoandetailsBankDetailsComponent } from './AO/review/ao-loandetails-bank-details/ao-loandetails-bank-details.component';
+// import { ViewUpdateClientdetailsEarningmemberdetailsComponent } from './AO/review/view-update-clientdetails-earningmemberdetails/view-update-clientdetails-earningmemberdetails.component';
+// import { ViewUpdateClientdetailsHouseholdDetailsComponent } from './AO/review/view-update-clientdetails-household-details/view-update-clientdetails-household-details.component';
+
 
 
 @NgModule({
@@ -118,7 +132,7 @@ import { OCRAdharComponent } from './ocradhar/ocradhar.component';
     ApperiasalCheckComponent,
     ApperiasalSearchComponent,
     ApperiasaldetailsComponent,
-  
+   
     StatisticsGraphComponent,
     StaffDashboardComponent,
     BMDashboardComponent,
@@ -139,7 +153,13 @@ import { OCRAdharComponent } from './ocradhar/ocradhar.component';
     BMloandetailsInsurancedetailsComponent,
     BMloandetailsBankdetailsComponent,
     Bmcgt1detailsComponent,
-    // OCRAdharComponent,
+
+  CashFlowComponent,
+  Ct1DetailsComponent,
+  LoanDetailsComponent,
+  ViewUpdateClientdetailComponent,
+  ViewUpdateClientComponent,
+
 
   ],
   imports: [

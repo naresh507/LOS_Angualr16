@@ -56,6 +56,13 @@ export class ChangepwdComponent implements OnInit {
     this.UserID = parseInt(userObj.UserID);
     this.changeDetails.UserID=this.UserID;
   }
+  chcekValue(event: any): boolean {
+    const code = (event.which) ? event.which : event.keyCode;
+    if (code > 31 && (code < 48 || code > 57)) {
+      return false
+    }
+    return true;
+  }
 
 
   save(){

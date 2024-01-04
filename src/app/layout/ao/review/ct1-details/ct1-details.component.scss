@@ -1,0 +1,48 @@
+.list_type{ display: flex; flex-wrap: wrap; padding-bottom: 10px;
+    & li{ flex: 50%; padding-right: 10px;
+    &:last-child{ padding-left: 10px; padding-right: 0;}
+
+    & label{ color: #000;
+        font-family: 'Noto Sans', sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;     min-height: 46px;
+        align-items: center;
+        display: flex;
+        line-height: normal; margin-bottom: 10px  ;}
+    }
+
+}
+
+.inputsec{ width: 100%; display: flex; flex-direction: column;}
+.insideotp{     align-items: center;
+    display: flex; & a{ margin-top:33px; color: #442477; cursor: pointer; font-weight: 600;}}
+    .modelimg{ text-align: center; & img{ height: 70px;}}
+    .label-title{ font-weight: 600; margin-bottom: 10px;}
+    .fullbtns{ flex-direction: column; & button{ width: 70%; margin: 10px 0;}}
+    .otplabel{ font-weight: 600; margin: 0 0 10px;}
+    .checktxt{ padding-left: 25px; position: relative;}
+    .checktxt:before{ position: absolute; left:0; top:0}
+.imgwrapper{ width: 100%;
+& img{ width:100%}
+}
+.subtitle{     color: #000;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    min-height: 46px;
+    align-items: center;
+    display: flex;
+    line-height: normal;
+    margin-bottom: 10px;}
+
+.bglisttype{ background: #F6F6F7; border-radius: 10px; padding: 10px 0 10px 10px; & li{ flex:33%; & label{ min-height: 0; font-size: 12px; }}}
+
+
+.bgtitle{ background: #DBDEE3; border-radius: 10px 10px 0 0; padding: 5px 10px; margin: 0 0 0px; font-size: 16px;}
+
+.boxsection{ border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 16px 24px 0px rgba(22, 34, 51, 0.08), 0px 4px 8px -4px rgba(22, 34, 51, 0.08);}
+    .inbox{ padding: 10px;}

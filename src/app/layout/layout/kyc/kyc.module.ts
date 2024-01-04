@@ -7,18 +7,18 @@ import { KycRoutingModule } from './kyc-routing.module';
 import { KycprofilereviewComponent } from './kycprofilereview/kycprofilereview.component';
 import { IdverificationComponent } from './idverification/idverification.component';
 import { ClientverificationComponent } from './clientverification/clientverification.component';
-import { OCRAdharComponent } from '../../ocradhar/ocradhar.component';
-
-
+import { OCRAdharComponent } from './ocradhar/ocradhar.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [KycComponent, KycprofilereviewComponent, 
     IdverificationComponent, 
-    ClientverificationComponent, OCRAdharComponent,
+    ClientverificationComponent,
+    OCRAdharComponent
   ],
   imports: [
     KycRoutingModule,
-    CommonModule, SharedModule],
-  exports: [KycComponent],  // Export components for use in other modules
+    CommonModule, SharedModule,ImageCropperModule,],
+  exports: [KycComponent]
 })
 export class KYCModule { }

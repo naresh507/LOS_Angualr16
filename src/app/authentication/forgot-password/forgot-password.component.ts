@@ -43,6 +43,14 @@ export class ForgotPasswordComponent {
   ngOnInit(): void {
 
   }
+
+  chcekValue(event: any): boolean {
+    const code = (event.which) ? event.which : event.keyCode;
+    if (code > 31 && (code < 48 || code > 57)) {
+      return false
+    }
+    return true;
+  }
 login()
 {
   this.router.navigateByUrl('/login')

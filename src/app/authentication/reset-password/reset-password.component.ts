@@ -63,6 +63,14 @@ export class ResetPasswordComponent implements OnInit {
     console.log(this.forgotuserObj);
     console.log(this.forgotuserObj.userId);
   }
+
+  chcekValue(event: any): boolean {
+    const code = (event.which) ? event.which : event.keyCode;
+    if (code > 31 && (code < 48 || code > 57)) {
+      return false
+    }
+    return true;
+  }
   savepassword(){
     this.auth.resetPassword(this.reset).subscribe(
       (response) => {

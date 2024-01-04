@@ -18,6 +18,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
+
 @NgModule({
   declarations: [
     shared,

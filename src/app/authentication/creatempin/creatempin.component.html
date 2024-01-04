@@ -23,7 +23,7 @@
           (keyup)="onInputKeyUp($event, i)"
           #inputElement
         > -->
-        <ng-otp-input (onInputChange)="checkValidOTP($event, 'newMPINValues')" [config]="{ length: 4, allowNumbersOnly: true, isPasswordInput:true }" ></ng-otp-input>
+        <ng-otp-input (onInputChange)="checkValidOTP($event, 'newMPINValues')" [config]="{ length: 4, allowNumbersOnly: true, isPasswordInput:true }"  (keypress)="chcekValue($event)"></ng-otp-input>
       </ng-container>
     </div>
      </section>
@@ -38,7 +38,7 @@
             (keyup)="onInputKeyUp($event, i)"
             #inputElement
           > -->
-          <ng-otp-input (onInputChange)="checkValidOTP($event, 'confirmMPINValues')"  [config]="{ length: 4, allowNumbersOnly: true, isPasswordInput:true }" (input)="PasswordMatch()" ></ng-otp-input>
+          <ng-otp-input (onInputChange)="checkValidOTP($event, 'confirmMPINValues')"  [config]="{ length: 4, allowNumbersOnly: true, isPasswordInput:true }" (input)="PasswordMatch()" (keypress)="chcekValue($event)"  ></ng-otp-input>
         </ng-container>
       </div>
        </section>

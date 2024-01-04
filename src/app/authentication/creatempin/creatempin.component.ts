@@ -67,6 +67,15 @@ export class CreatempinComponent implements OnInit {
     this.userId = parseInt(userObj.UserID);
     this.userRole = userObj.UserRole;
   }
+
+  
+chcekValue(event: any): boolean {
+  const code = (event.which) ? event.which : event.keyCode;
+  if (code > 31 && (code < 48 || code > 57)) {
+    return false
+  }
+  return true;
+}
   save() {
     // const requestBody = {
     //   "UserID": this.userId.toString(),

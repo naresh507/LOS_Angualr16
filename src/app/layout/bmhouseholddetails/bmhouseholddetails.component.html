@@ -1,307 +1,417 @@
+<section class="boxsection" *ngIf="!hide">
+    <section>
+        <h2 class="bgtitle">Member Details by FCO</h2>
+        <section class="inbox">
+            <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>Family Type</label>
+                        <span> {{response?.FamilyType}}</span>
 
-          
-            <section class="boxsection" *ngIf="!hide">
-                <h2 class="bgtitle">Member Details</h2>
-                  <section class="inbox">
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Type Of Roof</label>
+                        <span> {{response?.TypeOfRoof}}</span>
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Type Of Ownership</label>
+                        <span> {{response?.TypeofOwnership}}</span>
+
+                    </section>
+                </li>
+
+
+
+
+
+
+
+            </ul>
+
+            <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>No. Of Earning Member</label>
+                        <span> {{response?.NonEaringMembers}}</span>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>No. Of Non Earning Member</label>
+                        <span> {{response?.NonofnonEaringMembers}}</span>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>No. Of Unmarried Child</label>
+                        <span> {{response?.NoOfunmarriedchildren}}</span>
+
+                    </section>
+                </li>
+            </ul>
+            <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>Total Household Family Members</label>
+                        <span> {{response?.TotalHouseholdFamilyMembers}}</span>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>No. Of Dependents</label>
+                        <span> {{response?.NoOfDependents}}</span>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>RelationShip</label>
+                        <span> {{response?.Relationship}}</span>
+
+                    </section>
+                </li>
+            </ul>
+            <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>Locality</label>
+                        <span> {{response?.Locality}}</span>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Religion/Community</label>
+                        <span> {{response?.Community}}</span>
+
+                    </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Caste/category</label>
+
+
+                    </section>
+                </li>
+
+            </ul>
+        </section>
+        <section>
+            </section>
+
+            <section *ngIf="role === 'AM'" >
+                <h2 class="bgtitle">Member Details by BM</h2>
+                <section class="inbox">
                     <ul class="list_type bglisttype ">
                         <li>
                             <section class="inputsec">
                                 <label>Family Type</label>
                                 <span> {{response?.FamilyType}}</span>
-                                
-                                
+
+
                             </section>
-                            </li>
-                            <li>
-                                <section class="inputsec">
-                                    <label>Type Of Roof</label>
-                                    <span> {{response?.TypeOfRoof}}</span>
-                                </section>
-                                </li>
-                                <li>
-                                    <section class="inputsec">
-                                        <label>Type Of Ownership</label>
-                                        <span> {{response?.TypeofOwnership}}</span>
-                                        
-                                    </section>
-                                    </li>
-            
-                                
-            
-                          
-            
-                              
-                    
-                      </ul>
-            
-                      <ul class="list_type bglisttype ">
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>Type Of Roof</label>
+                                <span> {{response?.TypeOfRoof}}</span>
+                            </section>
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>Type Of Ownership</label>
+                                <span> {{response?.TypeofOwnership}}</span>
+
+                            </section>
+                        </li>
+
+
+
+
+
+
+
+                    </ul>
+
+                    <ul class="list_type bglisttype ">
                         <li>
                             <section class="inputsec">
                                 <label>No. Of Earning Member</label>
                                 <span> {{response?.NonEaringMembers}}</span>
-                                
+
                             </section>
-                            </li>
-                            <li>
-                                <section class="inputsec">
-                                    <label>No. Of Non Earning Member</label>
-                                    <span> {{response?.NonofnonEaringMembers}}</span>
-                                    
-                                </section>
-                                </li>
-                                <li>
-                                    <section class="inputsec">
-                                        <label>No. Of Unmarried Child</label>
-                                        <span> {{response?.NoOfunmarriedchildren}}</span>
-                                        
-                                    </section>
-                                    </li>
-                      </ul>
-                      <ul class="list_type bglisttype ">
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>No. Of Non Earning Member</label>
+                                <span> {{response?.NonofnonEaringMembers}}</span>
+
+                            </section>
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>No. Of Unmarried Child</label>
+                                <span> {{response?.NoOfunmarriedchildren}}</span>
+
+                            </section>
+                        </li>
+                    </ul>
+                    <ul class="list_type bglisttype ">
                         <li>
                             <section class="inputsec">
                                 <label>Total Household Family Members</label>
                                 <span> {{response?.TotalHouseholdFamilyMembers}}</span>
-                                
+
                             </section>
-                            </li>
-                            <li>
-                                <section class="inputsec">
-                                    <label>No. Of Dependents</label>
-                                    <span> {{response?.NoOfDependents}}</span>
-                                    
-                                </section>
-                                </li>
-                                <li>
-                                    <section class="inputsec">
-                                        <label>RelationShip</label>
-                                        <span> {{response?.Relationship}}</span>
-                                        
-                                    </section>
-                                    </li>
-                      </ul>
-                      <ul class="list_type bglisttype ">
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>No. Of Dependents</label>
+                                <span> {{response?.NoOfDependents}}</span>
+
+                            </section>
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>RelationShip</label>
+                                <span> {{response?.Relationship}}</span>
+
+                            </section>
+                        </li>
+                    </ul>
+                    <ul class="list_type bglisttype ">
                         <li>
                             <section class="inputsec">
                                 <label>Locality</label>
                                 <span> {{response?.Locality}}</span>
-                                
+
                             </section>
-                            </li>
-                            <li>
-                                <section class="inputsec">
-                                    <label>Religion/Community</label>
-                                    <span> {{response?.Community}}</span>
-                                    
-                                </section>
-                                </li>
-                                <li>
-                                    <section class="inputsec">
-                                        <label>Caste/category</label>
-                                                                
-                                        
-                                    </section>
-                                    </li>
-                           
-                      </ul>
-                
-                        <mat-accordion multi>
-                <mat-expansion-panel>   
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>Religion/Community</label>
+                                <span> {{response?.Community}}</span>
+
+                            </section>
+                        </li>
+                        <li>
+                            <section class="inputsec">
+                                <label>Caste/category</label>
+
+
+                            </section>
+                        </li>
+
+                    </ul>
+                </section>
+            </section>
+
+            <mat-accordion multi>
+                <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             Update Details
                         </mat-panel-title>
 
                     </mat-expansion-panel-header>
-<!-- <app-cashflowforms  (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms> -->
-    <app-bmupdateerarningmember [earningMemberData]="response" (cashFlowData)="earningaddmoresaveCashFlowData($event)"></app-bmupdateerarningmember>
-                   
+                    <!-- <app-cashflowforms  (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms> -->
+                    <app-bmupdateerarningmember [earningMemberData]="response"
+                        (cashFlowData)="earningaddmoresaveCashFlowData($event)"></app-bmupdateerarningmember>
+
 
                     <!-- <section style="text-align: right; margin: 30px 0;">
                         <button class="loginBtn"  mat-raised-button color="primary" (click)="addmember = !addmember">Save & Next</button>
                     </section> -->
 
 
-                    </mat-expansion-panel>
-                    <button mat-raised-button class="fill_btn" colo="primary" (click)="hide = !hide"
+                </mat-expansion-panel>
+                <button mat-raised-button class="fill_btn" colo="primary" (click)="hide = !hide"
                     (click)="saveCashFlowData(form)">Next</button>
 
-</mat-accordion>
-                  </section>
-                    </section>
-                  
-                    
-            
+            </mat-accordion>
+        </section>
+    </section>
 
-<section class="boxsection" *ngIf="hide">
-    <h2 class="bgtitle">Other Details</h2>
-      <section class="inbox">
-        <ul class="list_type bglisttype ">
-            <li>
-                <section class="inputsec">
-                    <label>Electricity</label>
-                    <!-- <section>Yes</section> -->
-                    <!-- <span> {{response?.Locality}}</span> -->
-                    
-                </section>
+
+
+
+    <section class="boxsection" *ngIf="hide">
+        <h2 class="bgtitle">Other Details</h2>
+        <section class="inbox">
+            <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>Electricity</label>
+                        <!-- <section>Yes</section> -->
+                        <span> {{responses?.Electricity}}</span>
+
+                    </section>
                 </li>
                 <li>
                     <section class="inputsec">
                         <label>Customer ID</label>
                         <!-- <section>9891098970</section> -->
-                        <!-- <span> {{response?.Locality}}</span> -->
-                        
+                        <span> {{responses?.Customerid}}</span>
+
                     </section>
-                    </li>
-                    <li>
-                        <section class="inputsec">
-                            <label>Water</label>
-                            <!-- <section>Yes</section> -->
-                            <!-- <span> {{response?.Locality}}</span> -->
-                            
-                        </section>
-                        </li>
-          </ul>
-          <ul class="list_type bglisttype ">
-            <li>
-                <section class="inputsec">
-                    <label>Toilet</label>
-                    <!-- <section>Yes</section> -->
-                    <!-- <span> {{response?.Locality}}</span> -->
-                    
-                </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Water</label>
+                        <!-- <section>Yes</section> -->
+                        <span> {{responses?.Water}}</span>
+
+                    </section>
+                </li>
+            </ul>
+            <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>Toilet</label>
+                        <!-- <section>Yes</section> -->
+                        <span> {{responses?.Toilet}}</span>
+
+                    </section>
                 </li>
                 <li>
                     <section class="inputsec">
                         <label>Sewage</label>
                         <!-- <section>Yes</section> -->
-                        <!-- <span> {{response?.Locality}}</span> -->
-                        
+                        <span> {{responses?.Sewage}}</span>
+
                     </section>
-                    </li>
-                    <li>
-                        <section class="inputsec">
-                            <label>Land</label>
-                            <!-- <section>Yes</section> -->
-                            
-                        </section>
-                        </li>
-          </ul>
-          <ul class="list_type bglisttype ">
-            <li>
-                <section class="inputsec">
-                    <label>LPG</label>
-                    <!-- <section>Yes</section> -->
-                    <!-- <span> {{response?.Locality}}</span>
-                     -->
-                </section>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Land</label>
+                        <!-- <section>Yes</section> -->
+                        <span> {{responses?.Land}}</span>
+
+                    </section>
+                </li>
+            </ul>
+            <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>LPG</label>
+                        <!-- <section>Yes</section> -->
+                        <span> {{responses?.LPG}}</span>
+
+                    </section>
                 </li>
                 <li>
                     <section class="inputsec">
                         <label>LPG Consumwer No</label>
                         <!-- <section>9891098970</section> -->
-                        <!-- <span> {{response?.Locality}}</span> -->
-                        
+                        <span> {{responses?.LPGConsumerNO}}</span>
+
                     </section>
-                    </li>
-                    <li>
-                        <section class="inputsec">
-                            <label>Livestock</label>
-                            <!-- <section>Yes</section> -->
-                            <!-- <span> {{response?.Locality}}</span> -->
-                            
-                        </section>
-                        </li>
-          </ul>
-          <ul class="list_type bglisttype ">
-            <li>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Livestock</label>
+                        <!-- <section>Yes</section> -->
+                        <span> {{responses?.Livestock}}</span>
+
+                    </section>
+                </li>
+            </ul>
+            <ul class="list_type bglisttype ">
+                <!-- <li>
                 <section class="inputsec">
                     <label>Cow</label>
-                    <!-- <section>2</section> -->
-                    <!-- <span> {{response?.Locality}}</span> -->
+                  
+                    <span> {{responses?.Livestock}}</span>
                     
                 </section>
                 </li>
                 <li>
                     <section class="inputsec">
                         <label>Buffaloes</label>
-                        <!-- <section>1</section> -->
-                        <!-- <span> {{response?.Locality}}</span> -->
+                       
                         
                     </section>
                     </li>
                     <li>
                         <section class="inputsec">
                             <label>Goats</label>
-                            <!-- <section>1</section> -->
-                            <!-- <span> {{response?.Locality}}</span> -->
+                          
                             
                         </section>
-                        </li>
-          </ul>
-          <ul class="list_type bglisttype ">
-            <li>
-                <section class="inputsec">
-                    <label>Poultry</label>
-                    <!-- <section>1</section> -->
-                    <!-- <span> {{response?.Locality}}</span> -->
-                    
-                </section>
+                        </li> -->
+            </ul>
+            <ul class="list_type bglisttype ">
+                <li>
+                    <section class="inputsec">
+                        <label>Poultry</label>
+                        <!-- <section>1</section> -->
+                        <span> {{responses?.Poultry}}</span>
+
+                    </section>
                 </li>
                 <li>
                     <section class="inputsec">
                         <label>Vehicle</label>
                         <!-- <section>No</section> -->
-                        <!-- <span> {{response?.Locality}}</span>
-                         -->
+                        <span> {{responses?.Vehical}}</span>
+
+
                     </section>
-                    </li>
-                    <li>
-                        <section class="inputsec">
-                            <label>Furniture</label>
-                            <!-- <section>No</section> -->
-                            <!-- <span> {{response?.Locality}}</span>
-                             -->
-                        </section>
-                        </li>
-          </ul>
-          <ul class="list_type bglisttype ">
-           
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Furniture</label>
+                        <!-- <section>No</section> -->
+                        <span> {{responses?.Furniture}}</span>
+
+                    </section>
+                </li>
+            </ul>
+            <ul class="list_type bglisttype ">
+
                 <li>
                     <section class="inputsec">
                         <label>SmartPhone</label>
                         <!-- <section>Yes</section> -->
-                        <!-- <span> {{response?.Locality}}</span> -->
-                        
+                        <span> {{responses?.Smartphone}}</span>
+
                     </section>
-                    </li>
-                    <li>
-                        <section class="inputsec">
-                            <label>Electronic Items</label>
-                            <!-- <section>No</section> -->
-                            <!-- <span> {{response?.Locality}}</span> -->
-                            
-                        </section>
-                        </li>
-                        
-          </ul>
+                </li>
+                <li>
+                    <section class="inputsec">
+                        <label>Electronic Items</label>
+                        <!-- <section>No</section> -->
+                        <span> {{responses?.Electronicitems}}</span>
 
-          <mat-accordion multi>
-            <mat-expansion-panel>   
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Update Details
-                    </mat-panel-title>
+                    </section>
+                </li>
 
-                </mat-expansion-panel-header>
-<!-- <app-cashflowforms  (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms> -->
-<app-bmupdatehoulddetails (cashFlowData)="OtherDetailsHosehold($event)"></app-bmupdatehoulddetails>
-               
+            </ul>
 
-                <section style="text-align: right; margin: 30px 0;">
-                    <!-- <button class="loginBtn"  mat-raised-button color="primary" (click)="addmember = !addmember">Save & Next</button> -->
-                </section>
-<!-- <ng-container *ngIf="addmember">
+            <mat-accordion multi>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Update Details
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <!-- <app-cashflowforms  (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms> -->
+                    <app-bmupdatehoulddetails (cashFlowData)="OtherDetailsHosehold($event)"></app-bmupdatehoulddetails>
+
+
+                    <section style="text-align: right; margin: 30px 0;">
+                        <!-- <button class="loginBtn"  mat-raised-button color="primary" (click)="addmember = !addmember">Save & Next</button> -->
+                    </section>
+                    <!-- <ng-container *ngIf="addmember">
 <hr />
 
 <section class="smalltitlewrap"><div>  <h2>Income 2</h2></div>
@@ -312,24 +422,14 @@
 
                 </mat-expansion-panel>
 
-</mat-accordion>
+            </mat-accordion>
 
-          
-    
-        
-      </section>
 
-      <section class="btnswrapper text-center">
-        <button type="submit" mat-raised-button class="fill_btn" colo="primary" (click)="save()"
-       >Save & Next</button>
+
+
         </section>
 
-
-    
-      
-
-
-
-
-
-
+        <section class="btnswrapper text-center">
+            <button type="submit" mat-raised-button class="fill_btn" colo="primary" (click)="save()">Save &
+                Next</button>
+        </section>

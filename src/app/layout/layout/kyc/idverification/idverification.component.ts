@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CrudService } from 'src/app/shared/services/crud.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-idverification',
   templateUrl: './idverification.component.html',
@@ -98,7 +99,7 @@ export class IdverificationComponent implements OnInit{
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
     this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
-  
+    
   }
 
 }
