@@ -155,8 +155,8 @@ export class BMhouseholddetailsComponent {
       next: (value: any) => {
         console.log(value)
         this.responses = value.BMHouseHoldDetailsFetchDataInfo[0];
-        this.form.patchValue(this.response);
-        console.log(this.response);
+        this.form.patchValue(this.responses);
+        console.log(this.responses);
         if (value.status == true) {
 
         }
@@ -182,8 +182,8 @@ export class BMhouseholddetailsComponent {
       next: (value: any) => {
         console.log(value)
         this.response = value?.BMHouseHoldDetailsFetchDataInfo[0];
-        this.form.patchValue(this.responses);
-        console.log(this.responses);
+        this.form.patchValue(this.response);
+        console.log(this.response);
         if (value.status == true) {
 
         }

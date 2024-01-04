@@ -31,17 +31,20 @@
     <li class="">
         <section class="inputsec">
             <label>Type Of Roof</label>
-            <mat-form-field appearance="outline">
-                <input required matInput placeholder="Enter" formControlName="TypeOfRoof" >
-            </mat-form-field>
             <!-- <mat-form-field appearance="outline">
-                <mat-select formControlName="FamilyType">
-                    <mat-option [value]="r.ID" *ngFor="let r of FamilyTypeDetails">
+                <input required matInput placeholder="Enter" formControlName="TypeOfRoof" >
+            </mat-form-field> -->
+            <mat-form-field appearance="outline">
+                <mat-select formControlName="TypeOfRoof">
+                    <mat-option>
+                        Select
+                      </mat-option>
+                    <mat-option [value]="r.ID" *ngFor="let r of TypeofRoofDetails">
                       {{r.Name}}
                     </mat-option>
                   
                 </mat-select>
-            </mat-form-field> -->
+            </mat-form-field>
         </section>
     </li>
 </ul>
@@ -51,18 +54,17 @@
    <section class="inputsec">
             <label>Type Of OwnerShip</label>
             <mat-form-field appearance="outline">
-                <mat-select formControlName="TypeofOwnership" >
+
+                <mat-select formControlName="TypeofOwnership">
                     <mat-option>
                         Select
-                    </mat-option>
-                    <!-- <mat-option  [value]="f.ID" *ngFor="let f of FamilyTypeDetails"> -->
-                        <!-- <mat-option  [value]="f.Name" *ngFor="let f of FamilyTypeDetails"> -->
-                            <mat-option>
-                    
-                        <!-- {{f.Name}} -->
+                      </mat-option>
+                    <mat-option [value]="f.ID" *ngFor="let f of OwnershipDetails">
+                      {{f.Name}}
                     </mat-option>
                   
                 </mat-select>
+               
             </mat-form-field>
         </section>
       
@@ -135,10 +137,8 @@
                         Select
                     </mat-option>
                     <!-- <mat-option  [value]="f.ID" *ngFor="let f of FamilyTypeDetails"> -->
-                        <!-- <mat-option  [value]="f.Name" *ngFor="let f of FamilyTypeDetails"> -->
-                            <mat-option>
-                    
-                        <!-- {{f.Name}} -->
+                        <mat-option  [value]="f.Name" *ngFor="let f of LOCALITYDetails">
+                        {{f.Name}}
                     </mat-option>
                   
                 </mat-select>
@@ -149,18 +149,18 @@
     <li class="">
         <section class="inputsec">
             <label>Religion/Community</label>
-            <mat-form-field appearance="outline">
-                <input required matInput placeholder="Enter" formControlName="Community" >
-            </mat-form-field>
-
             <!-- <mat-form-field appearance="outline">
+                <input required matInput placeholder="Enter" formControlName="Community" >
+            </mat-form-field> -->
+
+            <mat-form-field appearance="outline">
                 <mat-select formControlName="Community">
-                    <mat-option [value]="r.ID" *ngFor="let r of Community">
+                    <mat-option [value]="r.ID" *ngFor="let r of ReligionCommunityDetails">
                       {{r.Name}}
                     </mat-option>
                   
                 </mat-select>
-            </mat-form-field> -->
+            </mat-form-field>
         </section>
     </li>
 </ul>
@@ -176,10 +176,10 @@
                         Select
                     </mat-option>
                     <!-- <mat-option  [value]="f.ID" *ngFor="let f of FamilyTypeDetails"> -->
-                        <!-- <mat-option  [value]="f.Name" *ngFor="let f of FamilyTypeDetails"> -->
-                            <mat-option>
+                        <mat-option  [value]="f.Name" *ngFor="let f of CasteCategoryDetails">
+                         
                     
-                        <!-- {{f.Name}} -->
+                        {{f.Name}}
                     </mat-option>
                   
                 </mat-select>

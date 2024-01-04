@@ -20,6 +20,8 @@ export class BMupdateerarningmemberComponent {
   dialogRef: any;
   LivestockInfo: any;
   VehicleInfo: any;
+  ElectronicitemsInfo:any;
+  WaterinfoInfo:any;
   CasteCategoryDetails: any;
   FamilyTypeDetails: any;
   LOCALITYDetails: any;
@@ -58,7 +60,7 @@ export class BMupdateerarningmemberComponent {
  ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
     this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
-    // this.getMasterData();
+     this.getMasterData();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -85,6 +87,40 @@ export class BMupdateerarningmemberComponent {
         Community: this['earningMemberData'].Community || '',
       });
     }
+  }
+
+  getMasterData() {
+    let obj = {
+
+      "UserId": this.userObj.UserID,
+      LosUnique_Id: this.LosUnique_Id,
+
+    }
+    this._crudService.getMasterDetails(obj).subscribe({
+      next: (value: any) => {
+        console.log(value)
+        if (value.status == true) {
+
+
+          this.LivestockInfo = value?.LivestockInfo;
+          this.VehicleInfo = value?.VehicleInfo;
+          this.ElectronicitemsInfo = value?.ElectronicitemsInfo;
+          this.WaterinfoInfo = value?.WaterinfoInfo;
+          this.FamilyTypeDetails = value?.FamilyTypeDetails;
+          this.TypeofRoofDetails = value?.TypeofRoofDetails;
+          this.OwnershipDetails = value?.OwnershipDetails;
+          this.LOCALITYDetails = value?.LOCALITYDetails;
+          this.CasteCategoryDetails = value?.CasteCategoryDetails;
+          this.ReligionCommunityDetails = value?.ReligionCommunityDetails
+
+
+        }
+      },
+
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
   }
 
   saveData() {

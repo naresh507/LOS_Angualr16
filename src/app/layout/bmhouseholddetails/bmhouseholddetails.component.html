@@ -324,30 +324,7 @@
                     </section>
                 </li>
             </ul>
-            <ul class="list_type bglisttype ">
-                <!-- <li>
-                <section class="inputsec">
-                    <label>Cow</label>
-                  
-                    <span> {{responses?.Livestock}}</span>
-                    
-                </section>
-                </li>
-                <li>
-                    <section class="inputsec">
-                        <label>Buffaloes</label>
-                       
-                        
-                    </section>
-                    </li>
-                    <li>
-                        <section class="inputsec">
-                            <label>Goats</label>
-                          
-                            
-                        </section>
-                        </li> -->
-            </ul>
+           
             <ul class="list_type bglisttype ">
                 <li>
                     <section class="inputsec">
@@ -405,7 +382,8 @@
 
                     </mat-expansion-panel-header>
                     <!-- <app-cashflowforms  (cashFlowData)="saveCashFlowData($event)"></app-cashflowforms> -->
-                    <app-bmupdatehoulddetails (cashFlowData)="OtherDetailsHosehold($event)"></app-bmupdatehoulddetails>
+                    <app-bmupdatehoulddetails [earningMemberData]="responses"
+                    (cashFlowData)="OtherDetailsHosehold($event)"></app-bmupdatehoulddetails>
 
 
                     <section style="text-align: right; margin: 30px 0;">

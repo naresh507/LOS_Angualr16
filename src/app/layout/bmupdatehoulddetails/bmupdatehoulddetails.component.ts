@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -11,6 +11,7 @@ import { CrudService } from 'src/app/shared/services/crud.service';
   styleUrls: ['./bmupdatehoulddetails.component.scss']
 })
 export class BMupdatehoulddetailsComponent {
+  @Input() earningMemberData: any;
   @Output() cashFlowData: EventEmitter<any> = new EventEmitter<any>();
   LosUnique_Id: any = {};
   userObj: any;
@@ -18,7 +19,9 @@ export class BMupdatehoulddetailsComponent {
   LivestockInfo: any;
   VehicleInfo: any;
   CasteCategoryDetails: any;
+  ElectronicitemsInfo:any;
   FamilyTypeDetails: any;
+  WaterinfoInfo:any;
   LOCALITYDetails: any;
   OwnershipDetails: any;
   ProdctDetails: any;
@@ -73,42 +76,42 @@ export class BMupdatehoulddetailsComponent {
   ngOnInit(): void {
     this.userObj = JSON.parse(localStorage.getItem('userObj') || '{}');
     this.LosUnique_Id = JSON.parse(localStorage.getItem('aadharObj') || '{}');
-    // this.getMasterData();
+     this.getMasterData();
   }
 
-  // getMasterData() {
-  //   let obj = {
+  getMasterData() {
+    let obj = {
 
-  //     "UserId": this.userObj.UserID,
-  //     LosUnique_Id: this.LosUnique_Id,
+      "UserId": this.userObj.UserID,
+      LosUnique_Id: this.LosUnique_Id,
 
-  //   }
-  //   this._crudService.getMasterDetails(obj).subscribe({
-  //     next: (value: any) => {
-  //       console.log(value)
-  //       if (value.status == true) {
-
-
-  //         this.LivestockInfo = value?.LivestockInfo;
-  //         this.VehicleInfo = value?.VehicleInfo;
+    }
+    this._crudService.getMasterDetails(obj).subscribe({
+      next: (value: any) => {
+        console.log(value)
+        if (value.status == true) {
 
 
-  //         this.FamilyTypeDetails = value?.FamilyTypeDetails;
-  //         this.TypeofRoofDetails = value?.TypeofRoofDetails;
-  //         this.OwnershipDetails = value?.OwnershipDetails;
-  //         this.LOCALITYDetails = value?.LOCALITYDetails;
-  //         this.CasteCategoryDetails = value?.CasteCategoryDetails;
-  //         this.ReligionCommunityDetails = value?.ReligionCommunityDetails
+          this.LivestockInfo = value?.LivestockInfo;
+          this.VehicleInfo = value?.VehicleInfo;
+          this.ElectronicitemsInfo = value?.ElectronicitemsInfo;
+          this.WaterinfoInfo = value?.WaterinfoInfo;
+          this.FamilyTypeDetails = value?.FamilyTypeDetails;
+          this.TypeofRoofDetails = value?.TypeofRoofDetails;
+          this.OwnershipDetails = value?.OwnershipDetails;
+          this.LOCALITYDetails = value?.LOCALITYDetails;
+          this.CasteCategoryDetails = value?.CasteCategoryDetails;
+          this.ReligionCommunityDetails = value?.ReligionCommunityDetails
 
 
-  //       }
-  //     },
+        }
+      },
 
-  //     error: (err: HttpErrorResponse) => {
-  //       console.log(err)
-  //     }
-  //   })
-  // }
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+  }
 
   // proceed() {
   //   this.router.navigateByUrl('/cashflow')
